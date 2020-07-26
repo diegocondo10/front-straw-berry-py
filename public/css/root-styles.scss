@@ -1,0 +1,36 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.cpointer {
+  cursor: pointer;
+}
+
+.bg-black {
+  background-color: #1a1a1a !important;
+}
+
+body,
+div#__next,
+main {
+  height: calc(100% - 4.6rem) !important;
+}
+
+.th__opciones {
+  width: 100px;
+}
+a.nav-link {
+  cursor: pointer !important;
+}
+
+a.dropdown-item {
+  cursor: pointer !important;
+}
+
+/*
+        style={{
+          display: 'flex',
+          height: 'calc(100vh - 4.6rem)',
+          backgroundColor: 'red',
+          alignItems: 'center',
+          overflowX: 'hidden',
+        }}
+*/

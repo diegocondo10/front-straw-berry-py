@@ -1,16 +1,13 @@
-import Head from "next/head";
+import React from "react";
+import PrivateLayout from "@/layouts/privateLayout";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className='container'>
-      <Head>
-        <title>Create Next App</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
-      <main></main>
-
-      <footer></footer>
-    </div>
+    <PrivateLayout title='Inicio'>
+      <main>
+        <h1>Test</h1>
+      </main>
+    </PrivateLayout>
   );
-}
+};
+export default Home;
