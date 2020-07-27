@@ -9,7 +9,7 @@ const BreadCrumb = ({
   items = [],
 }) => {
   return (
-    <Breadcrumb>
+    <Breadcrumb className="shadow-lg">
       <li className='breadcrumb-item'>
         <Link href={basePath}>
           <a>{baseTitle}</a>

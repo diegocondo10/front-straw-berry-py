@@ -37,7 +37,7 @@ const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
 
           <div className="col-md-11 datatable-doc-demo mt-5">
             <DataTable
-              className="p-datatable-customers"
+              className="p-datatable-customers shadow-lg"
               value={aplicaciones}
               rowHover
               paginator
