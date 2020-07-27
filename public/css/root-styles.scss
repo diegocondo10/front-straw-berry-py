@@ -1,4 +1,4 @@
-@import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
 
 .cpointer {
   cursor: pointer;
@@ -12,6 +12,7 @@ body,
 div#__next,
 main {
   height: calc(100% - 4.6rem) !important;
+  //background-color: #e9ecef;
 }
 
 .th__opciones {
@@ -23,6 +24,9 @@ a.nav-link {
 
 a.dropdown-item {
   cursor: pointer !important;
+}
+.full_h {
+  height: calc(100vh - 5rem) !important;
 }
 
 /*

@@ -1,3 +1,4 @@
+import Axios from "axios";
 import { urlBaseApi } from "./service.urls";
 
 export class Aplicacion {
@@ -5,7 +6,7 @@ export class Aplicacion {
   decripcion;
   permisos;
 
-  static URL_BASE = `${urlBaseApi}aplicaciones/`;
+  static URL_BASE = `${urlBaseApi}auth/aplicaciones`;
 
   static getAll = async () => {
     return await Axios.get(this.URL_BASE);

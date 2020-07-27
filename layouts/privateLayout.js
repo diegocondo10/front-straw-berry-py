@@ -14,6 +14,12 @@ const PrivateLayout = ({ children, title = '' }) => {
       </header>
 
       {children}
+
+      <style jsx global>{`
+        .full_h {
+          height: calc(100vh - 5rem) !important;
+        }
+      `}</style>
     </React.Fragment>
   );
 };
