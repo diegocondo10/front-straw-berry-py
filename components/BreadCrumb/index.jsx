@@ -1,12 +1,16 @@
-import React from 'react';
-import { Breadcrumb } from 'react-bootstrap';
-import Link from 'next/link';
-import classnames from 'classnames';
+import React from "react";
+import { Breadcrumb } from "react-bootstrap";
+import Link from "next/link";
+import classnames from "classnames";
 
-const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => {
+const BreadCrumb = ({
+  basePath = "/",
+  baseTitle = "Dashboard",
+  items = [],
+}) => {
   return (
     <Breadcrumb>
-      <li className="breadcrumb-item">
+      <li className='breadcrumb-item'>
         <Link href={basePath}>
           <a>{baseTitle}</a>
         </Link>
@@ -16,10 +20,9 @@ const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => 
         <li
           key={index}
           className={classnames({
-            'breadcrumb-item': true,
+            "breadcrumb-item": true,
             active: !!item.active,
-          })}
-        >
+          })}>
           <Link href={item.href}>
             <a>{item.title}</a>
           </Link>

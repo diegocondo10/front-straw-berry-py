@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { Column } from 'primereact/column';
-import React from 'react';
-import { AiFillDelete } from 'react-icons/ai';
-import { FiEdit } from 'react-icons/fi';
+import Link from "next/link";
+import { Column } from "primereact/column";
+import React from "react";
+import { AiFillDelete } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
 
 export const IndexColumn = () => {
   return (
     <Column
-      style={{ width: '70px' }}
-      header="#"
+      style={{ width: "70px" }}
+      header='#'
       body={(rowData, { rowIndex }) => {
         return rowIndex + 1;
       }}
@@ -19,13 +19,13 @@ export const IndexColumn = () => {
 export const OptionesColumn = ({
   editPath,
   detailPath,
-  header = 'Opciones',
+  header = "Opciones",
 } = {}) => {
   const bodyColumn = (rowData) => (
-    <div className="d-inline-flex justify-content-around w-100">
+    <div className='d-inline-flex justify-content-around w-100'>
       {editPath && (
         <Link href={editPath(rowData)}>
-          <a className="btn btn-sm btn-primary">
+          <a className='btn btn-sm btn-primary'>
             <FiEdit />
           </a>
         </Link>
@@ -33,7 +33,7 @@ export const OptionesColumn = ({
 
       {detailPath && (
         <Link href={detailPath(rowData)}>
-          <a className="btn btn-sm btn-danger">
+          <a className='btn btn-sm btn-danger'>
             <AiFillDelete />
           </a>
         </Link>
@@ -41,7 +41,7 @@ export const OptionesColumn = ({
     </div>
   );
 
-  return <Column header={header} className="th__opciones" body={bodyColumn} />;
+  return <Column header={header} className='th__opciones' body={bodyColumn} />;
 };
 
 export const BooleanColumn = ({ header, style, ifTrue, ifFalse, ...props }) => {
