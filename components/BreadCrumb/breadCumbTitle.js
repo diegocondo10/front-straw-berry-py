@@ -8,7 +8,7 @@ const BreadCrumbTitle = ({
   items = [],
 }) => {
   return (
-    <div className="row justify-content-between mt-4 mx-md-4">
+    <div className="row justify-content-between my-5 mx-md-4">
       <div className="col-md-3 align-self-center">
         <h2 className="text-center text-md-left">{title}</h2>
       </div>

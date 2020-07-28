@@ -7,6 +7,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useEffect, useState } from 'react';
 import { GoPlus } from 'react-icons/go';
+import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 
 const PermisosContainer = ({ breadCrumbItems }) => {
   const [data, setData] = useState([]);
@@ -40,13 +41,9 @@ const PermisosContainer = ({ breadCrumbItems }) => {
   return (
     <PrivateLayout title="IPCA | Permisos" loading={loading}>
       <main className="container-fluid">
+        <BreadCrumbTitle title="Permisos" items={breadCrumbItems} />
+
         <div className="row justify-content-center">
-          <div className="col-md-8">
-            <h1 className="text-center my-3 display-4">Permisos</h1>
-
-            <BreadCrumb items={breadCrumbItems} />
-          </div>
-
           <div className="col-md-11 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"

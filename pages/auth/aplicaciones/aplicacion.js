@@ -7,8 +7,9 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 
-const AplicacionContainer = ({ breadCrumbItems, isEdit, aplicacion = {}, id }) => {
+const AplicacionContainer = ({ items, title, isEdit, aplicacion = {}, id }) => {
   const history = useRouter();
   const [loading, setLoading] = useState(false);
   const { register, errors, handleSubmit } = useForm({
@@ -34,50 +35,51 @@ const AplicacionContainer = ({ breadCrumbItems, isEdit, aplicacion = {}, id }) =
   return (
     <PrivateLayout loading={loading} loadingText="Guardando cambios...">
       <main className="container-fluid">
-        <div className="row justify-content-center">
-          <div className="col-12">
-            <h1 className="text-center my-3 display-4">Aplicación</h1>
-          </div>
-
-          <div className="col-md-8">
-            <BreadCrumb items={breadCrumbItems} />
-          </div>
-
+        <BreadCrumbTitle title={title} items={items} />
+        <div className="row justify-content-center mt-5">
           <div className="col-11 col-md-8">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group>
-                <Form.Label>Nombre:</Form.Label>
-                <Form.Control
-                  name="nombre"
-                  ref={register({ required: 'Este campo es obligatorio' })}
-                  isInvalid={!!errors.nombre}
-                />
-                <Form.Control.Feedback type="invalid">
-                  <ErrorMessage errors={errors} name="nombre">
-                    {({ message }) => message}
-                  </ErrorMessage>
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Descripción:</Form.Label>
-                <Form.Control
-                  name="descripcion"
-                  ref={register}
-                  rows="4"
-                  as="textarea"
-                />
-              </Form.Group>
-
-              <Form.Row className="justify-content-around">
-                <div className="col-md-5 my-1">
-                  <BtnRegresar variant="outline-danger" href="/auth/aplicaciones" />
+              <div className="card">
+                <div className="card-body">
+                  <Form.Group>
+                    <Form.Label>Nombre:</Form.Label>
+                    <Form.Control
+                      name="nombre"
+                      ref={register({ required: 'Este campo es obligatorio' })}
+                      isInvalid={!!errors.nombre}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      <ErrorMessage errors={errors} name="nombre">
+                        {({ message }) => message}
+                      </ErrorMessage>
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Descripción:</Form.Label>
+                    <Form.Control
+                      name="descripcion"
+                      ref={register}
+                      rows="4"
+                      as="textarea"
+                    />
+                  </Form.Group>
                 </div>
-                <div className="col-md-5 my-1">
-                  <Button block type="submit" variant="outline-primary">
-                    Guardar
-                  </Button>
+                <div className="card-footer">
+                  <Form.Row className="justify-content-around">
+                    <div className="col-md-5 my-1">
+                      <BtnRegresar
+                        variant="outline-danger"
+                        href="/auth/aplicaciones"
+                      />
+                    </div>
+                    <div className="col-md-5 my-1">
+                      <Button block type="submit" variant="outline-primary">
+                        Guardar
+                      </Button>
+                    </div>
+                  </Form.Row>
                 </div>
-              </Form.Row>
+              </div>
             </form>
           </div>
         </div>
@@ -89,6 +91,8 @@ const AplicacionContainer = ({ breadCrumbItems, isEdit, aplicacion = {}, id }) =
 AplicacionContainer.getInitialProps = async ({ query }) => {
   let isEdit = false;
   let data = null;
+  let title = 'Agregar Aplicación';
+
   const breadCrumbItems = [
     {
       title: 'Aplicaciones',
@@ -98,25 +102,20 @@ AplicacionContainer.getInitialProps = async ({ query }) => {
 
   if (query._id) {
     isEdit = true;
-    breadCrumbItems.push({
-      title: 'Editar Aplicación',
-      active: true,
-    });
-
+    title = 'Editar Aplicación';
+    breadCrumbItems.push({ title, active: true });
     const res = await Aplicacion.getById(query._id);
     data = res.data;
   } else {
-    breadCrumbItems.push({
-      title: 'Agregar Aplicación',
-      active: true,
-    });
+    breadCrumbItems.push({ title, active: true });
   }
 
   return {
-    breadCrumbItems,
+    items: breadCrumbItems,
     isEdit,
     aplicacion: data,
     id: query._id,
+    title,
   };
 };
 
