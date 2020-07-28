@@ -4,13 +4,13 @@ import PrivateLayout from '@/layouts/privateLayout';
 import { Aplicacion } from '@/services/auth.service';
 import { ErrorMessage } from '@hookform/error-message';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
 const AplicacionContainer = ({ breadCrumbItems, isEdit, aplicacion = {}, id }) => {
   const history = useRouter();
-
+  const [loading, setLoading] = useState(false);
   const { register, errors, handleSubmit } = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -20,18 +20,19 @@ const AplicacionContainer = ({ breadCrumbItems, isEdit, aplicacion = {}, id }) =
 
   const onSubmit = async (data) => {
     console.log(data);
-
+    setLoading(true);
     if (isEdit) {
       await Aplicacion.update(id, data);
     } else {
       await Aplicacion.create(data);
     }
 
+    setLoading(false);
     history.push('/auth/aplicaciones');
   };
 
   return (
-    <PrivateLayout>
+    <PrivateLayout loading={loading} loadingText="Guardando cambios...">
       <main className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-12">

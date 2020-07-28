@@ -5,10 +5,22 @@ import { Aplicacion } from '@/services/auth.service';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoPlus } from 'react-icons/go';
 
-const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
+const AplicacionesContainer = ({ breadCrumbItems }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Aplicacion.getAll()
+      .then(({ data }) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(console.log);
+  }, []);
+
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
@@ -24,21 +36,19 @@ const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Aplicaciones">
+    <PrivateLayout title="IPCA | Aplicaciones" loading={loading}>
       <main className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-12">
-            <h1 className="text-center my-3 display-4">Aplicaciones</h1>
-          </div>
-
           <div className="col-md-8">
+            <h1 className="text-center my-3 display-4">Aplicaciones</h1>
+
             <BreadCrumb items={breadCrumbItems} />
           </div>
 
           <div className="col-md-11 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
-              value={aplicaciones}
+              value={data}
               rowHover
               paginator
               header={header}
@@ -64,8 +74,6 @@ const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
 };
 
 AplicacionesContainer.getInitialProps = async (props) => {
-  const res = await Aplicacion.getAll();
-
   return {
     breadCrumbItems: [
       {
@@ -74,7 +82,6 @@ AplicacionesContainer.getInitialProps = async (props) => {
         active: true,
       },
     ],
-    aplicaciones: res.data,
   };
 };
 

@@ -1,52 +1,29 @@
 import Axios from 'axios';
+class BaseService {
+  URL_BASE = '';
+  static getAll = async () => {
+    return await Axios.get(this.URL_BASE);
+  };
 
-export const POST = async (url, body = {}) => {
-  try {
-    ///body.empCodigo = empCodigo;
-    const res = await Axios.post(url, body);
-    if ([200, 201, 202, 203].includes(res.status)) {
-      const data = res.data;
-      delete res.data;
-      return { data, response: res };
-    } else {
-      return { error: true, data, response: res };
-    }
-  } catch (error) {
-    try {
-      const data = error.response.data;
-      delete error.response.data;
-      return { error: true, data: data, response: error.response };
-    } catch (subError) {
-      return { error: true };
-    }
-  }
-};
-export const PUT = async (url, body = {}) => {
-  try {
-    body.empCodigo = empCodigo;
-    const res = await Axios.put(url, body);
-    if ([200, 201, 202, 203].includes(res.status)) {
-      const data = res.data;
-      delete res.data;
-      return { data, response: res };
-    } else {
-      return { error: true, data, response: res };
-    }
-  } catch (error) {
-    try {
-      const data = error.response.data;
-      delete error.response.data;
-      return { error: true, data: data, response: error.response };
-    } catch (subError) {
-      return { error: true };
-    }
-  }
-};
+  static getById = async (id) => {
+    return await Axios.get(`${this.URL_BASE}/${id}`);
+  };
 
-export const GET = async (url) => {
-  return await Axios.get(url);
-};
+  static create = async (data) => {
+    return await Axios.post(`${this.URL_BASE}`, data);
+  };
 
-export const DELETE = async (url) => {
-  return await Axios.delete(url);
-};
+  static update = async (id, body) => {
+    return await Axios.put(`${this.URL_BASE}/${id}`, body);
+  };
+
+  static delete = async (id) => {
+    return await Axios.delete(`${this.URL_BASE}/${id}`);
+  };
+}
+
+export default Object.defineProperty(BaseService, 'URL_BASE', {
+  configurable: true,
+  writable: true,
+  value: '',
+});
