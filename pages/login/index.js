@@ -4,25 +4,29 @@ import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
 const LoginContainer = () => {
-  const { register, errors } = useForm();
+  const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <PublicLayout>
-      <main className="container-fluid">
-        <div className="container text-center mt-5">
-          <div className="row justify-content-center">
-            <div className="col-sm-8 col-md-6 col.lg-4">
-              <Card>
-                <Card.Header>
-                  <Card.Title>Instituto de Parálisis Cerebral del Azuay </Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <Image
-                    className="bg-danger"
-                    src="/img/logo1.jpg"
-                    fluid
-                    style={{ width: '150px' }}
-                  />
+      <main className="container-fluid text-center mt-5">
+        <div className="row justify-content-center">
+          <div className="col-sm-8 col-md-6 ">
+            <Card>
+              <Card.Header>
+                <Card.Title>Instituto de Parálisis Cerebral del Azuay </Card.Title>
+              </Card.Header>
+              <Card.Body className="text-center">
+                <Image
+                  className="bg-danger"
+                  src="/img/logo1.jpg"
+                  fluid
+                  style={{ width: '250px' }}
+                />
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group controlId="validationCustomUsername">
                     <Form.Label>Username:</Form.Label>
                     <InputGroup>
@@ -62,6 +66,7 @@ const LoginContainer = () => {
                           required: 'Este campo es obligatorio',
                         })}
                         type="password"
+                        autoComplete="on"
                         placeholder="Contraseña"
                         isInvalid={errors.password}
                       />
@@ -71,10 +76,12 @@ const LoginContainer = () => {
                     </InputGroup>
                   </Form.Group>
 
-                  <button className="btn btn-info"> Iniciar Sesión</button>
-                </Card.Body>
-              </Card>
-            </div>
+                  <button className="btn btn-info" type="submit">
+                    Iniciar Sesión
+                  </button>
+                </form>
+              </Card.Body>
+            </Card>
           </div>
         </div>
       </main>

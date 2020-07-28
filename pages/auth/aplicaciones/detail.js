@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { toMoment } from 'utils/funciones';
+import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 
 const AplicacionDetailContainer = ({ breadCrumb, aplicacion }) => {
   const router = useRouter();
@@ -21,12 +22,10 @@ const AplicacionDetailContainer = ({ breadCrumb, aplicacion }) => {
   return (
     <PrivateLayout loading={loading} loadingText="Eliminando...">
       <main className="container full_h">
+        <BreadCrumbTitle title="Aplicación" items={breadCrumb} />
+
         <div className="row justify-content-center">
           <div className="col-md-10 col-lg-8">
-            <h1 className="text-center my-5 display-4">Aplicación</h1>
-
-            <BreadCrumb items={breadCrumb} />
-
             <div className="card">
               <div className="card-body">
                 <ul>
