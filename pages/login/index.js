@@ -1,7 +1,7 @@
-import React from 'react';
 import PublicLayout from '@/layouts/publicLayout';
-import { Card, Form, InputGroup } from 'react-bootstrap';
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { Card, Form, Image, InputGroup } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 
 const LoginContainer = () => {
   const { register, errors } = useForm();
@@ -15,19 +15,23 @@ const LoginContainer = () => {
             <Card.Body>
               <Image
                 className="bg-danger"
-                src="/img/logo1.jpg" fluid
-                style={{ width: "150px" }}
+                src="/img/logo1.jpg"
+                fluid
+                style={{ width: '150px' }}
               />
               <Form.Group controlId="validationCustomUsername">
                 <Form.Label>Username:</Form.Label>
                 <InputGroup>
                   <InputGroup.Prepend>
-                    <InputGroup.Text id="inputGroupPrepend">       <i className="fas fa-user" />
+                    <InputGroup.Text id="inputGroupPrepend">
+                      {' '}
+                      <i className="fas fa-user" />
                     </InputGroup.Text>
                   </InputGroup.Prepend>
-                  <Form.Control name="username"
+                  <Form.Control
+                    name="username"
                     ref={register({
-                      required: "Este campo es obligatorio",
+                      required: 'Este campo es obligatorio',
                     })}
                     type="text"
                     placeholder="Username"
@@ -51,20 +55,19 @@ const LoginContainer = () => {
                   <Form.Control
                     name="password"
                     ref={register({
-                      required: "Este campo es obligatorio",
+                      required: 'Este campo es obligatorio',
                     })}
                     type="password"
                     placeholder="Contraseña"
                     isInvalid={errors.password}
                   />
-                  <Form.Control.Feedback
-                    type="invalid">
+                  <Form.Control.Feedback type="invalid">
                     {errors.password && errors.password.message}
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
 
-              <button className="btn btn-info" > Iniciar Sesión</button>
+              <button className="btn btn-info"> Iniciar Sesión</button>
             </Card.Body>
           </Card.Header>
         </Card>
