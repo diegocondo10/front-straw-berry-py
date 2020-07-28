@@ -1,11 +1,11 @@
-import React from 'react';
-import PrivateLayout from '@/layouts/privateLayout';
 import BreadCrumb from '@/components/BreadCrumb';
-import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@/components/table/columns';
-import { Column } from 'primereact/column';
+import PrivateLayout from '@/layouts/privateLayout';
 import { Aplicacion } from '@/services/auth.service';
 import Link from 'next/link';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React from 'react';
 import { GoPlus } from 'react-icons/go';
 
 const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
@@ -28,14 +28,14 @@ const AplicacionesContainer = ({ breadCrumbItems, aplicaciones }) => {
       <main className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-12">
-            <h1 className="text-center my-5 display-4">Aplicaciones</h1>
+            <h1 className="text-center my-3 display-4">Aplicaciones</h1>
           </div>
 
           <div className="col-md-8">
             <BreadCrumb items={breadCrumbItems} />
           </div>
 
-          <div className="col-md-11 datatable-doc-demo mt-5">
+          <div className="col-md-11 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
               value={aplicaciones}

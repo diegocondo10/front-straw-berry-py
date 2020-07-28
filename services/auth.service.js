@@ -1,5 +1,5 @@
-import Axios from "axios";
-import { urlBaseApi } from "./service.urls";
+import Axios from 'axios';
+import { urlBaseApi } from './service.urls';
 
 export class Aplicacion {
   nombre;
@@ -16,8 +16,8 @@ export class Aplicacion {
     return await Axios.get(`${this.URL_BASE}/${id}`);
   };
 
-  static create = async () => {
-    return await Axios.post(`${this.URL_BASE}`);
+  static create = async (data) => {
+    return await Axios.post(`${this.URL_BASE}`, data);
   };
 
   static update = async (id, body) => {

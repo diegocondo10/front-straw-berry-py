@@ -1,19 +1,22 @@
 import PrivateNavbar from '@/components/navbar/privateNavbar';
 import Head from 'next/head';
 import React from 'react';
+import Loading from '@/components/Loading';
 
-const PrivateLayout = ({ children, title = '' }) => {
+const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
   return (
     <React.Fragment>
       <Head>
         <title>{title}</title>
       </Head>
 
-      <header>
-        <PrivateNavbar />
-      </header>
+      <Loading loading={loading} text={loadingText}>
+        <header>
+          <PrivateNavbar />
+        </header>
 
-      {children}
+        {children}
+      </Loading>
 
       <style jsx global>{`
         .full_h {
