@@ -1,4 +1,4 @@
-import BreadCrumb from '@/components/BreadCrumb';
+import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 import { IndexColumn, OptionesColumn } from '@/components/table/columns';
 import PrivateLayout from '@/layouts/privateLayout';
 import { Permiso } from '@/services/auth.service';
@@ -7,7 +7,6 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useEffect, useState } from 'react';
 import { GoPlus } from 'react-icons/go';
-import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 
 const PermisosContainer = ({ breadCrumbItems }) => {
   const [data, setData] = useState([]);
