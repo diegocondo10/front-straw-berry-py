@@ -1,7 +1,7 @@
-import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
-import { IndexColumn, OptionesColumn } from '@/components/table/columns';
-import PrivateLayout from '@/layouts/privateLayout';
-import { Permiso } from '@/services/auth.service';
+import BreadCrumbTitle from '@components/BreadCrumb/BreadCumbTitle';
+import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import PrivateLayout from '@layouts/privateLayout';
+import { Permiso } from '@services/auth.service';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -73,8 +73,8 @@ const PermisosContainer = ({ breadCrumbItems }) => {
                 reorderable
               />
               {OptionesColumn({
-                editPath: ({ _id }) => `/auth/permisos/form?_id=${_id}`,
-                detailPath: ({ _id }) => `/auth/permisos/detail?_id=${_id}`,
+                editPath: ({ id }) => `/auth/permisos/form?id=${id}`,
+                detailPath: ({ id }) => `/auth/permisos/detail?id=${id}`,
               })}
             </DataTable>
           </div>

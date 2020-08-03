@@ -1,4 +1,4 @@
-import PublicLayout from '@/layouts/publicLayout';
+import PublicLayout from '@layouts/publicLayout';
 import React from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';

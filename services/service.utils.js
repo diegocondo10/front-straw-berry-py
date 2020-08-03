@@ -27,3 +27,4 @@ export default Object.defineProperty(BaseService, 'URL_BASE', {
   writable: true,
   value: '',
 });
+

@@ -1,7 +1,7 @@
-import PrivateNavbar from '@/components/navbar/privateNavbar';
+import PrivateNavbar from '@components/navbar/privateNavbar';
 import Head from 'next/head';
 import React from 'react';
-import Loading from '@/components/Loading';
+import Loading from '@components/Loading';
 
 const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
   return (
@@ -15,7 +15,7 @@ const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
           <PrivateNavbar />
         </header>
 
-        {children}
+        {!loading && children}
       </Loading>
 
       <style jsx global>{`

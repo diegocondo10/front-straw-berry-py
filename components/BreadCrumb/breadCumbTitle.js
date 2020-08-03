@@ -1,5 +1,5 @@
 import React from 'react';
-import BreadCrumb from '.';
+import BreadCrumb from './index';
 
 const BreadCrumbTitle = ({
   title,

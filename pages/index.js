@@ -1,5 +1,5 @@
 import React from "react";
-import PrivateLayout from "@/layouts/privateLayout";
+import PrivateLayout from "@layouts/privateLayout";
 
 const Home = () => {
   return (

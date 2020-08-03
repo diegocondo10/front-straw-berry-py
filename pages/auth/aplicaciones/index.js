@@ -1,32 +1,22 @@
-import BreadCrumb from '@/components/BreadCrumb';
-import { IndexColumn, OptionesColumn } from '@/components/table/columns';
-import PrivateLayout from '@/layouts/privateLayout';
-import { Aplicacion } from '@/services/auth.service';
+import BreadCrumbTitle from '@components/BreadCrumb/BreadCumbTitle';
+import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import PrivateLayout from '@layouts/privateLayout';
+import { GET_APLICACIONES } from '@services/auth/auth.queries';
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GoPlus } from 'react-icons/go';
-import BreadCrumbTitle from '@/components/BreadCrumb/BreadCumbTitle';
 
 const AplicacionesContainer = ({ breadCrumbItems }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    Aplicacion.getAll()
-      .then(({ data }) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(console.log);
-  }, []);
+  const { data, loading } = useQuery(GET_APLICACIONES);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/auth/aplicaciones/aplicacion">
+          <Link href="/auth/aplicaciones/create">
             <a className="btn btn-info btn-sm">
               Agregar <GoPlus />
             </a>
@@ -38,34 +28,36 @@ const AplicacionesContainer = ({ breadCrumbItems }) => {
 
   return (
     <PrivateLayout title="IPCA | Aplicaciones" loading={loading}>
-      <main className="container-fluid">
-        <BreadCrumbTitle title="Aplicaciones" items={breadCrumbItems} />
+      {data && (
+        <main className="container-fluid">
+          <BreadCrumbTitle title="Aplicaciones" items={breadCrumbItems} />
 
-        <div className="row justify-content-center">
-          <div className="col-md-11 datatable-doc-demo">
-            <DataTable
-              className="p-datatable-customers shadow-lg"
-              value={data}
-              rowHover
-              paginator
-              header={header}
-              currentPageReportTemplate="{totalRecords} registros totales"
-              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-              rows={10}
-              rowsPerPageOptions={[10, 25, 50]}
-              responsive
-            >
-              {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter />
-              <Column header="Descripción" field="descripcion" sortable filter />
-              {OptionesColumn({
-                editPath: ({ _id }) => `/auth/aplicaciones/aplicacion?_id=${_id}`,
-                detailPath: ({ _id }) => `/auth/aplicaciones/detail?_id=${_id}`,
-              })}
-            </DataTable>
+          <div className="row justify-content-center">
+            <div className="col-md-11 datatable-doc-demo">
+              <DataTable
+                className="p-datatable-customers shadow-lg"
+                value={data.aplicaciones || []}
+                rowHover
+                paginator
+                header={header}
+                currentPageReportTemplate="{totalRecords} registros totales"
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                rows={10}
+                rowsPerPageOptions={[10, 25, 50]}
+                responsive
+              >
+                {IndexColumn()}
+                <Column header="Nombre" field="nombre" sortable filter />
+                <Column header="Descripción" field="descripcion" sortable filter />
+                {OptionesColumn({
+                  editPath: ({ id }) => `/auth/aplicaciones/update?id=${id}`,
+                  detailPath: ({ id }) => `/auth/aplicaciones/detail?id=${id}`,
+                })}
+              </DataTable>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      )}
     </PrivateLayout>
   );
 };
