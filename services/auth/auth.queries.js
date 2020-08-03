@@ -45,3 +45,11 @@ export const UPDATE_APP = gql`
     }
   }
 `;
+export const DELETE_APP = gql`
+  mutation deleteApp($id: ID!) {
+    deleteAplicacion(id: $id) {
+      found
+      deletedId
+    }
+  }
+`;

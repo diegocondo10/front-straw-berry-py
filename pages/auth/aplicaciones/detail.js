@@ -1,9 +1,8 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumb/BreadCumbTitle';
 import { BtnRegresar } from '@components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
-import { Aplicacion } from '@services/auth.service';
-import { GET_APP_BY_ID } from '@services/auth/auth.queries';
+import { DELETE_APP, GET_APP_BY_ID } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
@@ -11,13 +10,20 @@ import { toMoment } from 'utils/funciones';
 
 const AplicacionDetailContainer = ({ breadCrumb, query: { id } }) => {
   const router = useRouter();
-  
-  const { data, loading } = useQuery(GET_APP_BY_ID, { variables: { id: id } });
+
+  const { data, loading } = useQuery(GET_APP_BY_ID, {
+    variables: { id },
+    onError: (error) => router.push('/auth/aplicaciones'),
+  });
+
+  const [deleteApp] = useMutation(DELETE_APP, {
+    variables: { id },
+    onError: () => router.push('/auth/aplicaciones'),
+  });
 
   const onClickEliminar = async () => {
-    setLoading(true);
-    const res = await Aplicacion.delete(id);
-    setLoading(false);
+    await deleteApp();
+
     router.push('/auth/aplicaciones');
   };
 
