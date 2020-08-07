@@ -1,17 +1,17 @@
 import BreadCrumbTitle from '@components/BreadCrumb/breadCumbTitle';
 import { BtnRegresar } from '@components/Buttons';
-import Select from '@components/forms/inputs';
-import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import CustomPickList from '@components/forms/CustomPickList';
 
-const PermisoFormContainer = ({
+const RolFormContainer = ({
   title,
   items,
   loading,
   onSubmit,
-  aplicaciones = [],
+  permisosDisponibles = [],
 }) => {
   const { register, handleSubmit, errors } = useFormContext();
 
@@ -20,7 +20,7 @@ const PermisoFormContainer = ({
       <BreadCrumbTitle title={title} items={items} />
 
       <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6 jumbotron rounded">
+        <div className="col-md-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Label>Nombre:</Form.Label>
@@ -37,15 +37,22 @@ const PermisoFormContainer = ({
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group>
-              <Select
-                name="aplicacionId"
-                options={aplicaciones}
-                label="Aplicacion:"
-                rules={{ required: 'Este campo es obligatorio' }}
-                //defaultValue={aplicaciones[0].id}
-              />
-            </Form.Group>
+            <CustomPickList
+              label="Permisos:"
+              name="permisos"
+              sourceHeader="Permisos Disponibles"
+              targetHeader="Permisos de este Rol"
+              source={permisosDisponibles}
+              itemTemplate={(permiso) => permiso.nombre}
+              rules={{
+                validate: (value) => {
+                  if (value.length === 0) {
+                    return 'Debe seleccionar al menos un permiso';
+                  }
+                  return true;
+                },
+              }}
+            />
 
             <Form.Group>
               <Form.Label>Descripcion:</Form.Label>
@@ -75,4 +82,4 @@ const PermisoFormContainer = ({
   );
 };
 
-export default PermisoFormContainer;
+export default RolFormContainer;

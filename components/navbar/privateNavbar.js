@@ -4,7 +4,7 @@ import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const PrivateNavbar = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" sticky="top">
+    <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">

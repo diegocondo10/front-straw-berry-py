@@ -35,11 +35,9 @@ const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
         )}
       />
 
-      <Form.Control.Feedback type="invalid">
-        <ErrorMessage errors={errors} name={name}>
-          {({ message }) => message}
-        </ErrorMessage>
-      </Form.Control.Feedback>
+      <ErrorMessage errors={errors} name={name}>
+        {({ message }) => message}
+      </ErrorMessage>
     </Form.Group>
   );
 };

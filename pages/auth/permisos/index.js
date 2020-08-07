@@ -30,46 +30,46 @@ const PermisosContainer = ({ breadCrumbItems }) => {
     <PrivateLayout title="IPCA | Permisos" loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Permisos" items={breadCrumbItems} />
-        {data && (
-          <div className="row justify-content-center">
-            <div className="col-md-11 datatable-doc-demo">
-              <DataTable
-                className="p-datatable-customers shadow-lg"
-                value={data.permisos}
-                rowHover
-                paginator
-                header={header}
-                currentPageReportTemplate="{totalRecords} registros totales"
-                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                rows={10}
-                rowsPerPageOptions={[10, 25, 50]}
-                responsive
-              >
-                {IndexColumn()}
-                <Column header="Nombre" field="nombre" sortable filter reorderable />
-                <Column
-                  header="Descripción"
-                  field="descripcion"
-                  sortable
-                  filter
-                  reorderable
-                />
-                <Column
-                  header="Aplicación"
-                  field="aplicacion.nombre"
-                  sortable
-                  filter
-                  reorderable
-                />
-                {OptionesColumn({
-                  editPath: ({ id }) => `/auth/permisos/update?id=${id}`,
-                  detailPath: ({ id }) => `/auth/permisos/detail?id=${id}`,
-                })}
-              </DataTable>
-            </div>
+
+        <div className="row justify-content-center">
+          <div className="col-md-11 datatable-doc-demo">
+            <DataTable
+              className="p-datatable-customers shadow-lg"
+              value={data?.permisos}
+              rowHover
+              paginator
+              header={header}
+              currentPageReportTemplate="{totalRecords} registros totales"
+              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+              rows={10}
+              rowsPerPageOptions={[10, 25, 50]}
+              responsive
+            >
+              {IndexColumn()}
+              <Column header="Nombre" field="nombre" sortable filter reorderable />
+              <Column
+                header="Descripción"
+                field="descripcion"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                header="Aplicación"
+                field="aplicacion.nombre"
+                sortable
+                filter
+                reorderable
+              />
+              {OptionesColumn({
+                editPath: ({ id }) => `/auth/permisos/update?id=${id}`,
+                detailPath: ({ id }) => `/auth/permisos/detail?id=${id}`,
+              })}
+            </DataTable>
           </div>
-        )}
+        </div>
       </main>
+    
     </PrivateLayout>
   );
 };

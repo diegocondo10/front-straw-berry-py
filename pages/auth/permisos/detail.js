@@ -25,30 +25,28 @@ const DetailPermisoContainer = ({ items, id }) => {
       <main className="container-fluid">
         <BreadCrumbTitle title="Permiso" items={items} />
 
-        {data && (
-          <div className="row justify-content-center">
-            <div className="col-md-8 breadcrumb">
-              <ul>
-                <li>
-                  <strong>Nombre:</strong>
-                  {' ' + data.permiso.nombre}
-                </li>
-                <li>
-                  <strong>Aplicacion:</strong>
-                  {' ' + data.permiso.nombre}
-                </li>
-                <li>
-                  <strong>Nombre:</strong>
-                  {' ' + data.permiso.aplicacion.nombre}
-                </li>
-                <li>
-                  <strong>descripcion:</strong>
-                  {' ' + data.permiso.descripcion}
-                </li>
-              </ul>
-            </div>
+        <div className="row justify-content-center">
+          <div className="col-md-8 breadcrumb">
+            <ul>
+              <li>
+                <strong>Nombre:</strong>
+                {' ' + data?.permiso?.nombre}
+              </li>
+              <li>
+                <strong>Aplicacion:</strong>
+                {' ' + data?.permiso?.nombre}
+              </li>
+              <li>
+                <strong>Nombre:</strong>
+                {' ' + data?.permiso?.aplicacion?.nombre}
+              </li>
+              <li>
+                <strong>descripcion:</strong>
+                {' ' + data?.permiso?.descripcion}
+              </li>
+            </ul>
           </div>
-        )}
+        </div>
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
