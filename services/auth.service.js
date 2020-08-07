@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 import Axios from 'axios';
 import { urlBaseApi } from './service.urls';
 import BaseService from './service.utils';
@@ -9,103 +10,69 @@ const axios = Axios.create({
   },
 });
 
-export class Aplicacion extends BaseService {
-  nombre;
-  decripcion;
-  permisos;
-
-  static URL_BASE = `aplicaciones/`;
-
-  static getAll = async () => {
-    return await axios.get(this.URL_BASE);
-  };
-
-  static getById = async (id) => {
-    return await axios.get(`${this.URL_BASE}${id}/`);
-  };
-
-  static create = async (data) => {
-    return await axios.post(this.URL_BASE, data);
-  };
-
-  static update = async (id, body) => {
-    return await axios.put(`${this.URL_BASE}${id}/`, body);
-  };
-
-  static delete = async (id) => {
-    return await axios.delete(`${this.URL_BASE}${id}/`);
-  };
-}
+export class Aplicacion {}
 
 export class Permiso extends BaseService {
-  nombre;
-  decripcion;
-  aplicacion;
+  static queryForUpdate = gql`
+    query queryForUpdatePermiso($id: ID!) {
+      permiso(id: $id) {
+        id
+        nombre
+        descripcion
+        aplicacionId
+      }
+      aplicaciones {
+        id
+        nombre
+      }
+    }
+  `;
 
-  static URL_BASE = `permisos/`;
-  static getAll = async () => {
-    return await axios.get(this.URL_BASE);
-  };
+  static getAppsPermisos = gql`
+    query getAppsPermsiso {
+      aplicaciones {
+        id
+        nombre
+      }
+    }
+  `;
 
-  static getById = async (id) => {
-    return await axios.get(`${this.URL_BASE}${id}/`);
-  };
+  static updateMutation = gql`
+    mutation updatePermiso($id: ID!, $input: UpdatePermisoInput!) {
+      updatePermiso(id: $id, input: $input) {
+        permiso {
+          id
+          nombre
+          aplicacion {
+            id
+            nombre
+          }
+        }
+      }
+    }
+  `;
 
-  static create = async (data) => {
-    return await axios.post(this.URL_BASE, data);
-  };
+  static createMutation = gql`
+    mutation createPermiso($input: CreatePermisoInput!) {
+      createPermiso(input: $input) {
+        permiso {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
 
-  static update = async (id, body) => {
-    return await axios.put(`${this.URL_BASE}${id}/`, body);
-  };
-
-  static delete = async (id) => {
-    return await axios.delete(`${this.URL_BASE}${id}/`);
-  };
+  static deleteMutation = gql`
+    mutation deletePermiso($id: ID!) {
+      deletePermiso(id: $id) {
+        found
+        deletedId
+      }
+    }
+  `;
 }
 
-export class Rol extends BaseService {
-  static URL_BASE = `roles/`;
-  static getAll = async () => {
-    return await axios.get(this.URL_BASE);
-  };
+export class Rol extends BaseService {}
 
-  static getById = async (id) => {
-    return await axios.get(`${this.URL_BASE}${id}/`);
-  };
-
-  static create = async (data) => {
-    return await axios.post(this.URL_BASE, data);
-  };
-
-  static update = async (id, body) => {
-    return await axios.put(`${this.URL_BASE}${id}/`, body);
-  };
-
-  static delete = async (id) => {
-    return await axios.delete(`${this.URL_BASE}${id}/`);
-  };
-}
-
-export class Usuario extends BaseService {
-  static URL_BASE = `usuarios/`;
-  static getAll = async () => {
-    return await axios.get(this.URL_BASE);
-  };
-
-  static getById = async (id) => {
-    return await axios.get(`${this.URL_BASE}${id}/`);
-  };
-
-  static create = async (data) => {
-    return await axios.post(this.URL_BASE, data);
-  };
-
-  static update = async (id, body) => {
-    return await axios.put(`${this.URL_BASE}${id}/`, body);
-  };
-
-  static delete = async (id) => {
-    return await axios.delete(`${this.URL_BASE}${id}/`);
-  };
-}
+export class Usuario extends BaseService {}

@@ -4,7 +4,7 @@ import { GET_APP_BY_ID, UPDATE_APP } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import AplicacionFormContainer from './form';
+import AplicacionFormContainer from '../../../components/pages/auth/aplicaciones/form';
 
 const UpdateAppContainer = ({ title, items, id }) => {
   const methods = useForm({ mode: 'onChange' });

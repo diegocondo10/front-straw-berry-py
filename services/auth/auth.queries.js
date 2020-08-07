@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_APLICACIONES = gql`
-  {
+  query getApps {
     aplicaciones {
       id
       nombre
@@ -45,11 +45,39 @@ export const UPDATE_APP = gql`
     }
   }
 `;
+
 export const DELETE_APP = gql`
   mutation deleteApp($id: ID!) {
     deleteAplicacion(id: $id) {
       found
       deletedId
+    }
+  }
+`;
+
+export const GET_PERMISOS = gql`
+  query getPermisos {
+    permisos {
+      id
+      nombre
+      descripcion
+      aplicacion {
+        nombre
+      }
+    }
+  }
+`;
+
+export const GET_PERMISO_BY_ID = gql`
+  query getPermisoById($id: ID!) {
+    permiso(id: $id) {
+      id
+      nombre
+      descripcion
+      aplicacion {
+        id
+        nombre
+      }
     }
   }
 `;

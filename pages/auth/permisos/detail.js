@@ -1,26 +1,22 @@
+import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumb/BreadCumbTitle';
 import { BtnRegresar } from '@components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
 import { Permiso } from '@services/auth.service';
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { GET_PERMISO_BY_ID } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { Button } from 'react-bootstrap';
+
 const DetailPermisoContainer = ({ items, id }) => {
-  const [permiso, setPermiso] = useState(null);
-  const [loading, setLoading] = useState(true);
   const history = useRouter();
 
-  useEffect(() => {
-    setLoading(true);
-    Permiso.getById(id).then(({ data }) => {
-      setPermiso(data);
-      setLoading(false);
-    });
-  }, []);
+  const { data, loading } = useQuery(GET_PERMISO_BY_ID, { variables: { id } });
+
+  const [deletePermiso] = useMutation(Permiso.deleteMutation, { variables: { id } });
 
   const onClickEliminar = async () => {
-    setLoading(true);
-    await Permiso.delete(id);
+    await deletePermiso();
     history.push('/auth/permisos');
   };
 
@@ -29,25 +25,25 @@ const DetailPermisoContainer = ({ items, id }) => {
       <main className="container-fluid">
         <BreadCrumbTitle title="Permiso" items={items} />
 
-        {permiso && (
+        {data && (
           <div className="row justify-content-center">
             <div className="col-md-8 breadcrumb">
               <ul>
                 <li>
                   <strong>Nombre:</strong>
-                  {' ' + permiso.nombre}
+                  {' ' + data.permiso.nombre}
                 </li>
                 <li>
                   <strong>Aplicacion:</strong>
-                  {' ' + permiso.nombre}
+                  {' ' + data.permiso.nombre}
                 </li>
                 <li>
                   <strong>Nombre:</strong>
-                  {' ' + permiso.aplicacion.nombre}
+                  {' ' + data.permiso.aplicacion.nombre}
                 </li>
                 <li>
                   <strong>descripcion:</strong>
-                  {' ' + permiso.descripcion}
+                  {' ' + data.permiso.descripcion}
                 </li>
               </ul>
             </div>
@@ -69,11 +65,13 @@ const DetailPermisoContainer = ({ items, id }) => {
   );
 };
 
-export const getServerSideProps = async ({ query }) => {
-  const items = [{ title: 'Permisos', href: '/auth/permisos' }];
-  console.log(query);
+DetailPermisoContainer.getInitialProps = async ({ query }) => {
   return {
-    props: { items, id: query.id },
+    items: [
+      { title: 'Permisos', href: '/auth/permisos' },
+      { title: query.id, href: `/auth/permisos/update/?id=${query.id}` },
+    ],
+    id: query.id,
   };
 };
 
