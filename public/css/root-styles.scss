@@ -24,6 +24,9 @@ a.nav-link {
 
 a.dropdown-item {
   cursor: pointer !important;
+  &:hover {
+    color: white !important;
+  }
 }
 .full_h {
   height: calc(100vh - 5rem) !important;
