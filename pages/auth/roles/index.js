@@ -4,7 +4,7 @@ import React from 'react';
 import { Rol } from '@services/auth.service';
 import { GoPlus } from 'react-icons/go';
 import Link from 'next/link';
-import BreadCrumbTitle from '@components/BreadCrumb/breadCumbTitle';
+import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
@@ -70,7 +70,7 @@ RolesContainer.getInitialProps = async (props) => {
   return {
     items: [
       {
-        title: 'roles',
+        title: 'Roles de Usuario',
         active: true,
       },
     ],

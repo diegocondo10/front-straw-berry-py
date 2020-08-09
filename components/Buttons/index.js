@@ -19,3 +19,5 @@ export const BtnRegresar = ({
     </Link>
   );
 };
+
+export const BtnAgregar = {};

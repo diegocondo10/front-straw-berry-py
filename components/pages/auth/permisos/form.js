@@ -1,4 +1,4 @@
-import BreadCrumbTitle from '@components/BreadCrumb/breadCumbTitle';
+import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
 import { BtnRegresar } from '@components/Buttons';
 import Select from '@components/forms/inputs';
 import { ErrorMessage } from '@hookform/error-message';

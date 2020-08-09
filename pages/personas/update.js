@@ -30,7 +30,7 @@ const UpdatePersonaContainer = ({ title, items, id }) => {
 UpdatePersonaContainer.getInitialProps = ({ query }) => {
     let title = 'Editar Persona';
     const items = [
-        { title: 'Personas', href: '/pages/personas' },
+        { title: 'Personas', href: '/personas' },
         { title: 'Editar Persona', active: true },
     ];
 

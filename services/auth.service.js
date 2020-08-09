@@ -144,4 +144,15 @@ export class Rol extends BaseService {
   `;
 }
 
-export class Usuario extends BaseService {}
+export class Usuario extends BaseService {
+  static getAll = gql`
+    query getUsuarios {
+      usuarios {
+        id
+        username
+        numeroGrupos
+        numeroPermisos
+      }
+    }
+  `;
+}

@@ -39,7 +39,7 @@ const PrivateNavbar = () => {
               <NavDropdown.Item as="a">Roles</NavDropdown.Item>
             </Link>
 
-            <Link href="/auth/usuario">
+            <Link href="/auth/usuarios">
               <NavDropdown.Item as="a">Usuarios</NavDropdown.Item>
             </Link>
           </NavDropdown>

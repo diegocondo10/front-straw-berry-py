@@ -1,7 +1,7 @@
 import React from 'react';
 import BreadCrumb from './index';
 
-const BreadCrumbTitle = ({
+const TitleBreadCrumb = ({
   title = '',
   basePath = '/',
   baseTitle = 'Dashboard',
@@ -19,4 +19,4 @@ const BreadCrumbTitle = ({
   );
 };
 
-export default BreadCrumbTitle;
+export default TitleBreadCrumb;

@@ -1,41 +1,41 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { FormProvider, useForm } from 'react-hook-form';
+import PersonaFormContainer from '@components/pages/personas/form';
 import PrivateLayout from '@layouts/privateLayout';
-import PermisoFormContainer from '@components/pages/auth/permisos/form';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const CreatePersonaContainer = ({ items, title }) => {
-    const methods = useForm({
-        mode: 'onChange'
-    });
-    const router = useRouter();
+  const methods = useForm({
+    mode: 'onChange',
+  });
+  const router = useRouter();
 
-    const data = {};
+  const data = {};
 
-    return (
-        <PrivateLayout>
-            <FormProvider {...methods}>
-                <PermisoFormContainer
-                    title={title}
-                    items={items}
-                    onSubmit={onSubmit}
-                />
-            </FormProvider>
-        </PrivateLayout>
-    );
+  const onSubmit = async (input) => {
+    console.log('INPUT: ', input);
+  };
+
+  return (
+    <PrivateLayout>
+      <FormProvider {...methods}>
+        <PersonaFormContainer title={title} items={items} onSubmit={onSubmit} />
+      </FormProvider>
+    </PrivateLayout>
+  );
 };
 
 CreatePersonaContainer.getInitialProps = () => {
-    let title = 'Agregar Persona';
-    const items = [
-        { title: 'Personas', href: '/pages/personas' },
-        { title: 'Agregar Persona', active: true },
-    ];
+  let title = 'Agregar Persona';
+  const items = [
+    { title: 'Personas', href: '/personas' },
+    { title: 'Agregar Persona', active: true },
+  ];
 
-    return {
-        items,
-        title,
-    };
+  return {
+    items,
+    title,
+  };
 };
 
 export default CreatePersonaContainer;

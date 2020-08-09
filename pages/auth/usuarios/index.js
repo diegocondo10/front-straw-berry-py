@@ -1,22 +1,22 @@
 import { useQuery } from '@apollo/client';
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
+import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { GET_PERMISOS } from '@services/auth/auth.queries';
+import { Usuario } from '@services/auth.service';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
 
-const PermisosContainer = ({ breadCrumbItems }) => {
-  const { data, loading } = useQuery(GET_PERMISOS);
+const UsuariosContainer = ({ items }) => {
+  const { data, loading } = useQuery(Usuario.getAll);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/auth/permisos/create">
+          <Link href="/auth/usuarios/create">
             <a className="btn btn-info btn-sm">
               Agregar <GoPlus />
             </a>
@@ -27,15 +27,15 @@ const PermisosContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Permisos" loading={loading}>
+    <PrivateLayout title="IPCA | Usuarios" loading={loading}>
       <main className="container-fluid">
-        <BreadCrumbTitle title="Permisos" items={breadCrumbItems} />
+        <BreadCrumbTitle title="Usuarios" items={items} />
 
         <div className="row justify-content-center">
           <div className="col-md-11 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
-              value={data?.permisos}
+              value={data?.usuarios}
               rowHover
               paginator
               header={header}
@@ -44,45 +44,51 @@ const PermisosContainer = ({ breadCrumbItems }) => {
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
               responsive
+              emptyMessage="No se han encontrado resultados"
             >
               {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter reorderable />
               <Column
-                header="Descripción"
-                field="descripcion"
+                header="Nombre de Usuario"
+                field="username"
                 sortable
                 filter
                 reorderable
               />
               <Column
-                header="Aplicación"
-                field="aplicacion.nombre"
+                header="# de grupos"
+                field="numeroGrupos"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                header="# de permisos"
+                field="numeroPermisos"
                 sortable
                 filter
                 reorderable
               />
               {OptionesColumn({
-                editPath: ({ id }) => `/auth/permisos/update?id=${id}`,
-                detailPath: ({ id }) => `/auth/permisos/detail?id=${id}`,
+                editPath: ({ id }) => `/auth/usuarios/update?id=${id}`,
+                detailPath: ({ id }) => `/auth/usuarios/detail?id=${id}`,
               })}
             </DataTable>
           </div>
         </div>
       </main>
-    
     </PrivateLayout>
   );
 };
 
-PermisosContainer.getInitialProps = async (props) => {
+UsuariosContainer.getInitialProps = (props) => {
   return {
-    breadCrumbItems: [
+    items: [
       {
-        title: 'Permisos',
+        title: 'Usuarios',
         active: true,
       },
     ],
   };
 };
 
-export default PermisosContainer;
+export default UsuariosContainer;

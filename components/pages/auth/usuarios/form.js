@@ -1,23 +1,22 @@
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
+import TitleBreadCrumb from '@components/BreadCrumb/TitleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
+import CustomPickList from '@components/forms/CustomPickList';
+import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
-import CustomPickList from '@components/forms/CustomPickList';
 
-const RolFormContainer = ({
+const UsuarioFormContainer = ({
   title,
   items,
-  loading,
-  onSubmit,
   permisosDisponibles = [],
+  rolesDisponibles = [],
 }) => {
-  const { register, handleSubmit, errors } = useFormContext();
+  const { register, onSubmit, handleSubmit, errors } = useFormContext();
 
   return (
     <main className="container-fluid">
-      <BreadCrumbTitle title={title} items={items} />
+      <TitleBreadCrumb title={title} items={items} />
 
       <div className="row justify-content-center">
         <div className="col-md-8 jumbotron rounded">
@@ -36,6 +35,23 @@ const RolFormContainer = ({
                 </ErrorMessage>
               </Form.Control.Feedback>
             </Form.Group>
+
+            <CustomPickList
+              label="Roles:"
+              name="roles"
+              sourceHeader="Roles Disponibles"
+              targetHeader="Roles de este Usuario"
+              source={rolesDisponibles}
+              itemTemplate={(rol) => rol.nombre}
+              rules={{
+                validate: (value) => {
+                  if (value.length === 0) {
+                    return 'Debe seleccionar al menos un rol para este usuario';
+                  }
+                  return true;
+                },
+              }}
+            />
 
             <CustomPickList
               label="Permisos:"
@@ -78,10 +94,8 @@ const RolFormContainer = ({
           </form>
         </div>
       </div>
-    
-    
     </main>
   );
 };
 
-export default RolFormContainer;
+export default UsuarioFormContainer;
