@@ -1,9 +1,9 @@
-import React from "react";
-import PrivateLayout from "@layouts/privateLayout";
+import PrivateLayout from '@layouts/privateLayout';
+import React from 'react';
 
 const Home = () => {
   return (
-    <PrivateLayout title='Inicio'>
+    <PrivateLayout title="Inicio">
       <main>
         <h1>Test</h1>
       </main>
