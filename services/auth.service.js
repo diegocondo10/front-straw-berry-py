@@ -155,4 +155,65 @@ export class Usuario extends BaseService {
       }
     }
   `;
+
+  static getById = gql`
+    query getUsuarioById($id: ID!) {
+      usuario(id: $id) {
+        id
+        username
+        email
+        permisos {
+          id
+          nombre
+        }
+        permisosDisponibles {
+          id
+          nombre
+        }
+        grupos {
+          id
+          nombre
+        }
+        gruposDisponibles {
+          id
+          nombre
+        }
+      }
+    }
+  `;
+
+  static getPermisosRoles = gql`
+    query getRolesPermisos {
+      permisos {
+        id
+        nombre
+      }
+      grupos {
+        id
+        nombre
+      }
+    }
+  `;
+
+  static create = gql`
+    mutation createUsuario($input: CreateUsuarioInput!) {
+      createUsuario(input: $input) {
+        usuario {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation updateUsuario($id: ID!, $input: UpdateUsuarioInput!) {
+      updateUsuario(id: $id, input: $input) {
+        usuario {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
 }

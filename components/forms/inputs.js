@@ -5,7 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
   const { control, errors } = useFormContext();
-
+  console.log(errors[name]);
   return (
     <Form.Group>
       <Form.Label>{label}</Form.Label>
@@ -13,6 +13,7 @@ const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
         name={name}
         control={control}
         rules={rules}
+        defaultValue={null}
         render={({ onChange, value }) => (
           <Form.Control
             as="select"
@@ -25,7 +26,7 @@ const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
             }}
             {...props}
           >
-            <option value={JSON.stringify('')}>----SELECCIONE----</option>
+            <option value={null}>----SELECCIONE----</option>
             {options.map((opt, index) => (
               <option key={index} value={JSON.stringify(opt.value)}>
                 {opt.label}
@@ -35,9 +36,11 @@ const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
         )}
       />
 
-      <ErrorMessage errors={errors} name={name}>
-        {({ message }) => message}
-      </ErrorMessage>
+      <Form.Control.Feedback type="invalid">
+        <ErrorMessage errors={errors} name={name}>
+          {({ message }) => message}
+        </ErrorMessage>
+      </Form.Control.Feedback>
     </Form.Group>
   );
 };

@@ -1,4 +1,4 @@
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
+import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import { useRouter } from 'next/router';
 import React from 'react';

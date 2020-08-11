@@ -1,11 +1,12 @@
+import TitleBreadCrumb from '@components/BreadCrumb/TitleBreadCrumb';
+import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import PrivateLayout from '@layouts/privateLayout';
+import Link from 'next/link';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
-import PrivateLayout from '@layouts/privateLayout';
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
-import { DataTable } from 'primereact/datatable';
-import Link from 'next/link';
-import { IndexColumn, OptionesColumn } from '@components/table/columns';
-import { Column } from 'primereact/column';
+
 
 const PersonasContainer = ({ breadCrumbItems }) => {
   const header = (
@@ -26,7 +27,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
   return (
     <PrivateLayout title="IPCA | Personas">
       <main className="container-fluid">
-        <BreadCrumbTitle title="Personas" items={breadCrumbItems} />
+        <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
         <div className="row justify-content-center">
           <div className="col-md-11 datatable-doc-demo">
             <DataTable

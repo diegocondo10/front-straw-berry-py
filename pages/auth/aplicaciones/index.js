@@ -1,4 +1,4 @@
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
+import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
 import { GET_APLICACIONES } from '@services/auth/auth.queries';

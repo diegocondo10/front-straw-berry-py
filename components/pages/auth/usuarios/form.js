@@ -22,23 +22,40 @@ const UsuarioFormContainer = ({
         <div className="col-md-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
-              <Form.Label>Nombre:</Form.Label>
+              <Form.Label>Username:</Form.Label>
 
               <Form.Control
-                name="nombre"
-                isInvalid={!!errors.nombre}
+                name="username"
+                isInvalid={!!errors.username}
                 ref={register({ required: 'Este campo es obligatorio' })}
               />
               <Form.Control.Feedback type="invalid">
-                <ErrorMessage errors={errors} name="nombre">
+                <ErrorMessage errors={errors} name="username">
                   {({ message }) => message}
                 </ErrorMessage>
               </Form.Control.Feedback>
             </Form.Group>
 
+            {/*
+              <Form.Group>
+              <Form.Label>Contraseña:</Form.Label>
+
+              <Form.Control
+                name="password"
+                isInvalid={!!errors.password}
+                ref={register({ required: 'Este campo es obligatorio' })}
+              />
+              <Form.Control.Feedback type="invalid">
+                <ErrorMessage errors={errors} name="password">
+                  {({ message }) => message}
+                </ErrorMessage>
+              </Form.Control.Feedback>
+            </Form.Group>
+  */}
+
             <CustomPickList
               label="Roles:"
-              name="roles"
+              name="grupos"
               sourceHeader="Roles Disponibles"
               targetHeader="Roles de este Usuario"
               source={rolesDisponibles}
@@ -71,19 +88,40 @@ const UsuarioFormContainer = ({
             />
 
             <Form.Group>
-              <Form.Label>Descripcion:</Form.Label>
+              <Form.Label>Email:</Form.Label>
               <Form.Control
-                as="textarea"
-                rows={4}
-                name="descripcion"
+                type="email"
+                name="email"
                 isInvalid={!!errors.descripcion}
                 ref={register}
               />
             </Form.Group>
+            <hr className="bg-dark" />
+
+            {/*
+            <Form.Row className="my-5">
+              <div className="col-md-6">
+                <Form.Check
+                  name="descripcion"
+                  label="Super Usuario"
+                  isInvalid={!!errors.descripcion}
+                  ref={register}
+                />
+              </div>
+              <div className="col-md-6">
+                <Form.Check
+                  name="descripcion"
+                  label="Super Usuario"
+                  isInvalid={!!errors.descripcion}
+                  ref={register}
+                />
+              </div>
+            </Form.Row>
+*/}
 
             <Form.Row className=" justify-content-between">
               <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/auth/permisos" variant="outline-danger" />
+                <BtnRegresar href="/auth/usuarios" variant="outline-danger" />
               </div>
               <div className="col-md-5 mt-3 my-1">
                 <Button variant="outline-primary" block type="submit">

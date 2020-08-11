@@ -11,5 +11,6 @@
       "@hooks/*": ["hooks/*"],
       "@HOC/*": ["HOC/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "out"]
 }

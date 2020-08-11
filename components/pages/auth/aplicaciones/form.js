@@ -1,4 +1,4 @@
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCumb';
+import TitleBreadCrumb from '@components/BreadCrumb/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
@@ -10,7 +10,7 @@ const AplicacionFormContainer = ({ onSubmit, items, title, loadBtn }) => {
 
   return (
     <main className="container-fluid">
-      <BreadCrumbTitle title={title} items={items} />
+      <TitleBreadCrumb title={title} items={items} />
       <div className="row justify-content-center mt-5">
         <div className="col-11 col-md-8 col-lg-6 jumbotron">
           <form onSubmit={handleSubmit(onSubmit)}>
