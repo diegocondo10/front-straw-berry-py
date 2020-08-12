@@ -18,7 +18,8 @@ import { ToastProvider } from 'react-toast-notifications';
 moment.locale('es');
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
+  //uri: 'http://localhost:8000/graphql',
+  uri: 'https://pacific-anchorage-97875.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {

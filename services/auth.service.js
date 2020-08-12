@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import Axios from 'axios';
 import { urlBaseApi } from './service.urls';
 import BaseService from './service.utils';
+import { objectToB64, b64ToObject } from '@utils/funciones';
 
 const axios = Axios.create({
   baseURL: `${urlBaseApi}auth/`,
@@ -216,4 +217,37 @@ export class Usuario extends BaseService {
       }
     }
   `;
+
+  static login = gql`
+    mutation login($username: String!, $password: String!) {
+      tokenAuth(username: $username, password: $password) {
+        token
+        success
+        errors
+        refreshToken
+        user {
+          id
+          username
+        }
+      }
+    }
+  `;
+
+  static storageData = (data) => {
+    localStorage.setItem('u_d_t_a', objectToB64(data));
+  };
+
+  static getStorageData = () => {
+    const data = localStorage.getItem('u_d_t_a');
+
+    if (!data) {
+      return null;
+    }
+
+    return b64ToObject(data);
+  };
+
+  static loggout = () => {
+    localStorage.removeItem('u_d_t_a');
+  };
 }

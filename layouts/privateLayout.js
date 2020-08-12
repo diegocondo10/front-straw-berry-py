@@ -1,9 +1,22 @@
 import PrivateNavbar from '@components/navbar/privateNavbar';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Loading from '@components/Loading';
+import { Usuario } from '@services/auth.service';
+import { useRouter } from 'next/router';
+import useCustomToast from '@hooks/useCustomToast';
 
 const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
+  const router = useRouter();
+  const { addWarningToast } = useCustomToast();
+  useEffect(() => {
+    const usuario = Usuario.getStorageData();
+    if (!usuario) {
+      router.push('/login');
+      addWarningToast('Por favor iniciar sesion');
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <Head>

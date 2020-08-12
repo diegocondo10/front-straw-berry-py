@@ -1,13 +1,31 @@
+import { useMutation } from '@apollo/client';
+import useCustomToast from '@hooks/useCustomToast';
 import PublicLayout from '@layouts/publicLayout';
+import { Usuario } from '@services/auth.service';
 import React from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
+  const [login] = useMutation(Usuario.login);
+  const { addErrorToast } = useCustomToast();
+  const router = useRouter();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (input) => {
+    const { data } = await login({
+      variables: {
+        ...input,
+      },
+    });
+    const { success, ...rest } = data.tokenAuth;
+    if (!success) {
+      addErrorToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
+      return;
+    }
+    Usuario.storageData(rest);
+    router.push('/');
   };
 
   return (
@@ -20,13 +38,9 @@ const LoginContainer = () => {
                 <Card.Title>Instituto de Parálisis Cerebral del Azuay </Card.Title>
               </Card.Header>
               <Card.Body className="text-center">
-                <Image
-                  className="bg-danger"
-                  src="/img/logo1.jpg"
-                  fluid
-                  style={{ width: '250px' }}
-                />
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <Image className="bg-danger" src="/img/logo1.jpg" fluid />
+
+                <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group controlId="validationCustomUsername">
                     <Form.Label>Username:</Form.Label>
                     <InputGroup>
@@ -51,7 +65,7 @@ const LoginContainer = () => {
                     </InputGroup>
                   </Form.Group>
 
-                  <Form.Group>
+                  <Form.Group className="my-5">
                     <Form.Label>Contraseña:</Form.Label>
                     <InputGroup>
                       <InputGroup.Prepend>

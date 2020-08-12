@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useRouter } from 'next/router';
+import { Usuario } from '@services/auth.service';
 
 const PrivateNavbar = () => {
+  const router = useRouter();
+
   return (
     <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -45,7 +49,15 @@ const PrivateNavbar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Button variant="outline-light">Cerrar Sesión</Button>
+          <Button
+            variant="outline-light"
+            onClick={() => {
+              Usuario.loggout()
+              router.push('/login');
+            }}
+          >
+            Cerrar Sesión
+          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
