@@ -22,7 +22,7 @@ const DocenteFormContainer = ({
             />
             <div className="row justify-content-center">
                 <div className="col-md-10 jumbotron rounded">
-                    <form onSubmit={handleSumbit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Row>
                             <div className="col-md-6">
                                 <Select
