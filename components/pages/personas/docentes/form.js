@@ -56,7 +56,7 @@ const DocenteFormContainer = ({
                             </div>
                         </Form.Row>
 
-                        <Form.row className="justify-content-between">
+                        <Form.Row className="justify-content-between">
                             <div className="col-md-5 mt-3 my-1">
                                 <BtnRegresar
                                     href="/personas/docentes"
@@ -71,7 +71,7 @@ const DocenteFormContainer = ({
                                     Guardar
                                 </Button>
                             </div>
-                        </Form.row>
+                        </Form.Row>
                     </form>
                 </div>
             </div>
