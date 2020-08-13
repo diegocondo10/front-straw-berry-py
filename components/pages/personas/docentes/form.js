@@ -28,7 +28,7 @@ const DocenteFormContainer = ({
                                 <Select
                                     label="Persona:"
                                     name="persona"
-                                    options={}
+                                    options={[]}
                                     rules={{
                                         required: 'Este campo es obligatorio'
                                     }}
