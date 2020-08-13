@@ -21,7 +21,7 @@ const PrivateNavbar = () => {
               <NavDropdown.Item as="a">Personas</NavDropdown.Item>
             </Link>
 
-            <Link href="/docentes">
+            <Link href="/personas/docentes">
               <NavDropdown.Item as="a">Docentes</NavDropdown.Item>
             </Link>
 
