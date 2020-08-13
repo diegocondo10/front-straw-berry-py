@@ -2,7 +2,7 @@ import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import Select from '@components/forms/inputs';
 import CustomTextInput from '@components/forms/CustomTextInput';
-import { ErrorMessage } from '@hookform/error-message';
+//import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
