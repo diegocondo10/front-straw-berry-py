@@ -31,7 +31,7 @@ const CreateDocenteContainer = ({ items, title }) => {
 CreateDocenteContainer.getInitialProps = () => {
     let title = 'Agregar Docente';
     const items = [
-        { title: 'Docentes', href: '/pages/personas/docentes' },
+        { title: 'Docentes', href: '/personas/docentes' },
         { title: 'Agregar Docente', active: true },
     ];
 

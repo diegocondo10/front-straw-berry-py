@@ -59,7 +59,7 @@ const DocenteFormContainer = ({
                         <Form.row className="justify-content-between">
                             <div className="col-md-5 mt-3 my-1">
                                 <BtnRegresar
-                                    href="/pages/personas/docentes"
+                                    href="/personas/docentes"
                                     variant="outline-danger"
                                 />
                             </div>
