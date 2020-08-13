@@ -68,64 +68,37 @@ const PersonaFormContainer = ({
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Segundo Apellido:</Form.Label>
-
-                  <Form.Control
-                    name="segundoApellido"
-                    isInvalid={!!errors.segundoApellido}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="segundoApellido">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Segundo Apellido:"
+                  name="segundoApellido"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Primer Nombre:</Form.Label>
-
-                  <Form.Control
-                    name="primerNombre"
-                    isInvalid={!!errors.primerNombre}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="primerNombre">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Primer Nombre:"
+                  name="primerNombre"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Segundo Nombre:</Form.Label>
-
-                  <Form.Control
-                    name="segundoNombre"
-                    isInvalid={!!errors.segundoNombre}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="segundoNombre">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Segundo Nombre:"
+                  name="segundoNombre"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
+                {/* <Form.Group>
                   <Form.Label>Género:</Form.Label>
 
                   <Form.Control
@@ -140,11 +113,18 @@ const PersonaFormContainer = ({
                       {({ message }) => message}
                     </ErrorMessage>
                   </Form.Control.Feedback>
+                </Form.Group> */}
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label>Género: </Form.Label>
+                  <Form.Control as="select">
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                  </Form.Control>
                 </Form.Group>
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
+                {/* <Form.Group>
                   <Form.Label>Sexo:</Form.Label>
 
                   <Form.Control
@@ -159,11 +139,19 @@ const PersonaFormContainer = ({
                       {({ message }) => message}
                     </ErrorMessage>
                   </Form.Control.Feedback>
+                </Form.Group> */}
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label>Sexo: </Form.Label>
+                  <Form.Control as="select">
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                    <option>Otro</option>
+                  </Form.Control>
                 </Form.Group>
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
+                {/* <Form.Group>
                   <Form.Label>Tipo Sangre:</Form.Label>
 
                   <Form.Control
@@ -178,266 +166,159 @@ const PersonaFormContainer = ({
                       {({ message }) => message}
                     </ErrorMessage>
                   </Form.Control.Feedback>
+                </Form.Group> */}
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label>Tipo de Sangre</Form.Label>
+                  <Form.Control as="select">
+                    <option>A+</option>
+                    <option>B+</option>
+                    <option>AB+</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                  </Form.Control>
                 </Form.Group>
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Fecha Nacimiento:</Form.Label>
-
-                  <Form.Control
-                    name="fechaNacimiento"
-                    isInvalid={!!errors.fechaNacimiento}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="fechaNacimiento">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Fecha de Nacimiento:"
+                  name="fechaNacimiento"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Edad:</Form.Label>
-
-                  <Form.Control
-                    name="edad"
-                    isInvalid={!!errors.edad}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="edad">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Edad:"
+                  name="edad"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Calle Principal:</Form.Label>
-
-                  <Form.Control
-                    name="callePrincipal"
-                    isInvalid={!!errors.callePrincipal}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="callePrincipal">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Calle Principal:"
+                  name="callePrincipal"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Calle Secundaria:</Form.Label>
-
-                  <Form.Control
-                    name="calleSecundaria"
-                    isInvalid={!!errors.calleSecundaria}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="calleSecundaria">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Calle Secundaria:"
+                  name="calleSecundaria"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Lugar Referencia:</Form.Label>
-
-                  <Form.Control
-                    name="lugarReferencia"
-                    isInvalid={!!errors.lugarReferencia}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="lugarReferencia">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Lugar de Referencia:"
+                  name="lugarReferencia"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
 
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Número de Casa:</Form.Label>
-
-                  <Form.Control
-                    name="numeroCasa"
-                    isInvalid={!!errors.numeroCasa}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="numeroCasa">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Número de Casa:"
+                  name="numeroCasa"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Teléfono:</Form.Label>
-
-                  <Form.Control
-                    name="telefono"
-                    isInvalid={!!errors.telefono}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="telefono">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Teléfono:"
+                  name="telefono"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Celular:</Form.Label>
-
-                  <Form.Control
-                    name="celular"
-                    isInvalid={!!errors.celular}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="celular">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Celular:"
+                  name="celular"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Correo:</Form.Label>
-
-                  <Form.Control
-                    name="correo"
-                    isInvalid={!!errors.correo}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="correo">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Correo:"
+                  name="correo"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Discapacidad:</Form.Label>
-
-                  <Form.Control
-                    name="discapacidad"
-                    isInvalid={!!errors.discapacidad}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="discapacidad">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Discapacidad:"
+                  name="discapacidad"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Nivel de Discapacidad:</Form.Label>
-
-                  <Form.Control
-                    name="nivelDiscapacidad"
-                    isInvalid={!!errors.nivelDiscapacidad}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="nivelDiscapacidad">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Tipo de Discapacidad:"
+                  name="tipoDiscapacidad"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Carnet CONADIS:</Form.Label>
-
-                  <Form.Control
-                    name="conadis"
-                    isInvalid={!!errors.conadis}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="conadis">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Carnet CONADIS:"
+                  name="conadis"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Ocupación:</Form.Label>
-
-                  <Form.Control
-                    name="ocupacion"
-                    isInvalid={!!errors.ocupacion}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="ocupacion">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Ocupación:"
+                  name="ocupacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
               <div className="col-md-6">
-                <Form.Group>
-                  <Form.Label>Nivel de Formación:</Form.Label>
-
-                  <Form.Control
-                    name="nivelFormacion"
-                    isInvalid={!!errors.nivelFormacion}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="nivelFormacion">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group>
+                <CustomTextInput
+                  label="Nivel de Formación:"
+                  name="nivelFormacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
               </div>
+
             </Form.Row>
 
             <Form.Row className=" justify-content-between">
