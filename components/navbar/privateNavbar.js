@@ -28,6 +28,10 @@ const PrivateNavbar = () => {
             <Link href="/personas/estudiantes">
               <NavDropdown.Item as="a">Alumnos</NavDropdown.Item>
             </Link>
+
+            <Link href="/perfil/">
+              <NavDropdown.Item as="a">Perfil</NavDropdown.Item>
+            </Link>
           </NavDropdown>
 
           <NavDropdown title="Auth" id="collasible-nav-dropdown">
