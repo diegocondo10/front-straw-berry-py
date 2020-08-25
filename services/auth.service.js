@@ -185,7 +185,7 @@ export class Usuario extends BaseService {
     }
   `;
 
-  static getUsuarioByIdForDetail = gql``;
+  //static getUsuarioByIdForDetail = gql``;
 
   static getPermisosRoles = gql`
     query getRolesPermisos {
