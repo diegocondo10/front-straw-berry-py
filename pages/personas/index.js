@@ -6,8 +6,12 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
+import { useQuery } from '@apollo/client';
+import { Persona } from '@services/personas.service';
 
 const PersonasContainer = ({ breadCrumbItems }) => {
+  const { data, loading } = useQuery(Persona.getAll);
+
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
@@ -23,6 +27,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
     </div>
   );
 
+  const persona = {};
   return (
     <PrivateLayout title="IPCA | Personas">
       <main className="container-fluid">
@@ -31,7 +36,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
           <div className="col-md-11 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
-              //value=[]
+              value={data?.personas}
               rowHover
               paginator
               header={header}
@@ -51,42 +56,28 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               />
               <Column
                 header="Primer Apellido"
-                field="priApellido"
+                field="primerApellido"
                 sortable
                 filter
                 reorderable
               />
               <Column
                 header="Segundo Apellido"
-                field="segApellido"
+                field="segundoApellido"
                 sortable
                 filter
                 reorderable
               />
               <Column
                 header="Primer Nombre"
-                field="priNombre"
+                field="primerNombre"
                 sortable
                 filter
                 reorderable
               />
               <Column
                 header="Segundo Nombre"
-                field="segNombre"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Calle Principal"
-                field="principal"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Calle Secundaria"
-                field="secundaria"
+                field="segundoNombre"
                 sortable
                 filter
                 reorderable
@@ -116,7 +107,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               />
               <Column
                 header="Carnet CONADIS"
-                field="conadis"
+                field="carnetConadis"
                 sortable
                 filter
                 reorderable

@@ -6,6 +6,8 @@ import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
+import CustomDatePicker from '@components/forms/CustomDatePicker';
+import CustomPickList from '@components/forms/CustomPickList';
 
 const PARAMETROS = {
   tiposIdentificacion: [
@@ -13,22 +15,47 @@ const PARAMETROS = {
     { label: 'PASAPORTE', value: 'PASAPORTE' },
     { label: 'OTRO', value: 'OTRO' },
   ],
+  siNo: [
+    {
+      label: 'SI',
+      value: 'S',
+    },
+    {
+      label: 'NO',
+      value: 'N',
+    },
+  ],
   sexos: [
     { label: 'MASCULINO', value: 'MASCULINO' },
     { label: 'FEMENINO', value: 'FEMENINO' },
     { label: 'OTRO', value: 'OTRO' },
   ],
+  tiposSangre: [
+    {
+      label: 'A+',
+      value: 'A+',
+    },
+    {
+      label: 'B+',
+      value: 'B+',
+    },
+    {
+      label: 'AB+',
+      value: 'AB+',
+    },
+    {
+      label: 'O+',
+      value: 'O+',
+    },
+    {
+      label: 'O-',
+      value: 'O-',
+    },
+  ],
 };
 
-const PersonaFormContainer = ({
-  title,
-  items,
-  //loading,
-  onSubmit,
-  //aplicaciones = [],
-}) => {
-  const { register, handleSubmit, errors } = useFormContext();
-  console.log(title);
+const PersonaFormContainer = ({ title, items, onSubmit }) => {
+  const { register, handleSubmit, errors, watch } = useFormContext();
 
   return (
     <main className="container-fluid">
@@ -98,94 +125,37 @@ const PersonaFormContainer = ({
               </div>
 
               <div className="col-md-6">
-                {/* <Form.Group>
-                  <Form.Label>Género:</Form.Label>
-
-                  <Form.Control
-                    name="genero"
-                    isInvalid={!!errors.genero}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="genero">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group> */}
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Label>Género: </Form.Label>
-                  <Form.Control as="select">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
-                  </Form.Control>
-                </Form.Group>
+                <Select
+                  label="Genero:"
+                  name="genero"
+                  options={PARAMETROS.sexos}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
               </div>
 
               <div className="col-md-6">
-                {/* <Form.Group>
-                  <Form.Label>Sexo:</Form.Label>
-
-                  <Form.Control
-                    name="sexo"
-                    isInvalid={!!errors.sexo}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="sexo">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group> */}
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Label>Sexo: </Form.Label>
-                  <Form.Control as="select">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
-                    <option>Otro</option>
-                  </Form.Control>
-                </Form.Group>
+                <Select
+                  label="Sexo:"
+                  name="sexo"
+                  options={PARAMETROS.sexos}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
               </div>
 
               <div className="col-md-6">
-                {/* <Form.Group>
-                  <Form.Label>Tipo Sangre:</Form.Label>
-
-                  <Form.Control
-                    name="tipoSangre"
-                    isInvalid={!!errors.tipoSangre}
-                    ref={register({
-                      required: 'Este campo es obligatorio',
-                    })}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    <ErrorMessage errors={errors} name="tipoSangre">
-                      {({ message }) => message}
-                    </ErrorMessage>
-                  </Form.Control.Feedback>
-                </Form.Group> */}
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Label>Tipo de Sangre</Form.Label>
-                  <Form.Control as="select">
-                    <option>A+</option>
-                    <option>B+</option>
-                    <option>AB+</option>
-                    <option>O+</option>
-                    <option>O-</option>
-                  </Form.Control>
-                </Form.Group>
+                <Select
+                  label="Tipo de Sangre:"
+                  name="tipoSangre"
+                  options={PARAMETROS.tiposSangre}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
-                  label="Fecha de Nacimiento:"
+                <CustomDatePicker
+                  label="Fecha de Nacimiento: "
                   name="fechaNacimiento"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
+                  rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
@@ -271,36 +241,6 @@ const PersonaFormContainer = ({
 
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Discapacidad:"
-                  name="discapacidad"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Tipo de Discapacidad:"
-                  name="tipoDiscapacidad"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Carnet CONADIS:"
-                  name="conadis"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput
                   label="Ocupación:"
                   name="ocupacion"
                   rules={{
@@ -318,7 +258,51 @@ const PersonaFormContainer = ({
                   }}
                 />
               </div>
+            </Form.Row>
 
+            <Form.Row>
+              <div className="col-md-12">
+                <Select
+                  label="Posee alguna discapacidad?"
+                  name="tieneDiscapacidad"
+                  options={PARAMETROS.siNo}
+                />
+              </div>
+
+              <br />
+
+              {watch('tieneDiscapacidad') === 'S' && (
+                <React.Fragment>
+                  <div className="col-md-6">
+                    <CustomTextInput
+                      label="Carnet CONADIS:"
+                      name="carnetConadis"
+                      rules={{
+                        required: 'Este campo es obligatorio',
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-md-6">
+                    <CustomTextInput
+                      label="Nivel de Formación:"
+                      name="nivelDiscapacidad"
+                      rules={{
+                        required: 'Este campo es obligatorio',
+                      }}
+                    />
+                  </div>
+
+                  <div className="col-md-12">
+                    <CustomPickList
+                      name="discapacidades"
+                      source={[]}
+                      sourceHeader="Discapacidades"
+                      targetHeader="Posee"
+                    />
+                  </div>
+                </React.Fragment>
+              )}
             </Form.Row>
 
             <Form.Row className=" justify-content-between">

@@ -1,14 +1,78 @@
-import Link from 'next/link';
-import React from 'react';
-import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { useRouter } from 'next/router';
 import { Usuario } from '@services/auth.service';
+import { useRouter } from 'next/router';
+import { Menubar } from 'primereact/menubar';
+import React from 'react';
 
 const PrivateNavbar = () => {
-  const router = useRouter();
+  const { push } = useRouter();
 
-  return (
-    <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
+  const logOut = () => {
+    console.log('SALIR...');
+    Usuario.loggout();
+    push('/login');
+  };
+
+  const commandPush = (path) => () => push(path);
+
+  const items = [
+    {
+      label: 'Inicio',
+      command: commandPush('/'),
+    },
+    {
+      label: 'Personas',
+      items: [
+        {
+          label: 'Personas',
+          command: commandPush('/personas'),
+        },
+        {
+          label: 'Docentes',
+          command: commandPush('/docentes'),
+        },
+        {
+          label: 'Alumnos',
+          command: commandPush('/alumnos'),
+        },
+      ],
+    },
+
+    {
+      label: 'Administracion',
+      items: [
+        {
+          label: 'Aplicaciones',
+          command: commandPush('/auth/aplicaciones'),
+        },
+        {
+          label: 'Permisos',
+          command: commandPush('/auth/permisos'),
+        },
+        {
+          label: 'Grupos',
+          command: commandPush('/auth/roles'),
+        },
+        {
+          label: 'Usuarios',
+          command: commandPush('/auth/usuarios'),
+        },
+      ],
+    },
+
+    {
+      label: 'Salir',
+      icon: 'pi pi-fw pi-power-off',
+      command: logOut,
+    },
+  ];
+
+  return <Menubar className="shadow border-bottom border-secondary" model={items} />;
+};
+
+export default PrivateNavbar;
+
+/*
+  <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -61,7 +125,5 @@ const PrivateNavbar = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  );
-};
-
-export default PrivateNavbar;
+  
+*/

@@ -12,14 +12,15 @@ import 'popper.js';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/nova-light/theme.css';
+//import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import { ToastProvider } from 'react-toast-notifications';
 
 moment.locale('es');
 
 const client = new ApolloClient({
-  //uri: 'http://localhost:8000/graphql',
-  uri: 'https://straw-berry-py.herokuapp.com/graphql',
+  uri: 'http://localhost:8000/graphql',
+  //uri: 'https://straw-berry-py.herokuapp.com/graphql',
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {

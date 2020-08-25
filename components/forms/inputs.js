@@ -3,9 +3,15 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Controller, useFormContext } from 'react-hook-form';
 
-const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
+const Select = ({
+  label = 'label',
+  options = [],
+  name,
+  rules,
+  onChangeFn,
+  ...props
+}) => {
   const { control, errors } = useFormContext();
-  console.log(errors[name]);
   return (
     <Form.Group>
       <Form.Label>{label}</Form.Label>
@@ -22,6 +28,7 @@ const Select = ({ label = 'label', options = [], name, rules, ...props }) => {
             value={JSON.stringify(value)}
             onChange={({ target }) => {
               const { value } = target;
+              onChangeFn && onChangeFn(value);
               onChange(JSON.parse(value));
             }}
             {...props}
