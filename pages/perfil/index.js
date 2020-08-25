@@ -45,16 +45,6 @@ const PerfilContainer = ({
                         </div>
                         <div className="col-md-6">
                             <p>
-                                <strong>Primer Apellido: </strong> {data?.primerApellido || 'Guerrero'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Primer Apellido: </strong> {data?.primerApellido || 'Guerrero'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
                                 <strong>Género: </strong> {data?.genero || 'Femenino - Masculino'}
                             </p>
                         </div>
