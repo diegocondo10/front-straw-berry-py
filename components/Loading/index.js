@@ -10,7 +10,14 @@ const Loading = ({
   text = 'Cargando...',
 }) => {
   if (loading) {
-    return text;
+    return (
+      <div className="container-grid full_height align-items-center">
+        <div className="text-center">
+          <div className="loader" />
+          <h1 className="display-4">{text}</h1>
+        </div>
+      </div>
+    );
   }
 
   return <div>{children}</div>;

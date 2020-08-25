@@ -9,7 +9,8 @@
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
       "@hooks/*": ["hooks/*"],
-      "@HOC/*": ["HOC/*"]
+      "@HOC/*": ["HOC/*"],
+      "@styles/*": ["styles/*"]
     }
   },
   "exclude": ["node_modules", "out"]

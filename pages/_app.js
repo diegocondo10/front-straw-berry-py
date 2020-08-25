@@ -3,6 +3,7 @@ import '@assets/css/dataTable.scss';
 import '@assets/css/navbar.scss';
 import '@assets/css/root-styles.scss';
 import '@assets/css/vars.scss';
+import '@styles/_loading.scss'
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery';

@@ -11,8 +11,7 @@
 body,
 div#__next,
 main {
-  height: calc(100% - 4.6rem) !important;
-  //background-color: #e9ecef;
+  height: 100vh !important;
 }
 
 .th__opciones {
@@ -28,8 +27,10 @@ a.dropdown-item {
     color: white !important;
   }
 }
-.full_h {
-  height: calc(100vh - 5rem) !important;
+.full_height {
+  height: 100vh !important;
+  overflow: hidden !important;
+  overflow-y: hidden !important;
 }
 
 label {
@@ -45,3 +46,7 @@ label {
           overflowX: 'hidden',
         }}
 */
+
+.container-grid {
+  display: grid;
+}

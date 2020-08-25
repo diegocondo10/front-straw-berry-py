@@ -29,7 +29,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
 
   const persona = {};
   return (
-    <PrivateLayout title="IPCA | Personas">
+    <PrivateLayout title="IPCA | Personas" loading={loading}>
       <main className="container-fluid">
         <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
         <div className="row justify-content-center">

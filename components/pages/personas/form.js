@@ -54,7 +54,7 @@ const PARAMETROS = {
   ],
 };
 
-const PersonaFormContainer = ({ title, items, onSubmit }) => {
+const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
   const { register, handleSubmit, errors, watch } = useFormContext();
 
   return (
@@ -296,9 +296,10 @@ const PersonaFormContainer = ({ title, items, onSubmit }) => {
                   <div className="col-md-12">
                     <CustomPickList
                       name="discapacidades"
-                      source={[]}
+                      source={discapacidades}
                       sourceHeader="Discapacidades"
                       targetHeader="Posee"
+                      itemTemplate={(item) => item.nombre}
                     />
                   </div>
                 </React.Fragment>

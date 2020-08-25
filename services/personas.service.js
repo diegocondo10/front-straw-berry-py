@@ -25,6 +25,15 @@ export class Persona {
       }
     }
   `;
+
+  static getParametrosForm = gql`
+    query getParametrosForm {
+      discapacidades {
+        id
+        nombre
+      }
+    }
+  `;
 }
 
 export class Discapacidad {

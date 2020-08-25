@@ -3,7 +3,7 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { Persona } from '@services/personas.service';
 
 const CreatePersonaContainer = ({ items, title }) => {
@@ -39,15 +39,24 @@ const CreatePersonaContainer = ({ items, title }) => {
 
   const router = useRouter();
 
+  const { data, loading } = useQuery(Persona.getParametrosForm);
+
+  console.log(data);
+
   const onSubmit = async (input) => {
     console.log('INPUT: ', JSON.stringify(input));
     await create({ variables: { input } });
   };
 
   return (
-    <PrivateLayout>
+    <PrivateLayout title="Crear Persona" loading={loading}>
       <FormProvider {...methods}>
-        <PersonaFormContainer title={title} items={items} onSubmit={onSubmit} />
+        <PersonaFormContainer
+          title={title}
+          items={items}
+          onSubmit={onSubmit}
+          discapacidades={data?.discapacidades}
+        />
       </FormProvider>
     </PrivateLayout>
   );
