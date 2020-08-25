@@ -12,12 +12,12 @@ const CreatePermisoContainer = ({ items, title }) => {
 
   const { data, loading } = useQuery(Permiso.getAppsPermisos);
 
-  const [createPermiso] = useMutation(Permiso.createMutation);
+  const [create] = useMutation(Permiso.createMutation);
 
   const onSubmit = async (input) => {
     input.aplicacion = input.aplicacionId;
     delete input.aplicacionId;
-    await createPermiso({ variables: { input } });
+    await create({ variables: { input } });
     router.push('/auth/permisos');
   };
 

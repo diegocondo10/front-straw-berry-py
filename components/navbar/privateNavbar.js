@@ -28,11 +28,20 @@ const PrivateNavbar = () => {
         },
         {
           label: 'Docentes',
-          command: commandPush('/docentes'),
+          command: commandPush('/personas/docentes'),
         },
         {
           label: 'Alumnos',
-          command: commandPush('/alumnos'),
+          command: commandPush('/personas/estudiantes'),
+        },
+
+        {
+          separator: true,
+        },
+
+        {
+          label: 'Discapacidades',
+          command: commandPush('/personas/discapacidades'),
         },
       ],
     },
