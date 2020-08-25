@@ -60,6 +60,11 @@ const PrivateNavbar = () => {
     },
 
     {
+      label: 'Mi Perfil',
+      command: commandPush('/perfil'),
+    },
+
+    {
       label: 'Salir',
       icon: 'pi pi-fw pi-power-off',
       command: logOut,
