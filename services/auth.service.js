@@ -146,6 +146,8 @@ export class Rol extends BaseService {
 }
 
 export class Usuario extends BaseService {
+  static USU_STORAGE_KEY = 'u_d_t_a';
+
   static getAll = gql`
     query getUsuarios {
       usuarios {
@@ -182,6 +184,8 @@ export class Usuario extends BaseService {
       }
     }
   `;
+
+  static getUsuarioByIdForDetail = gql``;
 
   static getPermisosRoles = gql`
     query getRolesPermisos {
@@ -234,11 +238,11 @@ export class Usuario extends BaseService {
   `;
 
   static storageData = (data) => {
-    localStorage.setItem('u_d_t_a', objectToB64(data));
+    localStorage.setItem(this.USU_STORAGE_KEY, objectToB64(data));
   };
 
   static getStorageData = () => {
-    const data = localStorage.getItem('u_d_t_a');
+    const data = localStorage.getItem(this.USU_STORAGE_KEY);
 
     if (!data) {
       return null;
@@ -248,6 +252,6 @@ export class Usuario extends BaseService {
   };
 
   static loggout = () => {
-    localStorage.removeItem('u_d_t_a');
+    localStorage.removeItem(this.USU_STORAGE_KEY);
   };
 }

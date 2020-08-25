@@ -1,4 +1,4 @@
-import TitleBreadCrumb from '@components/BreadCrumb/TitleBreadCrumb';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import CustomPickList from '@components/forms/CustomPickList';
 import { ErrorMessage } from '@hookform/error-message';

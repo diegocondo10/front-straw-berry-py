@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { GoPlus } from 'react-icons/go';
 import PrivateLayout from '@layouts/privateLayout';
-import TitleBreadCrumb from '@components/BreadCrumb/titleBreadCrumb';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import { Column } from 'primereact/column';

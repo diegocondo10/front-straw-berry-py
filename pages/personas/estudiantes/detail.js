@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import PrivateLayout from '@layouts/privateLayout';
 import { BtnRegresar } from '@components/Buttons';
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
+import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 
 const DetailEstudianteContainer = ({ items, id }) => {
     const history = useRouter();

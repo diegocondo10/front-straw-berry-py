@@ -1,7 +1,7 @@
 import React from 'react';
 import { BtnRegresar } from '@components/Buttons';
 import { Button, Form } from 'react-bootstrap';
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
+import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import Select from '@components/forms/inputs';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { useFormContext } from 'react-hook-form';

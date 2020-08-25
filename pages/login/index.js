@@ -2,16 +2,24 @@ import { useMutation } from '@apollo/client';
 import useCustomToast from '@hooks/useCustomToast';
 import PublicLayout from '@layouts/publicLayout';
 import { Usuario } from '@services/auth.service';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
 
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
   const [login] = useMutation(Usuario.login);
   const { addErrorToast } = useCustomToast();
   const router = useRouter();
+
+  useEffect(() => {
+    const usuario = Usuario.getStorageData();
+
+    if (usuario) {
+      router.push('/');
+    }
+  }, []);
 
   const onSubmit = async (input) => {
     const { data } = await login({

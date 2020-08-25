@@ -3,7 +3,7 @@ import Select from '@components/forms/inputs';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { Button, Form } from 'react-bootstrap';
 import { BtnRegresar } from '@components/Buttons';
-import BreadCrumbTitle from '@components/BreadCrumb/titleBreadCrumb';
+import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { useFormContext } from 'react-hook-form';
 
 const EstudianteFormContainer = ({

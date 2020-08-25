@@ -1,4 +1,4 @@
-import TitleBreadCrumb from '@components/BreadCrumb/titleBreadCrumb';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
