@@ -17,11 +17,11 @@ export const IndexColumn = () => {
 };
 
 export const OptionesColumn = ({
-  editPath,
-  detailPath,
+  editPath = (rowData: any): string => '',
+  detailPath = (rowData: string): string => '',
   header = 'Opciones',
 } = {}) => {
-  const bodyColumn = (rowData) => (
+  const bodyColumn = (rowData: any) => (
     <div className="d-inline-flex justify-content-around w-100">
       {editPath && (
         <Link href={editPath(rowData)}>

@@ -80,7 +80,7 @@ const PrivateNavbar = () => {
     },
   ];
 
-  return <Menubar className="shadow border-bottom border-secondary" model={items} className="sticky-top"/>;
+  return <Menubar className="shadow border-bottom border-secondary" model={items} />;
 };
 
 export default PrivateNavbar;

@@ -1,8 +1,8 @@
-import { ErrorMessage } from '@hookform/error-message';
 import { PickList } from 'primereact/picklist';
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Controller, useFormContext } from 'react-hook-form';
+import CustomErrorMessage from './CustomErrorMessage';
 
 const CustomPickList = ({
   name,
@@ -16,7 +16,7 @@ const CustomPickList = ({
   showSourceControls = false,
   showTargetControls = false,
 }) => {
-  const { control, errors } = useFormContext();
+  const { control } = useFormContext();
   const [localSource, setLocalSource] = useState(source);
 
   return (
@@ -34,7 +34,6 @@ const CustomPickList = ({
             itemTemplate={itemTemplate}
             sourceHeader={sourceHeader}
             targetHeader={targetHeader}
-            responsive={true}
             sourceStyle={{ height: '300px' }}
             targetStyle={{ height: '300px' }}
             showSourceControls={showSourceControls}
@@ -47,11 +46,7 @@ const CustomPickList = ({
         )}
       />
 
-      <Form.Control.Feedback type="invalid">
-        <ErrorMessage errors={errors} name={name}>
-          {({ message }) => message}
-        </ErrorMessage>
-      </Form.Control.Feedback>
+      <CustomErrorMessage name={name} />
     </Form.Group>
   );
 };
