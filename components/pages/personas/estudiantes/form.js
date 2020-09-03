@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '@components/forms/inputs';
+import CustomDropdown from '@components/forms/CustomDropdown';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { Button, Form } from 'react-bootstrap';
 import { BtnRegresar } from '@components/Buttons';
@@ -25,7 +25,7 @@ const EstudianteFormContainer = ({
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Row>
                             <div className="col-md-6">
-                                <Select
+                                <CustomDropdown
                                     label="Persona:"
                                     name="persona"
                                     options={[]}
@@ -34,7 +34,7 @@ const EstudianteFormContainer = ({
                             </div>
 
                             <div className="col-md-6">
-                                <Select
+                                <CustomDropdown
                                     label="Padre:"
                                     name="padre"
                                     options={[]}
@@ -43,7 +43,7 @@ const EstudianteFormContainer = ({
                             </div>
 
                             <div className="col-md-6">
-                                <Select
+                                <CustomDropdown
                                     label="Madre:"
                                     name="madre"
                                     options={[]}
@@ -52,7 +52,7 @@ const EstudianteFormContainer = ({
                             </div>
 
                             <div className="col-md-6">
-                                <Select
+                                <CustomDropdown
                                     label="Representantes:"
                                     name="representantes"
                                     options={[]}

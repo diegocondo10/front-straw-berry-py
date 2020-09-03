@@ -41,8 +41,6 @@ const CreatePersonaContainer = ({ items, title }) => {
 
   const { data, loading } = useQuery(Persona.getParametrosForm);
 
-  console.log(data);
-
   const onSubmit = async (input) => {
     console.log('INPUT: ', JSON.stringify(input));
     await create({ variables: { input } });

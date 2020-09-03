@@ -1,61 +1,29 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import Select from '@components/forms/inputs';
+import CustomDatePicker from '@components/forms/CustomDatePicker';
+import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
 //import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
-import CustomDatePicker from '@components/forms/CustomDatePicker';
-import CustomPickList from '@components/forms/CustomPickList';
 
 const PARAMETROS = {
-  tiposIdentificacion: [
-    { label: 'CEDULA', value: 'CEDULA' },
-    { label: 'PASAPORTE', value: 'PASAPORTE' },
-    { label: 'OTRO', value: 'OTRO' },
-  ],
-  siNo: [
-    {
-      label: 'SI',
-      value: 'S',
-    },
-    {
-      label: 'NO',
-      value: 'N',
-    },
-  ],
+  tiposIdentificacion: ['CEDULA', 'PASAPORTE', 'OTRO'],
+  siNo: ['SI', 'NO'],
   sexos: [
     { label: 'MASCULINO', value: 'MASCULINO' },
     { label: 'FEMENINO', value: 'FEMENINO' },
     { label: 'OTRO', value: 'OTRO' },
   ],
-  tiposSangre: [
-    {
-      label: 'A+',
-      value: 'A+',
-    },
-    {
-      label: 'B+',
-      value: 'B+',
-    },
-    {
-      label: 'AB+',
-      value: 'AB+',
-    },
-    {
-      label: 'O+',
-      value: 'O+',
-    },
-    {
-      label: 'O-',
-      value: 'O-',
-    },
-  ],
+  tiposSangre: ['A+', 'B+', 'AB+', 'O+', 'O-'],
+
+  nivelesFormacion: ['BASICO', 'SECUNDARIA', 'SUPERIOR'],
 };
 
 const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
-  const { register, handleSubmit, errors, watch } = useFormContext();
+  const { handleSubmit, watch } = useFormContext();
 
   return (
     <main className="container-fluid">
@@ -66,7 +34,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Row>
               <div className="col-md-6">
-                <Select
+                <CustomDropdown
                   label="Tipo de Identificacion:"
                   name="tipoIdentificacion"
                   options={PARAMETROS.tiposIdentificacion}
@@ -125,7 +93,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <Select
+                <CustomDropdown
                   label="Genero:"
                   name="genero"
                   options={PARAMETROS.sexos}
@@ -134,7 +102,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <Select
+                <CustomDropdown
                   label="Sexo:"
                   name="sexo"
                   options={PARAMETROS.sexos}
@@ -143,7 +111,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <Select
+                <CustomDropdown
                   label="Tipo de Sangre:"
                   name="tipoSangre"
                   options={PARAMETROS.tiposSangre}
@@ -250,9 +218,10 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
+                <CustomDropdown
                   label="Nivel de Formación:"
                   name="nivelFormacion"
+                  options={[PARAMETROS.nivelesFormacion]}
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -262,7 +231,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
 
             <Form.Row>
               <div className="col-md-12">
-                <Select
+                <CustomDropdown
                   label="Posee alguna discapacidad?"
                   name="tieneDiscapacidad"
                   options={PARAMETROS.siNo}
@@ -271,7 +240,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
 
               <br />
 
-              {watch('tieneDiscapacidad') === 'S' && (
+              {watch('tieneDiscapacidad') === 'SI' && (
                 <React.Fragment>
                   <div className="col-md-6">
                     <CustomTextInput

@@ -44,7 +44,6 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-              responsive
             >
               {IndexColumn()}
               <Column

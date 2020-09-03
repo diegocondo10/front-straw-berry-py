@@ -1,26 +1,54 @@
+import classnames from 'classnames';
+import { Dropdown, DropdownProps } from 'primereact/dropdown';
 import React from 'react';
-import { Dropdown } from 'primereact/dropdown';
 import { Form } from 'react-bootstrap';
 import { Controller, useFormContext } from 'react-hook-form';
-const CustomDropDown = ({ label, name, rules, options = [] }) => {
-  const { control } = useFormContext();
+import CustomErrorMessage from './CustomErrorMessage';
+import { BaseFormFieldProps } from './types';
+
+const CustomDropdown = (props?: CustomSelectProps) => {
+  const {
+    label,
+    rules,
+    name,
+    onChange: onChangeFn,
+    placeholder,
+    className,
+    ...rest
+  } = props;
+
+  const { control, errors } = useFormContext();
+
   return (
     <Form.Group>
       <Form.Label>{label}</Form.Label>
       <Controller
         name={name}
+        control={control}
+        rules={rules}
+        defaultValue={null}
         render={({ onChange, value }) => (
-          <Form.Control
-            as="select"
-            value={JSON.stringify(value)}
-            onChange={({ target }) => onChange(JSON.parse(target.value))}
-          >
-            <option value={JSON.stringify('')}>-----SELECCIONE----</option>
-          </Form.Control>
+          <Dropdown
+            value={value}
+            onChange={({ value }) => {
+              onChange(value);
+              onChangeFn && onChangeFn(value);
+            }}
+            placeholder={placeholder || 'Seleccione'}
+            className={classnames({
+              [className]: true,
+              'w-100': true,
+              'p-invalid': !!errors[name],
+            })}
+            {...rest}
+          />
         )}
       />
+      <CustomErrorMessage name={name} />
     </Form.Group>
   );
 };
 
-export default CustomDropDown;
+export default CustomDropdown;
+
+export type CustomSelectProps = DropdownProps & BaseFormFieldProps;

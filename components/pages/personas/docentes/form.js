@@ -2,7 +2,7 @@ import React from 'react';
 import { BtnRegresar } from '@components/Buttons';
 import { Button, Form } from 'react-bootstrap';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import Select from '@components/forms/inputs';
+import CustomDropdown from '@components/forms/CustomDropdown';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { useFormContext } from 'react-hook-form';
 
@@ -25,7 +25,7 @@ const DocenteFormContainer = ({
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Row>
                             <div className="col-md-6">
-                                <Select
+                                <CustomDropdown
                                     label="Persona:"
                                     name="persona"
                                     options={[]}

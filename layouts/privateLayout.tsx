@@ -6,7 +6,9 @@ import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import useCustomToast from '@hooks/useCustomToast';
 
-const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
+const PrivateLayout = (props?: PrivateLayoutProps) => {
+  const { children, title = '', loading, loadingText } = props;
+
   const router = useRouter();
   const { addWarningToast } = useCustomToast();
   useEffect(() => {
@@ -41,3 +43,10 @@ const PrivateLayout = ({ children, title = '', loading, loadingText }) => {
 };
 
 export default PrivateLayout;
+
+export type PrivateLayoutProps = {
+  children: any;
+  title?: string;
+  loading?: boolean;
+  loadingText?: string;
+};

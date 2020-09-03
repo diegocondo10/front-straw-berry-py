@@ -18,7 +18,7 @@ export const IndexColumn = () => {
 
 export const OptionesColumn = ({
   editPath = (rowData: any): string => '',
-  detailPath = (rowData: string): string => '',
+  detailPath = (rowData: any): string => '',
   header = 'Opciones',
 } = {}) => {
   const bodyColumn = (rowData: any) => (

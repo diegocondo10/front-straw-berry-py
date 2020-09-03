@@ -1,6 +1,6 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import Select from '@components/forms/inputs';
+import CustomDropdown from '@components/forms/CustomDropdown';
 import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
@@ -38,7 +38,7 @@ const PermisoFormContainer = ({
             </Form.Group>
 
             <Form.Group>
-              <Select
+              <CustomDropdown
                 name="aplicacionId"
                 options={aplicaciones}
                 label="Aplicacion:"

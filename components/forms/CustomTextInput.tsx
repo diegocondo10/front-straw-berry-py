@@ -4,9 +4,11 @@ import { Form } from 'react-bootstrap';
 import { useFormContext, Controller } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import classnames from 'classnames';
+import CustomErrorMessage from './CustomErrorMessage';
 
 const CustomTextInput = ({ label, name, rules = {}, type = 'text' }) => {
-  const { errors, control } = useFormContext();
+  const { errors } = useFormContext();
+
   return (
     <div className="p-field form-group">
       <Form.Label>{label}</Form.Label>
@@ -27,13 +29,7 @@ const CustomTextInput = ({ label, name, rules = {}, type = 'text' }) => {
         )}
       />
 
-      <ErrorMessage
-        errors={errors}
-        name={name}
-        render={({ message }) => (
-          <small className="p-invalid p-d-block w-100">{message}</small>
-        )}
-      />
+      <CustomErrorMessage name={name} />
     </div>
   );
 };
