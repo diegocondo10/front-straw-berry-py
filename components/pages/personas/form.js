@@ -2,6 +2,7 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import CustomDatePicker from '@components/forms/CustomDatePicker';
 import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
 //import { ErrorMessage } from '@hookform/error-message';
@@ -128,9 +129,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
+                <CustomInputNumber
                   label="Edad:"
                   name="edad"
+                  min={0}
+                  max={100}
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
