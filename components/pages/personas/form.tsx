@@ -224,7 +224,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomDropdown
                   label="Nivel de Formación:"
                   name="nivelFormacion"
-                  options={[PARAMETROS.nivelesFormacion]}
+                  options={PARAMETROS.nivelesFormacion}
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -256,9 +256,9 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   </div>
 
                   <div className="col-md-6">
-                    <CustomTextInput
-                      label="Nivel de Formación:"
-                      name="nivelDiscapacidad"
+                    <CustomInputNumber
+                      label="Porcentaje de discapacidad:"
+                      name="porcentajeDiscapacidad"
                       rules={{
                         required: 'Este campo es obligatorio',
                       }}
@@ -267,6 +267,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
 
                   <div className="col-md-12">
                     <CustomPickList
+                      label="Seleccione las discapacidades que posee"
                       name="discapacidades"
                       source={discapacidades}
                       sourceHeader="Discapacidades"
@@ -280,7 +281,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
 
             <Form.Row className=" justify-content-between">
               <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/personas" variant="outline-danger" />
+                <BtnRegresar href="/personas" />
               </div>
               <div className="col-md-5 mt-3 my-1">
                 <Button variant="outline-primary" block type="submit">

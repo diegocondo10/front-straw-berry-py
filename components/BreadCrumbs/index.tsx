@@ -14,14 +14,14 @@ const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => 
         if (item.active) {
           return (
             <li key={index} className="d-inline breadcrumb-item active">
-              <a className="font-weight-bold">{item.title}</a>
+              <a className="font-weight-bold cpointer">{item.title}</a>
             </li>
           );
         } else {
           return (
-            <li key={index} className="d-inline breadcrumb-item">
+            <li key={index} className="d-inline breadcrumb-item cpointer">
               <Link href={item.href}>
-                <a className="font-weight-bold">{item.title}</a>
+                <a className="font-weight-bold cpointer">{item.title}</a>
               </Link>
             </li>
           );

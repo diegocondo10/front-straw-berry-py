@@ -3,11 +3,19 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useQuery } from '@apollo/client';
+import { Persona } from '@services/personas.service';
 
 const UpdatePersonaContainer = ({ title, items, id }) => {
-  const methods = useForm({
-    mode: 'onChange',
+  const methods = useForm({ mode: 'onChange' });
+
+  const { loading } = useQuery(Persona.getById, {
+    variables: { id },
+    onCompleted: ({ persona }) => {
+      console.log(persona);
+    },
   });
+
   const router = useRouter();
 
   const onSubmit = async (input) => {
@@ -15,7 +23,7 @@ const UpdatePersonaContainer = ({ title, items, id }) => {
   };
 
   return (
-    <PrivateLayout title={title}>
+    <PrivateLayout loading={loading} title={title}>
       <FormProvider {...methods}>
         <PersonaFormContainer title={title} items={items} onSubmit={onSubmit} />
       </FormProvider>

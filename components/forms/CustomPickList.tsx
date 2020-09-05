@@ -1,21 +1,22 @@
-import { PickList } from 'primereact/picklist';
+import { PickList, PickListProps } from 'primereact/picklist';
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Controller, useFormContext } from 'react-hook-form';
 import CustomErrorMessage from './CustomErrorMessage';
+import { BaseFormFieldProps } from './types';
 
-const CustomPickList = ({
-  name,
-  rules,
-  source = [],
-  target = [],
-  itemTemplate,
-  label,
-  sourceHeader,
-  targetHeader,
-  showSourceControls = false,
-  showTargetControls = false,
-}) => {
+const CustomPickList = (props?: CustomPickListProps) => {
+  const {
+    name,
+    rules,
+    source = [],
+    target = [],
+    label,
+    showSourceControls = false,
+    showTargetControls = false,
+    ...rest
+  } = props;
+
   const { control } = useFormContext();
   const [localSource, setLocalSource] = useState(source);
 
@@ -31,17 +32,15 @@ const CustomPickList = ({
           <PickList
             source={localSource}
             target={value || target}
-            itemTemplate={itemTemplate}
-            sourceHeader={sourceHeader}
-            targetHeader={targetHeader}
-            sourceStyle={{ height: '300px' }}
-            targetStyle={{ height: '300px' }}
+            sourceStyle={{ height: '250px' }}
+            targetStyle={{ height: '250px' }}
             showSourceControls={showSourceControls}
             showTargetControls={showTargetControls}
             onChange={({ source, target }) => {
               setLocalSource(source);
               onChange(target);
             }}
+            {...rest}
           />
         )}
       />
@@ -52,3 +51,5 @@ const CustomPickList = ({
 };
 
 export default CustomPickList;
+
+export type CustomPickListProps = PickListProps & BaseFormFieldProps;

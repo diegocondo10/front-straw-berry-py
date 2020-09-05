@@ -33,7 +33,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
       <main className="container-fluid">
         <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
         <div className="row justify-content-center">
-          <div className="col-md-11 datatable-doc-demo">
+          <div className="col-12 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
               value={data?.personas}
@@ -61,22 +61,8 @@ const PersonasContainer = ({ breadCrumbItems }) => {
                 reorderable
               />
               <Column
-                header="Segundo Apellido"
-                field="segundoApellido"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
                 header="Primer Nombre"
                 field="primerNombre"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Segundo Nombre"
-                field="segundoNombre"
                 sortable
                 filter
                 reorderable
@@ -90,27 +76,6 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               />
               <Column header="Celular" field="celular" sortable filter reorderable />
               <Column header="Correo" field="correo" sortable filter reorderable />
-              <Column
-                header="Ocupación"
-                field="ocupacion"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Discapacidad"
-                field="discapacidad"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Carnet CONADIS"
-                field="carnetConadis"
-                sortable
-                filter
-                reorderable
-              />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/update?id=${id}`,
                 detailPath: ({ id }) => `/pages/personas/detail?id=${id}`,

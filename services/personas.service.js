@@ -22,6 +22,48 @@ export class Persona {
         segundoNombre
         primerApellido
         segundoApellido
+        telefono
+        celular
+        correo
+      }
+    }
+  `;
+
+  static getById = gql`
+    query getById($id: ID!) {
+      persona(id: $id) {
+        id
+        tipoIdentificacion
+        identificacion
+        primerApellido
+        segundoApellido
+        primerNombre
+        segundoNombre
+        genero
+        sexo
+        tipoSangre
+        fechaNacimiento
+        edad
+        callePrincipal
+        calleSecundaria
+        lugarReferencia
+        numeroCasa
+        telefono
+        celular
+        correo
+        ocupacion
+        nivelFormacion
+        tieneDiscapacidad
+        carnetConadis
+        porcentajeDiscapacidad
+        discapacidades {
+          id
+          nombre
+        }
+        discapacidadesDisponibles {
+          id
+          nombre
+        }
       }
     }
   `;

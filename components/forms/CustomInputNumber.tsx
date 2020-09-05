@@ -16,9 +16,10 @@ const CustomInputNumber = (props?: CustomInputNumberProps) => {
         control={control}
         name={name}
         rules={rules}
+        defaultValue={0}
         render={({ onChange, value }) => (
           <InputNumber
-            value={value}
+            value={Number(value)}
             className={classnames({
               [className]: true,
               'w-100': true,

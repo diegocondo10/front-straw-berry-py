@@ -7,33 +7,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { Persona } from '@services/personas.service';
 
 const CreatePersonaContainer = ({ items, title }) => {
-  const methods = useForm({
-    mode: 'onChange',
-    defaultValues: {
-      tipoSangre: 'AB+',
-      fechaNacimiento: '1998-06-06',
-      identificacion: '0104925789',
-      primerApellido: 'Diego',
-      segundoApellido: 'Xavier',
-      primerNombre: 'Condo',
-      segundoNombre: 'Ortiz',
-      edad: '22',
-      callePrincipal: 'PRUEBA',
-      calleSecundaria: 'PRUEBA',
-      lugarReferencia: '123',
-      numeroCasa: 's/n',
-      telefono: '07405447265',
-      celular: '0992813680',
-      correo: 'diegocondo1007@gmail.com',
-      discapacidad: 'NINGUNA',
-      carnetConadis: 'ASDFASDFASDF',
-      ocupacion: 'FASDFASDF',
-      nivelFormacion: 'SDFASDFASDF',
-      tipoIdentificacion: 'CEDULA',
-      genero: 'MASCULINO',
-      sexo: 'FEMENINO',
-    },
-  });
+  const methods = useForm({ mode: 'onChange' });
 
   const [create] = useMutation(Persona.create);
 
@@ -42,8 +16,14 @@ const CreatePersonaContainer = ({ items, title }) => {
   const { data, loading } = useQuery(Persona.getParametrosForm);
 
   const onSubmit = async (input) => {
+    input.discapacidades = input.discapacidades.map((e) => e.id);
+    console.log(input);
     console.log('INPUT: ', JSON.stringify(input));
-    await create({ variables: { input } });
+    const res = await create({ variables: { input } });
+
+    console.log('RESPONSE: ', res);
+
+    router.push('/personas');
   };
 
   return (

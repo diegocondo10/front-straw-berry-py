@@ -1,23 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonProps } from 'react-bootstrap';
 
-export const BtnRegresar = ({
-  href,
-  variant = 'primary',
-  block = true,
-  label,
-  ...props
-}) => {
+const defaultsBtnRegresar: ButtonProps = {
+  variant: 'outline-danger',
+  block: true,
+};
+
+export const BtnRegresar = (props?: BtnRegresarProps) => {
+  const { href, label, ...rest } = { ...defaultsBtnRegresar, ...props };
+
   return (
     <Link href={href}>
       <a className="text-decoration-none">
-        <Button variant={variant} block={block} {...props}>
-          {label || 'Regresar'}
-        </Button>
+        <Button {...rest}>{label || 'Regresar'}</Button>
       </a>
     </Link>
   );
 };
+export type BtnRegresarProps = {
+  href: string;
+  label?: string;
+} & ButtonProps;
 
 export const BtnAgregar = {};
