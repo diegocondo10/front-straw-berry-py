@@ -181,24 +181,20 @@ export class Usuario extends BaseService {
           id
           nombre
         }
+        persona {
+          id
+          str
+        }
+      }
+
+      personas {
+        id
+        str
       }
     }
   `;
 
   //static getUsuarioByIdForDetail = gql``;
-
-  static getPermisosRoles = gql`
-    query getRolesPermisos {
-      permisos {
-        id
-        nombre
-      }
-      grupos {
-        id
-        nombre
-      }
-    }
-  `;
 
   static create = gql`
     mutation createUsuario($input: CreateUsuarioInput!) {
@@ -222,6 +218,24 @@ export class Usuario extends BaseService {
     }
   `;
 
+  static getParametrosForm = gql`
+    query getParametrosForm {
+      personas {
+        id
+        str
+      }
+
+      permisos {
+        id
+        nombre
+      }
+      grupos {
+        id
+        nombre
+      }
+    }
+  `;
+
   static login = gql`
     mutation login($username: String!, $password: String!) {
       tokenAuth(username: $username, password: $password) {
@@ -238,11 +252,11 @@ export class Usuario extends BaseService {
   `;
 
   static storageData = (data) => {
-    localStorage.setItem(this.USU_STORAGE_KEY, objectToB64(data));
+    localStorage.setItem(Usuario.USU_STORAGE_KEY, objectToB64(data));
   };
 
   static getStorageData = () => {
-    const data = localStorage.getItem(this.USU_STORAGE_KEY);
+    const data = localStorage.getItem(Usuario.USU_STORAGE_KEY);
 
     if (!data) {
       return null;
@@ -252,6 +266,6 @@ export class Usuario extends BaseService {
   };
 
   static loggout = () => {
-    localStorage.removeItem(this.USU_STORAGE_KEY);
+    localStorage.removeItem(Usuario.USU_STORAGE_KEY);
   };
 }

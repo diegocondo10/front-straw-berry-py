@@ -10,10 +10,16 @@ const CreateUsuarioContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
 
-  const { data, loading } = useQuery(Usuario.getPermisosRoles);
+  const { data, loading } = useQuery(Usuario.getParametrosForm);
+
   const [create] = useMutation(Usuario.create);
 
   const onSubmit = async (input) => {
+    console.log(input);
+    if (input.persona) {
+      input.persona = input?.persona?.id;
+    }
+
     input.permisos = input.permisos.map((e) => e.id);
     input.grupos = input.grupos.map((e) => e.id);
     await create({ variables: { input } });
@@ -22,12 +28,14 @@ const CreateUsuarioContainer = ({ items, title }) => {
 
   return (
     <PrivateLayout title="IPCA | Usuarios" loading={loading}>
-      <FormProvider {...methods} onSubmit={onSubmit}>
+      <FormProvider {...methods}>
         <UsuarioFormContainer
           title={title}
           items={items}
           permisosDisponibles={data?.permisos}
           rolesDisponibles={data?.grupos}
+          personasDisponibles={data?.personas}
+          onSubmit={onSubmit}
         />
       </FormProvider>
     </PrivateLayout>

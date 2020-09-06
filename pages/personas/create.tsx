@@ -16,7 +16,10 @@ const CreatePersonaContainer = ({ items, title }) => {
   const { data, loading } = useQuery(Persona.getParametrosForm);
 
   const onSubmit = async (input) => {
-    input.discapacidades = input.discapacidades.map((e) => e.id);
+    if (input.discapacidades) {
+      input.discapacidades = input.discapacidades.map((e) => e.id);
+    }
+
     console.log(input);
     console.log('INPUT: ', JSON.stringify(input));
     const res = await create({ variables: { input } });

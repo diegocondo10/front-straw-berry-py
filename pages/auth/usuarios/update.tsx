@@ -1,10 +1,10 @@
-import React from 'react';
-import PrivateLayout from '@layouts/privateLayout';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useMutation, useQuery } from '@apollo/client';
 import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
-import { useQuery, useMutation } from '@apollo/client';
+import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdateUsuarioContainer = ({ id, title, items }) => {
   const methods = useForm({ mode: 'onChange' });
@@ -13,7 +13,8 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   const { data, loading } = useQuery(Usuario.getById, {
     variables: { id },
     onCompleted: ({ usuario }) => {
-      console.log(usuario);
+      console.log('USUARIO: ', usuario);
+      //methods.setValue('persona', usuario.persona);
       methods.reset(usuario);
     },
   });
@@ -21,20 +22,27 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   const [update] = useMutation(Usuario.update);
 
   const onSubmit = async (input) => {
+    if (input.persona) {
+      input.persona = input?.persona?.id;
+    }
     input.permisos = input.permisos.map((e) => e.id);
     input.grupos = input.grupos.map((e) => e.id);
     await update({ variables: { id, input } });
     router.push('/auth/usuarios');
   };
 
+  console.log(data?.personas);
+
   return (
     <PrivateLayout title="IPCA | Editar Usuario" loading={loading}>
-      <FormProvider {...methods} onSubmit={onSubmit}>
+      <FormProvider {...methods}>
         <UsuarioFormContainer
           title={title}
           items={items}
+          onSubmit={onSubmit}
           permisosDisponibles={data?.usuario?.permisosDisponibles || []}
           rolesDisponibles={data?.usuario?.gruposDisponibles}
+          personasDisponibles={data?.personas}
         />
       </FormProvider>
     </PrivateLayout>

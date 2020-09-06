@@ -12,6 +12,18 @@ export class Persona {
     }
   `;
 
+  static update = gql`
+    mutation updatePersona($id: ID!, $input: UpdatePersonaInput!) {
+      updatePersona(id: $id, input: $input) {
+        persona {
+          id
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  `;
+
   static getAll = gql`
     query getAll {
       personas {
@@ -73,6 +85,15 @@ export class Persona {
       discapacidades {
         id
         nombre
+      }
+    }
+  `;
+
+  static deleteById = gql`
+    mutation deletePersona($id: ID!) {
+      deletePersona(id: $id) {
+        found
+        deletedId
       }
     }
   `;

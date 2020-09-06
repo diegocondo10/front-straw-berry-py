@@ -1,21 +1,22 @@
-import React from 'react';
-import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
-import PrivateLayout from '@layouts/privateLayout';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { useQuery } from '@apollo/client';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
+import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
+import React from 'react';
 
 const UsuarioDetailContainer = ({ id, items }) => {
-  useQuery(Usuario.getById);
+  const { loading, data } = useQuery(Usuario.getById, { variables: { id } });
+
+  console.log(data);
 
   return (
-    <PrivateLayout title="Usuario">
-      <TitleBreadCrumb items={items} />
+    <PrivateLayout loading={loading} title="Usuario">
+      <TitleBreadCrumb items={items} title="Usuario" />
     </PrivateLayout>
   );
 };
 
-UsuarioFormContainer.getInitialProps = ({ query }) => {
+UsuarioDetailContainer.getInitialProps = ({ query }) => {
   return {
     id: query.id,
     items: [

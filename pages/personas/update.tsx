@@ -3,29 +3,46 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Persona } from '@services/personas.service';
 
 const UpdatePersonaContainer = ({ title, items, id }) => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { loading } = useQuery(Persona.getById, {
+  const { loading, data } = useQuery(Persona.getById, {
     variables: { id },
     onCompleted: ({ persona }) => {
-      console.log(persona);
+      methods.reset(persona);
     },
   });
+
+  const [update] = useMutation(Persona.update);
 
   const router = useRouter();
 
   const onSubmit = async (input) => {
     console.log(input);
+
+    try {
+      if (input.discapacidades) {
+        input.discapacidades = input.discapacidades.map((e) => e.id);
+      }
+      const res = await update({ variables: { id, input } });
+      router.push('/personas');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <PrivateLayout loading={loading} title={title}>
       <FormProvider {...methods}>
-        <PersonaFormContainer title={title} items={items} onSubmit={onSubmit} />
+        <PersonaFormContainer
+          title={title}
+          items={items}
+          onSubmit={onSubmit}
+          discapacidades={data?.persona?.discapacidadesDisponibles}
+        />
       </FormProvider>
     </PrivateLayout>
   );

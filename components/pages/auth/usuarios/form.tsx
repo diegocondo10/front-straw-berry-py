@@ -1,7 +1,8 @@
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
+import CustomDropdown from '@components/forms/CustomDropdown';
 import CustomPickList from '@components/forms/CustomPickList';
-import { ErrorMessage } from '@hookform/error-message';
+import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
@@ -11,8 +12,10 @@ const UsuarioFormContainer = ({
   items,
   permisosDisponibles = [],
   rolesDisponibles = [],
+  personasDisponibles = [],
+  onSubmit,
 }) => {
-  const { register, onSubmit, handleSubmit, errors } = useFormContext();
+  const { handleSubmit } = useFormContext();
 
   return (
     <main className="container-fluid">
@@ -21,37 +24,23 @@ const UsuarioFormContainer = ({
       <div className="row justify-content-center">
         <div className="col-md-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group>
-              <Form.Label>Username:</Form.Label>
+            <CustomTextInput
+              name="username"
+              label="Nombre de usuario:"
+              rules={{ required: 'Este campo es obligatorio' }}
+            />
 
-              <Form.Control
-                name="username"
-                isInvalid={!!errors.username}
-                ref={register({ required: 'Este campo es obligatorio' })}
-              />
-              <Form.Control.Feedback type="invalid">
-                <ErrorMessage errors={errors} name="username">
-                  {({ message }) => message}
-                </ErrorMessage>
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            {/*
-              <Form.Group>
-              <Form.Label>Contraseña:</Form.Label>
-
-              <Form.Control
-                name="password"
-                isInvalid={!!errors.password}
-                ref={register({ required: 'Este campo es obligatorio' })}
-              />
-              <Form.Control.Feedback type="invalid">
-                <ErrorMessage errors={errors} name="password">
-                  {({ message }) => message}
-                </ErrorMessage>
-              </Form.Control.Feedback>
-            </Form.Group>
-  */}
+            <CustomDropdown
+              name="persona"
+              label="Persona"
+              placeholder="Seleccione una persona"
+              optionLabel="str"
+              //optionValue="id"
+              dataKey="str"
+              showClear
+              options={personasDisponibles}
+              filter
+            />
 
             <CustomPickList
               label="Roles:"
@@ -86,38 +75,6 @@ const UsuarioFormContainer = ({
                 },
               }}
             />
-
-            <Form.Group>
-              <Form.Label>Email:</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                isInvalid={!!errors.descripcion}
-                ref={register}
-              />
-            </Form.Group>
-            <hr className="bg-dark" />
-
-            {/*
-            <Form.Row className="my-5">
-              <div className="col-md-6">
-                <Form.Check
-                  name="descripcion"
-                  label="Super Usuario"
-                  isInvalid={!!errors.descripcion}
-                  ref={register}
-                />
-              </div>
-              <div className="col-md-6">
-                <Form.Check
-                  name="descripcion"
-                  label="Super Usuario"
-                  isInvalid={!!errors.descripcion}
-                  ref={register}
-                />
-              </div>
-            </Form.Row>
-*/}
 
             <Form.Row className=" justify-content-between">
               <div className="col-md-5 mt-3 my-1">
