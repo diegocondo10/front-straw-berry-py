@@ -21,7 +21,6 @@ const UpdatePersonaContainer = ({ title, items, id }) => {
   const router = useRouter();
 
   const onSubmit = async (input) => {
-    console.log(input);
 
     try {
       if (input.discapacidades) {

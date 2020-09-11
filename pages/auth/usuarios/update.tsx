@@ -13,8 +13,6 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   const { data, loading } = useQuery(Usuario.getById, {
     variables: { id },
     onCompleted: ({ usuario }) => {
-      console.log('USUARIO: ', usuario);
-      //methods.setValue('persona', usuario.persona);
       methods.reset(usuario);
     },
   });
@@ -30,8 +28,6 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
     await update({ variables: { id, input } });
     router.push('/auth/usuarios');
   };
-
-  console.log(data?.personas);
 
   return (
     <PrivateLayout title="IPCA | Editar Usuario" loading={loading}>

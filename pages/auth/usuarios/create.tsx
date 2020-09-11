@@ -15,7 +15,7 @@ const CreateUsuarioContainer = ({ items, title }) => {
   const [create] = useMutation(Usuario.create);
 
   const onSubmit = async (input) => {
-    console.log(input);
+
     if (input.persona) {
       input.persona = input?.persona?.id;
     }
