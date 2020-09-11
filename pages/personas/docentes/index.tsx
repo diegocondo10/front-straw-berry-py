@@ -66,7 +66,7 @@ const DocentesContainer = ({ breadCrumbItems }) => {
               />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/docentes/update?id=${id}`,
-                detailPath: ({ id }) => `/pages/personas/docentes/detail?id=${id}`,
+                detailPath: ({ id }) => `/personas/docentes/detail?id=${id}`,
               })}
             </DataTable>
           </div>

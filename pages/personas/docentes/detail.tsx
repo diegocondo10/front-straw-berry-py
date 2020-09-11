@@ -4,14 +4,22 @@ import { BtnRegresar } from '@components/Buttons';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
+import { Docente } from '@services/personas.service';
+import { Table } from 'react-bootstrap';
 
 const DetailDocenteContainer = ({ items, id }) => {
   const history = useRouter();
 
-  const data = {};
+  //const data = {};
+  const { data, loading } = useQuery(Docente.getById, { variables: { id } });
+
+  const onClickEliminar = async () => {
+    history.push('/docentes');
+  };
 
   return (
-    <PrivateLayout>
+    <PrivateLayout loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Docente" items={items} />
         <div className="row justify-content-center">
@@ -35,7 +43,8 @@ const DetailDocenteContainer = ({ items, id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger">Eliminar</Button>
+            <Button variant="outline-danger"
+              block onClick={onClickEliminar}>Eliminar</Button>
           </div>
           <div className="col.md-4 my-1">
             <BtnRegresar variant="outline-info" href="/personas/docentes" />
