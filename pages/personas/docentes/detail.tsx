@@ -27,20 +27,25 @@ const DetailDocenteContainer = ({ items, id }) => {
         <BreadCrumbTitle title="Docente" items={items} />
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
-            <h4 className="text-underline">Información personal</h4>
+            <h4 className="text-underline">Información Personal</h4>
 
             <ul className="w-100">
               <ItemDetailPersona persona={docente?.persona} />
             </ul>
 
-            <ul>
+            <h4 className="text-underline">Información Académica</h4>
+            <ul className="w-100">
               <li>
-                <strong>Tipo de Título:</strong>
+                <strong>Título:</strong>
                 {' ' + data?.docente?.tipoTitulo}
               </li>
               <li>
                 <strong>Nivel de Formación:</strong>
                 {' ' + data?.docente?.nivelFormacion}
+              </li>
+              <li>
+                <strong>Observaciones:</strong>
+                {' ' + data?.docente?.observaciones}
               </li>
             </ul>
           </div>
@@ -53,7 +58,7 @@ const DetailDocenteContainer = ({ items, id }) => {
             </Button>
           </div>
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/auth/usuarios" />
+            <BtnRegresar variant="outline-info" href="/personas/docentes" />
           </div>
         </div>
       </main>
