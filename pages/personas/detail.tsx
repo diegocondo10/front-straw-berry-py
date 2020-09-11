@@ -4,14 +4,21 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { Persona } from '@services/personas.service';
+import { Table } from 'react-bootstrap';
 
 const DetailPersonaContainer = ({ items, id }) => {
   const history = useRouter();
 
-  const data = {};
+  //const data = {};
+  const { data, loading } = useQuery(Persona.getById, { varaibles: { id } });
+
+  const onClickEliminar = async () => {
+    history.push('/personas');
+  };
 
   return (
-    <PrivateLayout>
+    <PrivateLayout loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Persona" items={items} />
 
@@ -111,12 +118,51 @@ const DetailPersonaContainer = ({ items, id }) => {
                 {' ' + data?.persona?.nivelFormacion}
               </li>
             </ul>
+            <Table hover striped bordered size="sm">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Identificación</th>
+                  <th>Tipo de Identificación</th>
+                  <th>Primer Apellido</th>
+                  <th>Segundo Apellido</th>
+                  <th>Primer Nombre</th>
+                  <th>Segundo Nombre</th>
+                  <th>Género</th>
+                  <th>Sexo</th>
+                  <th>Tipo de Sangre</th>
+                  <th>Fecha de Nacimiento</th>
+                  <th>Edad</th>
+                  <th>Calle Principal</th>
+                  <th>Calle Secundaria</th>
+                  <th>Lugar de Referencia</th>
+                  <th>Número de Casa</th>
+                  <th>Teléfono</th>
+                  <th>Celular</th>
+                  <th>Correo</th>
+                  <th>Discapacidad</th>
+                  <th>Nivel de Discapacidad</th>
+                  <th>Carnet CONADIS</th>
+                  <th>Ocupación</th>
+                  <th>Nivel de Formación</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.discapacidades?.map((e) => (
+                  <tr className="bg-white"
+                    key={e.id}>
+                    <td>{e.id}</td>
+                    <td>{e.nombre}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
           </div>
         </div>
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger">Eliminar</Button>
+            <Button variant="outline-danger"
+              block onClick={onClickEliminar}>Eliminar</Button>
           </div>
           <div className="col-md-4 my-1">
             <BtnRegresar variant="outline-info" href="/personas" />
