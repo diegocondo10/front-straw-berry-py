@@ -80,6 +80,15 @@ export class Persona {
     }
   `;
 
+  static getAllCustom = (select: string) => gql`
+    query getAll {
+      personas {
+        id
+        ${select}
+      }
+    }
+  `;
+
   static getParametrosForm = gql`
     query getParametrosForm {
       discapacidades {
@@ -149,6 +158,42 @@ export class Discapacidad {
       deleteDiscapacidad(id: $id) {
         found
         deletedId
+      }
+    }
+  `;
+}
+
+export class Docente {
+  static personasNoDocentes = gql`
+    query personasNoDocentes {
+      personasNoDocentes {
+        id
+        str
+      }
+    }
+  `;
+
+  static getAll = gql`
+    query getAll {
+      docentes {
+        id
+        titulo
+        tipoTitulo
+        persona {
+          id
+          str
+        }
+      }
+    }
+  `;
+
+  static create = gql`
+    mutation createDocente($input: CreateDocenteInput!) {
+      createDocente(input: $input) {
+        docente {
+          id
+          createdAt
+        }
       }
     }
   `;

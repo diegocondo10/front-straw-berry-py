@@ -44,6 +44,10 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
+              autoLayout
+              reorderableColumns
+              resizableColumns
+              removableSort
             >
               {IndexColumn()}
               <Column
@@ -51,31 +55,18 @@ const PersonasContainer = ({ breadCrumbItems }) => {
                 field="identificacion"
                 sortable
                 filter
-                reorderable
+                frozen
               />
               <Column
                 header="Primer Apellido"
                 field="primerApellido"
                 sortable
                 filter
-                reorderable
               />
-              <Column
-                header="Primer Nombre"
-                field="primerNombre"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Teléfono"
-                field="telefono"
-                sortable
-                filter
-                reorderable
-              />
-              <Column header="Celular" field="celular" sortable filter reorderable />
-              <Column header="Correo" field="correo" sortable filter reorderable />
+              <Column header="Primer Nombre" field="primerNombre" sortable filter />
+              <Column header="Teléfono" field="telefono" sortable filter />
+              <Column header="Celular" field="celular" sortable filter />
+              <Column header="Correo" field="correo" sortable filter />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/update?id=${id}`,
                 detailPath: ({ id }) => `/pages/personas/detail?id=${id}`,
