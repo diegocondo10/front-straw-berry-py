@@ -228,3 +228,59 @@ export class Docente {
     }
   `;
 }
+
+export class Estudiante {
+  static getAll = gql`
+    query getAll {
+      estudiantes {
+        persona {
+          id
+          str
+        }
+        padre {
+          id
+          str
+        }
+        madre {
+          id
+          str
+        }
+        representante {
+          id
+          str
+        }
+      }
+    }
+  `;
+
+  static create = gql`
+    mutation create($input: CreateEstudianteInput!) {
+      createEstudiante(input: $input) {
+        estudiante {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation update($id: ID!, $input: UpdateEstudianteInput!) {
+      updateEstudiante(id: $id, input: $input) {
+        estudiante {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static delete = gql`
+    mutation delete($id: ID!) {
+      deleteEstudiante(id: $id) {
+        found
+        deletedId
+      }
+    }
+  `;
+}
