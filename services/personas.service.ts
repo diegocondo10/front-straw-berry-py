@@ -197,4 +197,34 @@ export class Docente {
       }
     }
   `;
+
+  static getByIdWithParams = gql`
+    query getByIdWithParams($id: ID!) {
+      docente(id: $id) {
+        id
+        persona {
+          id
+          str
+        }
+        titulo
+        tipoTitulo
+        observaciones
+      }
+      personas {
+        id
+        str
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation update($id: ID!, $input: UpdateDocenteInput!) {
+      updateDocente(id: $id, input: $input) {
+        docente {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
 }
