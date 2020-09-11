@@ -236,6 +236,15 @@ export class Usuario extends BaseService {
     }
   `;
 
+  static delete = gql`
+    mutation delete($id: ID!) {
+      deleteUsuario(id: $id) {
+        found
+        deletedId
+      }
+    }
+  `;
+
   static login = gql`
     mutation login($username: String!, $password: String!) {
       tokenAuth(username: $username, password: $password) {
