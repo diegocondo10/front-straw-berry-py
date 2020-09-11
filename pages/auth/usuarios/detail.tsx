@@ -44,16 +44,16 @@ const UsuarioDetailContainer = ({ id, items }) => {
 
           <h4 className="text-underline w-100">Roles: </h4>
           <ul className="w-100 ml-5">
-            {usuario?.grupos?.map((e) => (
-              <li>{e.nombre}</li>
+            {usuario?.grupos?.map((e, index) => (
+              <li key={index * 3}>{e.nombre}</li>
             ))}
           </ul>
 
           <h4 className="text-underline w-100">Permisos: </h4>
 
           <ul className="w-100 ml-5">
-            {usuario?.permisos?.map((e) => (
-              <li>{e.nombre}</li>
+            {usuario?.permisos?.map((e, index) => (
+              <li key={index * 102}>{e.nombre}</li>
             ))}
           </ul>
         </div>
