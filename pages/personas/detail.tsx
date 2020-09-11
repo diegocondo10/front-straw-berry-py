@@ -6,12 +6,13 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Persona } from '@services/personas.service';
 import { Table } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
 
 const DetailPersonaContainer = ({ items, id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(Persona.getById, { varaibles: { id } });
+  const { data, loading } = useQuery(Persona.getById, { variables: { id } });
 
   const onClickEliminar = async () => {
     history.push('/personas');
@@ -121,29 +122,7 @@ const DetailPersonaContainer = ({ items, id }) => {
             <Table hover striped bordered size="sm">
               <thead className="thead-dark">
                 <tr>
-                  <th>Identificación</th>
-                  <th>Tipo de Identificación</th>
-                  <th>Primer Apellido</th>
-                  <th>Segundo Apellido</th>
-                  <th>Primer Nombre</th>
-                  <th>Segundo Nombre</th>
-                  <th>Género</th>
-                  <th>Sexo</th>
-                  <th>Tipo de Sangre</th>
-                  <th>Fecha de Nacimiento</th>
-                  <th>Edad</th>
-                  <th>Calle Principal</th>
-                  <th>Calle Secundaria</th>
-                  <th>Lugar de Referencia</th>
-                  <th>Número de Casa</th>
-                  <th>Teléfono</th>
-                  <th>Celular</th>
-                  <th>Correo</th>
-                  <th>Discapacidad</th>
-                  <th>Nivel de Discapacidad</th>
-                  <th>Carnet CONADIS</th>
-                  <th>Ocupación</th>
-                  <th>Nivel de Formación</th>
+                  <th>Nombre de Discapacidad</th>
                 </tr>
               </thead>
               <tbody>

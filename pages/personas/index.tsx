@@ -69,7 +69,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               <Column header="Correo" field="correo" sortable filter />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/update?id=${id}`,
-                detailPath: ({ id }) => `/pages/personas/detail?id=${id}`,
+                detailPath: ({ id }) => `/personas/detail?id=${id}`,
               })}
             </DataTable>
           </div>
