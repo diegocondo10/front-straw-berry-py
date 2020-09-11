@@ -25,123 +25,142 @@ const DetailPersonaContainer = ({ items, id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
-            <ul>
-              <li>
-                <strong>Identificación:</strong>
-                {' ' + data?.persona?.identificacion}
-              </li>
-              <li>
-                <strong>Tipo de Identificación:</strong>
-                {' ' + data?.persona?.tipoIdentificacion}
-              </li>
-              <li>
-                <strong>Primer Apellido:</strong>
-                {' ' + data?.persona?.primerApellido}
-              </li>
-              <li>
-                <strong>Segundo Apellido:</strong>
-                {' ' + data?.persona?.segundoApellido}
-              </li>
-              <li>
-                <strong>Primer Nombre:</strong>
-                {' ' + data?.persona?.primerNombre}
-              </li>
-              <li>
-                <strong>Segundo Nombre:</strong>
-                {' ' + data?.persona?.segundoNombre}
-              </li>
-              <li>
-                <strong>Género:</strong>
-                {' ' + data?.persona?.genero}
-              </li>
-              <li>
-                <strong>Sexo:</strong>
-                {' ' + data?.persona?.sexo}
-              </li>
-              <li>
-                <strong>Tipo de Sangre:</strong>
-                {' ' + data?.persona?.tipoSangre}
-              </li>
-              <li>
-                <strong>Fecha de Nacimiento:</strong>
-                {' ' + data?.persona?.fechaNacimiento}
-              </li>
-              <li>
-                <strong>Edad:</strong>
-                {' ' + data?.persona?.edad}
-              </li>
-              <li>
-                <strong>Calle Principal:</strong>
-                {' ' + data?.persona?.callePrincipal}
-              </li>
-              <li>
-                <strong>Calle Secundaria:</strong>
-                {' ' + data?.persona?.calleSecundaria}
-              </li>
-              <li>
-                <strong>Lugar de Referencia:</strong>
-                {' ' + data?.persona?.lugarReferencia}
-              </li>
-              <li>
-                <strong>Número de Casa:</strong>
-                {' ' + data?.persona?.numeroCasa}
-              </li>
-              <li>
-                <strong>Teléfono:</strong>
-                {' ' + data?.persona?.telefono}
-              </li>
-              <li>
-                <strong>Celular:</strong>
-                {' ' + data?.persona?.celular}
-              </li>
-              <li>
-                <strong>Correo:</strong>
-                {' ' + data?.persona?.correo}
-              </li>
-              <li>
-                <strong>Discapacidad:</strong>
-                {' ' + data?.persona?.discapacidad}
-              </li>
-              <li>
-                <strong>Nivel de Discapacidad:</strong>
-                {' ' + data?.persona?.nivelDiscapacidad}
-              </li>
-              <li>
-                <strong>Carnet CONADIS:</strong>
-                {' ' + data?.persona?.conadis}
-              </li>
-              <li>
-                <strong>Ocupación:</strong>
-                {' ' + data?.persona?.ocupacion}
-              </li>
-              <li>
-                <strong>Nivel de Formación:</strong>
-                {' ' + data?.persona?.nivelFormacion}
-              </li>
-            </ul>
-            <Table hover striped bordered size="sm">
-              <thead className="thead-dark">
-                <tr>
-                  <th>Nombre de Discapacidad</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.discapacidades?.map((e) => (
-                  <tr className="bg-white"
-                    key={e.id}>
-                    <td>{e.id}</td>
-                    <td>{e.nombre}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+            <div className="col-12 ">
+              <ul>
+                <li>
+                  <strong>Identificación:</strong>
+                  {' ' + data?.persona?.identificacion}
+                </li>
+                <li>
+                  <strong>Tipo de Identificación:</strong>
+                  {' ' + data?.persona?.tipoIdentificacion}
+                </li>
+                <li>
+                  <strong>Primer Apellido:</strong>
+                  {' ' + data?.persona?.primerApellido}
+                </li>
+                <li>
+                  <strong>Segundo Apellido:</strong>
+                  {' ' + data?.persona?.segundoApellido}
+                </li>
+                <li>
+                  <strong>Primer Nombre:</strong>
+                  {' ' + data?.persona?.primerNombre}
+                </li>
+                <li>
+                  <strong>Segundo Nombre:</strong>
+                  {' ' + data?.persona?.segundoNombre}
+                </li>
+                <li>
+                  <strong>Género:</strong>
+                  {' ' + data?.persona?.genero}
+                </li>
+                <li>
+                  <strong>Sexo:</strong>
+                  {' ' + data?.persona?.sexo}
+                </li>
+                <li>
+                  <strong>Tipo de Sangre:</strong>
+                  {' ' + data?.persona?.tipoSangre}
+                </li>
+                <li>
+                  <strong>Fecha de Nacimiento:</strong>
+                  {' ' + data?.persona?.fechaNacimiento}
+                </li>
+                <li>
+                  <strong>Edad:</strong>
+                  {' ' + data?.persona?.edad}
+                </li>
+                <li>
+                  <strong>Calle Principal:</strong>
+                  {' ' + data?.persona?.callePrincipal}
+                </li>
+                <li>
+                  <strong>Calle Secundaria:</strong>
+                  {' ' + data?.persona?.calleSecundaria}
+                </li>
+                <li>
+                  <strong>Lugar de Referencia:</strong>
+                  {' ' + data?.persona?.lugarReferencia}
+                </li>
+                <li>
+                  <strong>Número de Casa:</strong>
+                  {' ' + data?.persona?.numeroCasa}
+                </li>
+                <li>
+                  <strong>Teléfono:</strong>
+                  {' ' + data?.persona?.telefono}
+                </li>
+                <li>
+                  <strong>Celular:</strong>
+                  {' ' + data?.persona?.celular}
+                </li>
+                <li>
+                  <strong>Correo:</strong>
+                  {' ' + data?.persona?.correo}
+                </li>
+
+                <li>
+                  <strong>Ocupación:</strong>
+                  {' ' + data?.persona?.ocupacion}
+                </li>
+                <li>
+                  <strong>Nivel de Formación:</strong>
+                  {' ' + data?.persona?.nivelFormacion}
+                </li>
+              </ul>
+            </div>
+
+            <div className="col-12 ">
+              <h5 className="text-underline">Discapacidades</h5>
+
+              <ul>
+                <li>
+                  <strong>Discapacidad:</strong>
+                  {' ' + data?.persona?.tieneDiscapacidad}
+                </li>
+
+                {data?.persona?.tieneDiscapacidad === 'SI' && (
+                  <React.Fragment>
+                    <li>
+                      <strong>Nivel de Discapacidad:</strong>
+                      {' ' + data?.persona?.porcentajeDiscapacidad}
+                    </li>
+                    <li>
+                      <strong>Carnet CONADIS:</strong>
+                      {' ' + data?.persona?.carnetConadis}
+                    </li>
+                  </React.Fragment>
+                )}
+              </ul>
+
+              {data?.persona?.tieneDiscapacidad === 'SI' && (
+                <React.Fragment>
+                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nombre de Discapacidad</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data?.persona?.discapacidades?.map((e) => (
+                        <tr className="bg-white" key={e.id}>
+                          <td>{e.nombre}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </React.Fragment>
+              )}
+            </div>
           </div>
         </div>
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger"
-              block onClick={onClickEliminar}>Eliminar</Button>
+            <Button variant="outline-danger" block onClick={onClickEliminar}>
+              Eliminar
+            </Button>
           </div>
           <div className="col-md-4 my-1">
             <BtnRegresar variant="outline-info" href="/personas" />
