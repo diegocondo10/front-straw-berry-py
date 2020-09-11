@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
+import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
 import Link from 'next/link';
@@ -38,15 +39,7 @@ const UsuarioDetailContainer = ({ id, items }) => {
           <h4 className="text-underline">Información personal</h4>
 
           <ul className="w-100">
-            <li>
-              <strong>Persona: </strong>
-              <Link href={`/personas/detail?id=${usuario.persona.id}`}>
-                <a>
-                  {usuario?.persona && usuario.persona.str}
-                  {!usuario?.persona && 'NO REGISTRA'}
-                </a>
-              </Link>
-            </li>
+            <ItemDetailPersona persona={usuario?.persona} />
           </ul>
 
           <h4 className="text-underline w-100">Roles: </h4>

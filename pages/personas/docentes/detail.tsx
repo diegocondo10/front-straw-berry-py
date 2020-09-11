@@ -7,28 +7,33 @@ import { Button } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { Docente } from '@services/personas.service';
 import { Table } from 'react-bootstrap';
+import Link from 'next/link';
+import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 
 const DetailDocenteContainer = ({ items, id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(Docente.getById, { variables: { id } });
+  const { data, loading } = useQuery(Docente.getByIdDetail, { variables: { id } });
 
   const onClickEliminar = async () => {
     history.push('/docentes');
   };
 
+  const docente = data?.docente;
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Docente" items={items} />
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
+            <h4 className="text-underline">Información personal</h4>
+
+            <ul className="w-100">
+              <ItemDetailPersona persona={docente?.persona} />
+            </ul>
+
             <ul>
-              <li>
-                <strong>Persona:</strong>
-                {' ' + data?.docente?.persona}
-              </li>
               <li>
                 <strong>Tipo de Título:</strong>
                 {' ' + data?.docente?.tipoTitulo}
@@ -43,11 +48,12 @@ const DetailDocenteContainer = ({ items, id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger"
-              block onClick={onClickEliminar}>Eliminar</Button>
+            <Button variant="outline-danger" block onClick={onClickEliminar}>
+              Eliminar
+            </Button>
           </div>
-          <div className="col.md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/personas/docentes" />
+          <div className="col-md-4 my-1">
+            <BtnRegresar variant="outline-info" href="/auth/usuarios" />
           </div>
         </div>
       </main>

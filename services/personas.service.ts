@@ -173,6 +173,21 @@ export class Docente {
     }
   `;
 
+  static getByIdDetail = gql`
+    query getByIdDetail($id: ID!) {
+      docente(id: $id) {
+        id
+        titulo
+        tipoTitulo
+        observaciones
+        persona {
+          id
+          str
+        }
+      }
+    }
+  `;
+
   static getAll = gql`
     query getAll {
       docentes {
