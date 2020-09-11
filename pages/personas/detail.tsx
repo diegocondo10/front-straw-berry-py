@@ -26,7 +26,9 @@ const DetailPersonaContainer = ({ items, id }) => {
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
             <div className="col-12 ">
-              <ul>
+
+              <h4 className="text-underline">Información Personal</h4>
+              <ul className="w-100">
                 <li>
                   <strong>Identificación:</strong>
                   {' ' + data?.persona?.identificacion}
@@ -87,18 +89,22 @@ const DetailPersonaContainer = ({ items, id }) => {
                   <strong>Número de Casa:</strong>
                   {' ' + data?.persona?.numeroCasa}
                 </li>
-                <li>
-                  <strong>Teléfono:</strong>
-                  {' ' + data?.persona?.telefono}
-                </li>
-                <li>
-                  <strong>Celular:</strong>
-                  {' ' + data?.persona?.celular}
-                </li>
-                <li>
-                  <strong>Correo:</strong>
-                  {' ' + data?.persona?.correo}
-                </li>
+
+                <h4 className="text-underline">Contactos</h4>
+                <ul className="w-100">
+                  <li>
+                    <strong>Teléfono:</strong>
+                    {' ' + data?.persona?.telefono}
+                  </li>
+                  <li>
+                    <strong>Celular:</strong>
+                    {' ' + data?.persona?.celular}
+                  </li>
+                  <li>
+                    <strong>Correo:</strong>
+                    {' ' + data?.persona?.correo}
+                  </li>
+                </ul>
 
                 <li>
                   <strong>Ocupación:</strong>
