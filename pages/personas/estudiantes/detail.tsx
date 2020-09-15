@@ -4,13 +4,22 @@ import { Button } from 'react-bootstrap';
 import PrivateLayout from '@layouts/privateLayout';
 import { BtnRegresar } from '@components/Buttons';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import { useQuery } from '@apollo/client';
+import { Estudiante } from '@services/personas.service';
+import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 
 const DetailEstudianteContainer = ({ items, id }) => {
     const history = useRouter();
-    const data = {};
+    const { data, loading } = useQuery(Estudiante.getByIdDetailEst, { variables: { id } });
+
+    const onClickEliminar = async () => {
+        history.push('/estudiantes');
+    };
+
+    const estudiante = data?.estudiante;
 
     return (
-        <PrivateLayout>
+        <PrivateLayout loading={loading}>
             <main className="container-fluid">
                 <BreadCrumbTitle
                     title="Docente"
@@ -18,13 +27,13 @@ const DetailEstudianteContainer = ({ items, id }) => {
                 />
                 <div className="row justify-content-center">
                     <div className="col-md-8 breadcrumb">
-                        <ul>
-                            <li>
-                                <strong>
-                                    Persona:
-                                </strong>
-                                {' ' + data?.estudiante?.persona}
-                            </li>
+                        <h4 className="text-underline">Información Personal</h4>
+                        <ul className="w-100">
+                            <ItemDetailPersona persona={estudiante?.persona} />
+                        </ul>
+
+                        <h4 className="text-underline">Información Familiar</h4>
+                        <ul className="w-100">
                             <li>
                                 <strong>
                                     Padre:
@@ -56,7 +65,8 @@ const DetailEstudianteContainer = ({ items, id }) => {
                 <div className="row justify-content-center">
                     <div className="col-md-4 my-1 order-md-1">
                         <Button
-                            variant="outline-danger">
+                            variant="outline-danger"
+                            block onClick={onClickEliminar}>
                             Eliminar
                         </Button>
                     </div>

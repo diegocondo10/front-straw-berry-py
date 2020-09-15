@@ -298,4 +298,21 @@ export class Estudiante {
       }
     }
   `;
+
+  static getByIdDetailEst = gql`
+  query getByIdDetailEst($id: ID!) {
+    docente(id: $id) {
+      id
+      persona {
+        id
+        str
+      }
+      representante {
+        id
+        str
+      }
+      relacionRepresentante
+    }
+  }
+`;
 }
