@@ -21,6 +21,8 @@ const PARAMETROS = {
   tiposSangre: ['A+', 'B+', 'AB+', 'O+', 'O-'],
 
   nivelesFormacion: ['BASICO', 'SECUNDARIA', 'SUPERIOR'],
+
+  ocupacion: ['Estudiante', 'Trabajador', 'Doscente'],
 };
 
 const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
@@ -187,12 +189,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
+                <CustomDropdown
                   label="Ocupación:"
                   name="ocupacion"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
+                  options={PARAMETROS.ocupacion}
+                  rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
