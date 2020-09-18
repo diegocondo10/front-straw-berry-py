@@ -127,19 +127,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
-
-              <div className="col-md-6">
-                <CustomInputNumber
-                  label="Edad:"
-                  name="edad"
-                  min={0}
-                  max={100}
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-
+              
               <div className="col-md-6">
                 <CustomTextInput
                   label="Calle Principal:"

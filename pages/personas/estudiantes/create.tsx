@@ -11,7 +11,7 @@ const CreateEstudianteContainer = ({ items, title }) => {
     mode: 'onChange',
   });
 
-  const { loading, data } = useQuery(Persona.getAllCustom('id str'));
+  const { loading, data } = useQuery(Persona.getAllCustom('str'));
 
   const router = useRouter();
 
@@ -22,7 +22,12 @@ const CreateEstudianteContainer = ({ items, title }) => {
   return (
     <PrivateLayout loading={loading}>
       <FormProvider {...methods}>
-        <EstudianteFormContainer title={title} items={items} onSubmit={onSubmit} />
+        <EstudianteFormContainer
+          title={title}
+          items={items}
+          onSubmit={onSubmit}
+          personas={data?.personas}
+        />
       </FormProvider>
     </PrivateLayout>
   );
