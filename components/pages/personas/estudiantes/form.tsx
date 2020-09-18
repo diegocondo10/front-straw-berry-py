@@ -6,21 +6,30 @@ import { BtnRegresar } from '@components/Buttons';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { useFormContext } from 'react-hook-form';
 import CustomTextArea from '@components/forms/CustomTextArea';
+import { getId } from '@utils/funciones';
 
 const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
-  const { register, handleSubmit, errors } = useFormContext();
+  const { handleSubmit } = useFormContext();
+
+  const mapOnSubmit = (input) => {
+    input.persona = getId(input.persona);
+    input.padre = getId(input.padre);
+    input.madre = getId(input.madre);
+    input.representante = getId(input.representante);
+    onSubmit(input);
+  };
 
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
       <div className="row justify-content-center">
         <div className="col-md-10 jumbotron rounded">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(mapOnSubmit)}>
             <Form.Row>
               <div className="col-md-6">
                 <CustomDropdown
                   label="Personas:"
-                  name="personas"
+                  name="persona"
                   options={personas}
                   optionLabel="str"
                   filter
@@ -53,7 +62,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <div className="col-md-6">
                 <CustomDropdown
                   label="Representantes:"
-                  name="representantes"
+                  name="representante"
                   options={personas}
                   optionLabel="str"
                   filter

@@ -1,10 +1,10 @@
-import React from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import PrivateLayout from '@layouts/privateLayout';
+import { useMutation, useQuery } from '@apollo/client';
 import EstudianteFormContainer from '@components/pages/personas/estudiantes/form';
-import { useQuery } from '@apollo/client';
-import { Persona } from '@services/personas.service';
+import PrivateLayout from '@layouts/privateLayout';
+import { Estudiante, Persona } from '@services/personas.service';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const CreateEstudianteContainer = ({ items, title }) => {
   const methods = useForm({
@@ -12,11 +12,13 @@ const CreateEstudianteContainer = ({ items, title }) => {
   });
 
   const { loading, data } = useQuery(Persona.getAllCustom('str'));
-
+  const [create] = useMutation(Estudiante.create);
   const router = useRouter();
 
   const onSubmit = async (input) => {
-    console.log('INPUT: ', input);
+    const res = await create({ variables: { input } });
+
+    router.push('/personas/estudiantes');
   };
 
   return (

@@ -158,13 +158,14 @@ const DetailPersonaContainer = ({ items, id }) => {
         </div>
 
         <div className="row justify-content-center">
+          <div className="col-md-4 my-1">
+            <BtnRegresar variant="outline-info" href="/personas" />
+          </div>
+
           <div className="col-md-4 my-1 order-md-1">
             <Button variant="outline-danger" block onClick={onClickEliminar}>
               Eliminar
             </Button>
-          </div>
-          <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/personas" />
           </div>
         </div>
       </main>

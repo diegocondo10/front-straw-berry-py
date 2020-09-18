@@ -27,8 +27,6 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
     </div>
   );
 
-  console.log(data);
-
   return (
     <PrivateLayout title="IPCA | Estudiantes" loading={loading}>
       <main className="container-fluid">
@@ -48,27 +46,26 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
               autoLayout
             >
               {IndexColumn()}
-              <Column header="Persona" field="persona" sortable filter reorderable />
-              <Column header="Padre" field="padre" sortable filter reorderable />
-              <Column header="Madre" field="madre" sortable filter reorderable />
+              <Column
+                header="Persona"
+                field="persona.str"
+                sortable
+                filter
+                reorderable
+              />
+              <Column header="Padre" field="padre.str" sortable filter reorderable />
+              <Column header="Madre" field="madre.str" sortable filter reorderable />
               <Column
                 header="Representante"
-                field="representante"
+                field="representante.str"
                 sortable
                 filter
                 reorderable
               />
-              <Column
-                header="Relacion Representante"
-                field="relacionRepresentante"
-                sortable
-                filter
-                reorderable
-              />
+
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/estudiantes/update?id=${id}`,
-                detailPath: ({ id }) =>
-                  `/personas/estudiantes/detail?id=${id}`,
+                detailPath: ({ id }) => `/personas/estudiantes/detail?id=${id}`,
               })}
             </DataTable>
           </div>

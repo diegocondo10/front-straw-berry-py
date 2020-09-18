@@ -12,3 +12,7 @@ export const toMoment = (date, format) => {
     moment(date).format('HH:mm:ss a');
   return newDate.toUpperCase();
 };
+
+export const getId = (object, param = 'id') => {
+  return object[param];
+};

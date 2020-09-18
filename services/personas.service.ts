@@ -55,7 +55,6 @@ export class Persona {
         sexo
         tipoSangre
         fechaNacimiento
-        edad
         callePrincipal
         calleSecundaria
         lugarReferencia
@@ -248,6 +247,8 @@ export class Estudiante {
   static getAll = gql`
     query getAll {
       estudiantes {
+        id
+        relacionRepresentante
         persona {
           id
           str
@@ -299,20 +300,33 @@ export class Estudiante {
     }
   `;
 
-  static getByIdDetailEst = gql`
-  query getByIdDetailEst($id: ID!) {
-    docente(id: $id) {
-      id
-      persona {
+  static getById = gql`
+    query getById($id: ID!) {
+      estudiante(id: $id) {
+        id
+        relacionRepresentante
+        observaciones
+        persona {
+          id
+          str
+        }
+        padre {
+          id
+          str
+        }
+        madre {
+          id
+          str
+        }
+        representante {
+          id
+          str
+        }
+      }
+      personas {
         id
         str
       }
-      representante {
-        id
-        str
-      }
-      relacionRepresentante
     }
-  }
-`;
+  `;
 }

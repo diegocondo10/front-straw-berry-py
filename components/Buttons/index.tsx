@@ -1,5 +1,5 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import Link from 'next/link';
 import { Button, ButtonProps } from 'react-bootstrap';
 
 const defaultsBtnRegresar: ButtonProps = {
@@ -10,12 +10,16 @@ const defaultsBtnRegresar: ButtonProps = {
 export const BtnRegresar = (props?: BtnRegresarProps) => {
   const { href, label, ...rest } = { ...defaultsBtnRegresar, ...props };
 
+  const router = useRouter();
+
+  const onClick = () => {
+    router.push(href);
+  };
+
   return (
-    <Link href={href}>
-      <a className="text-decoration-none">
-        <Button {...rest}>{label || 'Regresar'}</Button>
-      </a>
-    </Link>
+    <Button {...rest} onClick={onClick}>
+      {label || 'Regresar'}
+    </Button>
   );
 };
 export type BtnRegresarProps = {
