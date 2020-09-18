@@ -21,6 +21,8 @@ const PARAMETROS = {
   tiposSangre: ['A+', 'B+', 'AB+', 'O+', 'O-'],
 
   nivelesFormacion: ['BASICO', 'SECUNDARIA', 'SUPERIOR'],
+
+  ocupacion: ['Estudiante', 'Trabajador', 'Doscente'],
 };
 
 const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
@@ -67,9 +69,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Segundo Apellido:"
                   name="segundoApellido"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -127,7 +126,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
-              
+
               <div className="col-md-6">
                 <CustomTextInput
                   label="Calle Principal:"
@@ -162,9 +161,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Número de Casa:"
                   name="numeroCasa"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -172,9 +168,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Teléfono:"
                   name="telefono"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -182,9 +175,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Celular:"
                   name="celular"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -199,12 +189,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
+                <CustomDropdown
                   label="Ocupación:"
                   name="ocupacion"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
+                  options={PARAMETROS.ocupacion}
+                  rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
