@@ -68,7 +68,7 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/estudiantes/update?id=${id}`,
                 detailPath: ({ id }) =>
-                  `/pages/personas/estudiantes/detail?id=${id}`,
+                  `/personas/estudiantes/detail?id=${id}`,
               })}
             </DataTable>
           </div>
