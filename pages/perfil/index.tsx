@@ -6,18 +6,146 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { IndexColumn } from '@components/table/columns';
 import { Button } from 'react-bootstrap';
+import { useQuery } from '@apollo/client';
+import { Persona } from '@services/personas.service';
+import { BtnRegresar } from '@components/Buttons';
 
 const PerfilContainer = ({
     items, id }) => {
     const history = useRouter();
-    const data = {};
+    const { data, loading } = useQuery(Persona.getById, {
+        variables: { id }
+    });
+
+    const persona = data?.persona;
 
     return (
-        <PrivateLayout title="IPCA | Perfil">
+        <PrivateLayout loading={loading} title="IPCA | Perfil">
             <main className="container-fluid">
-                <BreadCrumbTitle title="Perfil" items={items} />
+                <BreadCrumbTitle title="Mi Perfil" items={items} />
                 <div className="row justify-content-center">
-                    <div className="col-md-8 breadcrumb datatable-doc-demo">
+                    <div className="col-md-8 breadcrumb">
+                        <h4 className="text-underline">Información de la Cuenta</h4>
+                        <ul className="w-100">
+                            <strong>Usuario: </strong> {data?.usuario || 'María80'}
+                        </ul>
+
+                        <h4 className="text-underline">Información Personal</h4>
+                        <ul className="w-100">
+                            <li>
+                                <strong>Primer Nombre: </strong> {data?.primerNombre || 'María'}
+                            </li>
+                            <li>
+                                <strong>Segundo Nombre: </strong> {data?.segundoNombre || 'Soledad'}
+                            </li>
+                            <li>
+                                <strong>Primer Apellido: </strong> {data?.primerApellido || 'Guerrero'}
+                            </li>
+                            <li>
+                                <strong>Segundo Apellido: </strong> {data?.segundoApellido || 'Fuentes'}
+                            </li>
+                            <li>
+                                <strong>Género: </strong> {data?.genero || 'Femenino - Masculino'}
+                            </li>
+                            <li>
+                                <strong>Sexo: </strong> {data?.sexo || 'Femenino - Masculino'}
+                            </li>
+                            <li>
+                                <strong>Calle Principal: </strong> {data?.callePrincipal || 'Av. Américas'}
+                            </li>
+                            <li>
+                                <strong>Calle Secundaria: </strong> {data?.calleSecundaria || 'Francisco Trelles'}
+                            </li>
+                        </ul>
+
+                        <h4 className="text-underline">Contacto</h4>
+                        <ul className="w-100">
+                            <li>
+                                <strong>Teléfono: </strong> {data?.telefono || '4257896'}
+                            </li>
+                            <li>
+                                <strong>Celular: </strong> {data?.celular || '098546231'}
+                            </li>
+                            <li>
+                                <strong>Email: </strong> {data?.correo || 'maria@gmail.com'}
+                            </li>
+                        </ul>
+
+                        <h4 className="text-underline">Discapacidad</h4>
+                        <ul className="w-100">
+                            <li>
+                                <strong>Discapacidad: </strong> {data?.discapacidad || 'Parálisis Cerebral'}
+                            </li>
+                            <li>
+                                <strong>Carnet CONADIS: </strong> {data?.conadis || '123654789'}
+                            </li>
+                        </ul>
+
+                        <h4 className="text-underline">Permisos</h4>
+                        <DataTable className="p-datatable-customers shadow-lg"
+                            rowHover
+                            paginator
+                            currentPageReportTemplate="{totalRecords} registros totales"
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                            rows={10}
+                            rowsPerPageOptions={[10, 25, 50]}
+                            responsive
+                        >
+                            {IndexColumn()}
+                            <Column
+                                header="Nombre"
+                                field="nombre"
+                                sortable
+                                filter
+                                reorderable
+                            />
+                            <Column
+                                header="Descripción"
+                                field="descripcion"
+                                sortable
+                                filter
+                                reorderable
+                            />
+                        </DataTable>
+
+                        <h4 className="text-underline">Grupos</h4>
+                        <DataTable className="p-datatable-customers shadow-lg"
+                            rowHover
+                            paginator
+                            currentPageReportTemplate="{totalRecords} registros totales"
+                            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                            rows={10}
+                            rowsPerPageOptions={[10, 25, 50]}
+                            responsive
+                        >
+                            {IndexColumn()}
+                            <Column
+                                header="Nombre"
+                                field="nombre"
+                                sortable
+                                filter
+                                reorderable
+                            />
+                            <Column
+                                header="Descripción"
+                                field="descripcion"
+                                sortable
+                                filter
+                                reorderable
+                            />
+                        </DataTable>
+                        <div className="col-md-5 mt-3 my-1">
+                            <Button variant="outline-primary" block type="submit">
+                                Cambiar Contraseña
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </PrivateLayout>
+    );
+}
+{/* <div className="col-md-8 breadcrumb datatable-doc-demo">
                         <div className="col-md-6">
                             <p>
                                 <strong>Usuario: </strong> {data?.usuario || 'María80'}
@@ -152,11 +280,7 @@ const PerfilContainer = ({
                                 Cambiar Contraseña
                             </Button>
                         </div>
-                    </div>
-                </div>
-            </main>
-        </PrivateLayout>
-    );
-}
+                    </div> */}
+
 
 export default PerfilContainer;
