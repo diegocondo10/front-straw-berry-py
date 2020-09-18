@@ -27,7 +27,9 @@ const PerfilContainer = ({
                     <div className="col-md-8 breadcrumb">
                         <h4 className="text-underline">Información de la Cuenta</h4>
                         <ul className="w-100">
-                            <strong>Usuario: </strong> {data?.usuario || 'María80'}
+                            <li>
+                                <strong>Usuario: </strong> {data?.usuario || 'María80'}
+                            </li>
                         </ul>
 
                         <h4 className="text-underline">Información Personal</h4>
