@@ -1,12 +1,12 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { Button } from 'react-bootstrap';
-import PrivateLayout from '@layouts/privateLayout';
-import { BtnRegresar } from '@components/Buttons';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { useMutation, useQuery } from '@apollo/client';
-import { Estudiante } from '@services/personas.service';
+import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from '@components/Buttons';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
+import PrivateLayout from '@layouts/privateLayout';
+import { Estudiante } from '@services/personas.service';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 
 const DetailEstudianteContainer = ({ items, id }) => {
   const history = useRouter();

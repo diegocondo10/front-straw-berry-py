@@ -66,7 +66,10 @@ const CustomDatePicker = ({ label, name, rules }) => {
             inputClassName="w-100"
             id="spanish"
             value={moment(value).toDate()}
-            onChange={(e) => onChange(moment(e.value).format('yyyy-MM-DD'))}
+            onChange={(e) => {
+              const inputValue: any = e.value;
+              onChange(moment(inputValue).format('yyyy-MM-DD'));
+            }}
             locale={es}
             dateFormat="dd/mm/yy"
             monthNavigator

@@ -87,8 +87,8 @@ export default PrivateNavbar;
 
 /*
   <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Toggle aria-controls="-navbar-nav" />
+      <Navbar.Collapse id="-navbar-nav">
         <Nav className="mr-auto">
           <Link href="/">
             <Nav.Link as="a">Inicio</Nav.Link>

@@ -1,19 +1,9 @@
 import { gql } from '@apollo/client';
-import Axios from 'axios';
-import { urlBaseApi } from './service.urls';
-import BaseService from './service.utils';
-import { objectToB64, b64ToObject } from '@utils/funciones';
-
-const axios = Axios.create({
-  baseURL: `${urlBaseApi}auth/`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import { b64ToObject, objectToB64 } from '@utils/funciones';
 
 export class Aplicacion {}
 
-export class Permiso extends BaseService {
+export class Permiso {
   static queryForUpdate = gql`
     query queryForUpdatePermiso($id: ID!) {
       permiso(id: $id) {
@@ -79,7 +69,7 @@ export class Permiso extends BaseService {
   `;
 }
 
-export class Rol extends BaseService {
+export class Rol {
   static getAll = gql`
     query getRoles {
       grupos {
@@ -145,7 +135,7 @@ export class Rol extends BaseService {
   `;
 }
 
-export class Usuario extends BaseService {
+export class Usuario {
   static USU_STORAGE_KEY = 'u_d_t_a';
 
   static getAll = gql`

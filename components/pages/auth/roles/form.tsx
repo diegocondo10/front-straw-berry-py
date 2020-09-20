@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import CustomPickList from '@components/forms/CustomPickList';
+import CustomTextInput from '@components/forms/CustomTextInput';
 
 const RolFormContainer = ({
   title,
@@ -22,20 +23,11 @@ const RolFormContainer = ({
       <div className="row justify-content-center">
         <div className="col-md-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group>
-              <Form.Label>Nombre:</Form.Label>
-
-              <Form.Control
-                name="nombre"
-                isInvalid={!!errors.nombre}
-                ref={register({ required: 'Este campo es obligatorio' })}
-              />
-              <Form.Control.Feedback type="invalid">
-                <ErrorMessage errors={errors} name="nombre">
-                  {({ message }) => message}
-                </ErrorMessage>
-              </Form.Control.Feedback>
-            </Form.Group>
+            <CustomTextInput
+              label="Nombre: "
+              name="nombre"
+              rules={{ required: 'Obligatorio' }}
+            />
 
             <CustomPickList
               label="Permisos:"
@@ -78,8 +70,6 @@ const RolFormContainer = ({
           </form>
         </div>
       </div>
-    
-    
     </main>
   );
 };

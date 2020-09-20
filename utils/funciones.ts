@@ -6,7 +6,7 @@ export const objectToB64 = (data) =>
 export const b64ToObject = (b64) =>
   JSON.parse(new Buffer(b64, 'base64').toString('ascii'));
 
-export const toMoment = (date, format) => {
+export const toMoment = (date, format = '') => {
   const newDate =
     moment(date).format('dddd DD [de] MMMM [de] yyyy, [a las ]') +
     moment(date).format('HH:mm:ss a');

@@ -1,8 +1,8 @@
+import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
 import { GET_APLICACIONES } from '@services/auth/auth.queries';
-import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -44,7 +44,6 @@ const AplicacionesContainer = ({ breadCrumbItems }) => {
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 rows={10}
                 rowsPerPageOptions={[10, 25, 50]}
-                responsive
               >
                 {IndexColumn()}
                 <Column header="Nombre" field="nombre" sortable filter />
