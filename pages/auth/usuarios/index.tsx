@@ -43,13 +43,19 @@ const UsuariosContainer = ({ items }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-              
               emptyMessage="No se han encontrado resultados"
             >
               {IndexColumn()}
               <Column
                 header="Nombre de Usuario"
                 field="username"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                header="Persona"
+                field="persona.str"
                 sortable
                 filter
                 reorderable
