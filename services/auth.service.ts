@@ -143,6 +143,10 @@ export class Usuario {
       usuarios {
         id
         username
+        persona {
+          id
+          str
+        }
         numeroGrupos
         numeroPermisos
       }
