@@ -249,6 +249,36 @@ export class Usuario {
         user {
           id
           username
+          persona {
+            id
+            tipoIdentificacion
+            identificacion
+            primerApellido
+            segundoApellido
+            primerNombre
+            segundoNombre
+            genero
+            sexo
+            callePrincipal
+            calleSecundaria
+            telefono
+            celular
+            correo
+            tieneDiscapacidad
+            carnetConadis
+            discapacidades {
+              id
+              nombre
+            }
+          }
+          permisos {
+            id
+            nombre
+          }
+          grupos {
+            id
+            nombre
+          }
         }
       }
     }
@@ -266,6 +296,10 @@ export class Usuario {
     }
 
     return b64ToObject(data);
+  };
+
+  static getDataUsuarioLoggedIn = () => {
+    return Usuario.getStorageData().user;
   };
 
   static loggout = () => {

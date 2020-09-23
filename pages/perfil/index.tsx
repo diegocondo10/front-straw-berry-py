@@ -1,20 +1,26 @@
-import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import DetailItem from '@components/DetailItem';
 import { IndexColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { Persona } from '@services/personas.service';
+import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const PerfilContainer = ({ items, id }) => {
   const history = useRouter();
+  const [usuario, setUsuario] = useState<any>({});
+
+  useEffect(() => {
+    setUsuario(Usuario.getDataUsuarioLoggedIn());
+  }, []);
+
   const loading = false;
   const data: any = {};
-  const persona = data?.persona;
 
+  console.log(usuario);
   return (
     <PrivateLayout loading={loading} title="IPCA | Perfil">
       <main className="container-fluid">
@@ -27,6 +33,7 @@ const PerfilContainer = ({ items, id }) => {
               <li>
                 <strong>Usuario: </strong> {data?.usuario || 'María80'}
               </li>
+              <DetailItem label="Usuario:" value={usuario?.username} />
             </ul>
 
             <h4 className="text-underline">Información Personal</h4>
