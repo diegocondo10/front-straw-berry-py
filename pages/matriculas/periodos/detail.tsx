@@ -51,7 +51,7 @@ const PeriodoLectivoDetailContainer = ({ items, id }) => {
               </li>
               <li>
                 <strong>Fecha Fin de Clases:</strong>
-                {' ' + data?.periodo?.fechafinClases}
+                {' ' + data?.periodo?.fechaFinClases}
               </li>
               <li>
                 <strong>Observaciones:</strong>
