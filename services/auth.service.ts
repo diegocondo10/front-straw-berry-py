@@ -285,7 +285,7 @@ export class Usuario {
   `;
 
   static storageData = (data) => {
-    localStorage.setItem(Usuario.USU_STORAGE_KEY, objectToB64(data));
+    localStorage.setItem(Usuario.USU_STORAGE_KEY, data);
   };
 
   static getStorageData = () => {
@@ -295,7 +295,7 @@ export class Usuario {
       return null;
     }
 
-    return b64ToObject(data);
+    return data;
   };
 
   static getDataUsuarioLoggedIn = () => {

@@ -1,46 +1,29 @@
-import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { PeriodoLectivo } from '@services/matriculas.service';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 
-const PeriodosLectivosContainer = () => {
-  const { loading, data } = useQuery(PeriodoLectivo.getAll);
-
-  const header = (
-    <div className="container-fluid my-2">
-      <div className="row">
-        <div className="col text-left">
-          <HrefButton
-            label="Agregar"
-            icon="pi pi-plus"
-            href="/matriculas/periodos/create"
-          />
-        </div>
-      </div>
-    </div>
-  );
+const AulasContainer = () => {
+  const data: any = {};
 
   return (
-    <PrivateLayout title="Periodos Lectivos" loading={loading}>
+    <PrivateLayout title="Aulas">
       <main className="container-fluid">
         <TitleBreadCrumb
-          title="Periodos Lectivos"
-          items={[{ title: 'Periodos Lectivos', active: true }]}
+          title="Aulas"
+          items={[{ title: 'Listado de Aulas', active: true }]}
         />
 
         <div className="row justify-content-center">
-          <div className="col-md-12 datatable-doc-demo">
+          <div className="col-12">
             <DataTable
               className="p-datatable-customers shadow-lg"
               value={data?.periodosLectivos}
               rowHover
               paginator
-              header={header}
+              //header={header}
               autoLayout
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
@@ -75,7 +58,6 @@ const PeriodosLectivosContainer = () => {
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
               })}
             </DataTable>
-         
           </div>
         </div>
       </main>
@@ -83,4 +65,4 @@ const PeriodosLectivosContainer = () => {
   );
 };
 
-export default PeriodosLectivosContainer;
+export default AulasContainer;
