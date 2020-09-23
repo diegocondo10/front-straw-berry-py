@@ -1,13 +1,15 @@
+import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
+import { PeriodoLectivo } from '@services/matriculas.service';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 
 const PeriodosLectivosContainer = () => {
-  const data = {};
+  const { loading, data } = useQuery(PeriodoLectivo.getAll);
 
   const header = (
     <div className="container-fluid my-2">
@@ -35,7 +37,7 @@ const PeriodosLectivosContainer = () => {
           <div className="col-md-12 datatable-doc-demo">
             <DataTable
               className="p-datatable-customers shadow-lg"
-              value={data?.usuarios}
+              value={data?.periodosLectivos}
               rowHover
               paginator
               header={header}
