@@ -1,8 +1,10 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import { Controller, useFormContext } from 'react-hook-form';
-import { Calendar } from 'primereact/calendar';
+import classNames from 'classnames';
 import moment from 'moment';
+import { Calendar, CalendarProps } from 'primereact/calendar';
+import React from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import FieldWrapper from './FieldWrapper';
+import { BaseFormFieldProps } from './types';
 
 const es = {
   firstDayOfWeek: 1,
@@ -49,12 +51,11 @@ const es = {
   clear: 'Limpiar',
 };
 
-const CustomDatePicker = ({ label, name, rules }) => {
-  const { control } = useFormContext();
-
+const CustomDatePicker = (props?: CustomDatePickerProps) => {
+  const { control, errors } = useFormContext();
+  const { label, name, rules, className, ...rest } = props;
   return (
-    <Form.Group>
-      <Form.Label>{label}</Form.Label>
+    <FieldWrapper label={label} name={name}>
       <Controller
         control={control}
         name={name}
@@ -62,7 +63,11 @@ const CustomDatePicker = ({ label, name, rules }) => {
         defaultValue={null}
         render={({ onChange, value }) => (
           <Calendar
-            className="w-100"
+            className={classNames({
+              [className]: true,
+              'w-100': true,
+              'p-invalid': !!errors[name],
+            })}
             inputClassName="w-100"
             id="spanish"
             value={moment(value).toDate()}
@@ -76,11 +81,14 @@ const CustomDatePicker = ({ label, name, rules }) => {
             yearNavigator
             yearRange="1930:2030"
             readOnlyInput
+            {...rest}
           />
         )}
       />
-    </Form.Group>
+    </FieldWrapper>
   );
 };
 
 export default CustomDatePicker;
+
+export type CustomDatePickerProps = CalendarProps & BaseFormFieldProps;

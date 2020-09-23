@@ -70,7 +70,6 @@ const PeriodosLectivosContainer = () => {
                 reorderable
               />
               <Column header="Estado" field="estado" sortable filter reorderable />
-              <Column header="Estado" field="estado" sortable filter reorderable />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
