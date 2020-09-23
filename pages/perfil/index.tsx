@@ -30,66 +30,32 @@ const PerfilContainer = ({ items, id }) => {
           <div className="col-md-8 breadcrumb">
             <h4 className="text-underline">Información de la Cuenta</h4>
             <ul className="w-100">
-              <li>
-                <strong>Usuario: </strong> {data?.usuario || 'María80'}
-              </li>
               <DetailItem label="Usuario:" value={usuario?.username} />
             </ul>
 
             <h4 className="text-underline">Información Personal</h4>
             <ul className="w-100">
-              <li>
-                <strong>Primer Nombre: </strong> {data?.primerNombre || 'María'}
-              </li>
-              <li>
-                <strong>Segundo Nombre: </strong> {data?.segundoNombre || 'Soledad'}
-              </li>
-              <li>
-                <strong>Primer Apellido: </strong>{' '}
-                {data?.primerApellido || 'Guerrero'}
-              </li>
-              <li>
-                <strong>Segundo Apellido: </strong>{' '}
-                {data?.segundoApellido || 'Fuentes'}
-              </li>
-              <li>
-                <strong>Género: </strong> {data?.genero || 'Femenino - Masculino'}
-              </li>
-              <li>
-                <strong>Sexo: </strong> {data?.sexo || 'Femenino - Masculino'}
-              </li>
-              <li>
-                <strong>Calle Principal: </strong>{' '}
-                {data?.callePrincipal || 'Av. Américas'}
-              </li>
-              <li>
-                <strong>Calle Secundaria: </strong>{' '}
-                {data?.calleSecundaria || 'Francisco Trelles'}
-              </li>
+              <DetailItem label="Primer Nombre:" value={usuario?.persona?.primerNombre} />
+              <DetailItem label="Segundo Nombre:" value={usuario?.persona?.segundoNombre} />
+              <DetailItem label="Primer Apellido:" value={usuario?.persona?.primerApellido} />
+              <DetailItem label="Segundo Apellido:" value={usuario?.persona?.segundoApellido} />
+              <DetailItem label="Género:" value={usuario?.persona?.genero} />
+              <DetailItem label="Sexo:" value={usuario?.persona?.sexo} />
+              <DetailItem label="Calle Principal:" value={usuario?.persona?.callePrincipal} />
+              <DetailItem label="Calle Secundaria:" value={usuario?.persona?.calleSecundaria} />
             </ul>
 
             <h4 className="text-underline">Contacto</h4>
             <ul className="w-100">
-              <li>
-                <strong>Teléfono: </strong> {data?.telefono || '4257896'}
-              </li>
-              <li>
-                <strong>Celular: </strong> {data?.celular || '098546231'}
-              </li>
-              <li>
-                <strong>Email: </strong> {data?.correo || 'maria@gmail.com'}
-              </li>
+              <DetailItem label="Teléfono:" value={usuario?.persona?.telefono} />
+              <DetailItem label="Celular:" value={usuario?.persona?.celular} />
+              <DetailItem label="Correo Electrónico:" value={usuario?.persona?.correo} />
             </ul>
 
             <h4 className="text-underline">Discapacidad</h4>
             <ul className="w-100">
-              <li>
-                <strong>Discapacidad: </strong>{' '}
-                {data?.discapacidad || 'Parálisis Cerebral'}
-              </li>
-              <li>
-                <strong>Carnet CONADIS: </strong> {data?.conadis || '123654789'}
-              </li>
+              <DetailItem label="Discapacidad:" value={usuario?.persona?.discapacidades?.discapacidad} />
+              <DetailItem label="Carnet CONADIS:" value={usuario?.persona?.discapacidades?.conadis} />
             </ul>
 
             <h4 className="text-underline">Permisos</h4>
