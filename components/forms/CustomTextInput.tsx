@@ -1,23 +1,23 @@
-import { ErrorMessage } from '@hookform/error-message';
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import { useFormContext, Controller } from 'react-hook-form';
-import { InputText } from 'primereact/inputtext';
 import classnames from 'classnames';
-import CustomErrorMessage from './CustomErrorMessage';
+import { InputText, InputTextProps } from 'primereact/inputtext';
+import React from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import FieldWrapper from './FieldWrapper';
+import { BaseFormFieldProps } from './types';
 
-const CustomTextInput = ({ label, name, rules = {}, type = 'text' }) => {
-  const { errors } = useFormContext();
+const CustomTextInput = (props: CustomTextInputProps) => {
+  const { label, name, rules, className, ...rest } = props;
+  const { errors, control } = useFormContext();
 
   return (
-    <div className="p-field form-group">
-      <Form.Label>{label}</Form.Label>
-
+    <FieldWrapper label={label} name={name}>
       <Controller
+        control={control}
         name={name}
         rules={rules}
         defaultValue=""
         render={({ onChange, value }) => (
+          // @ts-ignore
           <InputText
             value={value}
             onChange={({ currentTarget }) => onChange(currentTarget.value)}
@@ -25,13 +25,14 @@ const CustomTextInput = ({ label, name, rules = {}, type = 'text' }) => {
               'p-d-block w-100': true,
               'p-invalid': !!errors[name],
             })}
+            {...rest}
           />
         )}
       />
-
-      <CustomErrorMessage name={name} />
-    </div>
+    </FieldWrapper>
   );
 };
 
 export default CustomTextInput;
+
+export type CustomTextInputProps = InputTextProps & BaseFormFieldProps;

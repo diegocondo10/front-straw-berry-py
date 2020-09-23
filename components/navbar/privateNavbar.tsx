@@ -1,11 +1,15 @@
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
+import { Button } from 'primereact/button';
 import { Menubar } from 'primereact/menubar';
-import React from 'react';
+import { OverlayPanel } from 'primereact/overlaypanel';
+import React, { useRef } from 'react';
+import { ListGroup } from 'react-bootstrap';
 
 const PrivateNavbar = () => {
   const { push } = useRouter();
 
+  const op = useRef(null);
   const logOut = () => {
     console.log('SALIR...');
     Usuario.loggout();
@@ -47,6 +51,16 @@ const PrivateNavbar = () => {
     },
 
     {
+      label: 'Matriculas',
+      items: [
+        {
+          label: 'Periodos Lectivos',
+          command: commandPush('/matriculas/periodos'),
+        },
+      ],
+    },
+
+    {
       label: 'Administracion',
       items: [
         {
@@ -67,81 +81,30 @@ const PrivateNavbar = () => {
         },
       ],
     },
-
-    {
-      label: 'Mi Perfil',
-      command: commandPush('/perfil'),
-    },
-
-    {
-      label: 'Salir',
-      icon: 'pi pi-fw pi-power-off',
-      command: logOut,
-    },
   ];
 
-  return <Menubar className="shadow border-bottom border-secondary" model={items} />;
+  const end = (
+    <React.Fragment>
+      <Button
+        icon="pi pi-user"
+        className="p-button-rounded p-button-primary"
+        onClick={(e) => op?.current.toggle(e)}
+      />
+
+      <OverlayPanel className="nav__user__op" ref={op} style={{ width: '300px' }}>
+        <ListGroup>
+          <button className="nav__menu__user__item" onClick={commandPush('/perfil')}>
+            <i className="pi pi-user" /> Mi Perfil
+          </button>
+          <button className="nav__menu__user__item" onClick={logOut}>
+            <i className="pi pi-fw pi-power-off" /> Salir
+          </button>
+        </ListGroup>
+      </OverlayPanel>
+    </React.Fragment>
+  );
+
+  return <Menubar className="shadow" model={items} end={(e) => end} />;
 };
 
 export default PrivateNavbar;
-
-/*
-  <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark" sticky="top">
-      <Navbar.Toggle aria-controls="-navbar-nav" />
-      <Navbar.Collapse id="-navbar-nav">
-        <Nav className="mr-auto">
-          <Link href="/">
-            <Nav.Link as="a">Inicio</Nav.Link>
-          </Link>
-
-          <NavDropdown title="Personas" id="collasible-nav-dropdown">
-            <Link href="/personas">
-              <NavDropdown.Item as="a">Personas</NavDropdown.Item>
-            </Link>
-
-            <Link href="/personas/docentes">
-              <NavDropdown.Item as="a">Docentes</NavDropdown.Item>
-            </Link>
-
-            <Link href="/personas/estudiantes">
-              <NavDropdown.Item as="a">Alumnos</NavDropdown.Item>
-            </Link>
-
-            <Link href="/perfil/">
-              <NavDropdown.Item as="a">Perfil</NavDropdown.Item>
-            </Link>
-          </NavDropdown>
-
-          <NavDropdown title="Auth" id="collasible-nav-dropdown">
-            <Link href="/auth/aplicaciones">
-              <NavDropdown.Item as="a">Aplicaciones</NavDropdown.Item>
-            </Link>
-
-            <Link href="/auth/permisos">
-              <NavDropdown.Item as="a">Permisos</NavDropdown.Item>
-            </Link>
-
-            <Link href="/auth/roles">
-              <NavDropdown.Item as="a">Roles</NavDropdown.Item>
-            </Link>
-
-            <Link href="/auth/usuarios">
-              <NavDropdown.Item as="a">Usuarios</NavDropdown.Item>
-            </Link>
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Button
-            variant="outline-light"
-            onClick={() => {
-              Usuario.loggout()
-              router.push('/login');
-            }}
-          >
-            Cerrar Sesión
-          </Button>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  
-*/

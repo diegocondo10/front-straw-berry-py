@@ -1,27 +1,25 @@
-import React from 'react';
-import PrivateLayout from '@layouts/privateLayout';
+import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import { IndexColumn } from '@components/table/columns';
+import PrivateLayout from '@layouts/privateLayout';
+import { Persona } from '@services/personas.service';
 import { useRouter } from 'next/router';
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import { IndexColumn } from '@components/table/columns';
-import { Button } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
-import { Persona } from '@services/personas.service';
-import { BtnRegresar } from '@components/Buttons';
+import React, { useState } from 'react';
 
 const PerfilContainer = ({ items, id }) => {
   const history = useRouter();
-  const { data, loading } = useQuery(Persona.getById, {
-    variables: { id },
-  });
-
+  const loading = false;
+  const data: any = {};
   const persona = data?.persona;
 
   return (
     <PrivateLayout loading={loading} title="IPCA | Perfil">
       <main className="container-fluid">
         <BreadCrumbTitle title="Mi Perfil" items={items} />
+
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
             <h4 className="text-underline">Información de la Cuenta</h4>
@@ -129,9 +127,7 @@ const PerfilContainer = ({ items, id }) => {
               />
             </DataTable>
             <div className="col-md-5 mt-3 my-1">
-              <Button variant="outline-primary" block type="submit">
-                Cambiar Contraseña
-              </Button>
+              <Button className="btn-block" label="Cambiar Contraseña" />
             </div>
           </div>
         </div>

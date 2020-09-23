@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import React from 'react';
 
-const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => {
+const BreadCrumb = (
+  props: BreadCrumbProps = {
+    basePath: '/',
+    baseTitle: 'Dashboard',
+    items: [],
+  },
+) => {
+  const { basePath, baseTitle, items } = props;
+
   return (
     <div className="text-center text-md-right">
       <li className="d-inline breadcrumb-item">
@@ -14,7 +22,9 @@ const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => 
         if (item.active) {
           return (
             <li key={index} className="d-inline breadcrumb-item active">
-              <a className="font-weight-bold cpointer">{item.title}</a>
+              <a className="font-weight-bold text-secondary text-decoration-none cpointer">
+                {item.title}
+              </a>
             </li>
           );
         } else {
@@ -32,3 +42,15 @@ const BreadCrumb = ({ basePath = '/', baseTitle = 'Dashboard', items = [] }) => 
 };
 
 export default BreadCrumb;
+
+export type ItemBreadCrumb = {
+  title: string;
+  href?: string;
+  active?: boolean;
+};
+
+export type BreadCrumbProps = {
+  basePath: string;
+  baseTitle: string;
+  items: ItemBreadCrumb[];
+};

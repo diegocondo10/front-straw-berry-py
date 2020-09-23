@@ -81,6 +81,7 @@ const UsuariosContainer = ({ items }) => {
             </DataTable>
           </div>
         </div>
+      
       </main>
     </PrivateLayout>
   );

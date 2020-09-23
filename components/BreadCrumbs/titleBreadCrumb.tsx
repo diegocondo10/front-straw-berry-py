@@ -1,18 +1,18 @@
-import React from 'react';
-import BreadCrumb from './index';
+import React from "react";
+import BreadCrumb, { ItemBreadCrumb } from "./index";
 
 const TitleBreadCrumb = ({
-  title = '',
-  basePath = '/',
-  baseTitle = 'Dashboard',
+  title = "",
+  basePath = "/",
+  baseTitle = "Dashboard",
   items = [],
-}) => {
+}: TitleBreadCrumbProps) => {
   return (
-    <div className="row justify-content-between my-5 mx-md-4">
-      <div className="col-md-3 align-self-center">
-        <h3 className="text-center text-md-left">{title}</h3>
+    <div className='row justify-content-between my-5 mx-md-4'>
+      <div className='col-md-3 align-self-center'>
+        <h3 className='text-center text-md-left'>{title}</h3>
       </div>
-      <div className=" col-md-9 align-self-center">
+      <div className=' col-md-9 align-self-center'>
         <BreadCrumb items={items} basePath={basePath} baseTitle={baseTitle} />
       </div>
     </div>
@@ -20,3 +20,10 @@ const TitleBreadCrumb = ({
 };
 
 export default TitleBreadCrumb;
+
+export type TitleBreadCrumbProps = {
+  title?: string;
+  basePath?: string;
+  baseTitle?: string;
+  items: ItemBreadCrumb[];
+};
