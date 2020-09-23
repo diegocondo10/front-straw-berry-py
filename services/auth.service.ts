@@ -285,21 +285,21 @@ export class Usuario {
   `;
 
   static storageData = (data) => {
-    localStorage.setItem(Usuario.USU_STORAGE_KEY, data);
+    localStorage.setItem(Usuario.USU_STORAGE_KEY, JSON.stringify(data));
   };
 
-  static getStorageData = () => {
+  static getStorageData = (): any => {
     const data = localStorage.getItem(Usuario.USU_STORAGE_KEY);
 
     if (!data) {
       return null;
     }
 
-    return data;
+    return JSON.parse(data);
   };
 
   static getDataUsuarioLoggedIn = () => {
-    return Usuario.getStorageData().user;
+    return Usuario.getStorageData()?.user;
   };
 
   static loggout = () => {

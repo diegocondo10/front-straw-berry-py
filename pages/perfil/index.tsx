@@ -14,6 +14,7 @@ const PerfilContainer = ({ items, id }) => {
   const [usuario, setUsuario] = useState<any>({});
 
   useEffect(() => {
+    console.log(Usuario.getDataUsuarioLoggedIn());
     setUsuario(Usuario.getDataUsuarioLoggedIn());
   }, []);
 
@@ -35,27 +36,54 @@ const PerfilContainer = ({ items, id }) => {
 
             <h4 className="text-underline">Información Personal</h4>
             <ul className="w-100">
-              <DetailItem label="Primer Nombre:" value={usuario?.persona?.primerNombre} />
-              <DetailItem label="Segundo Nombre:" value={usuario?.persona?.segundoNombre} />
-              <DetailItem label="Primer Apellido:" value={usuario?.persona?.primerApellido} />
-              <DetailItem label="Segundo Apellido:" value={usuario?.persona?.segundoApellido} />
+              <DetailItem
+                label="Primer Nombre:"
+                value={usuario?.persona?.primerNombre}
+              />
+              <DetailItem
+                label="Segundo Nombre:"
+                value={usuario?.persona?.segundoNombre}
+              />
+              <DetailItem
+                label="Primer Apellido:"
+                value={usuario?.persona?.primerApellido}
+              />
+              <DetailItem
+                label="Segundo Apellido:"
+                value={usuario?.persona?.segundoApellido}
+              />
               <DetailItem label="Género:" value={usuario?.persona?.genero} />
               <DetailItem label="Sexo:" value={usuario?.persona?.sexo} />
-              <DetailItem label="Calle Principal:" value={usuario?.persona?.callePrincipal} />
-              <DetailItem label="Calle Secundaria:" value={usuario?.persona?.calleSecundaria} />
+              <DetailItem
+                label="Calle Principal:"
+                value={usuario?.persona?.callePrincipal}
+              />
+              <DetailItem
+                label="Calle Secundaria:"
+                value={usuario?.persona?.calleSecundaria}
+              />
             </ul>
 
             <h4 className="text-underline">Contacto</h4>
             <ul className="w-100">
               <DetailItem label="Teléfono:" value={usuario?.persona?.telefono} />
               <DetailItem label="Celular:" value={usuario?.persona?.celular} />
-              <DetailItem label="Correo Electrónico:" value={usuario?.persona?.correo} />
+              <DetailItem
+                label="Correo Electrónico:"
+                value={usuario?.persona?.correo}
+              />
             </ul>
 
             <h4 className="text-underline">Discapacidad</h4>
             <ul className="w-100">
-              <DetailItem label="Discapacidad:" value={usuario?.persona?.discapacidades?.discapacidad} />
-              <DetailItem label="Carnet CONADIS:" value={usuario?.persona?.discapacidades?.conadis} />
+              <DetailItem
+                label="Discapacidad:"
+                value={usuario?.persona?.discapacidades?.discapacidad}
+              />
+              <DetailItem
+                label="Carnet CONADIS:"
+                value={usuario?.persona?.discapacidades?.conadis}
+              />
             </ul>
 
             <h4 className="text-underline">Permisos</h4>

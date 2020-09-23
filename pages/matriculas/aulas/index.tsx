@@ -28,31 +28,19 @@ const AulasContainer = () => {
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
               emptyMessage="No se han encontrado resultados"
+              reorderableColumns
             >
               {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter reorderable />
-              <Column
-                header="Fecha de inicio"
-                field="fechaInicio"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Fecha de fin"
-                field="fechaFin"
-                sortable
-                filter
-                reorderable
-              />
+              <Column header="Nombre" field="nombre" sortable filter />
+              <Column header="Fecha de inicio" field="fechaInicio" sortable filter />
+              <Column header="Fecha de fin" field="fechaFin" sortable filter />
               <Column
                 header="Fecha de fin de clases"
                 field="fechaFinClases"
                 sortable
                 filter
-                reorderable
               />
-              <Column header="Estado" field="estado" sortable filter reorderable />
+              <Column header="Estado" field="estado" sortable filter />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
