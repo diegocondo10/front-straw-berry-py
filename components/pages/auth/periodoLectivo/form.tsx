@@ -79,9 +79,11 @@ const PeriodoLectivoFormContainer = ({
                 <div className="col-md-12">
                   <CustomTextArea name="observaciones" label="Observaciones" />
                 </div>
-                <div className="col-md-6">
+                {/*
+                  <div className="col-md-6">
                   <CustomTextInput label="Responsables:" name="responsables" />
                 </div>
+  */}
               </Form.Row>
 
               <FooterButtonsForm hrefBack="/matriculas/periodos" loading={loading} />

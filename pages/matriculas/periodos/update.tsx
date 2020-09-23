@@ -7,10 +7,13 @@ import React from 'react';
 
 const UpdatePeriodoContainer = ({ id }) => {
   const { loading, data } = useQuery(PeriodoLectivo.getById, { variables: { id } });
-  const [create, { loading: loadingGuardar }] = useMutation(PeriodoLectivo.create);
+
+  const [create, { loading: loadingGuardar }] = useMutation(PeriodoLectivo.update);
+
   const router = useRouter();
+
   const onSubmit = async (input) => {
-    await create({ variables: { input } });
+    await create({ variables: { input, id } });
     router.push('/matriculas/periodos');
   };
 

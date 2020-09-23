@@ -1,6 +1,7 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
+import DetailItem from '@components/DetailItem';
 import PrivateLayout from '@layouts/privateLayout';
 import { PeriodoLectivo } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
@@ -11,11 +12,12 @@ const PeriodoLectivoDetailContainer = ({ items, id }) => {
   const history = useRouter();
 
   const { loading, data } = useQuery(PeriodoLectivo.getById, { variables: { id } });
-
-  const periodo = data?.periodo;
+  const [deletePeriodo] = useMutation(PeriodoLectivo.delete, { variables: { id } });
+  const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {
-    history.push('/periodos');
+    await deletePeriodo();
+    history.push('/matriculas/periodos');
   };
 
   return (
@@ -33,34 +35,16 @@ const PeriodoLectivoDetailContainer = ({ items, id }) => {
           <div className="col-md-8 breadcrumb">
             <h4 className="text-underline">Información del Período Lectivo</h4>
             <ul className="w-100">
-              <li>
-                <strong>Nombre:</strong>
-                {' ' + data?.periodo?.nombre}
-              </li>
-              <li>
-                <strong>Fecha de Inicio:</strong>
-                {' ' + data?.periodo?.fechaInicio}
-              </li>
-              <li>
-                <strong>Fecha de Fin:</strong>
-                {' ' + data?.periodo?.fechaFin}
-              </li>
-              <li>
-                <strong>Estado:</strong>
-                {' ' + data?.periodo?.estado}
-              </li>
-              <li>
-                <strong>Fecha Fin de Clases:</strong>
-                {' ' + data?.periodo?.fechaFinClases}
-              </li>
-              <li>
-                <strong>Observaciones:</strong>
-                {' ' + data?.periodo?.observaciones}
-              </li>
-              <li>
-                <strong>Responsables:</strong>
-                {' ' + data?.periodo?.responsables}
-              </li>
+              <DetailItem label="Nombre: " value={periodo?.nombre} />
+              <DetailItem label="Fecha de Inicio: " value={periodo?.fechaInicio} />
+              <DetailItem label="Fecha de Fin: " value={periodo?.fechaFin} />
+              <DetailItem label="Estado: " value={periodo?.estado} />
+              <DetailItem
+                label="Fecha Fin de Clases: "
+                value={periodo?.fechaFinClases}
+              />
+              <DetailItem label="Observaciones: " value={periodo?.observaciones} />
+              <DetailItem label="Responsables: " value={periodo?.responsables} />
             </ul>
           </div>
         </div>

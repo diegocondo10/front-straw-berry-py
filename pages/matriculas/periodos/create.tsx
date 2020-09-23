@@ -7,7 +7,9 @@ import React from 'react';
 
 const CreatePeriodoLectivoContainer = () => {
   const [create, { loading }] = useMutation(PeriodoLectivo.create);
+
   const router = useRouter();
+
   const onSubmit = async (input) => {
     await create({ variables: { input } });
     router.push('/matriculas/periodos');

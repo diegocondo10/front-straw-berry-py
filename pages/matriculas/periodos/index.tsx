@@ -26,7 +26,7 @@ const PeriodosLectivosContainer = () => {
   );
 
   return (
-    <PrivateLayout title="Periodos Lectivos">
+    <PrivateLayout title="Periodos Lectivos" loading={loading}>
       <main className="container-fluid">
         <TitleBreadCrumb
           title="Periodos Lectivos"

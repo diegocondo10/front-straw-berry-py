@@ -25,6 +25,7 @@ export class PeriodoLectivo {
     query getById($id: ID!) {
       periodoLectivo(id: $id) {
         ...PeriodoLectivo
+        observaciones
       }
     }
 
