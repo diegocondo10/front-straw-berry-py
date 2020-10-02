@@ -66,16 +66,17 @@ export class PeriodoLectivo {
 
 export class Aula {
   static dataFormFragment = `
-  periodosLectivos {
-    id
-    nombre
-  }
-  docentes {
-    id
-    persona {
-      str
+    periodosLectivos {
+      id
+      nombre
     }
-  }
+    docentes {
+      id
+      persona {
+        id
+        str
+      }
+    }
   `;
 
   static getAll = gql`

@@ -33,6 +33,7 @@ const UpdateAulaContainer = ({ id }) => {
         onSubmit={onSubmit}
         periodos={data?.periodosLectivos}
         title="Editar Aula"
+        defaultData={data?.aula}
       />
     </PrivateLayout>
   );

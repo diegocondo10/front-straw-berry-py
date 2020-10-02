@@ -14,8 +14,9 @@ const AulasFormContainer = ({
   loading,
   items,
   onSubmit,
-  periodos,
-  docentes,
+  periodos = [],
+  docentes = [],
+  defaultData,
 }: {
   title: string;
   items: any[];
@@ -23,8 +24,9 @@ const AulasFormContainer = ({
   docentes: any[];
   loading: boolean;
   onSubmit: CallableFunction;
+  defaultData?: any;
 }) => {
-  const methods = useForm({ mode: 'onChange' });
+  const methods = useForm({ mode: 'onChange', defaultValues: defaultData });
 
   const localOnSubmit = async (input) => {
     input.periodo = getId(input.periodo);
