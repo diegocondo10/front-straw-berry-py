@@ -138,6 +138,11 @@ const PerfilContainer = ({ items, id }) => {
                 </React.Fragment>
               )}
             </ul>
+            <div className="row justify-content-center">
+              <div className="col-md-4 my-1">
+                <BtnRegresar variant="outline-info" href="/personas" />
+              </div>
+            </div>
           </div>
         </div>
       </main>
