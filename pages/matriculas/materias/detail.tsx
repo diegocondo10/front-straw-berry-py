@@ -35,30 +35,12 @@ const DetailMateriaContainer = ({ id }) => {
             <h4>Información de la Materia</h4>
             <ul className="w-100">
               <DetailItem label="Nombre:" value={data?.materia?.nombre} />
-              <li>
-                <strong>Código:</strong>
-                {' ' + data?.materia?.codigo}
-              </li>
-              <li>
-                <strong>Grado:</strong>
-                {' ' + data?.materias?.grado}
-              </li>
-              <li>
-                <strong>Horas Presenciales:</strong>
-                {' ' + data?.materias?.horaPresencial}
-              </li>
-              <li>
-                <strong>Descripción:</strong>
-                {' ' + data?.materias?.descripcion}
-              </li>
-              <li>
-                <strong>Objetivo:</strong>
-                {' ' + data?.materias?.objetivo}
-              </li>
-              <li>
-                <strong>Objetivo Específico:</strong>
-                {' ' + data?.materias?.objetivoEspecifico}
-              </li>
+              <DetailItem label="Código:" value={data?.materia?.codigo} />
+              <DetailItem label="Grado:" value={data?.materia?.grado} />
+              <DetailItem label="Horas Presenciales:" value={data?.materia?.horasPresencial} />
+              <DetailItem label="Descripción:" value={data?.materia?.descripcion} />
+              <DetailItem label="Objetivo:" value={data?.materia?.objetivo} />
+              <DetailItem label="Objetivo Específico:" value={data?.materia?.objetivoEspecifico} />
             </ul>
           </div>
         </div>
