@@ -86,5 +86,18 @@ export class Aula {
     }
   `;
 
-  static dataForm = gql``;
+  static getDataForm = gql`
+    query getDataForm {
+      periodosLectivos {
+        id
+        nombre
+      }
+      docentes {
+        id
+        persona {
+          str
+        }
+      }
+    }
+  `;
 }

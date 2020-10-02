@@ -1,6 +1,8 @@
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
 import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomInputNumber from '@components/forms/CustomInputNumber';
+import CustomMultiSelect from '@components/forms/CustomMultiSelect';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -10,10 +12,12 @@ const AulasFormContainer = ({
   items,
   onSubmit,
   periodos,
+  docentes,
 }: {
   title: string;
   items: any[];
   periodos: any[];
+  docentes: any[];
   loading: boolean;
   onSubmit: CallableFunction;
 }) => {
@@ -34,8 +38,24 @@ const AulasFormContainer = ({
               <CustomDropdown
                 label="Seleccione el periodo lectivo:"
                 name="periodo"
+                optionLabel="nombre"
+                filter
                 options={periodos}
+                rules={{
+                  required: 'Este campo es obligatorio',
+                }}
               />
+
+              <CustomMultiSelect
+                label="Seleccione los docentes de esta aula:"
+                name="docentes"
+                optionLabel="persona.str"
+                filter
+                options={docentes}
+                rules={{ required: 'Este campo es obligatorio' }}
+              />
+
+              <CustomInputNumber label="Capacidad:" name="capacidad" />
 
               <FooterButtonsForm hrefBack="/matriculas/aulas" loading={loading} />
             </form>
