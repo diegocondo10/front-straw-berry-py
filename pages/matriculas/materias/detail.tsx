@@ -37,10 +37,17 @@ const DetailMateriaContainer = ({ id }) => {
               <DetailItem label="Nombre:" value={data?.materia?.nombre} />
               <DetailItem label="Código:" value={data?.materia?.codigo} />
               <DetailItem label="Grado:" value={data?.materia?.grado} />
-              <DetailItem label="Horas Presenciales:" value={data?.materia?.horasPresencial} />
-              <DetailItem label="Descripción:" value={data?.materia?.descripcion} />
+              <DetailItem
+                label="Horas Presenciales:"
+                value={data?.materia?.horasPresencial}
+              />
+
               <DetailItem label="Objetivo:" value={data?.materia?.objetivo} />
-              <DetailItem label="Objetivo Específico:" value={data?.materia?.objetivoEspecifico} />
+              <DetailItem
+                label="Objetivo Específico:"
+                value={data?.materia?.objetivoEspecifico}
+              />
+              <DetailItem label="Descripción:" value={data?.materia?.descripcion} />
             </ul>
           </div>
         </div>
