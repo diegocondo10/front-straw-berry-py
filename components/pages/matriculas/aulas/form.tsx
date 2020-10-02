@@ -4,6 +4,8 @@ import CustomDropdown from '@components/forms/CustomDropdown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomMultiSelect from '@components/forms/CustomMultiSelect';
 import CustomTextArea from '@components/forms/CustomTextArea';
+import CustomTextInput from '@components/forms/CustomTextInput';
+import { getId } from '@utils/funciones';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -25,6 +27,8 @@ const AulasFormContainer = ({
   const methods = useForm({ mode: 'onChange' });
 
   const localOnSubmit = async (input) => {
+    input.periodo = getId(input.periodo);
+    input.docentes = input.docentes.map((doc) => doc.id);
     await onSubmit(input);
   };
 
@@ -47,6 +51,8 @@ const AulasFormContainer = ({
                 }}
               />
 
+              <CustomTextInput label="Nombre: " name="nombre" />
+
               <CustomMultiSelect
                 label="Seleccione los docentes de esta aula:"
                 name="docentes"
@@ -64,6 +70,7 @@ const AulasFormContainer = ({
                   },
                 }}
               />
+
               <div className="form-row">
                 <div className="col-6">
                   <CustomInputNumber

@@ -65,12 +65,26 @@ export class PeriodoLectivo {
 }
 
 export class Aula {
+  static dataFormFragment = `
+  periodosLectivos {
+    id
+    nombre
+  }
+  docentes {
+    id
+    persona {
+      str
+    }
+  }
+  `;
+
   static getAll = gql`
     query getAll {
       aulas {
         id
         nombre
         capacidad
+        grado
         docentes {
           id
           persona {
@@ -86,17 +100,62 @@ export class Aula {
     }
   `;
 
-  static getDataForm = gql`
-    query getDataForm {
-      periodosLectivos {
+  static getById = gql`
+    query getById($id: ID!) {
+      aula(id: $id) {
         id
         nombre
-      }
-      docentes {
-        id
-        persona {
-          str
+        periodo {
+          id
+          nombre
         }
+        docentes {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        grado
+        capacidad
+      }
+      ${Aula.dataFormFragment}
+    }
+  `;
+
+  static getDataForm = gql`
+    query getDataForm {
+      ${Aula.dataFormFragment}
+    }
+  `;
+
+  static create = gql`
+    mutation create($input: CreateAulaInput!) {
+      createAula(input: $input) {
+        aula {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation update($input: UpdateAulaInput!, $id: ID!) {
+      updateAula(input: $input, id: $id) {
+        aula {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static delete = gql`
+    mutation delete($id: ID!) {
+      deleteAula(id: $id) {
+        found
+        deletedId
       }
     }
   `;

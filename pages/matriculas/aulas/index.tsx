@@ -10,7 +10,6 @@ import React from 'react';
 
 const AulasContainer = () => {
   const { loading, data } = useQuery(Aula.getAll);
-  console.log(data);
 
   const header = (
     <div className="container-fluid my-2">
@@ -50,9 +49,42 @@ const AulasContainer = () => {
             >
               {IndexColumn()}
               <Column header="Nombre" field="nombre" sortable filter />
-              <Column header="Capacidad" field="capacidad" sortable filter />
-              <Column header="Docentes" field="docentes" sortable filter />
-              <Column header="Estado" field="estado" sortable filter />
+
+              <Column
+                header="Periodo lectivo"
+                field="periodo.nombre"
+                sortable
+                filter
+              />
+              <Column
+                header="Grado"
+                field="grado"
+                sortable
+                style={{ width: '150px' }}
+              />
+              <Column
+                header="Capacidad"
+                field="capacidad"
+                sortable
+                style={{ width: '150px' }}
+              />
+              <Column
+                header="Docentes"
+                sortable
+                filter
+                bodyStyle={{ padding: '1rem 0 0 0' }}
+                body={(rowData) => {
+                  return (
+                    <ol>
+                      {rowData?.docentes?.map((docente, key) => (
+                        <li key={key} className="w-100">
+                          {docente?.persona?.str}
+                        </li>
+                      ))}
+                    </ol>
+                  );
+                }}
+              />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/aulas/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/aulas/detail?id=${id}`,
