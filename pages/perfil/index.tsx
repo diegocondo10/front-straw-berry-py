@@ -1,5 +1,6 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons/BtnRegresar';
+import HrefButton from '@components/Buttons/HrefButton';
 import DetailItem from '@components/DetailItem';
 import { IndexColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
@@ -35,7 +36,11 @@ const PerfilContainer = ({ items, id }) => {
             </ul>
             <ul className="w-100">
               <div className="col-md-3 mt-1 my-1">
-                <Button className="btn-block" label="Cambiar Contraseña" />
+                <HrefButton
+                  className="btn-block"
+                  label="Cambiar Contraseña"
+                  href="/perfil/changePassword"
+                />
               </div>
             </ul>
 
