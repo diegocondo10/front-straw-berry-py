@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import DetailItem from '@components/DetailItem';
 import { IndexColumn } from '@components/table/columns';
@@ -8,6 +9,7 @@ import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { useEffect, useState } from 'react';
+import { Table } from 'react-bootstrap';
 
 const PerfilContainer = ({ items, id }) => {
   const history = useRouter();
@@ -86,7 +88,33 @@ const PerfilContainer = ({ items, id }) => {
               />
             </ul>
 
-            <h4 className="text-underline">Permisos</h4>
+            {data?.permiso?.nombre ===
+              'SI' && (
+                <React.Fragment>
+                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>
+                          Nombre
+                      </th>
+                        <th>
+                          Descripción
+                      </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data?.permiso?.nombre?.map((e) => (
+                        <tr className="bg-white" key={e.id}>
+                          <td>{e.nombre}</td>
+                          <td>{e.descripcion}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </React.Fragment>
+              )}
+
+            {/* <h4 className="text-underline">Permisos</h4>
             <DataTable
               className="p-datatable-customers shadow-lg"
               rowHover
@@ -105,7 +133,7 @@ const PerfilContainer = ({ items, id }) => {
                 filter
                 reorderable
               />
-            </DataTable>
+            </DataTable> */}
 
             <h4 className="text-underline">Grupos</h4>
             <DataTable
