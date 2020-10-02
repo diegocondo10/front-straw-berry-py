@@ -88,31 +88,26 @@ const PerfilContainer = ({ items, id }) => {
               />
             </ul>
 
-            {data?.permiso?.nombre ===
-              'SI' && (
-                <React.Fragment>
-                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
-                    <thead className="thead-dark">
-                      <tr>
-                        <th>
-                          Nombre
-                      </th>
-                        <th>
-                          Descripción
-                      </th>
+            {usuario?.permisos?.length > 0 && (
+              <React.Fragment>
+                <Table className="w-75 mx-auto" hover striped bordered size="sm">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Descripción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {usuario?.permisos?.map((e) => (
+                      <tr className="bg-white" key={e.id}>
+                        <td>{e.nombre}</td>
+                        <td>{e.descripcion}</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {data?.permiso?.nombre?.map((e) => (
-                        <tr className="bg-white" key={e.id}>
-                          <td>{e.nombre}</td>
-                          <td>{e.descripcion}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </React.Fragment>
-              )}
+                    ))}
+                  </tbody>
+                </Table>
+              </React.Fragment>
+            )}
 
             {/* <h4 className="text-underline">Permisos</h4>
             <DataTable
