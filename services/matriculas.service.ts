@@ -169,29 +169,28 @@ export class Materia {
         nombre
         codigo
         grado
-        hora_presencial
+        horasPresencial
         descripcion
         objetivo
-        objetivo_especifico
+        objetivoEspecifico
       }
     }
   `;
 
   static getById = gql`
-  query getById($id: ID!) {
-    materias(id: $id) {
-      str
-      id
-      nombre
-      codigo
-      grado
-      hora_presencial
-      descripcion
-      objetivo
-      objetivo_especifico
+    query getById($id: ID!) {
+      materia(id: $id) {
+        id
+        nombre
+        codigo
+        grado
+        horasPresencial
+        descripcion
+        objetivo
+        objetivoEspecifico
+      }
     }
-  }
-`;
+  `;
 
   static create = gql`
     mutation create($input: CreateMateriaInput!) {
