@@ -4,7 +4,6 @@ import PrivateLayout from '@layouts/privateLayout';
 import { Materia } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { FormProvider } from 'react-hook-form';
 
 const UpdateMateriaContainer = ({ title, id }) => {
   const { loading, data } = useQuery(Materia.getById, {
