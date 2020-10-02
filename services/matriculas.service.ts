@@ -160,3 +160,67 @@ export class Aula {
     }
   `;
 }
+
+export class Materia {
+  static getAll = gql`
+    query getAll {
+      materias {
+        id
+        nombre
+        codigo
+        grado
+        hora_presencial
+        descripcion
+        objetivo
+        objetivo_especifico
+      }
+    }
+  `;
+
+  static getById = gql`
+  query getById($id: ID!) {
+    materias(id: $id) {
+      str
+      id
+      nombre
+      codigo
+      grado
+      hora_presencial
+      descripcion
+      objetivo
+      objetivo_especifico
+    }
+  }
+`;
+
+  static create = gql`
+    mutation create($input: CreateMateriaInput!) {
+      createMateria(input: $input) {
+        materia {
+          id
+          authEstado
+        }
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation update($input: UpdateMateriaInput!, $id: ID!) {
+      updateMateria(input: $input, id: $id) {
+        materia {
+          id
+          authEstado
+        }
+      }
+    }
+  `;
+
+  static delete = gql`
+    mutation delete($id: ID!) {
+      deleteMateria(id: $id) {
+        found
+        deletedId
+      }
+    }
+  `;
+}

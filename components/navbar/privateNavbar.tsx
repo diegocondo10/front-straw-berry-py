@@ -61,6 +61,10 @@ const PrivateNavbar = () => {
           label: 'Aulas',
           command: commandPush('/matriculas/aulas'),
         },
+        {
+          label: 'Materias',
+          command: commandPush('/matriculas/materias'),
+        },
       ],
     },
 
