@@ -64,4 +64,27 @@ export class PeriodoLectivo {
   `;
 }
 
-export class Aula {}
+export class Aula {
+  static getAll = gql`
+    query getAll {
+      aulas {
+        id
+        nombre
+        capacidad
+        docentes {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        periodo {
+          id
+          nombre
+        }
+      }
+    }
+  `;
+
+  static dataForm = gql``;
+}

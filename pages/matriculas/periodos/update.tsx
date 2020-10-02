@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import PeriodoLectivoFormContainer from '@components/pages/auth/periodoLectivo/form';
+import PeriodoLectivoFormContainer from '@components/pages/matriculas/periodos/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { PeriodoLectivo } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
