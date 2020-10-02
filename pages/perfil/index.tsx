@@ -24,7 +24,7 @@ const PerfilContainer = ({ items, id }) => {
   console.log(usuario);
   return (
     <PrivateLayout loading={loading} title="IPCA | Perfil">
-      <main className="container-fluid">
+      <main className="container-fluid mb-5">
         <BreadCrumbTitle title="Mi Perfil" items={items} />
 
         <div className="row justify-content-center">
@@ -138,9 +138,9 @@ const PerfilContainer = ({ items, id }) => {
                 </React.Fragment>
               )}
             </ul>
-            <div className="row justify-content-center">
+            <div className="col-12 row justify-content-center">
               <div className="col-md-4 my-1">
-                <BtnRegresar variant="outline-info" href="/personas" />
+                <BtnRegresar variant="outline-info" href="/" block />
               </div>
             </div>
           </div>
