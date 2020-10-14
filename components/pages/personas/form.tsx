@@ -8,7 +8,7 @@ import CustomTextInput from '@components/forms/CustomTextInput';
 //import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useFormContext } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const PARAMETROS = {
   tiposIdentificacion: ['CEDULA', 'PASAPORTE', 'OTRO'],
@@ -25,250 +25,257 @@ const PARAMETROS = {
   ocupacion: ['Estudiante', 'Trabajador', 'Doscente'],
 };
 
-const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
-  const { handleSubmit, watch } = useFormContext();
+const PersonaFormContainer = ({
+  title,
+  items,
+  onSubmit,
+  discapacidades = [],
+  defaultValues = {},
+}) => {
+  const methods = useForm({ mode: 'onChange', defaultValues });
+
+  const { handleSubmit, watch } = methods;
+
+  const onLocalSubmit = async (input) => {
+    if (input.discapacidades) {
+      input.discapacidades = input.discapacidades.map((e) => e.id);
+    }
+    await onSubmit(input);
+  };
 
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
+      <FormProvider {...methods}>
+        <div className="row justify-content-center">
+          <div className="col-md-10 jumbotron rounded">
+            <form onSubmit={handleSubmit(onLocalSubmit)}>
+              <Form.Row>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Tipo de Identificacion:"
+                    name="tipoIdentificacion"
+                    options={PARAMETROS.tiposIdentificacion}
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-      <div className="row justify-content-center">
-        <div className="col-md-10 jumbotron rounded">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Row>
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Tipo de Identificacion:"
-                  name="tipoIdentificacion"
-                  options={PARAMETROS.tiposIdentificacion}
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Identificación:"
+                    name="identificacion"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Identificación:"
-                  name="identificacion"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Primer Apellido:"
+                    name="primerApellido"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Primer Apellido:"
-                  name="primerApellido"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Segundo Apellido:"
+                    name="segundoApellido"
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Segundo Apellido:"
-                  name="segundoApellido"
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Primer Nombre:"
+                    name="primerNombre"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Primer Nombre:"
-                  name="primerNombre"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Segundo Nombre:"
+                    name="segundoNombre"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Segundo Nombre:"
-                  name="segundoNombre"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Genero:"
+                    name="genero"
+                    options={PARAMETROS.sexos}
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Genero:"
-                  name="genero"
-                  options={PARAMETROS.sexos}
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Sexo:"
+                    name="sexo"
+                    options={PARAMETROS.sexos}
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Sexo:"
-                  name="sexo"
-                  options={PARAMETROS.sexos}
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Tipo de Sangre:"
+                    name="tipoSangre"
+                    options={PARAMETROS.tiposSangre}
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Tipo de Sangre:"
-                  name="tipoSangre"
-                  options={PARAMETROS.tiposSangre}
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDatePicker
+                    label="Fecha de Nacimiento: "
+                    name="fechaNacimiento"
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomDatePicker
-                  label="Fecha de Nacimiento: "
-                  name="fechaNacimiento"
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Calle Principal:"
+                    name="callePrincipal"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Calle Principal:"
-                  name="callePrincipal"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Calle Secundaria:"
+                    name="calleSecundaria"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Calle Secundaria:"
-                  name="calleSecundaria"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Lugar de Referencia:"
+                    name="lugarReferencia"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Lugar de Referencia:"
-                  name="lugarReferencia"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput label="Número de Casa:" name="numeroCasa" />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Número de Casa:"
-                  name="numeroCasa"
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput label="Teléfono:" name="telefono" />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Teléfono:"
-                  name="telefono"
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput label="Celular:" name="celular" />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Celular:"
-                  name="celular"
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomTextInput
+                    label="Correo:"
+                    name="correo"
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Correo:"
-                  name="correo"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Ocupación:"
+                    name="ocupacion"
+                    options={PARAMETROS.ocupacion}
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
 
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Ocupación:"
-                  name="ocupacion"
-                  options={PARAMETROS.ocupacion}
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
+                <div className="col-md-6">
+                  <CustomDropdown
+                    label="Nivel de Formación:"
+                    name="nivelFormacion"
+                    options={PARAMETROS.nivelesFormacion}
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
+              </Form.Row>
 
-              <div className="col-md-6">
-                <CustomDropdown
-                  label="Nivel de Formación:"
-                  name="nivelFormacion"
-                  options={PARAMETROS.nivelesFormacion}
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-            </Form.Row>
+              <Form.Row>
+                <div className="col-md-12">
+                  <CustomDropdown
+                    label="Posee alguna discapacidad?"
+                    name="tieneDiscapacidad"
+                    options={PARAMETROS.siNo}
+                  />
+                </div>
 
-            <Form.Row>
-              <div className="col-md-12">
-                <CustomDropdown
-                  label="Posee alguna discapacidad?"
-                  name="tieneDiscapacidad"
-                  options={PARAMETROS.siNo}
-                />
-              </div>
+                <br />
 
-              <br />
+                {watch('tieneDiscapacidad') === 'SI' && (
+                  <React.Fragment>
+                    <div className="col-md-6">
+                      <CustomTextInput
+                        label="Carnet CONADIS:"
+                        name="carnetConadis"
+                        rules={{
+                          required: 'Este campo es obligatorio',
+                        }}
+                      />
+                    </div>
 
-              {watch('tieneDiscapacidad') === 'SI' && (
-                <React.Fragment>
-                  <div className="col-md-6">
-                    <CustomTextInput
-                      label="Carnet CONADIS:"
-                      name="carnetConadis"
-                      rules={{
-                        required: 'Este campo es obligatorio',
-                      }}
-                    />
-                  </div>
+                    <div className="col-md-6">
+                      <CustomInputNumber
+                        label="Porcentaje de discapacidad:"
+                        name="porcentajeDiscapacidad"
+                        rules={{
+                          required: 'Este campo es obligatorio',
+                        }}
+                      />
+                    </div>
 
-                  <div className="col-md-6">
-                    <CustomInputNumber
-                      label="Porcentaje de discapacidad:"
-                      name="porcentajeDiscapacidad"
-                      rules={{
-                        required: 'Este campo es obligatorio',
-                      }}
-                    />
-                  </div>
+                    <div className="col-md-12">
+                      <CustomPickList
+                        label="Seleccione las discapacidades que posee"
+                        name="discapacidades"
+                        source={discapacidades}
+                        sourceHeader="Discapacidades"
+                        targetHeader="Posee"
+                        itemTemplate={(item) => item.nombre}
+                      />
+                    </div>
+                  </React.Fragment>
+                )}
+              </Form.Row>
 
-                  <div className="col-md-12">
-                    <CustomPickList
-                      label="Seleccione las discapacidades que posee"
-                      name="discapacidades"
-                      source={discapacidades}
-                      sourceHeader="Discapacidades"
-                      targetHeader="Posee"
-                      itemTemplate={(item) => item.nombre}
-                    />
-                  </div>
-                </React.Fragment>
-              )}
-            </Form.Row>
-
-            <Form.Row className=" justify-content-between">
-              <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/personas" />
-              </div>
-              <div className="col-md-5 mt-3 my-1">
-                <Button variant="outline-primary" block type="submit">
-                  Guardar
-                </Button>
-              </div>
-            </Form.Row>
-          </form>
+              <Form.Row className=" justify-content-between">
+                <div className="col-md-5 mt-3 my-1">
+                  <BtnRegresar href="/personas" />
+                </div>
+                <div className="col-md-5 mt-3 my-1">
+                  <Button variant="outline-primary" block type="submit">
+                    Guardar
+                  </Button>
+                </div>
+              </Form.Row>
+            </form>
+          </div>
         </div>
-      </div>
+      </FormProvider>
     </main>
   );
 };

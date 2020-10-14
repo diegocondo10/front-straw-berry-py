@@ -1,11 +1,11 @@
 import classnames from 'classnames';
-import { Dropdown, DropdownProps } from 'primereact/dropdown';
+import { MultiSelect, MultiSelectProps } from 'primereact/multiselect';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import FieldWrapper from './FieldWrapper';
 import { BaseFormFieldProps } from './types';
 
-const CustomDropdown = (props?: CustomSelectProps) => {
+const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
   const {
     label,
     rules,
@@ -27,15 +27,11 @@ const CustomDropdown = (props?: CustomSelectProps) => {
         defaultValue={null}
         render={({ onChange, value }) => (
           // @ts-ignore
-          <Dropdown
+          <MultiSelect
             value={value}
-            onChange={(event) => {
-              onChange(event.value);
-              onChangeFn && onChangeFn(event.value);
-            }}
+            onChange={({ value: selecteds }) => onChange(selecteds)}
             placeholder={placeholder || 'Seleccione'}
             className={classnames({
-              [className]: true,
               'w-100': true,
               'p-invalid': !!errors[name],
             })}
@@ -47,6 +43,6 @@ const CustomDropdown = (props?: CustomSelectProps) => {
   );
 };
 
-export default CustomDropdown;
+export default CustomMultiSelect;
 
-export type CustomSelectProps = DropdownProps & BaseFormFieldProps;
+export type CustomMultiSelectProps = MultiSelectProps & BaseFormFieldProps;

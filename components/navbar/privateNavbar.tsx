@@ -57,6 +57,14 @@ const PrivateNavbar = () => {
           label: 'Periodos Lectivos',
           command: commandPush('/matriculas/periodos'),
         },
+        {
+          label: 'Aulas',
+          command: commandPush('/matriculas/aulas'),
+        },
+        {
+          label: 'Materias',
+          command: commandPush('/matriculas/materias'),
+        },
       ],
     },
 

@@ -16,9 +16,11 @@ const CreateEstudianteContainer = ({ items, title }) => {
   const router = useRouter();
 
   const onSubmit = async (input) => {
-    const res = await create({ variables: { input } });
+    console.log(input);
 
-    router.push('/personas/estudiantes');
+    //const res = await create({ variables: { input } });
+
+    //router.push('/personas/estudiantes');
   };
 
   return (
