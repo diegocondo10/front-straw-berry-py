@@ -1,7 +1,6 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import CustomDropdown from '@components/forms/CustomDropDown';
-import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
 import React from 'react';
@@ -13,9 +12,6 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
 
   const mapOnSubmit = (input) => {
     input.persona = getId(input.persona);
-    input.padre = getId(input.padre);
-    input.madre = getId(input.madre);
-    input.representante = getId(input.representante);
     onSubmit(input);
   };
 
