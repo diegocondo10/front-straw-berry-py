@@ -1,133 +1,152 @@
-import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from '@components/Buttons/BtnRegresar';
+import HrefButton from '@components/Buttons/HrefButton';
+import DetailItem from '@components/DetailItem';
 import { IndexColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { Persona } from '@services/personas.service';
+import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Table } from 'react-bootstrap';
 
 const PerfilContainer = ({ items, id }) => {
   const history = useRouter();
+  const [usuario, setUsuario] = useState<any>({});
+
+  useEffect(() => {
+    console.log(Usuario.getDataUsuarioLoggedIn());
+    setUsuario(Usuario.getDataUsuarioLoggedIn());
+  }, []);
+
   const loading = false;
   const data: any = {};
-  const persona = data?.persona;
 
+  console.log(usuario);
   return (
     <PrivateLayout loading={loading} title="IPCA | Perfil">
-      <main className="container-fluid">
+      <main className="container-fluid mb-5">
         <BreadCrumbTitle title="Mi Perfil" items={items} />
 
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
             <h4 className="text-underline">Información de la Cuenta</h4>
             <ul className="w-100">
-              <li>
-                <strong>Usuario: </strong> {data?.usuario || 'María80'}
-              </li>
+              <DetailItem label="Usuario:" value={usuario?.username} />
+            </ul>
+            <ul className="w-100">
+              <div className="col-md-3 mt-1 my-1">
+                <HrefButton
+                  className="btn-block"
+                  label="Cambiar Contraseña"
+                  href="/perfil/changePassword"
+                />
+              </div>
             </ul>
 
             <h4 className="text-underline">Información Personal</h4>
             <ul className="w-100">
-              <li>
-                <strong>Primer Nombre: </strong> {data?.primerNombre || 'María'}
-              </li>
-              <li>
-                <strong>Segundo Nombre: </strong> {data?.segundoNombre || 'Soledad'}
-              </li>
-              <li>
-                <strong>Primer Apellido: </strong>{' '}
-                {data?.primerApellido || 'Guerrero'}
-              </li>
-              <li>
-                <strong>Segundo Apellido: </strong>{' '}
-                {data?.segundoApellido || 'Fuentes'}
-              </li>
-              <li>
-                <strong>Género: </strong> {data?.genero || 'Femenino - Masculino'}
-              </li>
-              <li>
-                <strong>Sexo: </strong> {data?.sexo || 'Femenino - Masculino'}
-              </li>
-              <li>
-                <strong>Calle Principal: </strong>{' '}
-                {data?.callePrincipal || 'Av. Américas'}
-              </li>
-              <li>
-                <strong>Calle Secundaria: </strong>{' '}
-                {data?.calleSecundaria || 'Francisco Trelles'}
-              </li>
+              <DetailItem
+                label="Primer Nombre:"
+                value={usuario?.persona?.primerNombre}
+              />
+              <DetailItem
+                label="Segundo Nombre:"
+                value={usuario?.persona?.segundoNombre}
+              />
+              <DetailItem
+                label="Primer Apellido:"
+                value={usuario?.persona?.primerApellido}
+              />
+              <DetailItem
+                label="Segundo Apellido:"
+                value={usuario?.persona?.segundoApellido}
+              />
+              <DetailItem label="Género:" value={usuario?.persona?.genero} />
+              <DetailItem label="Sexo:" value={usuario?.persona?.sexo} />
+              <DetailItem
+                label="Calle Principal:"
+                value={usuario?.persona?.callePrincipal}
+              />
+              <DetailItem
+                label="Calle Secundaria:"
+                value={usuario?.persona?.calleSecundaria}
+              />
             </ul>
 
             <h4 className="text-underline">Contacto</h4>
             <ul className="w-100">
-              <li>
-                <strong>Teléfono: </strong> {data?.telefono || '4257896'}
-              </li>
-              <li>
-                <strong>Celular: </strong> {data?.celular || '098546231'}
-              </li>
-              <li>
-                <strong>Email: </strong> {data?.correo || 'maria@gmail.com'}
-              </li>
+              <DetailItem label="Teléfono:" value={usuario?.persona?.telefono} />
+              <DetailItem label="Celular:" value={usuario?.persona?.celular} />
+              <DetailItem
+                label="Correo Electrónico:"
+                value={usuario?.persona?.correo}
+              />
             </ul>
 
             <h4 className="text-underline">Discapacidad</h4>
             <ul className="w-100">
-              <li>
-                <strong>Discapacidad: </strong>{' '}
-                {data?.discapacidad || 'Parálisis Cerebral'}
-              </li>
-              <li>
-                <strong>Carnet CONADIS: </strong> {data?.conadis || '123654789'}
-              </li>
+              <DetailItem
+                label="Discapacidad:"
+                value={usuario?.persona?.discapacidades?.discapacidad}
+              />
+              <DetailItem
+                label="Carnet CONADIS:"
+                value={usuario?.persona?.discapacidades?.conadis}
+              />
             </ul>
 
             <h4 className="text-underline">Permisos</h4>
-            <DataTable
-              className="p-datatable-customers shadow-lg"
-              rowHover
-              paginator
-              currentPageReportTemplate="{totalRecords} registros totales"
-              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-              rows={10}
-              rowsPerPageOptions={[10, 25, 50]}
-            >
-              {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter reorderable />
-              <Column
-                header="Descripción"
-                field="descripcion"
-                sortable
-                filter
-                reorderable
-              />
-            </DataTable>
+            <ul className="w-100">
+              {usuario?.permisos?.length > 0 && (
+                <React.Fragment>
+                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {usuario?.permisos?.map((e) => (
+                        <tr className="bg-white" key={e.id}>
+                          <td>{e.nombre}</td>
+                          <td>{e.descripcion}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </React.Fragment>
+              )}
+            </ul>
 
             <h4 className="text-underline">Grupos</h4>
-            <DataTable
-              className="p-datatable-customers shadow-lg"
-              rowHover
-              paginator
-              currentPageReportTemplate="{totalRecords} registros totales"
-              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-              rows={10}
-              rowsPerPageOptions={[10, 25, 50]}
-            >
-              {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter reorderable />
-              <Column
-                header="Descripción"
-                field="descripcion"
-                sortable
-                filter
-                reorderable
-              />
-            </DataTable>
-            <div className="col-md-5 mt-3 my-1">
-              <Button className="btn-block" label="Cambiar Contraseña" />
+            <ul className="w-100">
+              {usuario?.grupos?.length > 0 && (
+                <React.Fragment>
+                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {usuario?.grupos?.map((e) => (
+                        <tr className="bg-white" key={e.id}>
+                          <td>{e.nombre}</td>
+                          <td>{e.descripcion}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </React.Fragment>
+              )}
+            </ul>
+            <div className="col-12 row justify-content-center">
+              <div className="col-md-4 my-1">
+                <BtnRegresar variant="outline-info" href="/" block />
+              </div>
             </div>
           </div>
         </div>
@@ -135,143 +154,5 @@ const PerfilContainer = ({ items, id }) => {
     </PrivateLayout>
   );
 };
-{
-  /* <div className="col-md-8 breadcrumb datatable-doc-demo">
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Usuario: </strong> {data?.usuario || 'María80'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Primer Nombre: </strong> {data?.primerNombre || 'María'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Segundo Nombre: </strong> {data?.segundoNombre || 'Soledad'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Primer Apellido: </strong> {data?.primerApellido || 'Guerrero'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Segundo Apellido: </strong> {data?.segundoApellido || 'Fuentes'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Género: </strong> {data?.genero || 'Femenino - Masculino'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Sexo: </strong> {data?.sexo || 'Femenino - Masculino'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Calle Principal: </strong> {data?.callePrincipal || 'Av. Américas'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Calle Secundaria: </strong> {data?.calleSecundaria || 'Francisco Trelles'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Teléfono: </strong> {data?.telefono || '4257896'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Celular: </strong> {data?.celular || '098546231'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Discapacidad: </strong> {data?.discapacidad || 'Parálisis Cerebral'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Carnet CONADIS: </strong> {data?.conadis || '123654789'}
-                            </p>
-                        </div>
-                        <div className="col-md-6">
-                            <p>
-                                <strong>Email: </strong> {data?.correo || 'maria@gmail.com'}
-                            </p>
-                        </div>
-                        <div>
-                            <strong className="mb-5">Permisos</strong>
-
-                            <DataTable className="p-datatable-customers shadow-lg"
-                                rowHover
-                                paginator
-                                currentPageReportTemplate="{totalRecords} registros totales"
-                                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                                rows={10}
-                                rowsPerPageOptions={[10, 25, 50]}
-                                
-                            >
-                                {IndexColumn()}
-                                <Column
-                                    header="Nombre"
-                                    field="nombre"
-                                    sortable
-                                    filter
-                                    reorderable
-                                />
-                                <Column
-                                    header="Descripción"
-                                    field="descripcion"
-                                    sortable
-                                    filter
-                                    reorderable
-                                />
-                            </DataTable>
-                        </div>
-
-                        <div>
-                            <strong className="mb-5">Grupo</strong>
-
-                            <DataTable className="p-datatable-customers shadow-lg"
-                                rowHover
-                                paginator
-                                currentPageReportTemplate="{totalRecords} registros totales"
-                                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                                rows={10}
-                                rowsPerPageOptions={[10, 25, 50]}
-                                
-                            >
-                                {IndexColumn()}
-                                <Column
-                                    header="Nombre"
-                                    field="nombre"
-                                    sortable
-                                    filter
-                                    reorderable
-                                />
-                                <Column
-                                    header="Descripción"
-                                    field="descripcion"
-                                    sortable
-                                    filter
-                                    reorderable
-                                />
-                            </DataTable>
-                        </div>
-                        <div className="col-md-5 mt-3 my-1">
-                            <Button variant="outline-primary" block type="submit">
-                                Cambiar Contraseña
-                            </Button>
-                        </div>
-                    </div> */
-}
 
 export default PerfilContainer;

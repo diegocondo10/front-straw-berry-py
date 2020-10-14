@@ -44,6 +44,7 @@ export class Persona {
   static getById = gql`
     query getById($id: ID!) {
       persona(id: $id) {
+        str
         id
         tipoIdentificacion
         identificacion

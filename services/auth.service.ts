@@ -249,23 +249,57 @@ export class Usuario {
         user {
           id
           username
+          persona {
+            id
+            tipoIdentificacion
+            identificacion
+            primerApellido
+            segundoApellido
+            primerNombre
+            segundoNombre
+            genero
+            sexo
+            callePrincipal
+            calleSecundaria
+            telefono
+            celular
+            correo
+            tieneDiscapacidad
+            carnetConadis
+            discapacidades {
+              id
+              nombre
+            }
+          }
+          permisos {
+            id
+            nombre
+          }
+          grupos {
+            id
+            nombre
+          }
         }
       }
     }
   `;
 
   static storageData = (data) => {
-    localStorage.setItem(Usuario.USU_STORAGE_KEY, objectToB64(data));
+    localStorage.setItem(Usuario.USU_STORAGE_KEY, JSON.stringify(data));
   };
 
-  static getStorageData = () => {
+  static getStorageData = (): any => {
     const data = localStorage.getItem(Usuario.USU_STORAGE_KEY);
 
     if (!data) {
       return null;
     }
 
-    return b64ToObject(data);
+    return JSON.parse(data);
+  };
+
+  static getDataUsuarioLoggedIn = () => {
+    return Usuario.getStorageData()?.user;
   };
 
   static loggout = () => {
