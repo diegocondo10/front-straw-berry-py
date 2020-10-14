@@ -1,18 +1,18 @@
 import { useMutation, useQuery } from '@apollo/client';
-import EstudianteFormContainer from '@components/pages/personas/estudiantes/form';
+import AlumnoFormContainer from '@components/pages/personas/alumnos/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Estudiante, Persona } from '@services/personas.service';
+import { Alumno, Persona } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-const CreateEstudianteContainer = ({ items, title }) => {
+const CreateAlumnoContainer = ({ items, title }) => {
   const methods = useForm({
     mode: 'onChange',
   });
 
   const { loading, data } = useQuery(Persona.getAllCustom('str'));
-  const [create] = useMutation(Estudiante.create);
+  const [create] = useMutation(Alumno.create);
   const router = useRouter();
 
   const onSubmit = async (input) => {
@@ -20,13 +20,13 @@ const CreateEstudianteContainer = ({ items, title }) => {
 
     //const res = await create({ variables: { input } });
 
-    //router.push('/personas/estudiantes');
+    //router.push('/personas/alumnos');
   };
 
   return (
     <PrivateLayout loading={loading}>
       <FormProvider {...methods}>
-        <EstudianteFormContainer
+        <AlumnoFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
@@ -37,11 +37,11 @@ const CreateEstudianteContainer = ({ items, title }) => {
   );
 };
 
-CreateEstudianteContainer.getInitialProps = () => {
-  let title = 'Agregar Estudiante';
+CreateAlumnoContainer.getInitialProps = () => {
+  let title = 'Agregar Alumno';
   const items = [
-    { title: 'Estudiante', href: '/personas/estudiantes' },
-    { title: 'Agregar Estudiante', active: true },
+    { title: 'Alumno', href: '/personas/alumnos' },
+    { title: 'Agregar Alumno', active: true },
   ];
 
   return {
@@ -50,4 +50,4 @@ CreateEstudianteContainer.getInitialProps = () => {
   };
 };
 
-export default CreateEstudianteContainer;
+export default CreateAlumnoContainer;

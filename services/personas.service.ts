@@ -244,10 +244,10 @@ export class Docente {
   `;
 }
 
-export class Estudiante {
+export class Alumno {
   static getAll = gql`
     query getAll {
-      estudiantes {
+      alumnos {
         id
         relacionRepresentante
         persona {
@@ -271,9 +271,9 @@ export class Estudiante {
   `;
 
   static create = gql`
-    mutation create($input: CreateEstudianteInput!) {
-      createEstudiante(input: $input) {
-        estudiante {
+    mutation create($input: CreateAlumnoInput!) {
+      createAlumno(input: $input) {
+        alumno {
           id
           createdAt
         }
@@ -282,9 +282,9 @@ export class Estudiante {
   `;
 
   static update = gql`
-    mutation update($id: ID!, $input: UpdateEstudianteInput!) {
-      updateEstudiante(id: $id, input: $input) {
-        estudiante {
+    mutation update($id: ID!, $input: UpdateAlumnoInput!) {
+      updateAlumno(id: $id, input: $input) {
+        alumno {
           id
           createdAt
         }
@@ -294,7 +294,7 @@ export class Estudiante {
 
   static delete = gql`
     mutation delete($id: ID!) {
-      deleteEstudiante(id: $id) {
+      deleteAlumno(id: $id) {
         found
         deletedId
       }
@@ -303,7 +303,7 @@ export class Estudiante {
 
   static getById = gql`
     query getById($id: ID!) {
-      estudiante(id: $id) {
+      alumno(id: $id) {
         id
         relacionRepresentante
         observaciones

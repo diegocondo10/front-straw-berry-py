@@ -22,7 +22,7 @@ const PARAMETROS = {
 
   nivelesFormacion: ['BASICO', 'SECUNDARIA', 'SUPERIOR'],
 
-  ocupacion: ['Estudiante', 'Trabajador', 'Doscente'],
+  ocupacion: ['Alumno', 'Trabajador', 'Doscente'],
 };
 
 const PersonaFormContainer = ({
