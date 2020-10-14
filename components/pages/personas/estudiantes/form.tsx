@@ -23,7 +23,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
       <div className="row justify-content-center">
-        <div className="col-md-10 jumbotron rounded">
+        <div className="col-md-10 col-lg-9 col-xl-8 jumbotron rounded">
           <form onSubmit={handleSubmit(mapOnSubmit)}>
             <Form.Row>
               <div className="col-md-12">
@@ -61,6 +61,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                 <CustomTextInput
                   label="Segundo Nombre:"
                   name="padre.segundoNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -332,7 +333,6 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-
 
               {/*
 
