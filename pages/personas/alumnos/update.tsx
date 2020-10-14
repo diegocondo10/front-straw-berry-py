@@ -1,36 +1,36 @@
 import { useMutation, useQuery } from '@apollo/client';
-import EstudianteFormContainer from '@components/pages/personas/estudiantes/form';
+import AlumnoFormContainer from '@components/pages/personas/alumnos/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Estudiante } from '@services/personas.service';
+import { Alumno } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-const UpdateEstudianteContainer = ({ title, items, id }) => {
+const UpdateAlumnoContainer = ({ title, items, id }) => {
   const methods = useForm({
     mode: 'onChange',
   });
 
-  const { loading, data } = useQuery(Estudiante.getById, {
+  const { loading, data } = useQuery(Alumno.getById, {
     variables: { id },
-    onCompleted: ({ estudiante }) => {
-      methods.reset(estudiante);
+    onCompleted: ({ alumno }) => {
+      methods.reset(alumno);
     },
   });
 
-  const [update] = useMutation(Estudiante.update);
+  const [update] = useMutation(Alumno.update);
 
   const router = useRouter();
   const onSubmit = async (input) => {
     console.log(input);
     await update({ variables: { input, id } });
-    router.push('/personas/estudiantes');
+    router.push('/personas/alumnos');
   };
 
   return (
     <PrivateLayout loading={loading}>
       <FormProvider {...methods}>
-        <EstudianteFormContainer
+        <AlumnoFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
@@ -41,11 +41,11 @@ const UpdateEstudianteContainer = ({ title, items, id }) => {
   );
 };
 
-UpdateEstudianteContainer.getInitialProps = ({ query }) => {
-  let title = 'Editar Estudiante';
+UpdateAlumnoContainer.getInitialProps = ({ query }) => {
+  let title = 'Editar Alumno';
   const items = [
-    { title: 'Estudiante', href: '/personas/estudiantes' },
-    { title: 'Editar Estudiante', active: true },
+    { title: 'Alumno', href: '/personas/alumnos' },
+    { title: 'Editar Alumno', active: true },
   ];
 
   return {
@@ -55,4 +55,4 @@ UpdateEstudianteContainer.getInitialProps = ({ query }) => {
   };
 };
 
-export default UpdateEstudianteContainer;
+export default UpdateAlumnoContainer;

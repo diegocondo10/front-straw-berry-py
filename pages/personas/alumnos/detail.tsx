@@ -3,48 +3,48 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 import PrivateLayout from '@layouts/privateLayout';
-import { Estudiante } from '@services/personas.service';
+import { Alumno } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const DetailEstudianteContainer = ({ items, id }) => {
+const DetailAlumnoContainer = ({ items, id }) => {
   const history = useRouter();
-  const { data, loading } = useQuery(Estudiante.getById, {
+  const { data, loading } = useQuery(Alumno.getById, {
     variables: { id },
   });
 
-  const [deleteEstudiante] = useMutation(Estudiante.delete, { variables: { id } });
+  const [deleteAlumno] = useMutation(Alumno.delete, { variables: { id } });
 
   const onClickEliminar = async () => {
-    await deleteEstudiante();
-    history.push('/personas/estudiantes');
+    await deleteAlumno();
+    history.push('/personas/alumnos');
   };
 
-  const estudiante = data?.estudiante;
+  const alumno = data?.alumno;
 
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid">
-        <BreadCrumbTitle title="Estudiante" items={items} />
+        <BreadCrumbTitle title="Alumno" items={items} />
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
-            <h4 className="text-underline">Información Personal</h4>
+
             <ul className="w-100">
-              <ItemDetailPersona persona={estudiante?.persona} />
+              <ItemDetailPersona persona={alumno?.persona} />
             </ul>
 
             <h4 className="text-underline">Información Familiar</h4>
             <ul className="w-100">
-              <ItemDetailPersona persona={estudiante?.padre} label="Padre: " />
-              <ItemDetailPersona persona={estudiante?.madre} label="Madre: " />
+              <ItemDetailPersona persona={alumno?.padre} label="Padre: " />
+              <ItemDetailPersona persona={alumno?.madre} label="Madre: " />
               <ItemDetailPersona
-                persona={estudiante?.representante}
+                persona={alumno?.representante}
                 label="Representante: "
               />
               <li>
                 <strong>Relación con el Representante: </strong>
-                {estudiante?.relacionRepresentante}
+                {alumno?.relacionRepresentante}
               </li>
             </ul>
           </div>
@@ -57,7 +57,7 @@ const DetailEstudianteContainer = ({ items, id }) => {
             </Button>
           </div>
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/personas/estudiantes" />
+            <BtnRegresar variant="outline-info" href="/personas/alumnos" />
           </div>
         </div>
       </main>
@@ -65,14 +65,14 @@ const DetailEstudianteContainer = ({ items, id }) => {
   );
 };
 
-DetailEstudianteContainer.getInitialProps = async ({ query }) => {
+DetailAlumnoContainer.getInitialProps = async ({ query }) => {
   return {
     items: [
-      { title: 'Estudiante', href: '/personas/estudiantes' },
-      { title: query.id, href: `/personas/estudiantes/update/?id=${query.id}` },
+      { title: 'Alumno', href: '/personas/alumnos' },
+      { title: query.id, href: `/personas/alumnos/update/?id=${query.id}` },
     ],
     id: query.id,
   };
 };
 
-export default DetailEstudianteContainer;
+export default DetailAlumnoContainer;

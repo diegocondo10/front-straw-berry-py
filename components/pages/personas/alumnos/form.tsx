@@ -7,7 +7,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
-const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
+const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
   const { handleSubmit } = useFormContext();
 
   const mapOnSubmit = (input) => {
@@ -23,7 +23,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
           <form onSubmit={handleSubmit(mapOnSubmit)}>
             <Form.Row>
               <div className="col-md-12">
-                <h4 className="text-underline">Datos del Estudiante</h4>
+                <h4 className="text-underline">Datos del Alumno</h4>
                 <CustomDropdown
                   label="Personas:"
                   name="persona"
@@ -461,7 +461,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
 
             <Form.Row className="justify-content-between">
               <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/personas/estudiantes" variant="outline-danger" />
+                <BtnRegresar href="/personas/alumnos" variant="outline-danger" />
               </div>
               <div className="col-md-5 mt-3 my-1">
                 <Button variant="outline-primary" block type="submit">
@@ -476,7 +476,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
   );
 };
 
-export default EstudianteFormContainer;
+export default AlumnoFormContainer;
 
 {
   /* <div className="col-md-6">

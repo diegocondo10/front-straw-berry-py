@@ -36,7 +36,7 @@ const PrivateNavbar = () => {
         },
         {
           label: 'Alumnos',
-          command: commandPush('/personas/estudiantes'),
+          command: commandPush('/personas/alumnos'),
         },
 
         {

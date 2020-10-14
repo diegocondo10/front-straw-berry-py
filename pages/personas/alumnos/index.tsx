@@ -7,16 +7,16 @@ import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import { Column } from 'primereact/column';
 import { useQuery } from '@apollo/client';
-import { Estudiante } from '@services/personas.service';
+import { Alumno } from '@services/personas.service';
 
-const EstudiantesContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(Estudiante.getAll);
+const AlumnosContainer = ({ breadCrumbItems }) => {
+  const { loading, data } = useQuery(Alumno.getAll);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/personas/estudiantes/create">
+          <Link href="/personas/alumnos/create">
             <a className="btn btn-info btn-sm">
               Agregar
               <GoPlus />
@@ -28,13 +28,13 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Estudiantes" loading={loading}>
+    <PrivateLayout title="IPCA | Alumnos" loading={loading}>
       <main className="container-fluid">
-        <TitleBreadCrumb title="Estudiantes" items={breadCrumbItems} />
+        <TitleBreadCrumb title="Alumnos" items={breadCrumbItems} />
         <div className="row justify-content-center">
           <div className="col datatable-doc-demo">
             <DataTable
-              value={data?.estudiantes}
+              value={data?.alumnos}
               className="p-datatable-customers shadow-lg"
               rowHover
               paginator
@@ -64,8 +64,8 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
               />
 
               {OptionesColumn({
-                editPath: ({ id }) => `/personas/estudiantes/update?id=${id}`,
-                detailPath: ({ id }) => `/personas/estudiantes/detail?id=${id}`,
+                editPath: ({ id }) => `/personas/alumnos/update?id=${id}`,
+                detailPath: ({ id }) => `/personas/alumnos/detail?id=${id}`,
               })}
             </DataTable>
           </div>
@@ -75,15 +75,15 @@ const EstudiantesContainer = ({ breadCrumbItems }) => {
   );
 };
 
-EstudiantesContainer.getInitialProps = async (props) => {
+AlumnosContainer.getInitialProps = async (props) => {
   return {
     breadCrumbItems: [
       {
-        title: 'Estudiantes',
+        title: 'Alumnos',
         active: true,
       },
     ],
   };
 };
 
-export default EstudiantesContainer;
+export default AlumnosContainer;
