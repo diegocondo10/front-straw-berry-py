@@ -249,22 +249,30 @@ export class Alumno {
     query getAll {
       alumnos {
         id
-        relacionRepresentante
         persona {
           id
           str
         }
         padre {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
         madre {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
         representante {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
       }
     }
@@ -305,23 +313,26 @@ export class Alumno {
     query getById($id: ID!) {
       alumno(id: $id) {
         id
-        relacionRepresentante
-        observaciones
-        persona {
-          id
-          str
-        }
         padre {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
         madre {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
         representante {
-          id
-          str
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
         }
       }
       personas {

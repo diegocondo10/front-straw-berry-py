@@ -33,6 +33,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
+              {/*
               <div className="col-md-12">
                 <CustomTextInput
                   className="p-inputtext-sm"
@@ -111,6 +112,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                 />
               </div>
 
+*/}
               <h4 className="text-underline col-12">Información del Padre</h4>
               <div className="col-md-12">
                 <CustomTextInput
