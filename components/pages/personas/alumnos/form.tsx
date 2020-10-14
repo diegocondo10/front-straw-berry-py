@@ -29,7 +29,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <div className="col-md-12">
                 <h4 className="text-underline">Datos del Alumno</h4>
                 <CustomDropdown
-                  label="Personas:"
+                  label="Persona:"
                   name="persona"
                   options={personas}
                   optionLabel="str"
@@ -109,9 +109,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Teléfono:"
                   name="telefono"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -144,9 +141,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Nombre:"
                   name="padre.segundoNombre"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -166,9 +160,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Apellido:"
                   name="padre.segundoApellido"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-12">
@@ -199,9 +190,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Telefóno:"
                   name="padre.telefono"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -210,9 +198,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Celular:"
                   name="padre.celular"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -245,9 +230,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Nombre:"
                   name="madre.segundoNombre"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -267,9 +249,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Apellido:"
                   name="madre.segundoApellido"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-12">
@@ -300,9 +279,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Telefóno:"
                   name="madre.telefono"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -311,9 +287,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Celular:"
                   name="madre.celular"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -346,9 +319,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Nombre:"
                   name="contactoEmergencia.segundoNombre"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -368,9 +338,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Segundo Apellido:"
                   name="contactoEmergencia.segundoApellido"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -379,9 +346,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Telefóno:"
                   name="contactoEmergencia.telefono"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
               <div className="col-md-6">
@@ -390,9 +354,6 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   label="Celular:"
                   name="contactoEmergencia.celular"
                   keyfilter="num"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
