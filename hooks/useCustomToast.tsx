@@ -12,13 +12,13 @@ const useCustomToast = () => {
   };
 
   return {
-    addSuccessToast: (content: string, extraProps?: Options) =>
+    addSuccessToast: (content: string | any, extraProps?: Options) =>
       baseToast(content, 'success', extraProps),
-    addErrorToast: (content: string, extraProps?: Options) =>
+    addErrorToast: (content: string | any, extraProps?: Options) =>
       baseToast(content, 'error', extraProps),
-    addWarningToast: (content: string, extraProps?: Options) =>
+    addWarningToast: (content: string | any, extraProps?: Options) =>
       baseToast(content, 'warning', extraProps),
-    addInfoToast: (content: string, extraProps?: Options) =>
+    addInfoToast: (content: string | any, extraProps?: Options) =>
       baseToast(content, 'info', extraProps),
   };
 };

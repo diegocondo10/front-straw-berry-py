@@ -26,7 +26,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
         <div className="col-md-10 jumbotron rounded">
           <form onSubmit={handleSubmit(mapOnSubmit)}>
             <Form.Row>
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <h4 className="text-underline">Estudiante</h4>
                 <CustomDropdown
                   label="Personas:"
@@ -38,21 +38,20 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                 />
               </div>
 
-
-              <div className="col-md-12">
-                <h4 className="text-underline">Información del Padre</h4>
+              <h4 className="text-underline col-12">Información del Padre</h4>
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Nombre:"
-                  name="primerNombre"
+                  name="padre.primerNombre"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Nombre:"
-                  name="segundoNombre"
+                  name="padre.segundoNombre"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -333,6 +332,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
+           
+           
+              {/*
+
 
               <h4 className="text-underline">Información del Estudiante:</h4>
               <div className="col-md-12">
@@ -392,6 +395,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <div className="col-md-12">
                 <CustomTextArea label="Observaciones:" name="observaciones" />
               </div>
+            
+            
+
+*/}
             </Form.Row>
 
             <Form.Row className="justify-content-between">
@@ -413,8 +420,8 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
 
 export default EstudianteFormContainer;
 
-
-{/* <div className="col-md-6">
+{
+  /* <div className="col-md-6">
                 <CustomDropdown
                   label="Padre:"
                   name="padre"
@@ -455,4 +462,5 @@ export default EstudianteFormContainer;
                     required: 'Este campo es obligatorio',
                   }}
                 />
-              </div> */}
+              </div> */
+}

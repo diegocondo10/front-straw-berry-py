@@ -20,7 +20,7 @@ moment.locale('es');
 const client = new ApolloClient({
   //uri: 'http://localhost:8000/graphql',
   uri: 'https://straw-berry-py.herokuapp.com/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {
     watchQuery: {
