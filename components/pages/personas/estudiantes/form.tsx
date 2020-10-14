@@ -23,7 +23,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
           <form onSubmit={handleSubmit(mapOnSubmit)}>
             <Form.Row>
               <div className="col-md-12">
-                <h4 className="text-underline">Estudiante</h4>
+                <h4 className="text-underline">Datos del Estudiante</h4>
                 <CustomDropdown
                   label="Personas:"
                   name="persona"
@@ -33,12 +33,91 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Correo Electrónico:"
+                  name="correo"
+                  keyfilter="email"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Dirección Domiciliaria:"
+                  name="direccion"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Provincia:"
+                  name="provincia"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Cantón:"
+                  name="canton"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Parroquia:"
+                  name="parroquia"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Sector:"
+                  name="sector"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Teléfono:"
+                  name="telefono"
+                  keyfilter="num"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
 
               <h4 className="text-underline col-12">Información del Padre</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
+                  className="p-inputtext-sm"
+                  label="Identificación:"
+                  name="padre.identificacion"
+                  keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -46,8 +125,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Nombre:"
                   name="padre.primerNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -55,6 +136,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
                   name="padre.segundoNombre"
                   keyfilter="alpha"
@@ -65,8 +147,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Apellido:"
-                  name="primerApellido"
+                  name="padre.primerApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -74,8 +158,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
-                  name="segundoApellido"
+                  name="padre.segundoApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -83,8 +169,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-12">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Ocupación:"
-                  name="ocupacion"
+                  name="padre.ocupacion"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -92,8 +180,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-12">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Dirección:"
-                  name="direccion"
+                  name="padre.direccion"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -101,8 +191,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Telefóno:"
-                  name="telefono"
+                  name="padre.telefono"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -110,8 +202,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Celular:"
-                  name="celular"
+                  name="padre.celular"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -121,8 +215,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <h4 className="text-underline">Información de la Madre</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
+                  className="p-inputtext-sm"
+                  label="Identificación:"
+                  name="madre.identificacion"
+                  keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -130,8 +226,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Nombre:"
-                  name="primerNombre"
+                  name="madre.primerNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -139,8 +237,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
-                  name="segundoNombre"
+                  name="madre.segundoNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -148,8 +248,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Apellido:"
-                  name="primerApellido"
+                  name="madre.primerApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -157,8 +259,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
-                  name="segundoApellido"
+                  name="madre.segundoApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -166,8 +270,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-12">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Ocupación:"
-                  name="ocupacion"
+                  name="madre.ocupacion"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -175,8 +281,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-12">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Dirección:"
-                  name="direccion"
+                  name="madre.direccion"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -184,8 +292,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Telefóno:"
-                  name="telefono"
+                  name="madre.telefono"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -193,72 +303,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Celular:"
-                  name="celular"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Correo Electrónico:"
-                  name="correo"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Dirección Domiciliaria:"
-                  name="direccion"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Provincia:"
-                  name="provincia"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Cantón:"
-                  name="canton"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Parroquia:"
-                  name="parroquia"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Sector:"
-                  name="sector"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Teléfono:"
-                  name="telefono"
+                  name="madre.celular"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -268,8 +316,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <h4 className="text-underline">En caso de Emergencia comunicar a:</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
+                  className="p-inputtext-sm"
+                  label="Identificación:"
+                  name="contactoEmergencia.identificacion"
+                  keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -277,8 +327,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Nombre:"
-                  name="primerNombre"
+                  name="contactoEmergencia.primerNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -286,8 +338,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
-                  name="segundoNombre"
+                  name="contactoEmergencia.segundoNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -295,8 +349,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Primer Apellido:"
-                  name="primerApellido"
+                  name="contactoEmergencia.primerApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -304,8 +360,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
-                  name="segundoApellido"
+                  name="contactoEmergencia.segundoApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -313,8 +371,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Telefóno:"
-                  name="telefono"
+                  name="contactoEmergencia.telefono"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -322,8 +382,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
               <div className="col-md-6">
                 <CustomTextInput
+                  className="p-inputtext-sm"
                   label="Celular:"
-                  name="celular"
+                  name="contactoEmergencia.celular"
+                  keyfilter="num"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
