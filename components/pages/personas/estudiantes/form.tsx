@@ -39,6 +39,15 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               </div>
 
               <h4 className="text-underline col-12">Información del Padre</h4>
+              <div className="col-md-12">
+                <CustomTextInput
+                  label="Cédula:"
+                  name="identificacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
               <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Nombre:"
@@ -57,7 +66,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Apellido:"
                   name="primerApellido"
@@ -66,19 +75,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Apellido:"
                   name="segundoApellido"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -102,7 +102,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Telefóno:"
                   name="telefono"
@@ -111,7 +111,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Celular:"
                   name="celular"
@@ -124,6 +124,15 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <h4 className="text-underline">Información de la Madre</h4>
               <div className="col-md-12">
                 <CustomTextInput
+                  label="Cédula:"
+                  name="identificacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
                   label="Primer Nombre:"
                   name="primerNombre"
                   rules={{
@@ -131,7 +140,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Nombre:"
                   name="segundoNombre"
@@ -140,7 +149,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Apellido:"
                   name="primerApellido"
@@ -149,19 +158,10 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Apellido:"
                   name="segundoApellido"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -185,7 +185,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Telefóno:"
                   name="telefono"
@@ -194,7 +194,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Celular:"
                   name="celular"
@@ -222,7 +222,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Provincia:"
                   name="provincia"
@@ -231,7 +231,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Cantón:"
                   name="canton"
@@ -240,7 +240,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Parroquia:"
                   name="parroquia"
@@ -249,7 +249,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Sector:"
                   name="sector"
@@ -271,6 +271,15 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
               <h4 className="text-underline">En caso de Emergencia comunicar a:</h4>
               <div className="col-md-12">
                 <CustomTextInput
+                  label="Cédula:"
+                  name="identificacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
                   label="Primer Nombre:"
                   name="primerNombre"
                   rules={{
@@ -278,7 +287,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Nombre:"
                   name="segundoNombre"
@@ -287,7 +296,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Apellido:"
                   name="primerApellido"
@@ -296,7 +305,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Segundo Apellido:"
                   name="segundoApellido"
@@ -305,16 +314,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Cédula:"
-                  name="identificacion"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Telefóno:"
                   name="telefono"
@@ -323,7 +323,7 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <CustomTextInput
                   label="Celular:"
                   name="celular"
@@ -332,8 +332,8 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   }}
                 />
               </div>
-           
-           
+
+
               {/*
 
 
