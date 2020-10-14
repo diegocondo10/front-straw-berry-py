@@ -1,12 +1,12 @@
-import React from 'react';
-import CustomDropdown from '@components/forms/CustomDropdown';
-import CustomTextInput from '@components/forms/CustomTextInput';
-import { Button, Form } from 'react-bootstrap';
-import { BtnRegresar } from '@components/Buttons';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { useFormContext } from 'react-hook-form';
+import { BtnRegresar } from '@components/Buttons';
+import CustomDropdown from '@components/forms/CustomDropDown';
 import CustomTextArea from '@components/forms/CustomTextArea';
+import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
+import React from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useFormContext } from 'react-hook-form';
 
 const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
   const { handleSubmit } = useFormContext();
@@ -37,6 +37,81 @@ const EstudianteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                 />
               </div>
 
+              <h4 className="text-underline col-12">Información del Padre</h4>
+              <div className="col-md-12">
+                <CustomTextInput
+                  label="Cédula:"
+                  name="identificacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  label="Primer Nombre:"
+                  name="padre.primerNombre"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Segundo Nombre:"
+                  name="padre.segundoNombre"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  label="Primer Apellido:"
+                  name="primerApellido"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  label="Segundo Apellido:"
+                  name="segundoApellido"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  label="Ocupación:"
+                  name="ocupacion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  label="Dirección:"
+                  name="direccion"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextInput
+                  label="Telefóno:"
+                  name="telefono"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
               <div className="col-md-6">
                 <CustomDropdown
                   label="Padre:"
