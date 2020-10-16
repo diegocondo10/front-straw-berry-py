@@ -24,7 +24,9 @@ const CreateMatriculaContainer = () => {
     ];
 
     const onSubmit = async (input) => {
-        await create({ variables: { input } });
+        console.log(input);
+
+        //await create({ variables: { input } });
 
         router.push('/matriculas');
     };
