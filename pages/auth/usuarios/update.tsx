@@ -45,7 +45,7 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   );
 };
 
-UpdateUsuarioContainer.getInitialProps = ({ query }) => {
+UpdateUsuarioContainer.getStaticProps  = ({ query }) => {
   return {
     title: 'Editar Usuario',
     id: query.id,
