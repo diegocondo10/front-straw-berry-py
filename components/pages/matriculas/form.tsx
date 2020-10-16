@@ -36,7 +36,7 @@ const MatriculaFormContainer = ({
   };
 
   const { handleSubmit, watch } = methods;
-console.log(alumnos);
+  console.log(alumnos);
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
@@ -45,18 +45,6 @@ console.log(alumnos);
           <div className="col-md-10 jumbotron rounded">
             <form onSubmit={handleSubmit(localOnSubmit)}>
               <Form.Row>
-                <div className="col-md-12">
-                  <CustomDropDown
-                    label="Seleccione Aula:"
-                    name="aula"
-                    optionLabel="nombre"
-                    filter
-                    options={aulas}
-                    rules={{
-                      required: 'Este campo es obligatorio',
-                    }}
-                  />
-                </div>
                 <div className="col-md-12">
                   <CustomDropDown
                     label="Seleccione Alumno:"
@@ -70,7 +58,19 @@ console.log(alumnos);
                   />
                 </div>
                 <div className="col-md-12">
-                  <CustomTextInput
+                  <CustomDropDown
+                    label="Seleccione Aula:"
+                    name="aula"
+                    optionLabel="nombre"
+                    filter
+                    options={aulas}
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                    }}
+                  />
+                </div>
+                <div className="col-md-12">
+                  <CustomTextArea
                     label="Tratamiento:"
                     name="tratamiento"
                     rules={{
@@ -87,7 +87,7 @@ console.log(alumnos);
                     }}
                   />
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-6">
                   <CustomTextInput
                     label="Matrícula:"
                     name="matricula"
@@ -96,7 +96,7 @@ console.log(alumnos);
                     }}
                   />
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-6">
                   <CustomInputNumber
                     label="Número de Matrícula:"
                     name="numeroMatricula"
