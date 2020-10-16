@@ -29,7 +29,7 @@ const UpdateMatriculaContainer = ({ id }) => {
             <MatriculaFormContainer
                 alumnos={data?.alumnos}
                 items={items}
-                loading={false}
+                //loading={false}
                 onSubmit={onSubmit}
                 aulas={data?.aulas}
                 title="Editar Matrícula"

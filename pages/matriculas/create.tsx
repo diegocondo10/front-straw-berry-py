@@ -37,7 +37,7 @@ const CreateMatriculaContainer = () => {
                 title="Crear Matricula"
                 items={items}
                 onSubmit={onSubmit}
-                loading={loadingCreate}
+                //loading={loadingCreate}
                 aulas={data?.aulas}
                 alumnos={data?.alumnos}
             />
