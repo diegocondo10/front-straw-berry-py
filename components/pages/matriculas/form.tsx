@@ -36,7 +36,7 @@ const MatriculaFormContainer = ({
   };
 
   const { handleSubmit, watch } = methods;
-
+console.log(alumnos);
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
@@ -61,7 +61,7 @@ const MatriculaFormContainer = ({
                   <CustomDropDown
                     label="Seleccione Alumno:"
                     name="alumno"
-                    optionLabel="nombre"
+                    optionLabel="persona.str"
                     filter
                     options={alumnos}
                     rules={{

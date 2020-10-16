@@ -312,7 +312,17 @@ export class Matricula {
 
   static getDataForm = gql`
     query getDataForm {
-      ${Matricula.dataFormFragment}
+      aulas {
+        id
+        nombre
+      }
+      alumnos {
+        id
+        persona {
+          id
+          str
+        }
+      }
     }
   `;
 
