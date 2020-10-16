@@ -54,6 +54,10 @@ const PrivateNavbar = () => {
       label: 'Matriculas',
       items: [
         {
+          label: 'Matrículas',
+          command: commandPush('/matriculas'),
+        },
+        {
           label: 'Periodos Lectivos',
           command: commandPush('/matriculas/periodos'),
         },
