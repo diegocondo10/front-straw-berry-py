@@ -4,7 +4,6 @@ import { BtnRegresar } from '@components/Buttons';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';

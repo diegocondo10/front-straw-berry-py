@@ -45,7 +45,7 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   );
 };
 
-UpdateUsuarioContainer.gitInitialProps = ({ query }) => {
+UpdateUsuarioContainer.getInitialProps = ({ query }) => {
   return {
     title: 'Editar Usuario',
     id: query.id,
