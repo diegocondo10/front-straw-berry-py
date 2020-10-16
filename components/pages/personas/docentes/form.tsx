@@ -1,6 +1,6 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Form } from 'react-bootstrap';
@@ -19,7 +19,7 @@ const DocenteFormContainer = ({ title, items, onSubmit, personas = [] }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Row>
               <div className="col-md-12">
-                <CustomDropdown
+                <CustomDropDown
                   label="Persona:"
                   name="persona"
                   optionLabel="str"

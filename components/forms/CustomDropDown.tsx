@@ -5,7 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import FieldWrapper from './FieldWrapper';
 import { BaseFormFieldProps } from './types';
 
-const CustomDropdown = (props?: CustomSelectProps) => {
+const CustomDropDown = (props?: CustomSelectProps) => {
   const {
     label,
     rules,
@@ -47,6 +47,6 @@ const CustomDropdown = (props?: CustomSelectProps) => {
   );
 };
 
-export default CustomDropdown;
+export default CustomDropDown;
 
 export type CustomSelectProps = DropdownProps & BaseFormFieldProps;

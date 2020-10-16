@@ -1,7 +1,7 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import CustomDatePicker from '@components/forms/CustomDatePicker';
-import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
@@ -52,7 +52,7 @@ const PersonaFormContainer = ({
             <form onSubmit={handleSubmit(onLocalSubmit)}>
               <Form.Row>
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Tipo de Identificacion:"
                     name="tipoIdentificacion"
                     options={PARAMETROS.tiposIdentificacion}
@@ -108,7 +108,7 @@ const PersonaFormContainer = ({
                 </div>
 
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Genero:"
                     name="genero"
                     options={PARAMETROS.sexos}
@@ -117,7 +117,7 @@ const PersonaFormContainer = ({
                 </div>
 
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Sexo:"
                     name="sexo"
                     options={PARAMETROS.sexos}
@@ -126,7 +126,7 @@ const PersonaFormContainer = ({
                 </div>
 
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Tipo de Sangre:"
                     name="tipoSangre"
                     options={PARAMETROS.tiposSangre}
@@ -195,7 +195,7 @@ const PersonaFormContainer = ({
                 </div>
 
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Ocupación:"
                     name="ocupacion"
                     options={PARAMETROS.ocupacion}
@@ -204,7 +204,7 @@ const PersonaFormContainer = ({
                 </div>
 
                 <div className="col-md-6">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Nivel de Formación:"
                     name="nivelFormacion"
                     options={PARAMETROS.nivelesFormacion}
@@ -217,7 +217,7 @@ const PersonaFormContainer = ({
 
               <Form.Row>
                 <div className="col-md-12">
-                  <CustomDropdown
+                  <CustomDropDown
                     label="Posee alguna discapacidad?"
                     name="tieneDiscapacidad"
                     options={PARAMETROS.siNo}

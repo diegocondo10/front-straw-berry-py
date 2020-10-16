@@ -1,6 +1,6 @@
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
@@ -30,7 +30,7 @@ const UsuarioFormContainer = ({
               rules={{ required: 'Este campo es obligatorio' }}
             />
 
-            <CustomDropdown
+            <CustomDropDown
               name="persona"
               label="Persona"
               placeholder="Seleccione una persona"

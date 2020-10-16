@@ -1,6 +1,6 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import CustomDropdown from '@components/forms/CustomDropDown';
+import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
 import React from 'react';
@@ -24,7 +24,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
             <Form.Row>
               <div className="col-md-12">
                 <h4 className="text-underline">Datos del Alumno</h4>
-                <CustomDropdown
+                <CustomDropDown
                   label="Persona:"
                   name="persona"
                   options={personas}
@@ -443,7 +443,7 @@ export default AlumnoFormContainer;
 
 {
   /* <div className="col-md-6">
-                <CustomDropdown
+                <CustomDropDown
                   label="Padre:"
                   name="padre"
                   options={personas}
@@ -454,7 +454,7 @@ export default AlumnoFormContainer;
               </div>
 
               <div className="col-md-6">
-                <CustomDropdown
+                <CustomDropDown
                   label="Madre:"
                   name="madre"
                   options={personas}
@@ -465,7 +465,7 @@ export default AlumnoFormContainer;
               </div>
 
               <div className="col-md-6">
-                <CustomDropdown
+                <CustomDropDown
                   label="Representantes:"
                   name="representante"
                   options={personas}

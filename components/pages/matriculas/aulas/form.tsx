@@ -1,6 +1,6 @@
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
-import CustomDropdown from '@components/forms/CustomDropdown';
+import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomMultiSelect from '@components/forms/CustomMultiSelect';
 import CustomTextArea from '@components/forms/CustomTextArea';
@@ -42,7 +42,7 @@ const AulasFormContainer = ({
         <div className="row justify-content-center">
           <div className="col-md-8 col-lg-7 jumbotron">
             <form onSubmit={methods.handleSubmit(localOnSubmit)}>
-              <CustomDropdown
+              <CustomDropDown
                 label="Seleccione el periodo lectivo:"
                 name="periodo"
                 optionLabel="nombre"
