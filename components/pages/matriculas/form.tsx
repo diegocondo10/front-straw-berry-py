@@ -37,12 +37,17 @@ const MatriculaFormContainer = ({
 
   const { handleSubmit, watch } = methods;
   console.log(alumnos);
+
+  const matricula = {
+    apellidos: 'CONDO ORTIZ',
+  };
+
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
       <FormProvider {...methods}>
         <div className="row justify-content-center">
-          <div className="col-md-10 jumbotron rounded">
+          <div className="col-md-6 jumbotron rounded">
             <form onSubmit={handleSubmit(localOnSubmit)}>
               <Form.Row>
                 <div className="col-md-12">
@@ -126,6 +131,12 @@ const MatriculaFormContainer = ({
               </Form.Row>
               <FooterButtonsForm loading={false} hrefBack="/matriculas" />
             </form>
+          </div>
+
+          <div className="col-md-6 jumbotron border border-blue rounded h-100 ">
+            <h4>Datos personales:</h4>
+            <h6>APELLIDOS: {matricula?.apellidos}</h6>
+            <h6>NOMBRES: </h6>
           </div>
         </div>
       </FormProvider>
