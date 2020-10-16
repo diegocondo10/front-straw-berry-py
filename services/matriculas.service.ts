@@ -243,3 +243,107 @@ export class Materia {
     }
   `;
 }
+
+export class Matricula {
+  static dataFormFragment = `
+    aulas {
+      id
+      nombre
+    }
+    alumnos {
+      id
+      persona {
+        id
+        str
+      }
+    }
+  `;
+
+  static getAll = gql`
+    query getAll {
+      matriculas {
+        id
+        tratamiento
+        diagnostico
+        matricula
+        numeroMatricula
+        aporteVoluntario
+        diagnosticoFinal
+        alumnos {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        aulas {
+          id
+          nombre
+        }
+      }
+    }
+  `;
+
+  static getById = gql`
+    query getById($id: ID!) {
+      matricula(id: $id) {
+        id
+        tratamiento
+        diagnostico
+        matricula
+        numeroMatricula
+        aporteVoluntario
+        diagnosticoFinal
+        alumnos {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        aulas {
+          id
+          nombre
+        }
+      }
+      ${Matricula.dataFormFragment}
+    }
+  `;
+
+  static getDataForm = gql`
+    query getDataForm {
+      ${Matricula.dataFormFragment}
+    }
+  `;
+
+  static create = gql`
+    mutation create($input: CreateMatriculaInput!) {
+      createMatricula(input: $input) {
+        matricula {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static update = gql`
+    mutation update($input: UpdateMatriculaInput!, $id: ID!) {
+      updateMatricula(input: $input, id: $id) {
+        matricula {
+          id
+          createdAt
+        }
+      }
+    }
+  `;
+
+  static delete = gql`
+    mutation delete($id: ID!) {
+      deleteMatricula(id: $id) {
+        found
+        deletedId
+      }
+    }
+  `;
+}
