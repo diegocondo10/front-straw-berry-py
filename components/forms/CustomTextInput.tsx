@@ -23,7 +23,7 @@ const CustomTextInput = (props: CustomTextInputProps) => {
             onChange={({ currentTarget }) => onChange(currentTarget.value)}
             className={classnames({
               [className]: true,
-              'p-d-block w-100': true,
+              'p-d-block w-100 p-inputtext-sm': true,
               'p-invalid': !!errors[name],
             })}
             {...rest}

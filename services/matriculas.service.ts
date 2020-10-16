@@ -1,35 +1,54 @@
 import { gql } from '@apollo/client';
 
+const PeriodosLectivos = {
+  fragments: {
+    periodoLectivoCompleto: gql`
+      fragment PeriodoLectivo on PeriodoLectivoType {
+        id
+        nombre
+        fechaInicio
+        fechaFin
+        fechaFinClases
+        estado
+      }
+    `,
+  },
+};
+
 export class PeriodoLectivo {
-  static periodoLectivoCompleteFragment = gql`
+  static periodoLectivoCompleteFragment = `
     fragment PeriodoLectivo on PeriodoLectivoType {
-      id
-      nombre
-      fechaInicio
-      fechaFin
-      fechaFinClases
-      estado
+      ...PeriodoLectivo
     }
+
+    ${PeriodosLectivos.fragments.periodoLectivoCompleto}
   `;
 
   static getAll = gql`
     query getAll {
       periodosLectivos {
-        ...PeriodoLectivo
+        id
+        nombre
+        fechaInicio
+        fechaFin
+        fechaFinClases
+        estado
       }
     }
-    ${PeriodoLectivo.periodoLectivoCompleteFragment}
   `;
 
   static getById = gql`
     query getById($id: ID!) {
       periodoLectivo(id: $id) {
-        ...PeriodoLectivo
+        id
+        nombre
+        fechaInicio
+        fechaFin
+        fechaFinClases
+        estado
         observaciones
       }
     }
-
-    ${PeriodoLectivo.periodoLectivoCompleteFragment}
   `;
 
   static create = gql`

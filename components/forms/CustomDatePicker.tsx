@@ -65,7 +65,7 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
           <Calendar
             className={classNames({
               [className]: true,
-              'w-100': true,
+              'w-100  p-inputtext-sm': true,
               'p-invalid': !!errors[name],
             })}
             inputClassName="w-100"

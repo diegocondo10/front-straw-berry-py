@@ -6,15 +6,8 @@ import FieldWrapper from './FieldWrapper';
 import { BaseFormFieldProps } from './types';
 
 const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
-  const {
-    label,
-    rules,
-    name,
-    onChange: onChangeFn,
-    placeholder,
-    className,
-    ...rest
-  } = props;
+  const { label, rules, name, ...rest } = props;
+  const { onChange: onChangeFn, placeholder, className } = props;
 
   const { control, errors } = useFormContext();
 
@@ -29,10 +22,14 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
           // @ts-ignore
           <MultiSelect
             value={value}
-            onChange={({ value: selecteds }) => onChange(selecteds)}
+            onChange={({ value: selecteds }) => {
+              onChangeFn && onChangeFn(selecteds);
+              onChange(selecteds);
+            }}
             placeholder={placeholder || 'Seleccione'}
             className={classnames({
-              'w-100': true,
+              [className]: true,
+              'w-100 p-inputtext-sm': true,
               'p-invalid': !!errors[name],
             })}
             {...rest}

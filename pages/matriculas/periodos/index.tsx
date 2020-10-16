@@ -25,6 +25,8 @@ const PeriodosLectivosContainer = () => {
     </div>
   );
 
+  console.log(data);
+
   return (
     <PrivateLayout title="Periodos Lectivos" loading={loading}>
       <main className="container-fluid">
@@ -75,7 +77,6 @@ const PeriodosLectivosContainer = () => {
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
               })}
             </DataTable>
-         
           </div>
         </div>
       </main>

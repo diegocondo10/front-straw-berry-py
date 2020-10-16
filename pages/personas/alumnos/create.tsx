@@ -6,9 +6,45 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
+const defaultValue = {
+  persona: '1',
+  padre: {
+    identificacion: '123123123',
+    primerNombre: 'sfdasdfsadfasdf',
+    segundoNombre: 'SDFASDFASDF',
+    primerApellido: 'ASDFASDFASDF',
+    segundoApellido: 'dsfasdfasdfasd',
+    ocupacion: 'sdfasdfasdasdf',
+    direccion: 'SADFASDFASDF',
+    telefono: '123112341234',
+    celular: '123212341234',
+  },
+  madre: {
+    identificacion: '213412341234123',
+    primerNombre: 'dsfasdasdf',
+    segundoNombre: 'dafasdfa',
+    primerApellido: 'asdf',
+    segundoApellido: 'adsfasdfasdf',
+    ocupacion: 'asdfsadf',
+    direccion: 'sadfsadf',
+    telefono: '21312312',
+    celular: '123123123',
+  },
+  contactoEmergencia: {
+    identificacion: '34213412',
+    primerNombre: 'dsafasda',
+    segundoNombre: 'asfasdf',
+    primerApellido: 'asdfasdfadsf',
+    segundoApellido: 'sdfasfasd',
+    telefono: '1231212',
+    celular: '123123',
+  },
+};
+
 const CreateAlumnoContainer = ({ items, title }) => {
   const methods = useForm({
     mode: 'onChange',
+    defaultValues: defaultValue,
   });
 
   const { loading, data } = useQuery(Persona.getAllCustom('str'));
@@ -16,10 +52,10 @@ const CreateAlumnoContainer = ({ items, title }) => {
   const router = useRouter();
 
   const onSubmit = async (input) => {
-    console.log(input);
+    console.log(JSON.stringify(input));
 
-    //const res = await create({ variables: { input } });
-
+    const res = await create({ variables: { input } });
+    console.log(res);
     //router.push('/personas/alumnos');
   };
 

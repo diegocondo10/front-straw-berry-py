@@ -23,7 +23,7 @@ const CustomTextArea = (props?: CustomTextAreaProps) => {
             value={value}
             className={classnames({
               [className]: true,
-              'w-100': true,
+              'w-100 p-inputtext-sm': true,
               'p-invalid': !!errors[name],
             })}
             onChange={({ currentTarget }) => {
