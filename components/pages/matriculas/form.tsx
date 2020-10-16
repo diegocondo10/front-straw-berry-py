@@ -39,7 +39,9 @@ const MatriculaFormContainer = ({
   console.log(alumnos);
 
   const matricula = {
-    apellidos: 'CONDO ORTIZ',
+    cedula: '11111111111',
+    apellidos: 'RODRIGUEZ GUZMAN',
+    nombres: 'MARCOS DAVID'
   };
 
   return (
@@ -134,9 +136,56 @@ const MatriculaFormContainer = ({
           </div>
 
           <div className="col-md-6 jumbotron border border-blue rounded h-100 ">
-            <h4>Datos personales:</h4>
+            <h4 className="text-underline">Datos personales:</h4>
+            <h6>CÉDULA: {matricula?.cedula}</h6>
             <h6>APELLIDOS: {matricula?.apellidos}</h6>
+            <h6>NOMBRES: {matricula?.nombres}</h6>
+            <h6>LUGAR: </h6>
+            <h6>FECHA DE NACIMIENTO: </h6>
+            <h6>EDAD: </h6>
+            <h6>CARNET CONADIS: </h6>
+            <h6>DISCAPACIDAD: </h6>
+            <h6>CORREO ELECTRÓNICO: </h6>
+            <h6>DIRECCIÓN DOMICILIARIA: </h6>
+            <h6>PROVINCIA: </h6>
+            <h6>CANTÓN: </h6>
+            <h6>PARROQUIA: </h6>
+            <h6>SECTOR: </h6>
+            <h6>TELÉFONO: </h6>
+            <h4 className="text-underline">Datos Del Padre:</h4>
+            <h6>CÉDULA: </h6>
             <h6>NOMBRES: </h6>
+            <h6>APELLIDOS: </h6>
+            <h6>OCUPACIÓN: </h6>
+            <h6>DIRECCIÓN: </h6>
+            <h6>TELÉFONO: </h6>
+            <h6>CELULAR: </h6>
+            <h4 className="text-underline">Datos De la Madre:</h4>
+            <h6>CÉDULA: </h6>
+            <h6>NOMBRES: </h6>
+            <h6>APELLIDOS: </h6>
+            <h6>OCUPACIÓN: </h6>
+            <h6>DIRECCIÓN: </h6>
+            <h6>TELÉFONO: </h6>
+            <h6>CELULAR: </h6>
+            <h4 className="text-underline">Datos De Emergencia:</h4>
+            <h6>EN CASO DE EMERGENCIA COMUNICAR A: </h6>
+            <h6>CÉDULA: </h6>
+            <h6>NOMBRES: </h6>
+            <h6>APELLIDOS: </h6>
+            <h6>TELÉFONO: </h6>
+            <h6>CELULAR: </h6>
+            <h4 className="text-underline">Datos Del Alumno:</h4>
+            <h6>NIVEL AL QUE ASISTE: </h6>
+            <h6>PROMOVIDO: </h6>
+            <h6>TRATAMIENTO QUE RECIBE: </h6>
+            <h6>DIAGNÓSTICO: </h6>
+            <h6>MATRÍCULA: </h6>
+            <h6>APORTE VOLUNTARIO: </h6>
+            <h6>FECHA: </h6>
+            <h6>NOMBRE DEL REPRESENTANTE: </h6>
+            <h6>FIRMA.......</h6>
+            <h6>RELACIÓN....... </h6>
           </div>
         </div>
       </FormProvider>
