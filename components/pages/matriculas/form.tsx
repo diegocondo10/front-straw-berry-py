@@ -48,7 +48,7 @@ const MatriculaFormContainer = ({
     return (
       <div className={className}>
         <h6>
-          {label}: {value}
+          <strong>{label}: </strong>{value}
         </h6>
       </div>
     );
@@ -157,7 +157,7 @@ const MatriculaFormContainer = ({
 
               <DetailItemView
                 className="p-md-6"
-                label="PELLIDOS"
+                label="APELLIDOS"
                 value={matricula?.apellidos}
               />
               <DetailItemView
@@ -165,53 +165,219 @@ const MatriculaFormContainer = ({
                 label="NOMBRES"
                 value={matricula?.nombres}
               />
+              <DetailItemView
+                className="p-md-12"
+                label="LUGAR"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="FECHA DE NACIMIENTO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="EDAD"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="DISCAPACIDAD"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CARNET CONADIS"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="DIRECCIÓN DOMICILIARIA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="PROVINCIA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CANTÓN"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="PARROQUIA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="SECTOR"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CORREO ELECTRÓNICO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="TELÉFONO"
+                value={matricula?.nombres}
+              />
 
-              <h6>LUGAR: </h6>
-              <h6>FECHA DE NACIMIENTO: </h6>
-              <h6>EDAD: </h6>
-              <h6>CARNET CONADIS: </h6>
-              <h6>DISCAPACIDAD: </h6>
-              <h6>CORREO ELECTRÓNICO: </h6>
-              <h6>DIRECCIÓN DOMICILIARIA: </h6>
-              <h6>PROVINCIA: </h6>
-              <h6>CANTÓN: </h6>
-              <h6>PARROQUIA: </h6>
-              <h6>SECTOR: </h6>
-              <h6>TELÉFONO: </h6>
               <h4 className="text-underline">Datos Del Padre:</h4>
-              <h6>CÉDULA: </h6>
-              <h6>NOMBRES: </h6>
-              <h6>APELLIDOS: </h6>
-              <h6>OCUPACIÓN: </h6>
-              <h6>DIRECCIÓN: </h6>
-              <h6>TELÉFONO: </h6>
-              <h6>CELULAR: </h6>
+              <DetailItemView
+                className="p-md-12"
+                label="CÉDULA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="NOMBRES"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="APELLIDOS"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="OCUPACIÓN"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="DIRECCIÓN"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="TELÉFONO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CELULAR"
+                value={matricula?.nombres}
+              />
+
               <h4 className="text-underline">Datos De la Madre:</h4>
-              <h6>CÉDULA: </h6>
-              <h6>NOMBRES: </h6>
-              <h6>APELLIDOS: </h6>
-              <h6>OCUPACIÓN: </h6>
-              <h6>DIRECCIÓN: </h6>
-              <h6>TELÉFONO: </h6>
-              <h6>CELULAR: </h6>
-              <h4 className="text-underline">Datos De Emergencia:</h4>
-              <h6>EN CASO DE EMERGENCIA COMUNICAR A: </h6>
-              <h6>CÉDULA: </h6>
-              <h6>NOMBRES: </h6>
-              <h6>APELLIDOS: </h6>
-              <h6>TELÉFONO: </h6>
-              <h6>CELULAR: </h6>
+              <DetailItemView
+                className="p-md-12"
+                label="CÉDULA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="NOMBRES"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="APELLIDOS"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="OCUPACIÓN"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="DIRECCIÓN"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="TELÉFONO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CELULAR"
+                value={matricula?.nombres}
+              />
+
+              <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
+              <DetailItemView
+                className="p-md-12"
+                label="CÉDULA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="NOMBRES"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="APELLIDOS"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="TELÉFONO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="CELULAR"
+                value={matricula?.nombres}
+              />
+
               <h4 className="text-underline">Datos Del Alumno:</h4>
-              <h6>NIVEL AL QUE ASISTE: </h6>
-              <h6>PROMOVIDO: </h6>
-              <h6>TRATAMIENTO QUE RECIBE: </h6>
-              <h6>DIAGNÓSTICO: </h6>
-              <h6>MATRÍCULA: </h6>
-              <h6>APORTE VOLUNTARIO: </h6>
-              <h6>FECHA: </h6>
-              <h6>NOMBRE DEL REPRESENTANTE: </h6>
-              <h6>FIRMA.......</h6>
-              <h6>RELACIÓN....... </h6>
+              <DetailItemView
+                className="p-md-12"
+                label="NIVEL AL QUE ASISTE"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="PROMOVIDO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="TRATAMIENTO QUE RECIBE"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-12"
+                label="DIAGNÓSTICO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="MATRÍCULA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="APORTE VOLUNTARIO"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="FECHA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="NOMBRE DEL REPRESENTANTE"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="FIRMA"
+                value={matricula?.nombres}
+              />
+              <DetailItemView
+                className="p-md-6"
+                label="RELACIÓN"
+                value={matricula?.nombres}
+              />
             </div>
           </div>
         </div>
