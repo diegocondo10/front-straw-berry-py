@@ -41,9 +41,30 @@ const MatriculaFormContainer = ({
   const matricula = {
     cedula: '11111111111',
     apellidos: 'RODRIGUEZ GUZMAN',
-    nombres: 'MARCOS DAVIDDAVIDDAVID',
+    nombres: 'ALEJANDRO JUAN',
     lugar: 'Cuenca',
-    fechaNacimiento: '17/10/2020'
+    fechaNacimiento: '17/10/2020',
+    edad: '20',
+    discapacidad: 'Parálisis Cerebral',
+    carnet: '12121212121212',
+    direccion: 'Av. de las Américas',
+    provincia: 'Azuay',
+    canton: 'Cuenca',
+    parroquia: 'Baños',
+    sector: 'Colegio Borja',
+    correoElectronico: 'juan@gmail.com',
+    telefono: '4258963',
+    ocupacion: 'Trabajador/a',
+    celular: '0961842587',
+    nivelAsiste: 'tercero',
+    promovido: 'cuarto',
+    tratamiento: 'Con medicamentos',
+    diagnostico: 'Con hipertensión',
+    matricula: '1',
+    aporte: '$10',
+    nombreRepresentante: 'María Lucía',
+    firma: 'x-x-x-x-x-x',
+    relacion: 'x-x-x-x-x-x'
   };
 
   const DetailItemView = ({ className, label, value }) => {
@@ -170,69 +191,69 @@ const MatriculaFormContainer = ({
               <DetailItemView
                 className="p-md-12"
                 label="LUGAR"
-                value={matricula?.nombres}
+                value={matricula?.lugar}
               />
               <DetailItemView
                 className="p-md-6"
                 label="FECHA DE NACIMIENTO"
-                value={matricula?.nombres}
+                value={matricula?.fechaNacimiento}
               />
               <DetailItemView
                 className="p-md-6"
                 label="EDAD"
-                value={matricula?.nombres}
+                value={matricula?.edad}
               />
               <DetailItemView
                 className="p-md-6"
                 label="DISCAPACIDAD"
-                value={matricula?.nombres}
+                value={matricula?.discapacidad}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CARNET CONADIS"
-                value={matricula?.nombres}
+                value={matricula?.carnet}
               />
               <DetailItemView
                 className="p-md-12"
                 label="DIRECCIÓN DOMICILIARIA"
-                value={matricula?.nombres}
+                value={matricula?.direccion}
               />
               <DetailItemView
                 className="p-md-6"
                 label="PROVINCIA"
-                value={matricula?.nombres}
+                value={matricula?.provincia}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CANTÓN"
-                value={matricula?.nombres}
+                value={matricula?.canton}
               />
               <DetailItemView
                 className="p-md-6"
                 label="PARROQUIA"
-                value={matricula?.nombres}
+                value={matricula?.parroquia}
               />
               <DetailItemView
                 className="p-md-6"
                 label="SECTOR"
-                value={matricula?.nombres}
+                value={matricula?.sector}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CORREO ELECTRÓNICO"
-                value={matricula?.nombres}
+                value={matricula?.correoElectronico}
               />
               <DetailItemView
                 className="p-md-6"
                 label="TELÉFONO"
-                value={matricula?.nombres}
+                value={matricula?.telefono}
               />
 
               <h4 className="text-underline">Datos Del Padre:</h4>
               <DetailItemView
                 className="p-md-12"
                 label="CÉDULA"
-                value={matricula?.nombres}
+                value={matricula?.cedula}
               />
               <DetailItemView
                 className="p-md-6"
@@ -242,34 +263,34 @@ const MatriculaFormContainer = ({
               <DetailItemView
                 className="p-md-6"
                 label="APELLIDOS"
-                value={matricula?.nombres}
+                value={matricula?.apellidos}
               />
               <DetailItemView
                 className="p-md-12"
                 label="OCUPACIÓN"
-                value={matricula?.nombres}
+                value={matricula?.ocupacion}
               />
               <DetailItemView
                 className="p-md-12"
                 label="DIRECCIÓN"
-                value={matricula?.nombres}
+                value={matricula?.direccion}
               />
               <DetailItemView
                 className="p-md-6"
                 label="TELÉFONO"
-                value={matricula?.nombres}
+                value={matricula?.telefono}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CELULAR"
-                value={matricula?.nombres}
+                value={matricula?.celular}
               />
 
               <h4 className="text-underline">Datos De la Madre:</h4>
               <DetailItemView
                 className="p-md-12"
                 label="CÉDULA"
-                value={matricula?.nombres}
+                value={matricula?.cedula}
               />
               <DetailItemView
                 className="p-md-6"
@@ -279,34 +300,34 @@ const MatriculaFormContainer = ({
               <DetailItemView
                 className="p-md-6"
                 label="APELLIDOS"
-                value={matricula?.nombres}
+                value={matricula?.apellidos}
               />
               <DetailItemView
                 className="p-md-12"
                 label="OCUPACIÓN"
-                value={matricula?.nombres}
+                value={matricula?.ocupacion}
               />
               <DetailItemView
                 className="p-md-12"
                 label="DIRECCIÓN"
-                value={matricula?.nombres}
+                value={matricula?.direccion}
               />
               <DetailItemView
                 className="p-md-6"
                 label="TELÉFONO"
-                value={matricula?.nombres}
+                value={matricula?.telefono}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CELULAR"
-                value={matricula?.nombres}
+                value={matricula?.celular}
               />
 
               <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
               <DetailItemView
                 className="p-md-12"
                 label="CÉDULA"
-                value={matricula?.nombres}
+                value={matricula?.cedula}
               />
               <DetailItemView
                 className="p-md-6"
@@ -316,69 +337,69 @@ const MatriculaFormContainer = ({
               <DetailItemView
                 className="p-md-6"
                 label="APELLIDOS"
-                value={matricula?.nombres}
+                value={matricula?.apellidos}
               />
               <DetailItemView
                 className="p-md-6"
                 label="TELÉFONO"
-                value={matricula?.nombres}
+                value={matricula?.telefono}
               />
               <DetailItemView
                 className="p-md-6"
                 label="CELULAR"
-                value={matricula?.nombres}
+                value={matricula?.celular}
               />
 
               <h4 className="text-underline">Datos Del Alumno:</h4>
               <DetailItemView
                 className="p-md-12"
                 label="NIVEL AL QUE ASISTE"
-                value={matricula?.nombres}
+                value={matricula?.nivelAsiste}
               />
               <DetailItemView
                 className="p-md-12"
                 label="PROMOVIDO"
-                value={matricula?.nombres}
+                value={matricula?.promovido}
               />
               <DetailItemView
                 className="p-md-12"
                 label="TRATAMIENTO QUE RECIBE"
-                value={matricula?.nombres}
+                value={matricula?.tratamiento}
               />
               <DetailItemView
                 className="p-md-12"
                 label="DIAGNÓSTICO"
-                value={matricula?.nombres}
+                value={matricula?.diagnostico}
               />
               <DetailItemView
                 className="p-md-6"
                 label="MATRÍCULA"
-                value={matricula?.nombres}
+                value={matricula?.matricula}
               />
               <DetailItemView
                 className="p-md-6"
                 label="APORTE VOLUNTARIO"
-                value={matricula?.nombres}
+                value={matricula?.aporte}
               />
               <DetailItemView
                 className="p-md-6"
                 label="FECHA"
-                value={matricula?.nombres}
+                value={matricula?.fecha}
               />
               <DetailItemView
                 className="p-md-6"
                 label="NOMBRE DEL REPRESENTANTE"
-                value={matricula?.nombres}
+                value={matricula?.nombreRepresentante}
               />
               <DetailItemView
                 className="p-md-6"
                 label="FIRMA"
-                value={matricula?.nombres}
+                value={matricula?.firma}
               />
               <DetailItemView
                 className="p-md-6"
                 label="RELACIÓN"
-                value={matricula?.nombres}
+                value={matricula?.relacion}
               />
             </div>
           </div>
