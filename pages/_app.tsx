@@ -1,8 +1,14 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import '@assets/css/dataTable.scss';
 import '@assets/css/navbar.scss';
 import '@assets/css/root-styles.scss';
 import '@assets/css/vars.scss';
+import { Usuario } from '@services/auth.service';
 import '@styles/_loading.scss';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
@@ -14,18 +20,38 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/mdc-light-indigo/theme.css';
 import { ToastProvider } from 'react-toast-notifications';
+import { setContext } from '@apollo/client/link/context';
 
 moment.locale('es');
 
+//usuario?.token
+
+const link = createHttpLink({
+  uri: 'http://localhost:8000/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+
+  const usuario = Usuario.getStorageData();
+
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: usuario ? `JWT ${usuario.token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  //uri: 'http://localhost:8000/graphql',
-  uri: 'https://straw-berry-py.herokuapp.com/graphql',
+  link: authLink.concat(link),
+  //uri: 'https://straw-berry-py.herokuapp.com/graphql',
   cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {
     watchQuery: {
       fetchPolicy: 'cache-and-network',
-      errorPolicy: 'ignore',
     },
     query: {
       fetchPolicy: 'no-cache',

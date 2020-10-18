@@ -6,43 +6,41 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 const CreateMatriculaContainer = () => {
-    const { loading, data } = useQuery(Matricula.getDataForm);
+  const { loading, data } = useQuery(Matricula.getDataForm);
 
-    const [create, { loading: loadingCreate }] = useMutation(Matricula.create);
+  const [create, { loading: loadingCreate }] = useMutation(Matricula.create);
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const items = [
-        {
+  const onSubmit = async (input) => {
+    console.log(input);
+
+    await create({ variables: { input } });
+
+    router.push('/matriculas');
+  };
+
+  return (
+    <PrivateLayout title="Crear Matricula" loading={loading || loadingCreate}>
+      <MatriculaFormContainer
+        title="Crear Matricula"
+        items={[
+          {
             title: 'Matricula',
             href: '/matriculas',
-        },
-        {
+          },
+          {
             title: 'Crear Matricula',
             active: true,
-        },
-    ];
-
-    const onSubmit = async (input) => {
-        console.log(input);
-
-        //await create({ variables: { input } });
-
-        router.push('/matriculas');
-    };
-
-    return (
-        <PrivateLayout title="Crear Matricula" loading={loading}>
-            <MatriculaFormContainer
-                title="Crear Matricula"
-                items={items}
-                onSubmit={onSubmit}
-                //loading={loadingCreate}
-                aulas={data?.aulas}
-                alumnos={data?.alumnos}
-            />
-        </PrivateLayout>
-    );
+          },
+        ]}
+        onSubmit={onSubmit}
+        //loading={loadingCreate}
+        aulas={data?.aulas}
+        alumnos={data?.alumnos}
+      />
+    </PrivateLayout>
+  );
 };
 
 export default CreateMatriculaContainer;

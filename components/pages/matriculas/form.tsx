@@ -36,9 +36,9 @@ const MatriculaFormContainer = ({
   };
 
   const { handleSubmit, watch } = methods;
-  console.log(alumnos);
 
   const matricula = {
+    fecha:'06-01-2020',
     cedula: '11111111111',
     apellidos: 'RODRIGUEZ GUZMAN',
     nombres: 'ALEJANDRO JUAN',
@@ -64,14 +64,15 @@ const MatriculaFormContainer = ({
     aporte: '$10',
     nombreRepresentante: 'María Lucía',
     firma: 'x-x-x-x-x-x',
-    relacion: 'x-x-x-x-x-x'
+    relacion: 'x-x-x-x-x-x',
   };
 
   const DetailItemView = ({ className, label, value }) => {
     return (
       <div className={className}>
         <h6>
-          <strong>{label}: </strong>{value}
+          <strong>{label}: </strong>
+          {value}
         </h6>
       </div>
     );
@@ -127,7 +128,7 @@ const MatriculaFormContainer = ({
                     }}
                   />
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <CustomTextInput
                     label="Matrícula:"
                     name="matricula"
@@ -136,10 +137,20 @@ const MatriculaFormContainer = ({
                     }}
                   />
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <CustomInputNumber
                     label="Aporte Voluntario:"
                     name="aporteVoluntario"
+                    mode="currency"
+                    currency="USD"
+                    locale="en-US"
+                    showButtons
+                    buttonLayout="horizontal"
+                    step={0.25}
+                    decrementButtonClassName="p-button-danger"
+                    incrementButtonClassName="p-button-success"
+                    incrementButtonIcon="pi pi-plus"
+                    decrementButtonIcon="pi pi-minus"
                     rules={{
                       required: 'Este campo es obligatorio',
                     }}

@@ -9,7 +9,6 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const UsuarioDetailContainer = ({ id, items }) => {
-  console.log('ID: ', id);
   const { loading, data } = useQuery(Usuario.getById, { variables: { id } });
 
   const [deleteUsuario] = useMutation(Usuario.delete);

@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { b64ToObject, objectToB64 } from '@utils/funciones';
 
 export class Aplicacion {}
 

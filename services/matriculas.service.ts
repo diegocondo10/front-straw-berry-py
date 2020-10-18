@@ -260,32 +260,27 @@ export class Matricula {
   `;
 
   static getAll = gql`
-    query getAll {
+    query getMatriculas {
       matriculas {
         id
-        tratamiento
-        diagnostico
-        matricula
-        numeroMatricula
-        aporteVoluntario
-        diagnosticoFinal
-        alumnos {
+        aula {
+          id
+          nombre
+        }
+
+        alumno {
           id
           persona {
             id
             str
           }
         }
-        aulas {
-          id
-          nombre
-        }
       }
     }
   `;
 
   static getById = gql`
-    query getById($id: ID!) {
+    query getMatriculaById($id: ID!) {
       matricula(id: $id) {
         id
         tratamiento
@@ -294,19 +289,30 @@ export class Matricula {
         numeroMatricula
         aporteVoluntario
         diagnosticoFinal
-        alumnos {
+        aula {
+          id
+          nombre
+        }
+        alumno {
           id
           persona {
             id
             str
           }
         }
-        aulas {
+      }
+
+      aulas {
+        id
+        nombre
+      }
+      alumnos {
+        id
+        persona {
           id
-          nombre
+          str
         }
       }
-      ${Matricula.dataFormFragment}
     }
   `;
 
@@ -327,22 +333,22 @@ export class Matricula {
   `;
 
   static create = gql`
-    mutation create($input: CreateMatriculaInput!) {
-      createMatricula(input: $input) {
-        matricula {
+    mutation createMatricula($input: CreateAlumnoAulaInput!) {
+      createAlumnoAula(input: $input) {
+        alumnoAula {
           id
-          createdAt
+          authEstado
         }
       }
     }
   `;
 
   static update = gql`
-    mutation update($input: UpdateMatriculaInput!, $id: ID!) {
-      updateMatricula(input: $input, id: $id) {
-        matricula {
+    mutation updateMatricula($input: UpdateAlumnoAulaInput!, $id: ID!) {
+      updateAlumnoAula(input: $input, id: $id) {
+        alumnoAula {
           id
-          createdAt
+          authEstado
         }
       }
     }
