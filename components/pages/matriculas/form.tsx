@@ -42,6 +42,8 @@ const MatriculaFormContainer = ({
     cedula: '11111111111',
     apellidos: 'RODRIGUEZ GUZMAN',
     nombres: 'MARCOS DAVIDDAVIDDAVID',
+    lugar: 'Cuenca',
+    fechaNacimiento: '17/10/2020'
   };
 
   const DetailItemView = ({ className, label, value }) => {
