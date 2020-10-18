@@ -48,17 +48,6 @@ const MatriculasContainer = () => {
                             reorderableColumns
                         >
                             {IndexColumn()}
-                            <Column header="Tratamiento" field="tratamiento" sortable filter />
-
-                            <Column header="Diagnóstico" field="diagnostico" sortable filter />
-
-                            <Column header="Matrícula" field="matricula" sortable filter />
-
-                            <Column header="Número Matrícula" field="numeroMatricula" sortable filter />
-
-                            <Column header="Aporte Voluntario" field="aporteVoluntario" sortable filter />
-
-                            <Column header="Diagnóstico Final" field="diagnosticoFinal" sortable filter />
 
                             <Column header="Alumnos" sortable filter
                                 bodyStyle={{ padding: '1rem 0 0 0' }}
@@ -74,6 +63,15 @@ const MatriculasContainer = () => {
                                     );
                                 }}
                             />
+
+                            <Column header="Aulas" field="aula" sortable filter />
+
+                            <Column header="Matrícula" field="matricula" sortable filter />
+
+                            <Column header="Número Matrícula" field="numeroMatricula" sortable filter />
+
+                            <Column header="Aporte Voluntario" field="aporteVoluntario" sortable filter />
+
                             {OptionesColumn({
                                 editPath: ({ id }) => `/matriculas/update?id=${id}`, detailPath: ({ id }) => `/matriculas/detail?id=${id}`,
                             })}

@@ -138,15 +138,6 @@ const MatriculaFormContainer = ({
                 </div>
                 <div className="col-md-6">
                   <CustomInputNumber
-                    label="Número de Matrícula:"
-                    name="numeroMatricula"
-                    rules={{
-                      required: 'Este campo es obligatorio',
-                    }}
-                  />
-                </div>
-                <div className="col-md-12">
-                  <CustomInputNumber
                     label="Aporte Voluntario:"
                     name="aporteVoluntario"
                     rules={{
