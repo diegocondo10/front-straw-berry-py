@@ -1,3 +1,7 @@
+fragment Aula on AulaType {
+  id
+  nombre
+}
 query getMatriculaById($id: ID!) {
   matricula(id: $id) {
     id
@@ -8,8 +12,7 @@ query getMatriculaById($id: ID!) {
     aporteVoluntario
     diagnosticoFinal
     aula {
-      id
-      nombre
+      ...Aula
     }
     alumno {
       id
@@ -37,8 +40,7 @@ query getMatriculas {
   matriculas {
     id
     aula {
-      id
-      nombre
+      ...Aula
     }
 
     alumno {

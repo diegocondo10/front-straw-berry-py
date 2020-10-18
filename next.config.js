@@ -7,7 +7,7 @@ module.exports = {
       ...config.resolve.extensions,
       ...['.gql', '.graphql'],
     ];
-    console.log('CONFIG: ', config.resolve.extensions);
+    //console.log('CONFIG: ', config.resolve.extensions);
 
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
