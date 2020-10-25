@@ -7,10 +7,24 @@ import React, { useEffect } from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
+const Cotizacion = {
+  valoresPagar: {
+    total: 10,
+  },
+
+  producto: {
+    nombre: 'AIG',
+    categoria: {
+      nombre: 'Vehiculos',
+      id: 1,
+    },
+  },
+};
+
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
   const [login] = useMutation(Usuario.login);
-  const { addErrorToast } = useCustomToast();
+  const { addWarningToast } = useCustomToast();
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +43,7 @@ const LoginContainer = () => {
     });
     const { success, ...rest } = data.tokenAuth;
     if (!success) {
-      addErrorToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
+      addWarningToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
       return;
     }
     Usuario.storageData(rest);

@@ -27,7 +27,8 @@ moment.locale('es');
 //usuario?.token
 
 const link = createHttpLink({
-  uri: 'http://localhost:8000/graphql',
+  //uri: 'http://localhost:8000/graphql',
+  uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -46,7 +47,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(link),
-  //uri: 'https://straw-berry-py.herokuapp.com/graphql',
+
   cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {
