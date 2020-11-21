@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
-import Auth from '@graphql/Auth/queries.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
@@ -10,7 +10,7 @@ import React from 'react';
 import { GoPlus } from 'react-icons/go';
 
 const AplicacionesContainer = ({ breadCrumbItems }) => {
-  const { data, loading } = useQuery(Auth.getApps);
+  const { data, loading } = useQuery(AuthQueries.getApps);
 
   const header = (
     <div className="container-fluid my-2">

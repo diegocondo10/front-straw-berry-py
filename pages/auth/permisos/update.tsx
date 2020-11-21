@@ -1,23 +1,24 @@
 import { useQuery, useMutation } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
-import { Permiso } from '@services/auth.service';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import PermisoFormContainer from '@components/pages/auth/permisos/form';
 import { useRouter } from 'next/router';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const UpdatePermisoContainer = ({ title, items, id }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
 
-  const { data, loading } = useQuery(Permiso.queryForUpdate, {
+  const { data, loading } = useQuery(AuthQueries.queryForUpdatePermiso, {
     variables: { id },
     onCompleted: ({ permiso }) => {
       methods.reset(permiso);
     },
   });
 
-  const [updatePermiso] = useMutation(Permiso.updateMutation);
+  const [updatePermiso] = useMutation(AuthMutations.updatePermiso);
 
   const onSubmit = async (input) => {
     input.aplicacion = input.aplicacionId;

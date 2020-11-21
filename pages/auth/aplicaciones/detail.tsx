@@ -2,23 +2,22 @@ import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
-//import { DELETE_APP, GET_APP_BY_ID } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { toMoment } from 'utils/funciones';
-import Auth from '@graphql/Auth/queries.gql';
-import Auth2 from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const AplicacionDetailContainer = ({ breadCrumb, query: { id } }) => {
   const router = useRouter();
 
-  const { data, loading } = useQuery(Auth.getAppById, {
+  const { data, loading } = useQuery(AuthQueries.getAppById, {
     variables: { id },
     onError: (error) => router.push('/auth/aplicaciones'),
   });
 
-  const [deleteApp] = useMutation(Auth2.deleteApp, {
+  const [deleteApp] = useMutation(AuthMutations.deleteApp, {
     variables: { id },
     onError: () => router.push('/auth/aplicaciones'),
   });

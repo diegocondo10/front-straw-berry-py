@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
 import React from 'react';
-import { Rol } from '@services/auth.service';
 import { GoPlus } from 'react-icons/go';
 import Link from 'next/link';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';

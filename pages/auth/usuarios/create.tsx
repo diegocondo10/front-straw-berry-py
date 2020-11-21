@@ -5,14 +5,16 @@ import { Usuario } from '@services/auth.service';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreateUsuarioContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
 
-  const { data, loading } = useQuery(Usuario.getParametrosForm);
+  const { data, loading } = useQuery(AuthQueries.getParametrosForm);
 
-  const [create] = useMutation(Usuario.create);
+  const [create] = useMutation(AuthMutations.createUsuario);
 
   const onSubmit = async (input) => {
 

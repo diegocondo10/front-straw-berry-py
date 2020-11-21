@@ -2,17 +2,18 @@ import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
-import { Permiso, Rol } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button, Table } from 'react-bootstrap';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const DetailRolContainer = ({ items, id }) => {
   const history = useRouter();
 
-  const { data, loading } = useQuery(Rol.getById, { variables: { id } });
+  const { data, loading } = useQuery(AuthQueries.getByIdRol, { variables: { id } });
 
-  const [deletePermiso] = useMutation(Permiso.deleteMutation, { variables: { id } });
+  const [deletePermiso] = useMutation(AuthMutations.deletePermiso, { variables: { id } });
 
   const onClickEliminar = async () => {
     await deletePermiso();
