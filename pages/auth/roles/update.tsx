@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import RolFormContainer from '@components/pages/auth/roles/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Permiso, Rol } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

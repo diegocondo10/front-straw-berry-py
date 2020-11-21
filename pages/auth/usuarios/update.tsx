@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
