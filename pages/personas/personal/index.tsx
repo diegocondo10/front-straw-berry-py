@@ -1,16 +1,16 @@
-import React from 'react';
-import PrivateLayout from '@layouts/privateLayout';
+import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import PersonasQueries from '@graphql/Personas/queries.gql';
+import PrivateLayout from '@layouts/privateLayout';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React from 'react';
 import { GoPlus } from 'react-icons/go';
-import { useQuery } from '@apollo/client';
-import { Docente } from '@services/personas.service';
 
 const DocentesContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(Docente.getAll);
+  const { loading, data } = useQuery(PersonasQueries.);
 
   const header = (
     <div className="container-fluid my-2">

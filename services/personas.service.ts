@@ -164,15 +164,6 @@ export class Discapacidad {
 }
 
 export class Docente {
-  static personasNoDocentes = gql`
-    query personasNoDocentes {
-      personasNoDocentes {
-        id
-        str
-      }
-    }
-  `;
-
   static getByIdDetail = gql`
     query getByIdDetail($id: ID!) {
       docente(id: $id) {
@@ -180,20 +171,6 @@ export class Docente {
         titulo
         tipoTitulo
         observaciones
-        persona {
-          id
-          str
-        }
-      }
-    }
-  `;
-
-  static getAll = gql`
-    query getAll {
-      docentes {
-        id
-        titulo
-        tipoTitulo
         persona {
           id
           str

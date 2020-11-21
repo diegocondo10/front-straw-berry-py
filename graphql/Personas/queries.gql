@@ -1,0 +1,6 @@
+query getPersonasPersonalForm {
+  personas {
+    id
+    str
+  }
+}

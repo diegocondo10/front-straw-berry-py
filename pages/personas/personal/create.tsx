@@ -1,16 +1,17 @@
 import { useQuery, useMutation } from '@apollo/client';
-import DocenteFormContainer from '@components/pages/personas/docentes/form';
+import PersonalFormContainer from '@components/pages/personas/personal/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Docente } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PersonasQueries from '@graphql/Personas/queries.gql';
+import PersonasMutations from '@graphql/Personas/mutations.gql';
 
 const CreateDocenteContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { loading, data } = useQuery(Docente.personasNoDocentes);
-  const [create] = useMutation(Docente.create);
+  const { loading, data } = useQuery(PersonasQueries.getPersonasFormPersonal);
+  const [create] = useMutation(PersonasMutations.createPersonal);
   const router = useRouter();
 
   const onSubmit = async (input) => {
@@ -18,17 +19,17 @@ const CreateDocenteContainer = ({ items, title }) => {
     console.log('INPUT: ', input);
 
     await create({ variables: { input } });
-    router.push('/personas/docentes');
+    router.push('/personas/personal');
   };
 
   return (
     <PrivateLayout loading={loading}>
       <FormProvider {...methods}>
-        <DocenteFormContainer
+        <PersonalFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
-          personas={data?.personasNoDocentes}
+          personas={data?.personas}
         />
       </FormProvider>
     </PrivateLayout>
@@ -36,10 +37,10 @@ const CreateDocenteContainer = ({ items, title }) => {
 };
 
 CreateDocenteContainer.getInitialProps = () => {
-  let title = 'Agregar Docente';
+  let title = 'Agregar Personal';
   const items = [
-    { title: 'Docentes', href: '/personas/docentes' },
-    { title: 'Agregar Docente', active: true },
+    { title: 'Docentes', href: '/personas/personal' },
+    { title: 'Agregar Personal', active: true },
   ];
 
   return {

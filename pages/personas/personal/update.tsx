@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import DocenteFormContainer from '@components/pages/personas/docentes/form';
+import DocenteFormContainer from '@components/pages/personas/personal/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { Docente } from '@services/personas.service';
 import { useRouter } from 'next/router';
