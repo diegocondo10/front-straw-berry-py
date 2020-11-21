@@ -1,19 +1,18 @@
 import { useMutation } from '@apollo/client';
 import useCustomToast from '@hooks/useCustomToast';
 import PrivateLayout from '@layouts/privateLayout';
-import { CREATE_APP } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import AplicacionFormContainer from '@components/pages/auth/aplicaciones/form';
-import Auth from '@graphql/Auth/mutations.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreateAppContainer = ({ title, items }) => {
   const [loadBtn, setLoadBtn] = useState(false);
 
   const methods = useForm({ mode: 'onChange' });
 
-  const [createApp, { loading }] = useMutation(Auth.createAplicacion);
+  const [createApp, { loading }] = useMutation(AuthMutations.createAplicacion);
 
   const { addSuccessToast } = useCustomToast();
 

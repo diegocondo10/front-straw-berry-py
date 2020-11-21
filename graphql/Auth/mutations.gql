@@ -24,3 +24,73 @@ mutation createAplicacion($input: CreateAplicacionInput!) {
       deletedId
     }
   }
+
+
+    mutation createPermiso($input: CreatePermisoInput!) {
+      createPermiso(input: $input) {
+        permiso {
+          id
+          createdAt
+        }
+      }
+    }
+
+    mutation deletePermiso($id: ID!) {
+      deletePermiso(id: $id) {
+        found
+        deletedId
+      }
+    }
+
+    mutation updatePermiso($id: ID!, $input: UpdatePermisoInput!) {
+      updatePermiso(id: $id, input: $input) {
+        permiso {
+          id
+          createdAt
+        }
+      }
+    }
+
+
+    mutation createRol($input: CreateGrupoInput!) {
+      createGrupo(input: $input) {
+        grupo {
+          id
+          createdAt
+        }
+      }
+    }
+
+    mutation updateGrupo($id: ID!, $input: UpdateGrupoInput!) {
+      updateGrupo(id: $id, input: $input) {
+        grupo {
+          id
+          createdAt
+        }
+      }
+    }
+
+    mutation createUsuario($input: CreateUsuarioInput!) {
+      createUsuario(input: $input) {
+        usuario {
+          id
+          createdAt
+        }
+      }
+    }
+
+   mutation delete($id: ID!) {
+      deleteUsuario(id: $id) {
+        found
+        deletedId
+      }
+    }
+
+   mutation updateUsuario($id: ID!, $input: UpdateUsuarioInput!) {
+      updateUsuario(id: $id, input: $input) {
+        usuario {
+          id
+          createdAt
+        }
+      }
+    }

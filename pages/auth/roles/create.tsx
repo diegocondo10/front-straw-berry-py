@@ -1,18 +1,19 @@
 import { useMutation, useQuery } from '@apollo/client';
 import RolFormContainer from '@components/pages/auth/roles/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Permiso, Rol } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreateRolContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
 
-  const { data, loading } = useQuery(Permiso.getSimple);
+  const { data, loading } = useQuery(AuthQueries.getSimple);
 
-  const [createRol] = useMutation(Rol.create);
+  const [createRol] = useMutation(AuthMutations.createRol);
 
   const onSubmit = async (input) => {
     input.permisos = input.permisos.map((e) => e.id);

@@ -7,11 +7,13 @@ import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const UsuarioDetailContainer = ({ id, items }) => {
-  const { loading, data } = useQuery(Usuario.getById, { variables: { id } });
+  const { loading, data } = useQuery(AuthQueries.getUsuarioById, { variables: { id } });
 
-  const [deleteUsuario] = useMutation(Usuario.delete);
+  const [deleteUsuario] = useMutation(AuthMutations.delete);
 
   const router = useRouter();
 
