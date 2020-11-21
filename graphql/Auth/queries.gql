@@ -1,0 +1,7 @@
+query getApps {
+  aplicaciones {
+    id
+    nombre
+    descripcion
+  }
+}
