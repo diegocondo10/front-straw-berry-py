@@ -1,0 +1,26 @@
+mutation createAplicacion($input: CreateAplicacionInput!) {
+    createAplicacion(input: $input) {
+      aplicacion {
+        id
+        createdAt
+      }
+    }
+}
+
+  mutation updateApp($id: ID!, $input: UpdateAplicacionInput!) {
+    updateAplicacion(id: $id, input: $input) {
+      aplicacion {
+        id
+        updatedAt
+        nombre
+        descripcion
+      }
+    }
+  }
+
+  mutation deleteApp($id: ID!) {
+    deleteAplicacion(id: $id) {
+      found
+      deletedId
+    }
+  }

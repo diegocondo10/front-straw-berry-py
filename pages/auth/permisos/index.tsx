@@ -2,15 +2,16 @@ import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { GET_PERMISOS } from '@services/auth/auth.queries';
+//import { GET_PERMISOS } from '@services/auth/auth.queries';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
+import Auth from '@graphql/Auth/queries.gql';
 
 const PermisosContainer = ({ breadCrumbItems }) => {
-  const { data, loading } = useQuery(GET_PERMISOS);
+  const { data, loading } = useQuery(Auth.getPermisos);
 
   const header = (
     <div className="container-fluid my-2">
@@ -43,7 +44,7 @@ const PermisosContainer = ({ breadCrumbItems }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-              
+
             >
               {IndexColumn()}
               <Column header="Nombre" field="nombre" sortable filter reorderable />
@@ -69,7 +70,7 @@ const PermisosContainer = ({ breadCrumbItems }) => {
           </div>
         </div>
       </main>
-    
+
     </PrivateLayout>
   );
 };

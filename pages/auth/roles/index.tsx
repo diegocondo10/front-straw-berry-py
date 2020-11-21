@@ -8,9 +8,10 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import Auth from '@graphql/Auth/queries.gql';
 
 const RolesContainer = ({ items }) => {
-  const { data, loading } = useQuery(Rol.getAll);
+  const { data, loading } = useQuery(Auth.getRoles);
 
   const header = (
     <div className="container-fluid my-2">
@@ -43,7 +44,7 @@ const RolesContainer = ({ items }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-              
+
             >
               {IndexColumn()}
               <Column header="Nombre" field="nombre" sortable filter reorderable />

@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
-import { GET_APP_BY_ID, UPDATE_APP } from '@services/auth/auth.queries';
+//import { GET_APP_BY_ID, UPDATE_APP } from '@services/auth/auth.queries';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import AplicacionFormContainer from '../../../components/pages/auth/aplicaciones/form';
+import Auth from '@graphql/Auth/queries.gql';
+import Auth2 from '@graphql/Auth/mutations.gql';
 
 const UpdateAppContainer = ({ title, items, id }) => {
   const methods = useForm({ mode: 'onChange' });
@@ -12,7 +14,7 @@ const UpdateAppContainer = ({ title, items, id }) => {
 
   const router = useRouter();
 
-  const { loading: loadingQuery } = useQuery(GET_APP_BY_ID, {
+  const { loading: loadingQuery } = useQuery(Auth.getAppById, {
     variables: { id },
     onCompleted: ({ aplicacion }) => {
       methods.reset(aplicacion);
@@ -20,7 +22,7 @@ const UpdateAppContainer = ({ title, items, id }) => {
     onError: (error) => router.push('/auth/aplicaciones'),
   });
 
-  const [updateApp] = useMutation(UPDATE_APP, {
+  const [updateApp] = useMutation(Auth2.updateApp, {
     onError: () => router.push('/auth/aplicaciones'),
   });
 

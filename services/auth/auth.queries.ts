@@ -56,16 +56,16 @@ export const DELETE_APP = gql`
 `;
 
 export const GET_PERMISOS = gql`
-  query getPermisos {
-    permisos {
-      id
+query getPermisos {
+  permisos {
+    id
+    nombre
+    descripcion
+    aplicacion {
       nombre
-      descripcion
-      aplicacion {
-        nombre
-      }
     }
   }
+}
 `;
 
 export const GET_PERMISO_BY_ID = gql`

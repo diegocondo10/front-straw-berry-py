@@ -5,3 +5,46 @@ query getApps {
     descripcion
   }
 }
+
+  query getAppById($id: ID!) {
+    aplicacion(id: $id) {
+      id
+      createdAt
+      updatedAt
+      nombre
+      descripcion
+    }
+  }
+
+query getPermisos {
+    permisos {
+      id
+      nombre
+      descripcion
+      aplicacion {
+        nombre
+      }
+    }
+}
+
+query getRoles {
+      grupos {
+        id
+        nombre
+        descripcion
+      }
+}
+
+
+query getUsuarios {
+      usuarios {
+        id
+        username
+        persona {
+          id
+          str
+        }
+        numeroGrupos
+        numeroPermisos
+      }
+}

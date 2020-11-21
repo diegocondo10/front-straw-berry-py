@@ -8,9 +8,10 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
+import Auth from '@graphql/Auth/queries.gql';
 
 const UsuariosContainer = ({ items }) => {
-  const { data, loading } = useQuery(Usuario.getAll);
+  const { data, loading } = useQuery(Auth.getUsuarios);
 
   const header = (
     <div className="container-fluid my-2">
@@ -81,7 +82,7 @@ const UsuariosContainer = ({ items }) => {
             </DataTable>
           </div>
         </div>
-      
+
       </main>
     </PrivateLayout>
   );
