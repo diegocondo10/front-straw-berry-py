@@ -25,7 +25,6 @@ const MatriculasContainer = () => {
     </div>
   );
 
-  console.log(data);
   return (
     <PrivateLayout title="Matrículas" loading={loading}>
       <main className="container-fluid">

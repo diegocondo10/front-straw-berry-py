@@ -1,0 +1,4 @@
+fragment Aula on AulaType {
+  id
+  nombre
+}

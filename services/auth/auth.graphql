@@ -1,7 +1,4 @@
-fragment Aula on AulaType {
-  id
-  nombre
-}
+#import "./fragments.graphql"
 query getMatriculaById($id: ID!) {
   matricula(id: $id) {
     id

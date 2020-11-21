@@ -257,11 +257,7 @@ export class Usuario {
             primerNombre
             segundoNombre
             genero
-            sexo
-            callePrincipal
-            calleSecundaria
             telefono
-            celular
             correo
             tieneDiscapacidad
             carnetConadis

@@ -1,0 +1,222 @@
+Parametros
+    codigo
+    nombre
+    descripcion
+    valor JSON:any  {
+        
+    }
+
+Discapacidades
+    nombre
+    descripcion
+
+
+FuncionPersonal 
+    nombre: DOCENTE | SECRETARIA | CHOFER | TERAPEUTA
+    descripcion
+
+
+Especialidades
+    nombre
+    descripcion
+
+Persona
+    identificacion
+    primerNombre
+    segundoNombre
+    primerApellido
+    segundoApellido
+    telefono
+    celular
+    correo
+    foto
+    genero
+
+    direccion:JSON{
+        callePrincipal
+        calleSecundaria
+        numeroCasa
+        lugarReferencia
+        str
+    }
+
+    fechaNacimiento
+    tipoSangre
+    
+    tieneDiscapacidad: SI|NO
+
+    infoDiscapacidad:JSON{
+        discapacidades:JSON[]
+        carnetConadis
+        porcentajeDiscapacidad
+    }
+    ocupacion #TODO: REVISAR SI ES NECESARIO
+    nivelFormacion
+
+
+Personal
+    persona:FK
+    funcion:FK
+
+    info:JSON {
+        if funcion == DOCENTE:
+            titulo
+            tipoTitulo
+            areaDeTrabajo
+        if funcion === TERAPEUTA:
+            especialidades:[]
+            PRUEBA
+    }
+    
+    historico:JSON[]
+    descripcion
+
+
+Alumno
+    persona:FK
+    padre:JSON{
+        ocupacion
+        nivelFormacion
+    }
+    madre:JSON
+    representante:JSON
+    contatoEmergencia:JSON
+    observaciones:
+
+
+PeriodoLectivo
+    nombre
+    descripcion
+    fechaInicio
+    fechaFin
+    fechaFinClases
+    estado: ABIERTO | CERRADO
+    responsables:JSON[Personal]{
+        persona:
+        rol:
+    }
+
+Aula
+    grado
+    paralelo
+    nombre
+    docentes:MTM(Personal:DOCENTE)
+    pasantes:JSON[][
+            {
+                "persona": {
+                "identificacion": string
+                "primerNombre": string,
+                "segundoNombre": string,
+                "primerApellido": string ,
+                "segundoApellido": string,
+                "edad": number,
+                "sexo": string,
+                "correo": string,
+                "contacto": string
+                },
+                "institucion": string,
+                "tutor": {
+                "persona": {
+                    "identificacion": string,
+                    "primerNombre": string,
+                    "segundoNombre": string,
+                    "primerApellido": string,
+                    "segundoApellido": string
+                }
+                },
+                "especialidad": string,
+                "numHoras": number,
+                "historico": {
+                "fechaInicio": Date
+                }
+            }
+    ]
+    especialidades:JSON[]
+    periodoLectivo:FK(PeriodoLectivo)
+    jornada:MATUTINA
+
+    observaciones:RTF
+
+
+
+AlumnoAula(Matricula):
+    
+    --PASO 1
+    diagnosticoInicial:RTF
+    
+    --PASO 2
+    alumno:FK
+    aula:FK
+    numeroMatricula:String
+    aporteVoluntario:Decimal
+
+    --PASO 3
+    infoFaltas:JSON{
+        totalFaltas:Int
+        faltas:[
+            {
+                alumnoAula:FK(AlumnoAula)
+                fecha: 2020-10-15,
+                horaInicio?: 08:00
+                horaFin?: 10:00
+                justificacion: "COMENTARIO DEL PADRE DE FAMILIA"
+                usuario: obj    
+            }
+        ]
+    }
+
+
+    --PASO 4
+    diagnosticoFinal:"RTF
+
+
+ComponentesNota
+    nombre
+    descripcion
+
+NotalAlumno:
+    alumnoAula:FK(AlumnoAula)
+    componentes:JSON[][
+        {
+            componente:ComponentesNota,
+            actividades:[
+                {
+                    titulo:String
+                    descripcion:RTF
+                    puntaje:String
+                    fotos:[]
+                }
+            ]   
+        },
+        {
+            componente:ComponentesNota,
+            actividades:[
+                {
+                    titulo:String
+                    descripcion:RTF
+                    puntaje:String
+                    fotos:[]
+                }
+            ]   
+        }
+    ]
+    resultado:String
+    observaciones:RTF
+
+
+
+
+
+VisitaEmpresa
+	empresa: FK(Empresa)
+	motivoVisita
+	encargadoVisita: FK(Personal)
+	fechaVisita: Date
+	horarioVisita: JSON{
+		horaEntrada
+		horaSalida
+	}
+	observaciones
+
+
+
