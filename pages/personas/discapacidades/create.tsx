@@ -5,7 +5,7 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
 import DiscapacidadFormContainer from '@components/pages/personas/discapacidades/form';
-import { Discapacidad } from '@services/personas.service';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const CreateDiscapacidadContainer = ({
     title, items
@@ -14,7 +14,7 @@ const CreateDiscapacidadContainer = ({
 
     const methods = useForm({ mode: 'onChange' });
 
-    const [createDiscapacidad, { loading }] = useMutation(Discapacidad.create);
+    const [createDiscapacidad, { loading }] = useMutation(PersonaMutations.createDiscapacidad);
 
     const { addSuccessToast } = useCustomToast();
 

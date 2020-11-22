@@ -7,10 +7,10 @@ import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { GoPlus } from 'react-icons/go';
 import { useQuery } from '@apollo/client';
-import { Docente } from '@services/personas.service';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const DocentesContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(Docente.getAll);
+  const { loading, data } = useQuery(PersonaQueries.getAllDocente);
 
   const header = (
     <div className="container-fluid my-2">

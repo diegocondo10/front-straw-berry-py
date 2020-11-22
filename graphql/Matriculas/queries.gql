@@ -1,0 +1,160 @@
+    query getDataForm {
+      aulas {
+        id
+        nombre
+      }
+      alumnos {
+        id
+        persona {
+          id
+          str
+        }
+      }
+    }
+
+    query getMatriculaById($id: ID!) {
+      matricula(id: $id) {
+        id
+        tratamiento
+        diagnostico
+        matricula
+        numeroMatricula
+        aporteVoluntario
+        diagnosticoFinal
+        aula {
+          id
+          nombre
+        }
+        alumno {
+          id
+          persona {
+            id
+            str
+          }
+        }
+      }
+
+      aulas {
+        id
+        nombre
+      }
+      alumnos {
+        id
+        persona {
+          id
+          str
+        }
+      }
+    }
+
+    query getMatriculas {
+      matriculas {
+        id
+        aula {
+          id
+          nombre
+        }
+
+        alumno {
+          id
+          persona {
+            id
+            str
+          }
+        }
+      }
+    }
+
+    query getDataForm {
+      ${Aula.dataFormFragment}
+    }
+
+    query getAll {
+      aulas {
+        id
+        nombre
+        capacidad
+        grado
+        docentes {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        periodo {
+          id
+          nombre
+        }
+      }
+    }
+
+    query getByIdAula($id: ID!) {
+      aula(id: $id) {
+        id
+        nombre
+        periodo {
+          id
+          nombre
+        }
+        docentes {
+          id
+          persona {
+            id
+            str
+          }
+        }
+        grado
+        capacidad
+      }
+      ${Aula.dataFormFragment}
+    }
+
+    query getByIdMateria($id: ID!) {
+      materia(id: $id) {
+        id
+        nombre
+        codigo
+        grado
+        horasPresencial
+        descripcion
+        objetivo
+        objetivoEspecifico
+      }
+    }
+
+    query getAllMateria {
+      materias {
+        id
+        nombre
+        codigo
+        grado
+        horasPresencial
+        descripcion
+        objetivo
+        objetivoEspecifico
+      }
+    }
+
+    query getByIdPeriodo($id: ID!) {
+      periodoLectivo(id: $id) {
+        id
+        nombre
+        fechaInicio
+        fechaFin
+        fechaFinClases
+        estado
+        observaciones
+      }
+    }
+
+    query getAllPeriodo {
+      periodosLectivos {
+        id
+        nombre
+        fechaInicio
+        fechaFin
+        fechaFinClases
+        estado
+      }
+    }

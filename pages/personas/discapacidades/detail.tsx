@@ -6,16 +6,18 @@ import { BtnRegresar } from '@components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
 import { Button } from 'react-bootstrap';
 import { Discapacidad } from '@services/personas.service';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const DiscapacidadDetailContainer = ({ breadCrumb, query: { id } }) => {
     const router = useRouter();
 
-    const { data, loading } = useQuery(Discapacidad.getById, {
+    const { data, loading } = useQuery(PersonaQueries.getByIdDiscapacidad, {
         variables: { id },
         onError: (error) => router.push('/personas/discapacidades'),
     });
 
-    const [deleteDiscapacidad] = useMutation(Discapacidad.delete, {
+    const [deleteDiscapacidad] = useMutation(PersonaMutations.deleteDiscapacidad, {
         variables: { id },
         onError: () => router.push('/personas/discapacidades'),
     });

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useQuery, useMutation } from '@apollo/client';
-import { Discapacidad } from '@services/personas.service';
 import PrivateLayout from '@layouts/privateLayout';
 import DiscapacidadFormContainer from '@components/pages/personas/discapacidades/form';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const UpdateDiscapacidadContainer = ({ title, items, id }) => {
     const methods = useForm({ mode: 'onChange' });
@@ -12,7 +13,7 @@ const UpdateDiscapacidadContainer = ({ title, items, id }) => {
 
     const router = useRouter();
 
-    const { loading: loadingQuery } = useQuery(Discapacidad.getById, {
+    const { loading: loadingQuery } = useQuery(PersonaQueries.getByIdDiscapacidad, {
         variables: { id },
         onCompleted: ({ discapacidad }) => {
             methods.reset(discapacidad);
@@ -20,7 +21,7 @@ const UpdateDiscapacidadContainer = ({ title, items, id }) => {
         onError: (error) => router.push('/personas/discapacidades'),
     });
 
-    const [updateDiscapacidad] = useMutation(Discapacidad.update, {
+    const [updateDiscapacidad] = useMutation(PersonaMutations.updateDiscapacidad, {
         onError: () => router.push('/personas/discapacidades'),
     });
 

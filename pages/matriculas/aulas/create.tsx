@@ -1,14 +1,15 @@
 import { useMutation, useQuery } from '@apollo/client';
 import AulasFormContainer from '@components/pages/matriculas/aulas/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Aula } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const CreateAulaContainer = () => {
-  const { loading, data } = useQuery(Aula.getDataForm);
+  const { loading, data } = useQuery(MatriculaQueries.getDataForm);
 
-  const [create, { loading: loadingCreate }] = useMutation(Aula.create);
+  const [create, { loading: loadingCreate }] = useMutation(MatriculaMutations.createAula);
 
   const router = useRouter();
 

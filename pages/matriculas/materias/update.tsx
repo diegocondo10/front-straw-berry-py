@@ -1,16 +1,17 @@
 import { useMutation, useQuery } from '@apollo/client';
 import MateriaFormContainer from '@components/pages/matriculas/materias/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Materia } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const UpdateMateriaContainer = ({ title, id }) => {
-  const { loading, data } = useQuery(Materia.getById, {
+  const { loading, data } = useQuery(MatriculaQueries.getByIdMateria, {
     variables: { id },
   });
 
-  const [update] = useMutation(Materia.update);
+  const [update] = useMutation(MatriculaMutations.updateMateria);
 
   const router = useRouter();
 

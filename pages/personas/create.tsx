@@ -1,16 +1,17 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PersonaFormContainer from '@components/pages/personas/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Persona } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const CreatePersonaContainer = ({ items, title }) => {
-  const [create] = useMutation(Persona.create);
+  const [create] = useMutation(PersonaMutations.createPersona);
 
   const router = useRouter();
 
-  const { data, loading } = useQuery(Persona.getParametrosForm);
+  const { data, loading } = useQuery(PersonaQueries.getParametrosForm);
 
   const onSubmit = async (input) => {
     const res = await create({ variables: { input } });

@@ -3,13 +3,13 @@ import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
-import { PeriodoLectivo } from '@services/matriculas.service';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const PeriodosLectivosContainer = () => {
-  const { loading, data } = useQuery(PeriodoLectivo.getAll);
+  const { loading, data } = useQuery(MatriculaQueries.getAllPeriodo);
 
   const header = (
     <div className="container-fluid my-2">

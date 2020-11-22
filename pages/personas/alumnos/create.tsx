@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
 import AlumnoFormContainer from '@components/pages/personas/alumnos/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Alumno, Persona } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const defaultValue = {
   persona: '1',
@@ -47,8 +48,8 @@ const CreateAlumnoContainer = ({ items, title }) => {
     defaultValues: defaultValue,
   });
 
-  const { loading, data } = useQuery(Persona.getAllCustom('str'));
-  const [create] = useMutation(Alumno.create);
+  const { loading, data } = useQuery(PersonaQueries.getAllCustom('str'));
+  const [create] = useMutation(PersonaMutations.createAlumno);
   const router = useRouter();
 
   const onSubmit = async (input) => {

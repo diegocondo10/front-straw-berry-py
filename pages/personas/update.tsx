@@ -1,14 +1,15 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PersonaFormContainer from '@components/pages/personas/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Persona } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const UpdatePersonaContainer = ({ title, id }) => {
-  const { loading, data } = useQuery(Persona.getById, { variables: { id } });
+  const { loading, data } = useQuery(PersonaQueries.getByIdPersona, { variables: { id } });
 
-  const [update] = useMutation(Persona.update);
+  const [update] = useMutation(PersonaMutations.updatePersona);
 
   const router = useRouter();
 

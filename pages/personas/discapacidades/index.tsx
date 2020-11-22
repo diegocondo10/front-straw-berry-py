@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Discapacidad } from '@services/personas.service';
 import { GoPlus } from 'react-icons/go';
 import Link from 'next/link';
 import PrivateLayout from '@layouts/privateLayout';
@@ -8,9 +7,10 @@ import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const DiscapacidadesContainer = ({ breadCrumbItems }) => {
-    const { data, loading } = useQuery(Discapacidad.getAll);
+    const { data, loading } = useQuery(PersonaQueries.getAllDiscapacidad);
 
     const header = (
         <div className="container-fluid my-2">
@@ -43,7 +43,7 @@ const DiscapacidadesContainer = ({ breadCrumbItems }) => {
                                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                                 rows={10}
                                 rowsPerPageOptions={[10, 25, 50]}
-                                
+
                             >
                                 {IndexColumn()}
                                 <Column header="Nombre" field="nombre" sortable filter />

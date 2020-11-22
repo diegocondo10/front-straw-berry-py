@@ -7,10 +7,10 @@ import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import { Column } from 'primereact/column';
 import { useQuery } from '@apollo/client';
-import { Alumno } from '@services/personas.service';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const AlumnosContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(Alumno.getAll);
+  const { loading, data } = useQuery(PersonaQueries.getAllAlumno);
 
   const header = (
     <div className="container-fluid my-2">

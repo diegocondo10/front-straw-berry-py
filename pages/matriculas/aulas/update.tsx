@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
 import AulasFormContainer from '@components/pages/matriculas/aulas/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Aula } from '@services/matriculas.service';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const UpdateAulaContainer = ({ id }) => {
-  const { loading, data } = useQuery(Aula.getById, {
+  const { loading, data } = useQuery(MatriculaQueries.getByIdAula, {
     variables: { id },
   });
 

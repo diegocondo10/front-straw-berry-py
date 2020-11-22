@@ -5,16 +5,16 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { Docente } from '@services/personas.service';
 import { Table } from 'react-bootstrap';
 import Link from 'next/link';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const DetailDocenteContainer = ({ items, id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(Docente.getByIdDetail, { variables: { id } });
+  const { data, loading } = useQuery(PersonaQueries.getByIdDetail, { variables: { id } });
 
   const onClickEliminar = async () => {
     history.push('/docentes');

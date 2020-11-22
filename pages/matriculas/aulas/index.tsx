@@ -7,9 +7,10 @@ import { Aula } from '@services/matriculas.service';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const AulasContainer = () => {
-  const { loading, data } = useQuery(Aula.getAll);
+  const { loading, data } = useQuery(MatriculaQueries.getAll);
 
   const header = (
     <div className="container-fluid my-2">

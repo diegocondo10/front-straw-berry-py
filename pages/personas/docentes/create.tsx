@@ -1,16 +1,17 @@
 import { useQuery, useMutation } from '@apollo/client';
 import DocenteFormContainer from '@components/pages/personas/docentes/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Docente } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const CreateDocenteContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { loading, data } = useQuery(Docente.personasNoDocentes);
-  const [create] = useMutation(Docente.create);
+  const { loading, data } = useQuery(PersonaQueries.personasNoDocentes);
+  const [create] = useMutation(PersonaMutations.createDocente);
   const router = useRouter();
 
   const onSubmit = async (input) => {

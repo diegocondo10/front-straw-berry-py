@@ -1,0 +1,196 @@
+    query getParametrosForm {
+      discapacidades {
+        id
+        nombre
+      }
+    }
+
+  query getByIdPersona($id: ID!) {
+      persona(id: $id) {
+        str
+        id
+        tipoIdentificacion
+        identificacion
+        primerApellido
+        segundoApellido
+        primerNombre
+        segundoNombre
+        genero
+        sexo
+        tipoSangre
+        fechaNacimiento
+        callePrincipal
+        calleSecundaria
+        lugarReferencia
+        numeroCasa
+        telefono
+        celular
+        correo
+        ocupacion
+        nivelFormacion
+        tieneDiscapacidad
+        carnetConadis
+        porcentajeDiscapacidad
+        discapacidades {
+          id
+          nombre
+        }
+        discapacidadesDisponibles {
+          id
+          nombre
+        }
+      }
+    }
+
+    query getAllPersona {
+      personas {
+        id
+        tipoIdentificacion
+        identificacion
+        primerNombre
+        segundoNombre
+        primerApellido
+        segundoApellido
+        telefono
+        celular
+        correo
+      }
+    }
+
+    query getAllCustom {
+      personas {
+        id
+        ${select}
+      }
+    }
+
+   query getByIdAlumno($id: ID!) {
+      alumno(id: $id) {
+        id
+        padre {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+        madre {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+        representante {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+      }
+      personas {
+        id
+        str
+      }
+    }
+
+    query getAllAlumno {
+      alumnos {
+        id
+        persona {
+          id
+          str
+        }
+        padre {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+        madre {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+        representante {
+          identificacion
+          primerNombre
+          primerApellido
+          segundoNombre
+          segundoApellido
+        }
+      }
+    }
+
+  query getByIdDiscapacidad($id: ID!) {
+      discapacidad(id: $id) {
+        id
+        nombre
+        descripcion
+        porcentaje
+        createdAt
+        updatedAt
+      }
+    }
+
+    query getAllDiscapacidad {
+      discapacidades {
+        id
+        nombre
+        descripcion
+        porcentaje
+      }
+    }
+
+    query personasNoDocentes {
+      personasNoDocentes {
+        id
+        str
+      }
+    }
+
+    query getByIdDetail($id: ID!) {
+      docente(id: $id) {
+        id
+        titulo
+        tipoTitulo
+        observaciones
+        persona {
+          id
+          str
+        }
+      }
+    }
+
+    query getAllDocente {
+      docentes {
+        id
+        titulo
+        tipoTitulo
+        persona {
+          id
+          str
+        }
+      }
+    }
+
+    query getByIdWithParams($id: ID!) {
+      docente(id: $id) {
+        id
+        persona {
+          id
+          str
+        }
+        titulo
+        tipoTitulo
+        observaciones
+      }
+      personas {
+        id
+        str
+      }
+    }

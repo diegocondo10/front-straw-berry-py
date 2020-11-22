@@ -1,12 +1,12 @@
 import { useMutation } from '@apollo/client';
 import MateriaFormContainer from '@components/pages/matriculas/materias/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Materia } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const CreateMateriaContainer = ({ items, title }) => {
-  const [create] = useMutation(Materia.create);
+  const [create] = useMutation(MatriculaMutations.createMateria);
   const router = useRouter();
 
   const onSubmit = async (input) => {

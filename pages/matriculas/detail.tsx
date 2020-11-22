@@ -1,17 +1,17 @@
 import { useQuery } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
-import { Matricula } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import DetailItem from '@components/DetailItem';
 import { BtnRegresar } from '@components/Buttons/BtnRegresar';
 import { Button } from 'react-bootstrap';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const DetailMatriculaContainer = ({ id
 }) => {
     const history = useRouter();
-    const { data, loading } = useQuery(Matricula.getById, { variables: { id } });
+    const { data, loading } = useQuery(MatriculaQueries.getMatriculaById, { variables: { id } });
     const onClickEliminar = async () => {
         history.push('/matriculas');
     };
