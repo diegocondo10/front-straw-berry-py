@@ -48,6 +48,8 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
         <div className="col-md-10 col-lg-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onLocalSubmit)}>
             <Form.Row>
+
+              <h4 className="text-underline">Información Personal</h4>
               <div className="col-md-6">
                 <CustomDropDown
                   label="Tipo de Identificacion:"
@@ -67,6 +69,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   }}
                 />
               </div>
+
+
+
+
+
 
               <div className="col-md-6">
                 <CustomTextInput
@@ -100,9 +107,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   label="Segundo Nombre:"
                   name="segundoNombre"
                   keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
                 />
               </div>
 
@@ -283,7 +287,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
           </form>
         </div>
       </div>
-    </main>
+    </main >
   );
 };
 
