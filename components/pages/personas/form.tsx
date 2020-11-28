@@ -19,6 +19,9 @@ const PARAMETROS = {
     { label: 'OTRO', value: 'OTRO' },
   ],
   tiposSangre: ['A+', 'B+', 'AB+', 'O+', 'O-'],
+  estadoCivil: ['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a', 'Unión Libre', 'Otro'],
+  etnia: ['Quichua', 'Montubio', 'Shuar', 'Salasacas', 'Saraguros', 'Cañaris', 'Tsáchilas', 'Awa', 'Cofán', 'Huaroni', 'Chachi', 'Shiwiar', 'Andwa'],
+  celularDos: ['xxxxxxxxxxxx'],
 };
 
 const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) => {
@@ -58,6 +61,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Identificación:"
                   name="identificacion"
+                  keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -68,6 +72,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Primer Apellido:"
                   name="primerApellido"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -75,13 +80,15 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="Segundo Apellido:" name="segundoApellido" />
+                <CustomTextInput label="Segundo Apellido:" name="segundoApellido"
+                  keyfilter="alpha" />
               </div>
 
               <div className="col-md-6">
                 <CustomTextInput
                   label="Primer Nombre:"
                   name="primerNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -92,6 +99,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Segundo Nombre:"
                   name="segundoNombre"
+                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -99,10 +107,45 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
+                <CustomDatePicker
+                  label="Fecha de Nacimiento: "
+                  name="fechaNacimiento"
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput
+                  label="País de Nacimiento:"
+                  name="paisNacimiento"
+                  keyfilter="alpha"
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
+              </div>
+
+              <div className="col-md-6">
                 <CustomDropDown
-                  label="Genero:"
+                  label="Estado Civil:"
+                  name="estadoCivil"
+                  options={PARAMETROS.estadoCivil}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomDropDown
+                  label="Género:"
                   name="genero"
                   options={PARAMETROS.sexos}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomDropDown
+                  label="Etnia:"
+                  name="etnia"
+                  options={PARAMETROS.etnia}
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
@@ -117,61 +160,48 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomDatePicker
-                  label="Fecha de Nacimiento: "
-                  name="fechaNacimiento"
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
-
-              <div className="col-md-6">
                 <CustomTextInput
-                  label="Pais de nacimiento:"
+                  label="País Residencia:"
                   name="paisResidencia"
+                  keyfilter="alpha"
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Provincia de nacimiento:"
+                  label="Provincia Residencia:"
                   name="provinciaResidencia"
+                  keyfilter="alpha"
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Canton de nacimiento:"
+                  label="Cantón Residencia:"
                   name="cantonResidencia"
+                  keyfilter="alpha"
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Parroquia de nacimiento:"
+                  label="Parroquia Residencia:"
                   name="parroquiaResidencia"
+                  keyfilter="alpha"
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <CustomTextInput
-                  label="Direccion:"
+                  label="Dirección Domiciliaria:"
                   name="direccionDomiciliaria"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
+                  keyfilter="alpha"
+                  rules={{ required: 'Este campo es obligatorio' }}
                 />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput label="Teléfono:" name="telefono" />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput label="Celular:" name="celularUno" />
               </div>
 
               <div className="col-md-6">
@@ -183,12 +213,26 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   }}
                 />
               </div>
+
+              <div className="col-md-6">
+                <CustomTextInput label="Teléfono:" name="telefono"
+                  keyfilter="num" />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput label="1° Celular:" name="celularUno"
+                  keyfilter="num" />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput label="2° Celular:" name="celularDos" value={PARAMETROS.celularDos} />
+              </div>
             </Form.Row>
 
             <Form.Row>
               <div className="col-md-12">
                 <CustomDropDown
-                  label="Posee alguna discapacidad?"
+                  label="¿Posee alguna discapacidad?"
                   name="tieneDiscapacidad"
                   options={PARAMETROS.siNo}
                 />
@@ -202,6 +246,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                     <CustomTextInput
                       label="Carnet CONADIS:"
                       name="carnetConadis"
+                      keyfilter="num"
                       rules={{
                         required: 'Este campo es obligatorio',
                       }}

@@ -15,18 +15,33 @@ query getPersonasTable {
 query getPersonaByIdForm($id: ID!) {
   persona(id: $id) {
     id
-
+    tipoIdentificacion
+    identificacion
+    primerApellido
+    segundoApellido
+    primerNombre
+    segundoNombre
     paisNacimiento
     fechaNacimiento
     genero
     estadoCivil
-    telefono
-    correo
+    etnia
+    tipoSangre
+    paisResidencia
+    provinciaResidencia
+    cantonResidencia
+    parroquiaResidencia
     direccionDomiciliaria
+    telefono
+    celular
+    correo
   }
   discapacidades {
     id
     nombre
+    tieneDiscapacidad
+    carnetConadis
+    porcentajeDiscapacidad
   }
 }
 
