@@ -80,15 +80,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
-            </div>
 
-            <div className="form-row">
-              <div className="col-12">
-                <h4 className="text-underline">Información Personal</h4>
-              </div>
-            </div>
-
-            <Form.Row>
               <div className="col-md-6">
                 <CustomTextInput
                   label="Identificación:"
@@ -235,7 +227,12 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
+            </div>
 
+            <div className="form-row">
+              <div className="col-12">
+                <h4 className="text-underline">Información de Contactos</h4>
+              </div>
               <div className="col-md-6">
                 <CustomTextInput
                   label="Correo:"
@@ -265,9 +262,13 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   value={PARAMETROS.celularDos}
                 />
               </div>
-            </Form.Row>
+            </div>
 
-            <Form.Row>
+
+            <div className="form-row">
+              <div className="col-12">
+                <h4 className="text-underline">Información de Discapacidad</h4>
+              </div>
               <div className="col-md-12">
                 <CustomDropDown
                   label="¿Posee alguna discapacidad?"
@@ -315,7 +316,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   </div>
                 </React.Fragment>
               )}
-            </Form.Row>
+            </div>
 
             <FooterButtonsForm hrefBack="/personas" />
           </form>
