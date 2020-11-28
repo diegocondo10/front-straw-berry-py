@@ -10,7 +10,7 @@ import React from 'react';
 import { GoPlus } from 'react-icons/go';
 
 const DocentesContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(PersonasQueries.);
+  const { loading, data } = useQuery(PersonasQueries.test);
 
   const header = (
     <div className="container-fluid my-2">

@@ -27,37 +27,37 @@ query getPermisos {
   }
 }
 
-  query getAppsPermiso {
-      aplicaciones {
-        id
-        nombre
-      }
+query getAppsPermiso {
+  aplicaciones {
+    id
+    nombre
   }
+}
 
-  query getPermisoById($id: ID!) {
-    permiso(id: $id) {
+query getPermisoById($id: ID!) {
+  permiso(id: $id) {
+    id
+    nombre
+    descripcion
+    aplicacion {
       id
       nombre
-      descripcion
-      aplicacion {
-        id
-        nombre
-      }
     }
   }
+}
 
-    query queryForUpdatePermiso($id: ID!) {
-      permiso(id: $id) {
-        id
-        nombre
-        descripcion
-        aplicacionId
-      }
-      aplicaciones {
-        id
-        nombre
-      }
-    }
+query queryForUpdatePermiso($id: ID!) {
+  permiso(id: $id) {
+    id
+    nombre
+    descripcion
+    aplicacionId
+  }
+  aplicaciones {
+    id
+    nombre
+  }
+}
 
 query getRoles {
   grupos {
@@ -67,40 +67,40 @@ query getRoles {
   }
 }
 
-    query getSimple {
-      permisos {
-        id
-        nombre
-      }
-    }
+query getSimple {
+  permisos {
+    id
+    nombre
+  }
+}
 
-    query getByIdRol($id: ID!) {
-      grupo(id: $id) {
-        id
-        nombre
-        permisos {
-          id
-          nombre
-        }
-        descripcion
-      }
+query getByIdRol($id: ID!) {
+  grupo(id: $id) {
+    id
+    nombre
+    permisos {
+      id
+      nombre
     }
+    descripcion
+  }
+}
 
-    query getByIdUpdateRol($id: ID!) {
-      grupo(id: $id) {
-        id
-        nombre
-        permisos {
-          id
-          nombre
-        }
-        permisosDisponibles {
-          id
-          nombre
-        }
-        descripcion
-      }
+query getByIdUpdateRol($id: ID!) {
+  grupo(id: $id) {
+    id
+    nombre
+    permisos {
+      id
+      nombre
     }
+    permisosDisponibles {
+      id
+      nombre
+    }
+    descripcion
+  }
+}
 
 query getUsuarios {
   usuarios {
@@ -115,51 +115,51 @@ query getUsuarios {
   }
 }
 
-    query getParametrosForm {
-      personas {
-        id
-        str
-      }
+query getParametrosForm {
+  personas {
+    id
+    str
+  }
 
-      permisos {
-        id
-        nombre
-      }
-      grupos {
-        id
-        nombre
-      }
+  permisos {
+    id
+    nombre
+  }
+  grupos {
+    id
+    nombre
+  }
+}
+
+query getUsuarioById($id: ID!) {
+  usuario(id: $id) {
+    id
+    username
+    email
+    permisos {
+      id
+      nombre
     }
-
-    query getUsuarioById($id: ID!) {
-      usuario(id: $id) {
-        id
-        username
-        email
-        permisos {
-          id
-          nombre
-        }
-        permisosDisponibles {
-          id
-          nombre
-        }
-        grupos {
-          id
-          nombre
-        }
-        gruposDisponibles {
-          id
-          nombre
-        }
-        persona {
-          id
-          str
-        }
-      }
-
-      personas {
-        id
-        str
-      }
+    permisosDisponibles {
+      id
+      nombre
     }
+    grupos {
+      id
+      nombre
+    }
+    gruposDisponibles {
+      id
+      nombre
+    }
+    persona {
+      id
+      str
+    }
+  }
+
+  personas {
+    id
+    str
+  }
+}
