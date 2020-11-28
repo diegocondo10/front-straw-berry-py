@@ -1,41 +1,48 @@
 import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
+import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
-import PersonasQueries from '@graphql/Personas/queries.gql';
+import { getPersonalTable } from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { GoPlus } from 'react-icons/go';
 
-const DocentesContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(PersonasQueries.test);
+const PersonalContainer = () => {
+  const { loading, data } = useQuery(getPersonalTable);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/personas/docentes/create">
-            <a className=" btn btn-info btn-sm">
-              Agregar
-              <GoPlus />
-            </a>
-          </Link>
+          <HrefButton
+            href="/personas/personal/create"
+            icon="pi pi-plus"
+            label="Agregar"
+          />
         </div>
       </div>
     </div>
   );
 
   return (
-    <PrivateLayout title="IPCA | Docentes" loading={loading}>
-      <TitleBreadCrumb title="Docentes" items={breadCrumbItems} />
+    <PrivateLayout title="IPCA | Personal" loading={loading}>
+      <TitleBreadCrumb
+        title="Personal"
+        items={[
+          {
+            title: 'Personal',
+            active: true,
+          },
+        ]}
+      />
+
       <main className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-12 datatable-doc-demo">
             <DataTable
-              value={data?.docentes || []}
-              className="p-datatable-customers shadow-lg"
+              value={data?.personalAll || []}
+              className="p-datatable-customers shadow-lg p-datatable-gridlines"
               rowHover
               paginator
               header={header}
@@ -56,17 +63,31 @@ const DocentesContainer = ({ breadCrumbItems }) => {
                 filter
                 reorderable
               />
-              <Column header="Título" field="titulo" sortable filter reorderable />
               <Column
-                header="Nivel de Formación"
-                field="nivelFormacion"
+                header="Correo"
+                field="persona.correo"
                 sortable
                 filter
                 reorderable
               />
+              <Column
+                header="Telefono"
+                field="persona.telefono"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                header="Funcion"
+                field="funcionStr"
+                sortable
+                filter
+                reorderable
+                style={{ width: '150px' }}
+              />
               {OptionesColumn({
-                editPath: ({ id }) => `/personas/docentes/update?id=${id}`,
-                detailPath: ({ id }) => `/personas/docentes/detail?id=${id}`,
+                editPath: ({ id }) => `/personas/personal/update?id=${id}`,
+                detailPath: ({ id }) => `/personas/personal/detail?id=${id}`,
               })}
             </DataTable>
           </div>
@@ -76,15 +97,4 @@ const DocentesContainer = ({ breadCrumbItems }) => {
   );
 };
 
-DocentesContainer.getInitialProps = async (props) => {
-  return {
-    breadCrumbItems: [
-      {
-        title: 'Docentes',
-        active: true,
-      },
-    ],
-  };
-};
-
-export default DocentesContainer;
+export default PersonalContainer;

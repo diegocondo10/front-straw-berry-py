@@ -10,6 +10,24 @@
   padding: 1em;
 }
 
-.p-column-title {
-  font-size: 15px !important;
+.p-datatable-thead > tr > th {
+  text-align: center !important;
+
+  background-color: rgb(231, 231, 231) !important;
+  //border: 1px solid gray !important;
+  &.p-highlight {
+    background-color: rgb(16, 48, 155) !important;
+    & > * {
+      color: white !important;
+    }
+  }
+  span.p-column-title {
+    font-size: 17px !important;
+  }
+}
+
+.p-filter-column {
+  & > .p-column-filter {
+    width: 100%;
+  }
 }

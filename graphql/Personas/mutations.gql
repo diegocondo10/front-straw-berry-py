@@ -24,6 +24,24 @@ mutation deletePersona($id: ID!) {
   }
 }
 
+mutation createPersonal($input: CreatePersonalInput!) {
+  createPersonal(input: $input) {
+    personal {
+      id
+      createdAt
+    }
+  }
+}
+
+mutation updatePersonal($id: ID!, $input: UpdatePersonalInput!) {
+  updatePersonal(id: $id, input: $input) {
+    personal {
+      id
+      createdAt
+    }
+  }
+}
+
 mutation createAlumno($input: CreateAlumnoInput!) {
   createAlumno(input: $input) {
     alumno {
@@ -68,24 +86,6 @@ mutation deleteDiscapacidad($id: ID!) {
 mutation updateDiscapacidad($id: ID!, $input: UpdateDiscapacidadInput!) {
   updateDiscapacidad(input: $input, id: $id) {
     discapacidad {
-      id
-      createdAt
-    }
-  }
-}
-
-mutation createDocente($input: CreateDocenteInput!) {
-  createDocente(input: $input) {
-    docente {
-      id
-      createdAt
-    }
-  }
-}
-
-mutation updateDocente($id: ID!, $input: UpdateDocenteInput!) {
-  updateDocente(id: $id, input: $input) {
-    docente {
       id
       createdAt
     }

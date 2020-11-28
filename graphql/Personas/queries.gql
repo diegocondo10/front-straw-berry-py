@@ -29,3 +29,50 @@ query getPersonaByIdForm($id: ID!) {
     nombre
   }
 }
+
+query getPersonalTable {
+  personalAll {
+    id
+    funcionStr
+    persona {
+      id
+      str
+      correo
+      telefono
+    }
+  }
+}
+
+query getParametrosFormPersonal {
+  funcionesPersonal {
+    id
+    nombre
+  }
+  personas {
+    id
+    str
+  }
+}
+
+query getPersonalByIdFormUpdate($id: ID!) {
+  personal(id: $id) {
+    id
+    funcion {
+      id
+      nombre
+    }
+    persona {
+      id
+      str
+    }
+    info
+  }
+  funcionesPersonal {
+    id
+    nombre
+  }
+  personas {
+    id
+    str
+  }
+}
