@@ -50,13 +50,13 @@ query getPersonaByIdForm($id: ID!) {
     telefono
     celular
     correo
+    tieneDiscapacidad
+    carnetConadis
+    porcentajeDiscapacidad
   }
   discapacidades {
     id
     nombre
-    tieneDiscapacidad
-    carnetConadis
-    porcentajeDiscapacidad
   }
 }
 
