@@ -19,8 +19,29 @@ const PARAMETROS = {
     { label: 'OTRO', value: 'OTRO' },
   ],
   tiposSangre: ['A+', 'B+', 'AB+', 'O+', 'O-'],
-  estadoCivil: ['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a', 'Unión Libre', 'Otro'],
-  etnia: ['Quichua', 'Montubio', 'Shuar', 'Salasacas', 'Saraguros', 'Cañaris', 'Tsáchilas', 'Awa', 'Cofán', 'Huaroni', 'Chachi', 'Shiwiar', 'Andwa'],
+  estadoCivil: [
+    'Soltero/a',
+    'Casado/a',
+    'Divorciado/a',
+    'Viudo/a',
+    'Unión Libre',
+    'Otro',
+  ],
+  etnia: [
+    'Quichua',
+    'Montubio',
+    'Shuar',
+    'Salasacas',
+    'Saraguros',
+    'Cañaris',
+    'Tsáchilas',
+    'Awa',
+    'Cofán',
+    'Huaroni',
+    'Chachi',
+    'Shiwiar',
+    'Andwa',
+  ],
   celularDos: ['xxxxxxxxxxxx'],
 };
 
@@ -47,9 +68,10 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
       <div className="row justify-content-center">
         <div className="col-md-10 col-lg-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onLocalSubmit)}>
-            <Form.Row>
-
-              <h4 className="text-underline">Información Personal</h4>
+            <div className="form-row">
+              <div className="col-12">
+                <h4 className="text-underline">Información Personal</h4>
+              </div>
               <div className="col-md-6">
                 <CustomDropDown
                   label="Tipo de Identificacion:"
@@ -58,7 +80,15 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
+            </div>
 
+            <div className="form-row">
+              <div className="col-12">
+                <h4 className="text-underline">Información Personal</h4>
+              </div>
+            </div>
+
+            <Form.Row>
               <div className="col-md-6">
                 <CustomTextInput
                   label="Identificación:"
@@ -69,11 +99,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   }}
                 />
               </div>
-
-
-
-
-
 
               <div className="col-md-6">
                 <CustomTextInput
@@ -87,8 +112,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="Segundo Apellido:" name="segundoApellido"
-                  keyfilter="alpha" />
+                <CustomTextInput
+                  label="Segundo Apellido:"
+                  name="segundoApellido"
+                  keyfilter="alpha"
+                />
               </div>
 
               <div className="col-md-6">
@@ -219,17 +247,23 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="Teléfono:" name="telefono"
-                  keyfilter="num" />
+                <CustomTextInput label="Teléfono:" name="telefono" keyfilter="num" />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="1° Celular:" name="celularUno"
-                  keyfilter="num" />
+                <CustomTextInput
+                  label="1° Celular:"
+                  name="celularUno"
+                  keyfilter="num"
+                />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="2° Celular:" name="celularDos" value={PARAMETROS.celularDos} />
+                <CustomTextInput
+                  label="2° Celular:"
+                  name="celularDos"
+                  value={PARAMETROS.celularDos}
+                />
               </div>
             </Form.Row>
 
@@ -287,7 +321,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
           </form>
         </div>
       </div>
-    </main >
+    </main>
   );
 };
 
