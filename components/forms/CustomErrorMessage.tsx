@@ -9,7 +9,9 @@ const CustomErrorMessage = ({ name }) => {
       errors={errors}
       name={name}
       render={({ message }) => (
-        <small className="p-invalid p-d-block w-100">{message}</small>
+        <small className="p-invalid p-d-block w-100" style={{ fontSize: '15px' }}>
+          {message}
+        </small>
       )}
     />
   );

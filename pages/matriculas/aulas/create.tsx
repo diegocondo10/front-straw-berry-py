@@ -3,13 +3,18 @@ import AulasFormContainer from '@components/pages/matriculas/aulas/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import { getParametrosFormAula } from '@graphql/Matriculas/queries.gql';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const CreateAulaContainer = () => {
-  const { loading, data } = useQuery(MatriculaQueries.getDataForm);
+  const methods = useForm({ mode: 'onChange' });
 
-  const [create, { loading: loadingCreate }] = useMutation(MatriculaMutations.createAula);
+  const { loading, data } = useQuery(getParametrosFormAula);
+
+  const [create, { loading: loadingCreate }] = useMutation(
+    MatriculaMutations.createAula,
+  );
 
   const router = useRouter();
 
@@ -32,14 +37,16 @@ const CreateAulaContainer = () => {
 
   return (
     <PrivateLayout title="Crear Aula" loading={loading}>
-      <AulasFormContainer
-        title="Crear Aula"
-        items={items}
-        onSubmit={onSubmit}
-        loading={loadingCreate}
-        periodos={data?.periodosLectivos}
-        docentes={data?.docentes}
-      />
+      <FormProvider {...methods}>
+        <AulasFormContainer
+          title="Crear Aula"
+          items={items}
+          onSubmit={onSubmit}
+          loading={loadingCreate}
+          periodos={data?.periodosLectivos}
+          docentes={data?.personalByFunciones}
+        />
+      </FormProvider>
     </PrivateLayout>
   );
 };

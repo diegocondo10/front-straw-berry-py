@@ -2,39 +2,43 @@ import { useQuery } from '@apollo/client';
 import AulasFormContainer from '@components/pages/matriculas/aulas/form';
 import PrivateLayout from '@layouts/privateLayout';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdateAulaContainer = ({ id }) => {
-  const { loading, data } = useQuery(MatriculaQueries.getByIdAula, {
+  const methods = useForm({ mode: 'onChange' });
+
+  const { loading, data } = useQuery(getAulaByIdForm, {
     variables: { id },
+    onCompleted: ({ aula }) => methods.reset(aula),
   });
 
-  console.log(data);
-  const items = [
-    {
-      title: 'Aulas',
-      href: '/matriculas/aulas',
-    },
-    {
-      title: data?.aula?.nombre,
-      active: true,
-    },
-  ];
   const onSubmit = async (input) => {
     console.log(input);
   };
 
   return (
     <PrivateLayout title="Editar Aula" loading={loading}>
-      <AulasFormContainer
-        docentes={data?.docentes}
-        items={items}
-        loading={false}
-        onSubmit={onSubmit}
-        periodos={data?.periodosLectivos}
-        title="Editar Aula"
-        defaultData={data?.aula}
-      />
+      <FormProvider {...methods}>
+        <AulasFormContainer
+          docentes={data?.personalByFunciones}
+          title="Editar Aula"
+          items={[
+            {
+              title: 'Aulas',
+              href: '/matriculas/aulas',
+            },
+            {
+              title: data?.aula?.nombre,
+              active: true,
+            },
+          ]}
+          loading={false}
+          onSubmit={onSubmit}
+          periodos={data?.periodosLectivos}
+          defaultData={data?.aula}
+        />
+      </FormProvider>
     </PrivateLayout>
   );
 };

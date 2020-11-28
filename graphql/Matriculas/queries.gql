@@ -71,7 +71,7 @@ query getAll {
   }
 }
 
-query getByIdAula($id: ID!) {
+query getAulaById($id: ID!) {
   aula(id: $id) {
     id
     nombre
@@ -91,6 +91,43 @@ query getByIdAula($id: ID!) {
   }
 }
 
+query getParametrosFormAula {
+  periodosLectivos {
+    id
+    nombre
+  }
+
+  personalByFunciones(funciones: ["DOCENTE"]) {
+    id
+    personaStr
+  }
+}
+query getAulaByIdForm($id: ID!) {
+  aula(id: $id) {
+    id
+    nombre
+    periodo {
+      id
+      nombre
+    }
+    docentes {
+      id
+      personaStr
+    }
+    grado
+    capacidad
+  }
+
+  periodosLectivos {
+    id
+    nombre
+  }
+
+  personalByFunciones(funciones: ["DOCENTE"]) {
+    id
+    personaStr
+  }
+}
 query getByIdMateria($id: ID!) {
   materia(id: $id) {
     id

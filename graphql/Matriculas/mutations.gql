@@ -1,99 +1,99 @@
-    mutation createMatricula($input: CreateAlumnoAulaInput!) {
-      createAlumnoAula(input: $input) {
-        alumnoAula {
-          id
-          authEstado
-        }
-      }
+mutation createMatricula($input: CreateAlumnoAulaInput!) {
+  createAlumnoAula(input: $input) {
+    alumnoAula {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation updateMatricula($input: UpdateAlumnoAulaInput!, $id: ID!) {
-      updateAlumnoAula(input: $input, id: $id) {
-        alumnoAula {
-          id
-          authEstado
-        }
-      }
+mutation updateMatricula($input: UpdateAlumnoAulaInput!, $id: ID!) {
+  updateAlumnoAula(input: $input, id: $id) {
+    alumnoAula {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation deleteMatricula($id: ID!) {
-      deleteMatricula(id: $id) {
-        found
-        deletedId
-      }
-    }
+mutation deleteMatricula($id: ID!) {
+  deleteMatricula(id: $id) {
+    found
+    deletedId
+  }
+}
 
-    mutation createAula($input: CreateAulaInput!) {
-      createAula(input: $input) {
-        aula {
-          id
-          createdAt
-        }
-      }
+mutation createAula($input: CreateAulaInput!) {
+  createAula(input: $input) {
+    aula {
+      id
+      createdAt
     }
+  }
+}
 
-    mutation updateAula($input: UpdateAulaInput!, $id: ID!) {
-      updateAula(input: $input, id: $id) {
-        aula {
-          id
-          createdAt
-        }
-      }
+mutation updateAula($input: UpdateAulaInput!, $id: ID!) {
+  updateAula(input: $input, id: $id) {
+    aula {
+      id
+      createdAt
     }
+  }
+}
 
-    mutation deleteAula($id: ID!) {
-      deleteAula(id: $id) {
-        found
-        deletedId
-      }
-    }
+mutation deleteAula($id: ID!) {
+  deleteAula(id: $id) {
+    found
+    deletedId
+  }
+}
 
-   mutation createMateria($input: CreateMateriaInput!) {
-      createMateria(input: $input) {
-        materia {
-          id
-          authEstado
-        }
-      }
+mutation createMateria($input: CreateMateriaInput!) {
+  createMateria(input: $input) {
+    materia {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation updateMateria($input: UpdateMateriaInput!, $id: ID!) {
-      updateMateria(input: $input, id: $id) {
-        materia {
-          id
-          authEstado
-        }
-      }
+mutation updateMateria($input: UpdateMateriaInput!, $id: ID!) {
+  updateMateria(input: $input, id: $id) {
+    materia {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation deleteMateria($id: ID!) {
-      deleteMateria(id: $id) {
-        found
-        deletedId
-      }
-    }
+mutation deleteMateria($id: ID!) {
+  deleteMateria(id: $id) {
+    found
+    deletedId
+  }
+}
 
-    mutation createPeriodo($input: CreatePeriodoLectivoInput!) {
-      createPeriodoLectivo(input: $input) {
-        periodoLectivo {
-          id
-          authEstado
-        }
-      }
+mutation createPeriodo($input: CreatePeriodoLectivoInput!) {
+  createPeriodoLectivo(input: $input) {
+    periodoLectivo {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation updatePeriodo($input: UpdatePeriodoLectivoInput!, $id: ID!) {
-      updatePeriodoLectivo(input: $input, id: $id) {
-        periodoLectivo {
-          id
-          authEstado
-        }
-      }
+mutation updatePeriodo($input: UpdatePeriodoLectivoInput!, $id: ID!) {
+  updatePeriodoLectivo(input: $input, id: $id) {
+    periodoLectivo {
+      id
+      authEstado
     }
+  }
+}
 
-    mutation deletePeriodo($id: ID!) {
-      deletePeriodoLectivo(id: $id) {
-        found
-        deletedId
-      }
-    }
+mutation deletePeriodo($id: ID!) {
+  deletePeriodoLectivo(id: $id) {
+    found
+    deletedId
+  }
+}

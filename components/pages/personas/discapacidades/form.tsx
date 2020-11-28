@@ -1,13 +1,12 @@
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
+import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
 import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
-const DiscapacidadFormContainer = ({ onSubmit, items, title, loadBtn }) => {
-  const { register, handleSubmit, errors } = useFormContext();
+const DiscapacidadFormContainer = ({ onSubmit, items, title }) => {
+  const { handleSubmit } = useFormContext();
 
   return (
     <main className="container-fluid">
@@ -23,25 +22,7 @@ const DiscapacidadFormContainer = ({ onSubmit, items, title, loadBtn }) => {
 
             <CustomTextArea label="Descripcion: " name="descripcion" />
 
-            <Form.Row className="justify-content-around">
-              <div className="col-md-5 my-1">
-                <BtnRegresar
-                  variant="outline-danger"
-                  href="/personas/discapacidades"
-                />
-              </div>
-              <div className="col-md-5 my-1">
-                <Button
-                  block
-                  type="submit"
-                  variant="outline-primary"
-                  disabled={loadBtn || false}
-                >
-                  {loadBtn && 'Procesando...'}
-                  {!loadBtn && 'Guardar'}
-                </Button>
-              </div>
-            </Form.Row>
+            <FooterButtonsForm hrefBack="/personas/discapacidades" />
           </form>
         </div>
       </div>

@@ -4,64 +4,56 @@ import { useRouter } from 'next/router';
 import { useQuery, useMutation } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
 import DiscapacidadFormContainer from '@components/pages/personas/discapacidades/form';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
+import { getDiscapacidadById } from '@graphql/Personas/queries.gql';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
 
-const UpdateDiscapacidadContainer = ({ title, items, id }) => {
-    const methods = useForm({ mode: 'onChange' });
-    const [loadBtn, setLoadBtn] = useState(false);
+const UpdateDiscapacidadContainer = ({ id }) => {
+  const methods = useForm({ mode: 'onChange' });
 
-    const router = useRouter();
+  const router = useRouter();
 
-    const { loading: loadingQuery } = useQuery(PersonaQueries.getByIdDiscapacidad, {
-        variables: { id },
-        onCompleted: ({ discapacidad }) => {
-            methods.reset(discapacidad);
-        },
-        onError: (error) => router.push('/personas/discapacidades'),
+  const { loading: loadingQuery, data } = useQuery(getDiscapacidadById, {
+    variables: { id },
+    onCompleted: ({ discapacidad }) => {
+      methods.reset(discapacidad);
+    },
+    onError: (error) => router.push('/personas/discapacidades'),
+  });
+
+  const [updateDiscapacidad] = useMutation(PersonaMutations.updateDiscapacidad, {
+    onError: () => router.push('/personas/discapacidades'),
+  });
+
+  const onSubmit = async (input) => {
+    await updateDiscapacidad({
+      variables: {
+        id,
+        input,
+      },
     });
 
-    const [updateDiscapacidad] = useMutation(PersonaMutations.updateDiscapacidad, {
-        onError: () => router.push('/personas/discapacidades'),
-    });
+    router.replace('/personas/discapacidades');
+  };
 
-    const onSubmit = async (input) => {
-        setLoadBtn(true);
-        await updateDiscapacidad({
-            variables: {
-                id, input
-            }
-        });
-        setLoadBtn(false);
-        router.replace('/personas/discapacidades');
-    };
-
-    return (
-        <PrivateLayout title={title} loading={loadingQuery}>
-            <FormProvider {...methods}>
-                <DiscapacidadFormContainer
-                    title={title}
-                    items={items}
-                    onSubmit={onSubmit}
-                    loadBtn={loadBtn}
-                />
-            </FormProvider>
-        </PrivateLayout>
-    );
+  return (
+    <PrivateLayout title="Editar Discapacidad" loading={loadingQuery}>
+      <FormProvider {...methods}>
+        <DiscapacidadFormContainer
+          title="Editar Discapacidad"
+          items={[
+            {
+              title: 'Discapacidades',
+              href: '/personas/discapacidades',
+            },
+            { title: data?.discapacidad?.nombre, active: true },
+          ]}
+          onSubmit={onSubmit}
+        />
+      </FormProvider>
+    </PrivateLayout>
+  );
 };
 
-UpdateDiscapacidadContainer.getInitialProps = ({ query }) => {
-    let title = 'Editar Discapacidad';
-
-    const breadCrumbItems = [
-        {
-            title: 'Discapacidades',
-            href: '/personas/discapacidades',
-        },
-        { title, active: true },
-    ];
-
-    return { items: breadCrumbItems, title, id: query.id };
-};
+UpdateDiscapacidadContainer.getInitialProps = ({ query }) => query;
 
 export default UpdateDiscapacidadContainer;

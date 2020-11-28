@@ -1,3 +1,18 @@
+query getDiscapacidadesTable {
+  discapacidades {
+    id
+    nombre
+    descripcion
+  }
+}
+query getDiscapacidadById($id: ID!) {
+  discapacidad(id: $id) {
+    id
+    nombre
+    descripcion
+  }
+}
+
 query getPersonasTable {
   personas {
     id
