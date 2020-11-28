@@ -23,7 +23,6 @@ const UpdateAulaContainer = ({ id }) => {
     console.log(input);
 
     await update({ variables: { id, input } });
-
     router.push('/matriculas/aulas');
   };
 
