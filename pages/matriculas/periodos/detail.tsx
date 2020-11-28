@@ -3,16 +3,17 @@ import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import DetailItem from '@components/DetailItem';
 import PrivateLayout from '@layouts/privateLayout';
-import { PeriodoLectivo } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const PeriodoLectivoDetailContainer = ({ items, id }) => {
   const history = useRouter();
 
-  const { loading, data } = useQuery(PeriodoLectivo.getById, { variables: { id } });
-  const [deletePeriodo] = useMutation(PeriodoLectivo.delete, { variables: { id } });
+  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, { variables: { id } });
+  const [deletePeriodo] = useMutation(MatriculaMutations.deletePeriodo, { variables: { id } });
   const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {

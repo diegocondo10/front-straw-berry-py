@@ -1,14 +1,15 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PeriodoLectivoFormContainer from '@components/pages/matriculas/periodos/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { PeriodoLectivo } from '@services/matriculas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const UpdatePeriodoContainer = ({ id }) => {
-  const { loading, data } = useQuery(PeriodoLectivo.getById, { variables: { id } });
+  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, { variables: { id } });
 
-  const [create, { loading: loadingGuardar }] = useMutation(PeriodoLectivo.update);
+  const [create, { loading: loadingGuardar }] = useMutation(MatriculaMutations.updatePeriodo);
 
   const router = useRouter();
 

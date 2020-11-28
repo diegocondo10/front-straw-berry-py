@@ -7,9 +7,11 @@ import auth from '@services/auth/auth.graphql';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const MatriculasContainer = () => {
-  const { loading, data } = useQuery(auth.getMatriculas, {
+  const { loading, data } = useQuery(MatriculaQueries.getMatriculas, {
     onError: (errors) => {
       console.log('ERROR', errors?.graphQLErrors[0]?.extensions);
     },

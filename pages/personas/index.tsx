@@ -7,10 +7,10 @@ import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import { GoPlus } from 'react-icons/go';
 import { useQuery } from '@apollo/client';
-import { Persona } from '@services/personas.service';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const PersonasContainer = ({ breadCrumbItems }) => {
-  const { data, loading } = useQuery(Persona.getAll);
+  const { data, loading } = useQuery(PersonaQueries.getAllPersona);
 
   const header = (
     <div className="container-fluid my-2">

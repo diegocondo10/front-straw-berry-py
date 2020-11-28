@@ -1,24 +1,25 @@
 import { useMutation, useQuery } from '@apollo/client';
 import AlumnoFormContainer from '@components/pages/personas/alumnos/form';
 import PrivateLayout from '@layouts/privateLayout';
-import { Alumno } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const UpdateAlumnoContainer = ({ title, items, id }) => {
   const methods = useForm({
     mode: 'onChange',
   });
 
-  const { loading, data } = useQuery(Alumno.getById, {
+  const { loading, data } = useQuery(PersonaQueries.getByIdAlumno, {
     variables: { id },
     onCompleted: ({ alumno }) => {
       methods.reset(alumno);
     },
   });
 
-  const [update] = useMutation(Alumno.update);
+  const [update] = useMutation(PersonaMutations.updateAlumno);
 
   const router = useRouter();
   const onSubmit = async (input) => {

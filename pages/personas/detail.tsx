@@ -4,15 +4,15 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Persona } from '@services/personas.service';
 import { Table } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const DetailPersonaContainer = ({ items, id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(Persona.getById, { variables: { id } });
+  const { data, loading } = useQuery(PersonaQueries.getByIdPersona, { variables: { id } });
 
   const onClickEliminar = async () => {
     history.push('/personas');

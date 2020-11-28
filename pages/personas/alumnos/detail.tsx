@@ -3,18 +3,19 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
 import PrivateLayout from '@layouts/privateLayout';
-import { Alumno } from '@services/personas.service';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const DetailAlumnoContainer = ({ items, id }) => {
   const history = useRouter();
-  const { data, loading } = useQuery(Alumno.getById, {
+  const { data, loading } = useQuery(PersonaQueries.getByIdAlumno, {
     variables: { id },
   });
 
-  const [deleteAlumno] = useMutation(Alumno.delete, { variables: { id } });
+  const [deleteAlumno] = useMutation(PersonaMutations.deleteAlumno, { variables: { id } });
 
   const onClickEliminar = async () => {
     await deleteAlumno();
