@@ -25,7 +25,7 @@ import { setContext } from '@apollo/client/link/context';
 moment.locale('es');
 
 const link = createHttpLink({
-  uri: 'http://localhost:9000/graphql',
+  uri: 'http://localhost:8000/graphql',
   //uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 

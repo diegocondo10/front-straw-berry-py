@@ -1,160 +1,141 @@
-    query getDataForm {
-      aulas {
+query getMatriculaById($id: ID!) {
+  matricula(id: $id) {
+    id
+    tratamiento
+    diagnostico
+    matricula
+    numeroMatricula
+    aporteVoluntario
+    diagnosticoFinal
+    aula {
+      id
+      nombre
+    }
+    alumno {
+      id
+      persona {
         id
-        nombre
-      }
-      alumnos {
-        id
-        persona {
-          id
-          str
-        }
+        str
       }
     }
+  }
 
-    query getMatriculaById($id: ID!) {
-      matricula(id: $id) {
-        id
-        tratamiento
-        diagnostico
-        matricula
-        numeroMatricula
-        aporteVoluntario
-        diagnosticoFinal
-        aula {
-          id
-          nombre
-        }
-        alumno {
-          id
-          persona {
-            id
-            str
-          }
-        }
-      }
+  aulas {
+    id
+    nombre
+  }
+  alumnos {
+    id
+    persona {
+      id
+      str
+    }
+  }
+}
 
-      aulas {
-        id
-        nombre
-      }
-      alumnos {
-        id
-        persona {
-          id
-          str
-        }
-      }
+query getMatriculas {
+  matriculas {
+    id
+    aula {
+      id
+      nombre
     }
 
-    query getMatriculas {
-      matriculas {
+    alumno {
+      id
+      persona {
         id
-        aula {
-          id
-          nombre
-        }
-
-        alumno {
-          id
-          persona {
-            id
-            str
-          }
-        }
+        str
       }
     }
+  }
+}
 
-    query getDataForm {
-      ${Aula.dataFormFragment}
-    }
-
-    query getAll {
-      aulas {
+query getAll {
+  aulas {
+    id
+    nombre
+    capacidad
+    grado
+    docentes {
+      id
+      persona {
         id
-        nombre
-        capacidad
-        grado
-        docentes {
-          id
-          persona {
-            id
-            str
-          }
-        }
-        periodo {
-          id
-          nombre
-        }
+        str
       }
     }
-
-    query getByIdAula($id: ID!) {
-      aula(id: $id) {
-        id
-        nombre
-        periodo {
-          id
-          nombre
-        }
-        docentes {
-          id
-          persona {
-            id
-            str
-          }
-        }
-        grado
-        capacidad
-      }
-      ${Aula.dataFormFragment}
+    periodo {
+      id
+      nombre
     }
+  }
+}
 
-    query getByIdMateria($id: ID!) {
-      materia(id: $id) {
+query getByIdAula($id: ID!) {
+  aula(id: $id) {
+    id
+    nombre
+    periodo {
+      id
+      nombre
+    }
+    docentes {
+      id
+      persona {
         id
-        nombre
-        codigo
-        grado
-        horasPresencial
-        descripcion
-        objetivo
-        objetivoEspecifico
+        str
       }
     }
+    grado
+    capacidad
+  }
+}
 
-    query getAllMateria {
-      materias {
-        id
-        nombre
-        codigo
-        grado
-        horasPresencial
-        descripcion
-        objetivo
-        objetivoEspecifico
-      }
-    }
+query getByIdMateria($id: ID!) {
+  materia(id: $id) {
+    id
+    nombre
+    codigo
+    grado
+    horasPresencial
+    descripcion
+    objetivo
+    objetivoEspecifico
+  }
+}
 
-    query getByIdPeriodo($id: ID!) {
-      periodoLectivo(id: $id) {
-        id
-        nombre
-        fechaInicio
-        fechaFin
-        fechaFinClases
-        estado
-        observaciones
-      }
-    }
+query getAllMateria {
+  materias {
+    id
+    nombre
+    codigo
+    grado
+    horasPresencial
+    descripcion
+    objetivo
+    objetivoEspecifico
+  }
+}
 
-    query getAllPeriodo {
-      periodosLectivos {
-        id
-        nombre
-        fechaInicio
-        fechaFin
-        fechaFinClases
-        estado
-      }
-    }
+query getByIdPeriodo($id: ID!) {
+  periodoLectivo(id: $id) {
+    id
+    nombre
+    fechaInicio
+    fechaFin
+    fechaFinClases
+    estado
+    observaciones
+  }
+}
+
+query getAllPeriodo {
+  periodosLectivos {
+    id
+    nombre
+    fechaInicio
+    fechaFin
+    fechaFinClases
+    estado
+  }
+}

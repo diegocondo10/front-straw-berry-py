@@ -1,33 +1,26 @@
+import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
+import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { GoPlus } from 'react-icons/go';
-import { useQuery } from '@apollo/client';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
 
 const PersonasContainer = ({ breadCrumbItems }) => {
-  const { data, loading } = useQuery(PersonaQueries.getAllPersona);
-
+  const { data, loading } = useQuery(PersonaQueries.getPersonasTable);
+  console.log(data);
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/personas/create">
-            <a className="btn btn-info btn-sm">
-              Agregar
-              <GoPlus />
-            </a>
-          </Link>
+          <HrefButton href="/personas/create" label="Agregar" icon="pi pi-plus" />
         </div>
       </div>
     </div>
   );
 
-  const persona = {};
   return (
     <PrivateLayout title="IPCA | Personas" loading={loading}>
       <main className="container-fluid">
@@ -50,23 +43,15 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               removableSort
             >
               {IndexColumn()}
-              <Column
-                header="Identificación"
-                field="identificacion"
-                sortable
-                filter
-                frozen
-              />
-              <Column
-                header="Primer Apellido"
-                field="primerApellido"
-                sortable
-                filter
-              />
-              <Column header="Primer Nombre" field="primerNombre" sortable filter />
+              <Column header="Identificación" field="str" sortable filter frozen />
               <Column header="Teléfono" field="telefono" sortable filter />
-              <Column header="Celular" field="celular" sortable filter />
               <Column header="Correo" field="correo" sortable filter />
+              <Column
+                header="Direccion"
+                field="direccionDomiciliaria"
+                sortable
+                filter
+              />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/update?id=${id}`,
                 detailPath: ({ id }) => `/personas/detail?id=${id}`,
