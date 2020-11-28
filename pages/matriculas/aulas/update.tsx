@@ -1,8 +1,10 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import AulasFormContainer from '@components/pages/matriculas/aulas/form';
+import { updateAula } from '@graphql/Matriculas/mutations.gql';
+import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
+import useCustomRouter from '@hooks/useCustomRouter';
 import PrivateLayout from '@layouts/privateLayout';
 import React from 'react';
-import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdateAulaContainer = ({ id }) => {
@@ -13,12 +15,20 @@ const UpdateAulaContainer = ({ id }) => {
     onCompleted: ({ aula }) => methods.reset(aula),
   });
 
+  const router = useCustomRouter();
+
+  const [update, { loading: loadingUpdate }] = useMutation(updateAula);
+
   const onSubmit = async (input) => {
     console.log(input);
+
+    await update({ variables: { id, input } });
+
+    router.push('/matriculas/aulas');
   };
 
   return (
-    <PrivateLayout title="Editar Aula" loading={loading}>
+    <PrivateLayout title="Editar Aula" loading={loading || loadingUpdate}>
       <FormProvider {...methods}>
         <AulasFormContainer
           docentes={data?.personalByFunciones}
