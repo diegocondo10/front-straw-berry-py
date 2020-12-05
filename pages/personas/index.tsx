@@ -17,6 +17,10 @@ const PersonasContainer = ({ breadCrumbItems }) => {
         <div className="col text-left">
           <HrefButton href="/personas/create" label="Agregar" icon="pi pi-plus" />
         </div>
+
+        <div className="col text-right">
+          <HrefButton href="/personas/detail" label="Reportes" icon="pi pi-paperclip" />
+        </div>
       </div>
     </div>
   );
