@@ -33,7 +33,93 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
+
               {/*
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Historia Clínica:"
+                  name="historiaClinica"
+                  keyfilter="num"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Trastornos Asociados:"
+                  name="trastornosAsociados"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Grado de Dependencia:"
+                  name="gradoDependencia"
+                  keyfilter="num"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Bono:"
+                  name="bono"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Tipo de Bono:"
+                  name="tipoBono"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Afiliación del IESS:"
+                  name="afiliacionIESS"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              <div className="col-md-12">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Quintil Pobreza:"
+                  name="quintilPobreza"
+                  keyfilter="alpha"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+
+              ----------
               <div className="col-md-12">
                 <CustomTextInput
                   className="p-inputtext-sm"
