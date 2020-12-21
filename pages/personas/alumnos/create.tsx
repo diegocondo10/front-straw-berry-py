@@ -4,21 +4,22 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
+import { getParametrosFormAlumnos } from '@graphql/Personas/queries.gql';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import faker from 'faker';
 
 const defaultValue = {
   persona: '1',
   padre: {
-    identificacion: '123123123',
-    primerNombre: 'sfdasdfsadfasdf',
-    segundoNombre: 'SDFASDFASDF',
-    primerApellido: 'ASDFASDFASDF',
-    segundoApellido: 'dsfasdfasdfasd',
-    ocupacion: 'sdfasdfasdasdf',
-    direccion: 'SADFASDFASDF',
-    telefono: '123112341234',
-    celular: '123212341234',
+    identificacion: faker.random.alphaNumeric(10),
+    primerNombre: faker.name.firstName(),
+    segundoNombre: faker.name.firstName(),
+    primerApellido: faker.name.lastName(),
+    segundoApellido: faker.name.lastName(),
+    ocupacion: faker.random.words(),
+    direccion: faker.address.streetAddress(),
+    telefono: faker.phone.phoneNumber(),
+    celular: faker.phone.phoneNumber(),
   },
   madre: {
     identificacion: '213412341234123',
@@ -48,7 +49,7 @@ const CreateAlumnoContainer = ({ items, title }) => {
     defaultValues: defaultValue,
   });
 
-  const { loading, data } = useQuery(PersonaQueries.getAllCustom('str'));
+  const { loading, data } = useQuery(getParametrosFormAlumnos);
   const [create] = useMutation(PersonaMutations.createAlumno);
   const router = useRouter();
 
@@ -57,7 +58,7 @@ const CreateAlumnoContainer = ({ items, title }) => {
 
     const res = await create({ variables: { input } });
     console.log(res);
-    //router.push('/personas/alumnos');
+    router.push('/personas/alumnos');
   };
 
   return (
@@ -77,7 +78,7 @@ const CreateAlumnoContainer = ({ items, title }) => {
 CreateAlumnoContainer.getInitialProps = () => {
   let title = 'Agregar Alumno';
   const items = [
-    { title: 'Alumno', href: '/personas/alumnos' },
+    { title: 'Alumnos', href: '/personas/alumnos' },
     { title: 'Agregar Alumno', active: true },
   ];
 

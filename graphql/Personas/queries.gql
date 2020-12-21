@@ -106,3 +106,31 @@ query getPersonalByIdFormUpdate($id: ID!) {
     str
   }
 }
+
+query getAlumnosTable {
+  alumnos {
+    id
+    personaStr
+  }
+}
+
+query getParametrosFormAlumnos {
+  personas {
+    id
+    str
+  }
+}
+
+query getAlumnoByIdFormUpdate($id: ID!) {
+  alumno(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+  }
+  personas {
+    id
+    str
+  }
+}

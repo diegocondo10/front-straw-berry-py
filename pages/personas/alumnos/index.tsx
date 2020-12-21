@@ -7,21 +7,21 @@ import { DataTable } from 'primereact/datatable';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import { Column } from 'primereact/column';
 import { useQuery } from '@apollo/client';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import { getAlumnosTable } from '@graphql/Personas/queries.gql';
+import HrefButton from '@components/Buttons/HrefButton';
 
 const AlumnosContainer = ({ breadCrumbItems }) => {
-  const { loading, data } = useQuery(PersonaQueries.getAllAlumno);
+  const { loading, data } = useQuery(getAlumnosTable);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/personas/alumnos/create">
-            <a className="btn btn-info btn-sm">
-              Agregar
-              <GoPlus />
-            </a>
-          </Link>
+          <HrefButton
+            href="/personas/alumnos/create"
+            label="Agregar"
+            icon="pi pi-plus"
+          />
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ const AlumnosContainer = ({ breadCrumbItems }) => {
               {IndexColumn()}
               <Column
                 header="Persona"
-                field="persona.str"
+                field="personaStr"
                 sortable
                 filter
                 reorderable

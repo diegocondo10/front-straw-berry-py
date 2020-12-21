@@ -1,10 +1,11 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
+import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
 import CustomDropDown from '@components/forms/CustomDropDown';
+import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
 const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
@@ -33,83 +34,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
-              {/*
-              <div className="col-md-12">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Correo Electrónico:"
-                  name="correo"
-                  keyfilter="email"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Dirección Domiciliaria:"
-                  name="direccion"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Provincia:"
-                  name="provincia"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Cantón:"
-                  name="canton"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Parroquia:"
-                  name="parroquia"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Sector:"
-                  name="sector"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Teléfono:"
-                  name="telefono"
-                  keyfilter="num"
-                />
-              </div>
 
-*/}
               <h4 className="text-underline col-12">Información del Padre</h4>
               <div className="col-md-12">
                 <CustomTextInput
@@ -354,84 +279,63 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   keyfilter="num"
                 />
               </div>
-
-              {/*
-
-
-              <h4 className="text-underline">Información del Estudiante:</h4>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Nivel al que asiste:"
-                  name="nivelAsiste"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Promovido:"
-                  name="promovido"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Tratamiento que recibe:"
-                  name="tratamiento"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Diagnóstico:"
-                  name="diagnostico"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Matrícula:"
-                  name="matricula"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextInput
-                  label="Aporte Voluntario:"
-                  name="aporteVoluntario"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-12">
-                <CustomTextArea label="Observaciones:" name="observaciones" />
-              </div>
-            
-            
-
-*/}
             </Form.Row>
 
-            <Form.Row className="justify-content-between">
-              <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/personas/alumnos" variant="outline-danger" />
+            <div className="form-row">
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Historia Clinica"
+                  name="historiaClinica"
+                  keyfilter="alpha"
+                />
               </div>
-              <div className="col-md-5 mt-3 my-1">
-                <Button variant="outline-primary" block type="submit">
-                  Guardar
-                </Button>
+              <div className="col-12">
+                <CustomTextArea
+                  className="p-inputtext-sm"
+                  label="Trastornos asociados"
+                  name="trastornosAsociados"
+                />
               </div>
-            </Form.Row>
+
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Bono"
+                  name="bono"
+                  keyfilter="alpha"
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Tipo de Bono"
+                  name="tipoBono"
+                  keyfilter="alpha"
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Afiliacion al IESS"
+                  name="afiliacionIess"
+                  keyfilter="alpha"
+                />
+              </div>
+
+              <div className="col-md-6">
+                <CustomTextInput
+                  className="p-inputtext-sm"
+                  label="Quintil pobreza"
+                  name="quintilPobreza"
+                  keyfilter="alpha"
+                />
+              </div>
+            </div>
+
+            <FooterButtonsForm hrefBack="/personas/alumnos" />
           </form>
         </div>
       </div>
@@ -440,48 +344,3 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
 };
 
 export default AlumnoFormContainer;
-
-{
-  /* <div className="col-md-6">
-                <CustomDropDown
-                  label="Padre:"
-                  name="padre"
-                  options={personas}
-                  optionLabel="str"
-                  filter
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomDropDown
-                  label="Madre:"
-                  name="madre"
-                  options={personas}
-                  optionLabel="str"
-                  filter
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomDropDown
-                  label="Representantes:"
-                  name="representante"
-                  options={personas}
-                  optionLabel="str"
-                  filter
-                  rules={{ required: 'Este campo es obligatorio' }}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Relación con el Representante:"
-                  name="relacionRepresentante"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div> */
-}

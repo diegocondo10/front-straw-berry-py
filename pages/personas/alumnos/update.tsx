@@ -4,15 +4,15 @@ import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
 
 const UpdateAlumnoContainer = ({ title, items, id }) => {
   const methods = useForm({
     mode: 'onChange',
   });
 
-  const { loading, data } = useQuery(PersonaQueries.getByIdAlumno, {
+  const { loading, data } = useQuery(PersonaQueries.getAlumnoByIdFormUpdate, {
     variables: { id },
     onCompleted: ({ alumno }) => {
       methods.reset(alumno);

@@ -1,3 +1,11 @@
+query getParametrosFormMatriculas {
+  alumnos {
+    id
+    personaStr
+  }
+}
+
+
 query getMatriculaById($id: ID!) {
   matricula(id: $id) {
     id
