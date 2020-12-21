@@ -15,7 +15,7 @@ const DocenteFormContainer = ({
 }) => {
   const { handleSubmit, control } = useFormContext();
 
-  const funcion = useWatch({
+  const funcion: any = useWatch({
     control,
     name: 'funcion',
   });
