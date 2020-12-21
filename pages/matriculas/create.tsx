@@ -3,13 +3,13 @@ import MatriculaFormContainer from '@components/pages/matriculas/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import { getDataForm } from '@graphql/Matriculas/queries.gql';
+import { createMatricula } from '@graphql/Matriculas/mutations.gql';
 
 const CreateMatriculaContainer = () => {
-  const { loading, data } = useQuery(MatriculaQueries.getDataForm);
+  const { loading, data } = useQuery(getDataForm);
 
-  const [create, { loading: loadingCreate }] = useMutation(MatriculaMutations.createMatricula);
+  const [create, { loading: loadingCreate }] = useMutation(createMatricula);
 
   const router = useRouter();
 
@@ -40,6 +40,9 @@ const CreateMatriculaContainer = () => {
         aulas={data?.aulas}
         alumnos={data?.alumnos}
       />
+      <main className="container  ">
+        <h1>Prueba</h1>
+      </main>
     </PrivateLayout>
   );
 };
