@@ -1,21 +1,13 @@
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
-
-const PermisoFormContainer = ({
-  title,
-  items,
-  loading,
-  onSubmit,
-  aplicaciones = [],
-}) => {
-  const { register, handleSubmit, errors } = useFormContext();
+const PermisoFormContainer = ({ title, items, onSubmit }) => {
+  const { handleSubmit } = useFormContext();
 
   return (
     <main className="container-fluid">
@@ -29,16 +21,6 @@ const PermisoFormContainer = ({
               name="nombre"
               rules={{ required: 'Obligatorio' }}
             />
-
-            <Form.Group>
-              <CustomDropDown
-                name="aplicacionId"
-                options={aplicaciones}
-                label="Aplicacion:"
-                rules={{ required: 'Este campo es obligatorio' }}
-                //defaultValue={aplicaciones[0].id}
-              />
-            </Form.Group>
 
             <CustomTextArea label="Descripcion: " name="descripcion" />
 

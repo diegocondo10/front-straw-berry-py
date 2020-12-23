@@ -76,10 +76,6 @@ const PrivateNavbar = () => {
       label: 'Administracion',
       items: [
         {
-          label: 'Aplicaciones',
-          command: commandPush('/auth/aplicaciones'),
-        },
-        {
           label: 'Permisos',
           command: commandPush('/auth/permisos'),
         },

@@ -1,23 +1,18 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import PermisoFormContainer from '@components/pages/auth/permisos/form';
+import AuthMutations from '@graphql/Auth/mutations.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import PermisoFormContainer from '@components/pages/auth/permisos/form';
-import AuthQueries from '@graphql/Auth/queries.gql';
-import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreatePermisoContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
 
-  const { data, loading } = useQuery(AuthQueries.getAppsPermiso);
-
   const [create] = useMutation(AuthMutations.createPermiso);
 
   const onSubmit = async (input) => {
-    input.aplicacion = input.aplicacionId;
-    delete input.aplicacionId;
     await create({ variables: { input } });
     router.push('/auth/permisos');
   };
@@ -25,16 +20,7 @@ const CreatePermisoContainer = ({ items, title }) => {
   return (
     <PrivateLayout>
       <FormProvider {...methods}>
-        <PermisoFormContainer
-          loading={loading}
-          title={title}
-          items={items}
-          onSubmit={onSubmit}
-          aplicaciones={data?.aplicaciones.map((e) => ({
-            label: e.nombre,
-            value: e.id,
-          }))}
-        />
+        <PermisoFormContainer title={title} items={items} onSubmit={onSubmit} />
       </FormProvider>
     </PrivateLayout>
   );
