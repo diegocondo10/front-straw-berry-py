@@ -5,9 +5,7 @@ import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
-//import { ErrorMessage } from '@hookform/error-message';
 import React from 'react';
-import { Form } from 'react-bootstrap';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 const PARAMETROS = {
@@ -28,6 +26,7 @@ const PARAMETROS = {
     'Otro',
   ],
   etnia: [
+    'Mestizo',
     'Quichua',
     'Montubio',
     'Shuar',
@@ -263,7 +262,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 />
               </div>
             </div>
-
 
             <div className="form-row">
               <div className="col-12">

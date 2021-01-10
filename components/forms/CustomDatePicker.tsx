@@ -20,18 +20,18 @@ const es = {
   dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
   dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
   monthNames: [
-    'enero',
-    'febrero',
-    'marzo',
-    'abril',
-    'mayo',
-    'junio',
-    'julio',
-    'agosto',
-    'septiembre',
-    'octubre',
-    'noviembre',
-    'diciembre',
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
   ],
   monthNamesShort: [
     'ene',
@@ -52,29 +52,39 @@ const es = {
 };
 
 const CustomDatePicker = (props?: CustomDatePickerProps) => {
-  const { control, errors } = useFormContext();
+  const { control } = useFormContext();
   const { label, name, rules, className, ...rest } = props;
+
+  const setValue = (value: string | Date) => {
+    if (typeof value === 'string') {
+      return moment(value, 'yyyy-MM-DD').toDate();
+    }
+    return value;
+  };
+
   return (
     <FieldWrapper label={label} name={name}>
       <Controller
         control={control}
         name={name}
-        rules={rules}
+        rules={{
+          setValueAs: (value) => {
+            return value ? moment(value).format('yyyy-MM-DD') : value;
+          },
+          ...rules,
+        }}
         defaultValue={null}
-        render={({ onChange, value }) => (
+        render={({ onChange, value }, { invalid }) => (
           <Calendar
+            id={name}
             className={classNames({
               [className]: true,
               'w-100  p-inputtext-sm': true,
-              'p-invalid': !!errors[name],
+              'p-invalid': invalid,
             })}
             inputClassName="w-100"
-            id="spanish"
-            value={moment(value).toDate()}
-            onChange={(e) => {
-              const inputValue: any = e.value;
-              onChange(moment(inputValue).format('yyyy-MM-DD'));
-            }}
+            value={setValue(value)}
+            onChange={(e) => onChange(e.value)}
             locale={es}
             dateFormat="dd/mm/yy"
             monthNavigator

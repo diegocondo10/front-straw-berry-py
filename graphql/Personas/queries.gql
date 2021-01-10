@@ -5,6 +5,14 @@ query getDiscapacidadesTable {
     descripcion
   }
 }
+
+query getParamsFormPersonas {
+  discapacidades {
+    id
+    nombre
+  }
+}
+
 query getDiscapacidadById($id: ID!) {
   discapacidad(id: $id) {
     id
@@ -127,6 +135,39 @@ query getAlumnoByIdFormUpdate($id: ID!) {
     persona {
       id
       str
+    }
+    padre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    madre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    contactoEmergencia {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
     }
   }
   personas {

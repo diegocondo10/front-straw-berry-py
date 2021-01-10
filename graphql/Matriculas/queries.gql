@@ -1,30 +1,29 @@
-query getParametrosFormMatriculas {
+#Query usado en la pagina de crecion de matricula
+query getParametrosFormMatriculaCreate {
   alumnos {
     id
     personaStr
   }
+  aulas {
+    id
+    nombre
+  }
 }
-
-
-query getMatriculaById($id: ID!) {
+#Query para carga inicial del form de Matricula
+query getMatriculaByIdFormUpdate($id: ID!) {
   matricula(id: $id) {
     id
     tratamiento
-    diagnostico
     matricula
     numeroMatricula
     aporteVoluntario
-    diagnosticoFinal
     aula {
       id
       nombre
     }
     alumno {
       id
-      persona {
-        id
-        str
-      }
+      personaStr
     }
   }
 
@@ -34,27 +33,29 @@ query getMatriculaById($id: ID!) {
   }
   alumnos {
     id
-    persona {
-      id
-      str
-    }
+    personaStr
   }
 }
 
-query getMatriculas {
+query getMatriculasTable {
   matriculas {
     id
+
+    numeroMatricula
+    aporteVoluntario
+    estadoMatricula
+
     aula {
       id
       nombre
+      periodo {
+        nombre
+      }
     }
 
     alumno {
       id
-      persona {
-        id
-        str
-      }
+      personaStr
     }
   }
 }

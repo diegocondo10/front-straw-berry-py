@@ -11,7 +11,7 @@ import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 const MatriculasContainer = () => {
-  const { loading, data } = useQuery(MatriculaQueries.getMatriculas, {
+  const { loading, data } = useQuery(MatriculaQueries.getMatriculasTable, {
     onError: (errors) => {
       console.log('ERROR', errors?.graphQLErrors[0]?.extensions);
     },
@@ -38,7 +38,7 @@ const MatriculasContainer = () => {
         <div className="row justify-content-center">
           <div className="col-12">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-gridlines p-datatable-sm shadow-lg"
               value={data?.matriculas}
               rowHover
               paginator
@@ -51,15 +51,27 @@ const MatriculasContainer = () => {
             >
               {IndexColumn()}
 
-              <Column header="Alumno" sortable filter field="alumno.persona.str" />
+              <Column header="Alumno" sortable filter field="alumno.personaStr" />
 
-              <Column header="Aulas" field="aula.nombre" sortable filter />
-
-              <Column header="Matrícula" field="matricula" sortable filter />
+              <Column header="Aula" field="aula.nombre" sortable filter />
 
               <Column
-                header="Número Matrícula"
+                header="Periodo Lectivo"
+                field="aula.periodo.nombre"
+                sortable
+                filter
+              />
+
+              <Column
+                header="Número de Matrícula"
                 field="numeroMatricula"
+                sortable
+                filter
+              />
+
+              <Column
+                header="Estado"
+                field="estadoMatricula"
                 sortable
                 filter
               />

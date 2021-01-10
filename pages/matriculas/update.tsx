@@ -6,16 +6,23 @@ import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 import { useRouter } from 'next/router';
 import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdateMatriculaContainer = ({ id }) => {
-  const { loading, data } = useQuery(MatriculaQueries.getMatriculaById, {
+  const methods = useForm({ mode: 'onChange' });
+
+  const { loading, data } = useQuery(MatriculaQueries.getMatriculaByIdFormUpdate, {
     variables: { id },
+    onCompleted: ({ matricula }) => {
+      console.log('DATA: ', matricula);
+      methods.reset(matricula);
+    },
   });
   const router = useRouter();
 
-  const [update, { loading: loadingUpdate }] = useMutation(MatriculaMutations.updateMatricula);
-
-  console.log('MATRICULA: ', data);
+  const [update, { loading: loadingUpdate }] = useMutation(
+    MatriculaMutations.updateMatricula,
+  );
 
   const onSubmit = async (input) => {
     const updateResult = await update({ variables: { input, id } });
@@ -29,24 +36,26 @@ const UpdateMatriculaContainer = ({ id }) => {
 
   return (
     <PrivateLayout title="Editar Matrícula" loading={loading || loadingUpdate}>
-      <MatriculaFormContainer
-        alumnos={data?.alumnos}
-        items={[
-          {
-            title: 'Matriculas',
-            href: '/matriculas',
-          },
-          {
-            title: `${matricula?.alumno?.persona?.str} | ${matricula?.aula?.nombre}`,
-            active: true,
-          },
-        ]}
-        //loading={false}
-        onSubmit={onSubmit}
-        aulas={data?.aulas}
-        title="Editar Matrícula"
-        defaultData={data?.matricula}
-      />
+      <FormProvider {...methods}>
+        <MatriculaFormContainer
+          items={[
+            {
+              title: 'Matriculas',
+              href: '/matriculas',
+            },
+            {
+              title: `${matricula?.alumno?.persona?.str} | ${matricula?.aula?.nombre}`,
+              active: true,
+            },
+          ]}
+          action="update"
+          //loading={false}
+          onSubmit={onSubmit}
+          aulas={data?.aulas}
+          alumnos={data?.alumnos}
+          title="Editar Matrícula"
+        />
+      </FormProvider>
     </PrivateLayout>
   );
 };

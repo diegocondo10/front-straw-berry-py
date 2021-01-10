@@ -3,7 +3,6 @@ import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
 import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomTextArea from '@components/forms/CustomTextArea';
-import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
 import React from 'react';
 import { Form } from 'react-bootstrap';
@@ -15,14 +14,14 @@ const MatriculaFormContainer = ({
   onSubmit,
   aulas = [],
   alumnos = [],
-  defaultData,
+  action = 'create',
 }: {
   title: string;
   items: any[];
   aulas: any[];
   alumnos: any[];
   onSubmit: CallableFunction;
-  defaultData?: any;
+  action?: 'create' | 'update';
 }) => {
   const methods = useFormContext();
 
@@ -87,9 +86,10 @@ const MatriculaFormContainer = ({
                 <CustomDropDown
                   label="Seleccione Alumno:"
                   name="alumno"
-                  optionLabel="persona.str"
+                  optionLabel="personaStr"
                   filter
                   options={alumnos}
+                  disabled={action !== 'create'}
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -116,7 +116,7 @@ const MatriculaFormContainer = ({
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <CustomTextArea
                   label="Diagnóstico:"
                   name="diagnostico"
@@ -124,8 +124,8 @@ const MatriculaFormContainer = ({
                     required: 'Este campo es obligatorio',
                   }}
                 />
-              </div>
-              <div className="col-lg-6">
+              </div> */}
+              {/* <div className="col-lg-6">
                 <CustomTextInput
                   label="Matrícula:"
                   name="matricula"
@@ -133,7 +133,7 @@ const MatriculaFormContainer = ({
                     required: 'Este campo es obligatorio',
                   }}
                 />
-              </div>
+              </div> */}
               <div className="col-lg-6">
                 <CustomInputNumber
                   label="Aporte Voluntario:"
@@ -144,16 +144,13 @@ const MatriculaFormContainer = ({
                   showButtons
                   buttonLayout="horizontal"
                   step={0.25}
-                  decrementButtonClassName="p-button-danger"
-                  incrementButtonClassName="p-button-success"
-                  incrementButtonIcon="pi pi-plus"
-                  decrementButtonIcon="pi pi-minus"
+                  min={0}
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
                 />
               </div>
-              <div className="col-md-12">
+              {/* <div className="col-md-12">
                 <CustomTextArea
                   label="Diagnóstico Final:"
                   name="diagnosticoFinal"
@@ -161,13 +158,13 @@ const MatriculaFormContainer = ({
                     required: 'Este campo es obligatorio',
                   }}
                 />
-              </div>
+              </div> */}
             </Form.Row>
             <FooterButtonsForm loading={false} hrefBack="/matriculas" />
           </form>
         </div>
 
-        <div className="col-md-6 jumbotron border border-blue rounded h-100 ">
+        {/* <div className="col-md-6 jumbotron border border-blue rounded h-100 ">
           <div className="p-grid">
             <h4 className="text-underline">Datos personales:</h4>
 
@@ -402,6 +399,7 @@ const MatriculaFormContainer = ({
             />
           </div>
         </div>
+       */}
       </div>
     </main>
   );

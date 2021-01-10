@@ -16,7 +16,7 @@ const CustomDropDown = (props?: CustomSelectProps) => {
     ...rest
   } = props;
 
-  const { control, errors } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <FieldWrapper label={label} name={name}>
@@ -25,19 +25,19 @@ const CustomDropDown = (props?: CustomSelectProps) => {
         name={name}
         rules={rules}
         defaultValue={null}
-        render={({ onChange, value }) => (
+        render={({ onChange, value }, { invalid }) => (
           // @ts-ignore
           <Dropdown
             value={value}
             onChange={(event) => {
               onChange(event.value);
-              onChangeFn && onChangeFn(event.value);
+              onChangeFn?.(event.value);
             }}
             placeholder={placeholder || 'Seleccione'}
             className={classnames({
-              [className]: true,
               'w-100 p-inputtext-sm': true,
-              'p-invalid': !!errors[name],
+              'p-invalid': invalid,
+              [className]: true,
             })}
             {...rest}
           />
