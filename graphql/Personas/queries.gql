@@ -38,6 +38,7 @@ query getPersonasTable {
 query getPersonaByIdForm($id: ID!) {
   persona(id: $id) {
     id
+    str
     tipoIdentificacion
     identificacion
     primerApellido
@@ -56,22 +57,64 @@ query getPersonaByIdForm($id: ID!) {
     parroquiaResidencia
     direccionDomiciliaria
     telefono
-    celular
+    celularUno
     correo
     tieneDiscapacidad
     carnetConadis
     porcentajeDiscapacidad
+    discapacidadesDisponibles {
+      id
+      nombre
+    }
+    discapacidades {
+      id
+      nombre
+    }
   }
-  discapacidades {
+}
+query getPersonaByIdDetail($id: ID!) {
+  persona(id: $id) {
     id
-    nombre
+    str
+    tipoIdentificacion
+    identificacion
+    primerApellido
+    segundoApellido
+    primerNombre
+    segundoNombre
+    paisNacimiento
+    fechaNacimiento
+    genero
+    estadoCivil
+    etnia
+    tipoSangre
+    paisResidencia
+    provinciaResidencia
+    cantonResidencia
+    parroquiaResidencia
+    direccionDomiciliaria
+    telefono
+    celularUno
+    correo
+    tieneDiscapacidad
+    carnetConadis
+    porcentajeDiscapacidad
+    discapacidades {
+      id
+      nombre
+    }
   }
 }
 
 query getPersonalTable {
   personalAll {
     id
-    funcionStr
+    titulo
+    tipoTitulo
+    areaDeTrabajo
+    funciones {
+      nombre
+    }
     persona {
       id
       str
@@ -95,23 +138,25 @@ query getParametrosFormPersonal {
 query getPersonalByIdFormUpdate($id: ID!) {
   personal(id: $id) {
     id
-    funcion {
-      id
-      nombre
-    }
     persona {
       id
       str
     }
-    info
-  }
-  funcionesPersonal {
-    id
-    nombre
+    funciones {
+      id
+      nombre
+    }
+    titulo
+    tipoTitulo
+    areaDeTrabajo
   }
   personas {
     id
     str
+  }
+  funcionesPersonal {
+    id
+    nombre
   }
 }
 

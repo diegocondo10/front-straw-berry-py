@@ -1,16 +1,16 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PersonaFormContainer from '@components/pages/personas/form';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdatePersonaContainer = ({ title, id }) => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { loading, data } = useQuery(PersonaQueries.getByIdPersona, {
+  const { loading, data } = useQuery(PersonaQueries.getPersonaByIdForm, {
     variables: { id },
     onCompleted: ({ persona }) => {
       methods.reset(persona);
@@ -21,12 +21,13 @@ const UpdatePersonaContainer = ({ title, id }) => {
 
   const router = useRouter();
 
-  const onSubmit = async (input) => {
+  const onSubmit = async (input, formData) => {
     try {
       const res = await update({ variables: { id, input } });
       router.push('/personas');
     } catch (error) {
       console.log(error);
+      methods.reset(formData);
     }
   };
 

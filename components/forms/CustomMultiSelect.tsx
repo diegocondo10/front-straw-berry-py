@@ -9,7 +9,7 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
   const { label, rules, name, ...rest } = props;
   const { onChange: onChangeFn, placeholder, className } = props;
 
-  const { control, errors } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <FieldWrapper label={label} name={name}>
@@ -18,7 +18,7 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
         name={name}
         rules={rules}
         defaultValue={null}
-        render={({ onChange, value }) => (
+        render={({ onChange, value }, { invalid }) => (
           // @ts-ignore
           <MultiSelect
             value={value}
@@ -28,9 +28,9 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
             }}
             placeholder={placeholder || 'Seleccione'}
             className={classnames({
-              [className]: true,
               'w-100 p-inputtext-sm': true,
-              'p-invalid': !!errors[name],
+              'p-invalid': invalid,
+              [className]: true,
             })}
             {...rest}
           />

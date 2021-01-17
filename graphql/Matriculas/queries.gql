@@ -175,7 +175,7 @@ query getByIdPeriodo($id: ID!) {
   }
 }
 
-query getAllPeriodo {
+query getPeriodosTable {
   periodosLectivos {
     id
     nombre

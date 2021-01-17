@@ -35,7 +35,7 @@ const PrivateLayout = (props?: PrivateLayoutProps) => {
 
       <style jsx global>{`
         .full_h {
-          height: calc(100vh - 5rem) !important;
+          height: calc(100vh - 7rem) !important;
         }
       `}</style>
     </React.Fragment>

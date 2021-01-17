@@ -6,6 +6,8 @@ import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { FormProvider, useForm } from 'react-hook-form';
+import moment from 'moment';
+import { DATE_FORMAT } from '@utils/date';
 
 const PeriodoLectivoFormContainer = ({
   onSubmit,
@@ -33,7 +35,7 @@ const PeriodoLectivoFormContainer = ({
           <div className="col-md-10 col-lg-8 jumbotron rounded">
             <form onSubmit={handleSubmit(onLocalSubmit)}>
               <Form.Row>
-                <div className="col-md-6">
+                <div className="col-12">
                   <CustomTextInput
                     label="Nombre:"
                     name="nombre"
@@ -46,19 +48,42 @@ const PeriodoLectivoFormContainer = ({
                   <CustomDatePicker
                     label="Fecha de Inicio:"
                     name="fechaInicio"
-                    rules={{ required: 'Este campo es obligatorio' }}
+                    minDate={moment().subtract(5, 'years').toDate()}
+                    maxDate={moment().add(1, 'years').toDate()}
+                    rules={{
+                      required: 'Este campo es obligatorio',
+                      validate: (value) => {
+                        console.log('VALUE: ', value);
+                        const fechaFin = methods.getValues('fechaFin');
+
+                        if (!fechaFin) {
+                          methods.setError('fechaFin', {
+                            type: 'custom',
+                            message: 'Seleccione una fecha de fin',
+                          });
+                          return true;
+                        }
+
+                        if (moment(value, DATE_FORMAT)) {
+                        }
+
+                        return true;
+                      },
+                    }}
                   />
                 </div>
                 <div className="col-md-6">
                   <CustomDatePicker
                     label="Fecha de Fin:"
                     name="fechaFin"
+                    minDate={moment().subtract(5, 'years').toDate()}
+                    maxDate={moment().add(2, 'years').toDate()}
                     rules={{
                       required: 'Este campo es obligatorio',
                     }}
                   />
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <CustomTextInput
                     label="Estado:"
                     name="estado"
@@ -66,11 +91,13 @@ const PeriodoLectivoFormContainer = ({
                       required: 'Este campo es obligatorio',
                     }}
                   />
-                </div>
+                </div> */}
                 <div className="col-md-6">
                   <CustomDatePicker
                     label="Fecha fin de clases:"
                     name="fechaFinClases"
+                    minDate={moment().subtract(5, 'years').toDate()}
+                    maxDate={moment().add(2, 'years').toDate()}
                     rules={{
                       required: 'Este campo es obligatorio',
                     }}

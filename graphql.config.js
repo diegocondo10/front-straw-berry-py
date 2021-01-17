@@ -6,7 +6,7 @@ module.exports = {
       extensions: {
         endpoints: {
           default: {
-            url: 'http://localhost:8000/graphql',
+            url: 'http://localhost:9000/graphql',
             //headers: { Authorization: `Bearer ${process.env.API_TOKEN}` },
           },
         },

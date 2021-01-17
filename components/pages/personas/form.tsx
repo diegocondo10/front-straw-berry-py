@@ -54,10 +54,13 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
   });
 
   const onLocalSubmit = async (input) => {
-    if (input.discapacidades) {
-      input.discapacidades = input.discapacidades.map((e) => e.id);
+    const mappedData = {
+      ...input,
+    };
+    if (mappedData.discapacidades) {
+      mappedData.discapacidades = input.discapacidades.map((e) => e.id);
     }
-    await onSubmit(input);
+    await onSubmit(mappedData, input);
   };
 
   return (

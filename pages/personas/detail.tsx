@@ -1,18 +1,18 @@
+import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { Table } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import { Button, Table } from 'react-bootstrap';
 
-const DetailPersonaContainer = ({ items, id }) => {
+const DetailPersonaContainer = ({ id }) => {
   const history = useRouter();
 
-  //const data = {};
-  const { data, loading } = useQuery(PersonaQueries.getByIdPersona, { variables: { id } });
+  const { data, loading } = useQuery(PersonaQueries.getPersonaByIdDetail, {
+    variables: { id },
+  });
 
   const onClickEliminar = async () => {
     history.push('/personas');
@@ -21,7 +21,13 @@ const DetailPersonaContainer = ({ items, id }) => {
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid">
-        <BreadCrumbTitle title="Persona" items={items} />
+        <BreadCrumbTitle
+          title="Persona"
+          items={[
+            { title: 'Personas', href: '/personas' },
+            { title: data?.persona?.str, href: `/personas/update/?id=${id}` },
+          ]}
+        />
 
         <div className="row justify-content-center">
           <div className="col-md-8 breadcrumb">
@@ -141,7 +147,7 @@ const DetailPersonaContainer = ({ items, id }) => {
                 <Table className="w-75 mx-auto" hover striped bordered size="sm">
                   <thead className="thead-dark">
                     <tr>
-                      <th>Nombre de Discapacidad</th>
+                      <th>Discapacidad</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -175,10 +181,6 @@ const DetailPersonaContainer = ({ items, id }) => {
 
 DetailPersonaContainer.getInitialProps = async ({ query }) => {
   return {
-    items: [
-      { title: 'Personas', href: '/personas' },
-      { title: query.id, href: `/personas/update/?id=${query.id}` },
-    ],
     id: query.id,
   };
 };

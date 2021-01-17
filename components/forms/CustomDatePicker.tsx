@@ -1,3 +1,4 @@
+import { DATE_FORMAT } from '@utils/date';
 import classNames from 'classnames';
 import moment from 'moment';
 import { Calendar, CalendarProps } from 'primereact/calendar';
@@ -57,7 +58,7 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
 
   const setValue = (value: string | Date) => {
     if (typeof value === 'string') {
-      return moment(value, 'yyyy-MM-DD').toDate();
+      return moment(value, DATE_FORMAT).toDate();
     }
     return value;
   };
@@ -69,7 +70,7 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
         name={name}
         rules={{
           setValueAs: (value) => {
-            return value ? moment(value).format('yyyy-MM-DD') : value;
+            return value ? moment(value).format(DATE_FORMAT) : value;
           },
           ...rules,
         }}
@@ -85,7 +86,6 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
             inputClassName="w-100"
             value={setValue(value)}
             onChange={(e) => onChange(e.value)}
-            locale={es}
             dateFormat="dd/mm/yy"
             monthNavigator
             yearNavigator

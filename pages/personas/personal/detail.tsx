@@ -1,20 +1,20 @@
-import React from 'react';
-import PrivateLayout from '@layouts/privateLayout';
-import { BtnRegresar } from '@components/Buttons';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { useRouter } from 'next/router';
-import { Button } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { Table } from 'react-bootstrap';
-import Link from 'next/link';
+import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from '@components/Buttons';
 import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
+import PrivateLayout from '@layouts/privateLayout';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 
 const DetailDocenteContainer = ({ items, id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(PersonaQueries.getByIdDetail, { variables: { id } });
+  const { data, loading } = useQuery(PersonaQueries.getByIdDetail, {
+    variables: { id },
+  });
 
   const onClickEliminar = async () => {
     history.push('/docentes');

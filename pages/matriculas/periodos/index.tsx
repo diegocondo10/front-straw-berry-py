@@ -2,14 +2,14 @@ import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const PeriodosLectivosContainer = () => {
-  const { loading, data } = useQuery(MatriculaQueries.getAllPeriodo);
+  const { loading, data } = useQuery(MatriculaQueries.getPeriodosTable);
 
   const header = (
     <div className="container-fluid my-2">
@@ -38,7 +38,7 @@ const PeriodosLectivosContainer = () => {
         <div className="row justify-content-center">
           <div className="col-md-12 datatable-doc-demo">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-gridlines shadow-lg p-datatable-sm"
               value={data?.periodosLectivos}
               rowHover
               paginator
@@ -49,8 +49,16 @@ const PeriodosLectivosContainer = () => {
               emptyMessage="No se han encontrado resultados"
             >
               {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter reorderable />
               <Column
+                className="text-center"
+                header="Nombre"
+                field="nombre"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                className="text-center"
                 header="Fecha de inicio"
                 field="fechaInicio"
                 sortable
@@ -58,6 +66,7 @@ const PeriodosLectivosContainer = () => {
                 reorderable
               />
               <Column
+                className="text-center"
                 header="Fecha de fin"
                 field="fechaFin"
                 sortable
@@ -65,13 +74,21 @@ const PeriodosLectivosContainer = () => {
                 reorderable
               />
               <Column
+                className="text-center"
                 header="Fecha de fin de clases"
                 field="fechaFinClases"
                 sortable
                 filter
                 reorderable
               />
-              <Column header="Estado" field="estado" sortable filter reorderable />
+              <Column
+                className="text-center"
+                header="Estado"
+                field="estado"
+                sortable
+                filter
+                reorderable
+              />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,

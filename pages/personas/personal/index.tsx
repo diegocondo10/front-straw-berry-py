@@ -42,7 +42,7 @@ const PersonalContainer = () => {
           <div className="col-12 datatable-doc-demo">
             <DataTable
               value={data?.personalAll || []}
-              className="p-datatable-customers shadow-lg p-datatable-gridlines"
+              className="p-datatable-sm shadow-lg p-datatable-gridlines"
               rowHover
               paginator
               header={header}
@@ -70,20 +70,37 @@ const PersonalContainer = () => {
                 filter
                 reorderable
               />
+              <Column header="Título" field="titulo" sortable filter reorderable />
               <Column
-                header="Telefono"
-                field="persona.telefono"
+                header="Tipo de título"
+                field="tipoTitulo"
+                sortable
+                filter
+                reorderable
+              />
+              <Column
+                header="Área de trabajo"
+                field="areaDeTrabajo"
                 sortable
                 filter
                 reorderable
               />
               <Column
                 header="Funcion"
-                field="funcionStr"
+                field="funciones"
                 sortable
                 filter
                 reorderable
                 style={{ width: '150px' }}
+                body={(rowData) => {
+                  return (
+                    <ul className="list-group">
+                      {rowData?.funciones?.map?.((funcion) => (
+                        <li> - {funcion?.nombre}</li>
+                      ))}
+                    </ul>
+                  );
+                }}
               />
               {OptionesColumn({
                 editPath: ({ id }) => `/personas/personal/update?id=${id}`,
