@@ -2,11 +2,9 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons/BtnRegresar';
 import HrefButton from '@components/Buttons/HrefButton';
 import DetailItem from '@components/DetailItem';
-import { IndexColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
-import { Button } from 'primereact/button';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 

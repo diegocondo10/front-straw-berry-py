@@ -2,12 +2,11 @@ import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import { Aula } from '@services/matriculas.service';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 
 const AulasContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getAll);
@@ -37,7 +36,7 @@ const AulasContainer = () => {
         <div className="row justify-content-center">
           <div className="col-12">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-sm p-datatable-gridlines shadow-lg"
               value={data?.aulas}
               rowHover
               paginator
@@ -49,43 +48,54 @@ const AulasContainer = () => {
               reorderableColumns
             >
               {IndexColumn()}
-              <Column header="Nombre" field="nombre" sortable filter />
+              <Column
+                header="Nombre"
+                field="nombre"
+                sortable
+                filter
+                style={{ width: '300px' }}
+              />
 
               <Column
                 header="Periodo lectivo"
                 field="periodo.nombre"
                 sortable
                 filter
+                style={{ width: '300px' }}
               />
-              <Column
-                header="Grado"
-                field="grado"
-                sortable
-                style={{ width: '150px' }}
-              />
-              <Column
-                header="Capacidad"
-                field="capacidad"
-                sortable
-                style={{ width: '150px' }}
-              />
+
               <Column
                 header="Docentes"
                 sortable
                 filter
-                bodyStyle={{ padding: '1rem 0 0 0' }}
+                bodyStyle={{ padding: '0.5rem 0 0 0' }}
                 body={(rowData) => {
                   return (
-                    <ol>
+                    <ul>
                       {rowData?.docentes?.map((docente, key) => (
                         <li key={key} className="w-100">
                           {docente?.persona?.str}
                         </li>
                       ))}
-                    </ol>
+                    </ul>
                   );
                 }}
               />
+              <Column
+                header="Grado"
+                field="grado"
+                sortable
+                style={{ width: '90px' }}
+                bodyClassName="text-center"
+              />
+              <Column
+                header="Capacidad"
+                field="capacidad"
+                sortable
+                style={{ width: '130px' }}
+                bodyClassName="text-center"
+              />
+
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/aulas/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/aulas/detail?id=${id}`,

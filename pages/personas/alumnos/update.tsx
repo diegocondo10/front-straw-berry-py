@@ -1,13 +1,13 @@
 import { useMutation, useQuery } from '@apollo/client';
 import AlumnoFormContainer from '@components/pages/personas/alumnos/form';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import PersonaQueries from '@graphql/Personas/queries.gql';
-import PersonaMutations from '@graphql/Personas/mutations.gql';
 
-const UpdateAlumnoContainer = ({ title, items, id }) => {
+const UpdateAlumnoContainer = ({ id }) => {
   const methods = useForm({
     mode: 'onChange',
   });
@@ -32,28 +32,20 @@ const UpdateAlumnoContainer = ({ title, items, id }) => {
     <PrivateLayout loading={loading}>
       <FormProvider {...methods}>
         <AlumnoFormContainer
-          title={title}
-          items={items}
+          title="Editar Alumno"
+          items={[
+            { title: 'Alumnos', href: '/personas/alumnos' },
+            { title: 'Editar Alumno', active: true },
+          ]}
           onSubmit={onSubmit}
           personas={data?.personas}
+          action="upt"
         />
       </FormProvider>
     </PrivateLayout>
   );
 };
 
-UpdateAlumnoContainer.getInitialProps = ({ query }) => {
-  let title = 'Editar Alumno';
-  const items = [
-    { title: 'Alumno', href: '/personas/alumnos' },
-    { title: 'Editar Alumno', active: true },
-  ];
-
-  return {
-    items,
-    title,
-    id: query.id,
-  };
-};
+UpdateAlumnoContainer.getInitialProps = ({ query }) => query;
 
 export default UpdateAlumnoContainer;

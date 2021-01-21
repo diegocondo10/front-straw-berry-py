@@ -1,19 +1,25 @@
 import { useMutation, useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import DetailItem from '@components/DetailItem';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
+import Hreft from '@components/utils/Link';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
-const PeriodoLectivoDetailContainer = ({ items, id }) => {
+const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const history = useRouter();
 
-  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, { variables: { id } });
-  const [deletePeriodo] = useMutation(MatriculaMutations.deletePeriodo, { variables: { id } });
+  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, {
+    variables: { id },
+  });
+  const [deletePeriodo] = useMutation(MatriculaMutations.deletePeriodo, {
+    variables: { id },
+  });
   const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {
@@ -33,23 +39,40 @@ const PeriodoLectivoDetailContainer = ({ items, id }) => {
         />
 
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
+          <div className="col-md-8">
             <h4 className="text-underline">Información del Período Lectivo</h4>
-            <ul className="w-100">
-              <DetailItem label="Nombre: " value={periodo?.nombre} />
-              <DetailItem label="Fecha de Inicio: " value={periodo?.fechaInicio} />
-              <DetailItem label="Fecha de Fin: " value={periodo?.fechaFin} />
-              <DetailItem label="Estado: " value={periodo?.estado} />
-              <DetailItem
-                label="Fecha Fin de Clases: "
-                value={periodo?.fechaFinClases}
-              />
-              <DetailItem label="Observaciones: " value={periodo?.observaciones} />
-              <DetailItem label="Responsables: " value={periodo?.responsables} />
-            </ul>
+
+            <DynamicDetailTable
+              source={periodo}
+              diccionario={[
+                { label: 'Nombre', path: 'nombre' },
+                { label: 'Estado', path: 'estado' },
+                { label: 'Fecha de Inicio', path: 'fechaInicio' },
+                { label: 'Fecha de Fin', path: 'fechaFin' },
+                { label: 'Fecha Fin de Clases', path: 'fechaFinClases' },
+                {
+                  label: 'Coordinador/a',
+                  body: ({ coordinador }) => (
+                    <Hreft
+                      href={`/personas/personal/detail?id=${coordinador?.id}`}
+                      children={coordinador?.personaStr}
+                    />
+                  ),
+                },
+                {
+                  label: 'Subcoordinador/a',
+                  body: ({ subCoordinador }) => (
+                    <Hreft
+                      href={`/personas/personal/detail?id=${subCoordinador?.id}`}
+                      children={subCoordinador?.personaStr}
+                    />
+                  ),
+                },
+              ]}
+            />
           </div>
         </div>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center my-3">
           <div className="col-md-4 my-1">
             <BtnRegresar variant="outline-info" href="/matriculas/periodos" />
           </div>
@@ -65,14 +88,6 @@ const PeriodoLectivoDetailContainer = ({ items, id }) => {
   );
 };
 
-PeriodoLectivoDetailContainer.getInitialProps = async ({ query }) => {
-  return {
-    items: [
-      { title: 'Periodo Lectivo', href: '/matriculas/periodos' },
-      { title: query.id, href: `/matriculas/periodos/update/?id=${query.id}` },
-    ],
-    id: query.id,
-  };
-};
+PeriodoLectivoDetailContainer.getInitialProps = async ({ query }) => query;
 
 export default PeriodoLectivoDetailContainer;

@@ -16,3 +16,7 @@ export const toMoment = (date, format = '') => {
 export const getId = (object, param = 'id') => {
   return object[param];
 };
+
+export const concatIfExist = (values: any[]) => {
+  return values.filter((value) => value && value !== '').join(' ');
+};

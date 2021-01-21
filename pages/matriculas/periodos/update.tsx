@@ -1,15 +1,20 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PeriodoLectivoFormContainer from '@components/pages/matriculas/periodos/form';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
-const UpdatePeriodoContainer = ({ id }) => {
-  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, { variables: { id } });
+const UpdatePeriodoContainer: NextPage<any> = ({ id }) => {
+  const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, {
+    variables: { id },
+  });
 
-  const [create, { loading: loadingGuardar }] = useMutation(MatriculaMutations.updatePeriodo);
+  const [create, { loading: loadingGuardar }] = useMutation(
+    MatriculaMutations.updatePeriodo,
+  );
 
   const router = useRouter();
 
@@ -29,6 +34,7 @@ const UpdatePeriodoContainer = ({ id }) => {
           { title: data?.periodoLectivo?.nombre, active: true },
         ]}
         defaultData={data?.periodoLectivo}
+        personal={data?.personalAll}
       />
     </PrivateLayout>
   );

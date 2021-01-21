@@ -9,13 +9,15 @@ import '@assets/css/dataTable.scss';
 import '@assets/css/navbar.scss';
 import '@assets/css/root-styles.scss';
 import '@assets/css/vars.scss';
+// import 'popper.js';
+import '@popperjs/core/dist/umd/popper.min.js';
 import { Usuario } from '@services/auth.service';
 import '@styles/_loading.scss';
 import 'bootswatch/dist/flatly/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import moment from 'moment';
 import 'moment/locale/es';
-import 'popper.js';
+import 'normalize.css/normalize.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import { addLocale, locale } from 'primereact/api';
@@ -74,7 +76,7 @@ const setLocale = () => {
 };
 
 const link = createHttpLink({
-  uri: 'http://localhost:9000/graphql',
+  uri: 'http://localhost:8000/graphql',
   // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
@@ -112,9 +114,9 @@ const MyApp = ({ Component, pageProps }) => {
     setLocale();
   }, []);
   return (
-    <ToastProvider autoDismiss autoDismissTimeout={6000} placement="bottom-left">
+    <ToastProvider autoDismiss autoDismissTimeout={15000} placement="top-right">
       <ApolloProvider client={client}>
-        <Component {...{ ...pageProps }} />
+        <Component {...pageProps} />
       </ApolloProvider>
     </ToastProvider>
   );

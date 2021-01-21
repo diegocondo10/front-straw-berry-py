@@ -26,42 +26,10 @@ const MatriculaFormContainer = ({
   const methods = useFormContext();
 
   const localOnSubmit = async (input) => {
-    input.aula = getId(input.aula);
-    input.alumno = getId(input.alumno);
     await onSubmit(input);
   };
 
   const { handleSubmit } = methods;
-
-  const matricula = {
-    fecha: '06-01-2020',
-    cedula: '11111111111',
-    apellidos: 'RODRIGUEZ GUZMAN',
-    nombres: 'ALEJANDRO JUAN',
-    lugar: 'Cuenca',
-    fechaNacimiento: '17/10/2020',
-    edad: '20',
-    discapacidad: 'Parálisis Cerebral',
-    carnet: '12121212121212',
-    direccion: 'Av. de las Américas',
-    provincia: 'Azuay',
-    canton: 'Cuenca',
-    parroquia: 'Baños',
-    sector: 'Colegio Borja',
-    correoElectronico: 'juan@gmail.com',
-    telefono: '4258963',
-    ocupacion: 'Trabajador/a',
-    celular: '0961842587',
-    nivelAsiste: 'tercero',
-    promovido: 'cuarto',
-    tratamiento: 'Con medicamentos',
-    diagnostico: 'Con hipertensión',
-    matricula: '1',
-    aporte: '$10',
-    nombreRepresentante: 'María Lucía',
-    firma: 'x-x-x-x-x-x',
-    relacion: 'x-x-x-x-x-x',
-  };
 
   const DetailItemView = ({ className, label, value }) => {
     return (
@@ -89,8 +57,8 @@ const MatriculaFormContainer = ({
                   optionLabel="personaStr"
                   filter
                   options={alumnos}
-                  disabled={action !== 'create'}
                   rules={{
+                    setValueAs: (value) => (value ? getId(value) : value),
                     required: 'Este campo es obligatorio',
                   }}
                 />
@@ -103,6 +71,7 @@ const MatriculaFormContainer = ({
                   filter
                   options={aulas}
                   rules={{
+                    setValueAs: (value) => (value ? getId(value) : value),
                     required: 'Este campo es obligatorio',
                   }}
                 />

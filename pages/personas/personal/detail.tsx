@@ -1,53 +1,82 @@
 import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const DetailDocenteContainer = ({ items, id }) => {
+const DetailDocenteContainer = ({ id }) => {
   const history = useRouter();
 
   //const data = {};
-  const { data, loading } = useQuery(PersonaQueries.getByIdDetail, {
+  const { data, loading } = useQuery(PersonaQueries.getPersonalByIdDetail, {
     variables: { id },
   });
 
   const onClickEliminar = async () => {
-    history.push('/docentes');
+    history.push('/personal');
   };
 
-  const docente = data?.docente;
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid">
-        <BreadCrumbTitle title="Docente" items={items} />
+        <BreadCrumbTitle
+          title="Personal IPCA"
+          items={[
+            { title: 'Personal', href: '/personas/personal' },
+            {
+              title: data?.personal?.persona?.str,
+              href: `/personas/personal/update/?id=${id}`,
+            },
+          ]}
+        />
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
-            <h4 className="text-underline">Información Personal</h4>
+          <div className="col-lg-8">
+            <h3 className="text-underline">Información</h3>
 
-            <ul className="w-100">
-              <ItemDetailPersona persona={docente?.persona} />
-            </ul>
-
-            <h4 className="text-underline">Información Académica</h4>
-            <ul className="w-100">
-              <li>
-                <strong>Título:</strong>
-                {' ' + data?.docente?.tipoTitulo}
-              </li>
-              <li>
-                <strong>Nivel de Formación:</strong>
-                {' ' + data?.docente?.nivelFormacion}
-              </li>
-              <li>
-                <strong>Observaciones:</strong>
-                {' ' + data?.docente?.observaciones}
-              </li>
-            </ul>
+            <DynamicDetailTable
+              source={data?.personal}
+              diccionario={[
+                {
+                  label: 'Persona',
+                  body: (value) => {
+                    return (
+                      <Link href={`/personas/detail?id=${value?.persona?.id}`}>
+                        <a>{value?.persona?.str}</a>
+                      </Link>
+                    );
+                  },
+                },
+                {
+                  label: 'Funciones que ejerce',
+                  body: (value) => {
+                    return (
+                      <ul>
+                        {value?.funciones?.map?.((funcion, index) => (
+                          <li key={index}>{funcion?.nombre}</li>
+                        ))}
+                      </ul>
+                    );
+                  },
+                },
+                {
+                  label: 'Título',
+                  path: 'titulo',
+                },
+                {
+                  label: 'Tipo de título',
+                  path: 'tipoTitulo',
+                },
+                {
+                  label: 'Área de trabajo',
+                  path: 'areaDeTrabajo',
+                },
+              ]}
+            />
           </div>
         </div>
 
@@ -58,7 +87,7 @@ const DetailDocenteContainer = ({ items, id }) => {
             </Button>
           </div>
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/personas/docentes" />
+            <BtnRegresar variant="outline-info" href="/personas/personal" />
           </div>
         </div>
       </main>
@@ -66,14 +95,6 @@ const DetailDocenteContainer = ({ items, id }) => {
   );
 };
 
-DetailDocenteContainer.getInitialProps = async ({ query }) => {
-  return {
-    items: [
-      { title: 'Docentes', href: '/personas/docentes' },
-      { title: query.id, href: `/personas/docentes/update/?id=${query.id}` },
-    ],
-    id: query.id,
-  };
-};
+DetailDocenteContainer.getInitialProps = async ({ query }) => query;
 
 export default DetailDocenteContainer;

@@ -33,7 +33,7 @@ const DiscapacidadesContainer = ({ breadCrumbItems }) => {
           <div className="row justify-content-center">
             <div className="col-md-11 datatable-doc-demo">
               <DataTable
-                className="p-datatable-customers shadow-lg"
+                className="p-datatable-sm p-datatable-gridlines shadow-lg"
                 value={data.discapacidades || []}
                 rowHover
                 paginator

@@ -5,16 +5,16 @@ import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdateMatriculaContainer = ({ id }) => {
   const methods = useForm({ mode: 'onChange' });
-
+  const [alumnos, setAlumnos] = useState([]);
   const { loading, data } = useQuery(MatriculaQueries.getMatriculaByIdFormUpdate, {
     variables: { id },
     onCompleted: ({ matricula }) => {
-      console.log('DATA: ', matricula);
+      setAlumnos([matricula?.alumno]);
       methods.reset(matricula);
     },
   });
@@ -52,7 +52,7 @@ const UpdateMatriculaContainer = ({ id }) => {
           //loading={false}
           onSubmit={onSubmit}
           aulas={data?.aulas}
-          alumnos={data?.alumnos}
+          alumnos={alumnos}
           title="Editar Matrícula"
         />
       </FormProvider>

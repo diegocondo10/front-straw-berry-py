@@ -1,6 +1,6 @@
 #Query usado en la pagina de crecion de matricula
 query getParametrosFormMatriculaCreate {
-  alumnos {
+  alumnosSinMatricula {
     id
     personaStr
   }
@@ -31,9 +31,55 @@ query getMatriculaByIdFormUpdate($id: ID!) {
     id
     nombre
   }
-  alumnos {
+}
+
+query getMatriculaByIdDetail($id: ID!) {
+  matricula(id: $id) {
     id
-    personaStr
+    tratamiento
+    matricula
+    numeroMatricula
+    aporteVoluntario
+    aula {
+      id
+      nombre
+      grado
+    }
+    alumno {
+      id
+      persona {
+        id
+        identificacion
+        nombres
+        apellidos
+        fechaNacimiento
+        edad
+        carnetConadis
+        direccionDomiciliaria
+        telefono
+        celularUno
+        correo
+        provinciaResidencia
+        cantonResidencia
+        parroquiaResidencia
+      }
+      padre {
+        identificacion
+        fullName
+        ocupacion
+        direccion
+        telefono
+        celular
+      }
+      madre {
+        identificacion
+        fullName
+        ocupacion
+        direccion
+        telefono
+        celular
+      }
+    }
   }
 }
 
@@ -80,23 +126,24 @@ query getAll {
   }
 }
 
-query getAulaById($id: ID!) {
+query getAulaByIdDetail($id: ID!) {
   aula(id: $id) {
     id
     nombre
+    capacidad
+    grado
     periodo {
       id
       nombre
     }
     docentes {
       id
-      persona {
-        id
-        str
-      }
+      personaStr
     }
-    grado
-    capacidad
+    alumnos {
+      id
+      personaStr
+    }
   }
 }
 
@@ -162,7 +209,12 @@ query getAllMateria {
     objetivoEspecifico
   }
 }
-
+query getParametrosFormPeriodos {
+  personalAll {
+    id
+    personaStr
+  }
+}
 query getByIdPeriodo($id: ID!) {
   periodoLectivo(id: $id) {
     id
@@ -172,6 +224,18 @@ query getByIdPeriodo($id: ID!) {
     fechaFinClases
     estado
     observaciones
+    coordinador {
+      id
+      personaStr
+    }
+    subCoordinador {
+      id
+      personaStr
+    }
+  }
+  personalAll {
+    id
+    personaStr
   }
 }
 

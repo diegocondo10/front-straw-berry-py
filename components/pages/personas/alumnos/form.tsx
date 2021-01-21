@@ -4,56 +4,60 @@ import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
-import faker from 'faker';
 
-const defaultValue = {
-  persona: '1',
-  padre: {
-    identificacion: faker.random.alphaNumeric(10),
-    primerNombre: faker.name.firstName(),
-    segundoNombre: faker.name.firstName(),
-    primerApellido: faker.name.lastName(),
-    segundoApellido: faker.name.lastName(),
-    ocupacion: faker.random.words(),
-    direccion: faker.address.streetAddress(),
-    telefono: faker.phone.phoneNumber(),
-    celular: faker.phone.phoneNumber(),
-  },
-  madre: {
-    identificacion: faker.random.alphaNumeric(10),
-    primerNombre: faker.name.firstName(),
-    segundoNombre: faker.name.firstName(),
-    primerApellido: faker.name.lastName(),
-    segundoApellido: faker.name.lastName(),
-    ocupacion: faker.random.words(),
-    direccion: faker.address.streetAddress(),
-    telefono: faker.phone.phoneNumber(),
-    celular: faker.phone.phoneNumber(),
-  },
-  contactoEmergencia: {
-    identificacion: faker.random.alphaNumeric(10),
-    primerNombre: faker.name.firstName(),
-    segundoNombre: faker.name.firstName(),
-    primerApellido: faker.name.lastName(),
-    segundoApellido: faker.name.lastName(),
-    telefono: faker.phone.phoneNumber(),
-    celular: faker.phone.phoneNumber(),
-  },
-};
+// const defaultValue = {
+//   persona: '1',
+//   padre: {
+//     identificacion: faker.random.alphaNumeric(10),
+//     primerNombre: faker.name.firstName(),
+//     segundoNombre: faker.name.firstName(),
+//     primerApellido: faker.name.lastName(),
+//     segundoApellido: faker.name.lastName(),
+//     ocupacion: faker.random.words(),
+//     direccion: faker.address.streetAddress(),
+//     telefono: faker.phone.phoneNumber(),
+//     celular: faker.phone.phoneNumber(),
+//   },
+//   madre: {
+//     identificacion: faker.random.alphaNumeric(10),
+//     primerNombre: faker.name.firstName(),
+//     segundoNombre: faker.name.firstName(),
+//     primerApellido: faker.name.lastName(),
+//     segundoApellido: faker.name.lastName(),
+//     ocupacion: faker.random.words(),
+//     direccion: faker.address.streetAddress(),
+//     telefono: faker.phone.phoneNumber(),
+//     celular: faker.phone.phoneNumber(),
+//   },
+//   contactoEmergencia: {
+//     identificacion: faker.random.alphaNumeric(10),
+//     primerNombre: faker.name.firstName(),
+//     segundoNombre: faker.name.firstName(),
+//     primerApellido: faker.name.lastName(),
+//     segundoApellido: faker.name.lastName(),
+//     telefono: faker.phone.phoneNumber(),
+//     celular: faker.phone.phoneNumber(),
+//   },
+// };
 
-const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
-  const { handleSubmit, reset } = useFormContext();
+const AlumnoFormContainer = ({
+  title,
+  items,
+  onSubmit,
+  personas = [],
+  action = 'add',
+}) => {
+  const { handleSubmit } = useFormContext();
 
-  useEffect(() => {
-    reset({ ...defaultValue });
-  }, []);
+  // useEffect(() => {
+  //   reset({ ...defaultValue });
+  // }, []);
 
-  const mapOnSubmit = (input) => {
-    input.persona = getId(input.persona);
-    onSubmit(input);
+  const mapOnSubmit = async (input) => {
+    await onSubmit(input);
   };
 
   return (
@@ -71,7 +75,11 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   options={personas}
                   optionLabel="str"
                   filter
-                  rules={{ required: 'Este campo es obligatorio' }}
+                  disabled={action === 'upt'}
+                  rules={{
+                    setValueAs: (value) => (value ? getId(value) : value),
+                    required: 'Este campo es obligatorio',
+                  }}
                 />
               </div>
 
@@ -253,7 +261,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                 />
               </div>
 
-              <h4 className="text-underline">En caso de Emergencia comunicar a:</h4>
+              <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
               <div className="col-md-12">
                 <CustomTextInput
                   className="p-inputtext-sm"
@@ -327,7 +335,7 @@ const AlumnoFormContainer = ({ title, items, onSubmit, personas = [] }) => {
                   className="p-inputtext-sm"
                   label="Historia Clinica"
                   name="historiaClinica"
-                  keyfilter="alpha"
+                  // keyfilter="alpha"
                 />
               </div>
               <div className="col-12">

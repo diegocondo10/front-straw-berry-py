@@ -99,6 +99,7 @@ query getPersonaByIdDetail($id: ID!) {
     tieneDiscapacidad
     carnetConadis
     porcentajeDiscapacidad
+    edad
     discapacidades {
       id
       nombre
@@ -160,6 +161,31 @@ query getPersonalByIdFormUpdate($id: ID!) {
   }
 }
 
+query getPersonalByIdDetail($id: ID!) {
+  personal(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    funciones {
+      id
+      nombre
+    }
+    titulo
+    tipoTitulo
+    areaDeTrabajo
+  }
+  personas {
+    id
+    str
+  }
+  funcionesPersonal {
+    id
+    nombre
+  }
+}
+
 query getAlumnosTable {
   alumnos {
     id
@@ -175,6 +201,59 @@ query getParametrosFormAlumnos {
 }
 
 query getAlumnoByIdFormUpdate($id: ID!) {
+  alumno(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    historiaClinica
+    trastornosAsociados
+    bono
+    tipoBono
+    afiliacionIess
+    quintilPobreza
+    padre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    madre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    contactoEmergencia {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+  }
+  personas {
+    id
+    str
+  }
+}
+
+query getAlumnoByIdDetail($id: ID!) {
   alumno(id: $id) {
     id
     persona {
@@ -214,9 +293,11 @@ query getAlumnoByIdFormUpdate($id: ID!) {
       ocupacion
       direccion
     }
-  }
-  personas {
-    id
-    str
+    historiaClinica
+    trastornosAsociados
+    bono
+    tipoBono
+    afiliacionIess
+    quintilPobreza
   }
 }

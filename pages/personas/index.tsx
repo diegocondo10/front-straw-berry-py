@@ -19,7 +19,11 @@ const PersonasContainer = ({ breadCrumbItems }) => {
         </div>
 
         <div className="col text-right">
-          <HrefButton href="/personas/detail" label="Reportes" icon="pi pi-paperclip" />
+          <HrefButton
+            href="/personas/detail"
+            label="Reportes"
+            icon="pi pi-paperclip"
+          />
         </div>
       </div>
     </div>
@@ -32,7 +36,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
         <div className="row justify-content-center">
           <div className="col-12 datatable-doc-demo">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-gridlines p-datatable-sm shadow-lg"
               value={data?.personas}
               rowHover
               paginator

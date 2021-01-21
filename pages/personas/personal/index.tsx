@@ -95,8 +95,8 @@ const PersonalContainer = () => {
                 body={(rowData) => {
                   return (
                     <ul className="list-group">
-                      {rowData?.funciones?.map?.((funcion) => (
-                        <li> - {funcion?.nombre}</li>
+                      {rowData?.funciones?.map?.((funcion, index) => (
+                        <li key={index}> - {funcion?.nombre}</li>
                       ))}
                     </ul>
                   );

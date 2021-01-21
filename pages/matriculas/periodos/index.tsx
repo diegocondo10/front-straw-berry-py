@@ -25,8 +25,6 @@ const PeriodosLectivosContainer = () => {
     </div>
   );
 
-  console.log(data);
-
   return (
     <PrivateLayout title="Periodos Lectivos" loading={loading}>
       <main className="container-fluid">
@@ -56,6 +54,7 @@ const PeriodosLectivosContainer = () => {
                 sortable
                 filter
                 reorderable
+                style={{ width: '350px' }}
               />
               <Column
                 className="text-center"
@@ -64,6 +63,7 @@ const PeriodosLectivosContainer = () => {
                 sortable
                 filter
                 reorderable
+                style={{ width: '200px' }}
               />
               <Column
                 className="text-center"
@@ -72,6 +72,7 @@ const PeriodosLectivosContainer = () => {
                 sortable
                 filter
                 reorderable
+                style={{ width: '200px' }}
               />
               <Column
                 className="text-center"
@@ -80,6 +81,7 @@ const PeriodosLectivosContainer = () => {
                 sortable
                 filter
                 reorderable
+                style={{ width: '220px' }}
               />
               <Column
                 className="text-center"
@@ -88,6 +90,7 @@ const PeriodosLectivosContainer = () => {
                 sortable
                 filter
                 reorderable
+                style={{ width: '150px' }}
               />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,

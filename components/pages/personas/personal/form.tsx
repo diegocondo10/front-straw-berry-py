@@ -17,9 +17,6 @@ const DocenteFormContainer = ({
   const { handleSubmit } = useFormContext();
 
   const onLocalSubmit = async (input) => {
-    input.funciones = input.funciones?.map((item) => item.id);
-    input.persona = input.persona.id;
-    input.info = JSON.stringify(input.info);
     await onSubmit(input);
   };
 
@@ -38,10 +35,15 @@ const DocenteFormContainer = ({
                   filter
                   options={funcionesPersonal}
                   rules={{
+                    setValueAs: (value: any[]) => {
+                      if (value && value?.length > 0) {
+                        return value?.map((item) => item?.id);
+                      }
+                      return value;
+                    },
                     validate: (value: any[] = []) => {
                       if (!value || value?.length === 0)
                         return 'Este campo es obligatorio';
-
                       return true;
                     },
                   }}
@@ -56,6 +58,7 @@ const DocenteFormContainer = ({
                   filter
                   options={personas}
                   rules={{
+                    setValueAs: (value) => (value ? value?.id : value),
                     required: 'Este campo es obligatorio',
                   }}
                 />

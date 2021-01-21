@@ -47,19 +47,32 @@ const MatriculasContainer = () => {
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
               emptyMessage="No se han encontrado resultados"
-              reorderableColumns
             >
               {IndexColumn()}
 
-              <Column header="Alumno" sortable filter field="alumno.personaStr" />
+              <Column
+                header="Alumno"
+                sortable
+                filter
+                field="alumno.personaStr"
+                bodyClassName="text-center"
+              />
 
-              <Column header="Aula" field="aula.nombre" sortable filter />
+              <Column
+                header="Aula"
+                field="aula.nombre"
+                sortable
+                filter
+                bodyClassName="text-center"
+              />
 
               <Column
                 header="Periodo Lectivo"
                 field="aula.periodo.nombre"
                 sortable
+                bodyClassName="text-center"
                 filter
+                style={{ width: '280px' }}
               />
 
               <Column
@@ -67,6 +80,8 @@ const MatriculasContainer = () => {
                 field="numeroMatricula"
                 sortable
                 filter
+                bodyClassName="text-center font-weight-bold"
+                style={{ width: '205px' }}
               />
 
               <Column
@@ -74,6 +89,8 @@ const MatriculasContainer = () => {
                 field="estadoMatricula"
                 sortable
                 filter
+                bodyClassName="text-center font-weight-bold"
+                style={{ width: '100px' }}
               />
 
               <Column
@@ -81,6 +98,8 @@ const MatriculasContainer = () => {
                 field="aporteVoluntario"
                 sortable
                 filter
+                bodyClassName="text-center"
+                style={{ width: '200px' }}
               />
 
               {OptionesColumn({

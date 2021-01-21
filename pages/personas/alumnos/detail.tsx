@@ -1,57 +1,163 @@
 import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons';
-import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
+import Hreft from '@components/utils/Link';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
+import { concatIfExist } from '@utils/funciones';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
 
 const DetailAlumnoContainer = ({ items, id }) => {
   const history = useRouter();
-  const { data, loading } = useQuery(PersonaQueries.getByIdAlumno, {
+  const { data, loading } = useQuery(PersonaQueries.getAlumnoByIdDetail, {
     variables: { id },
   });
 
-  const [deleteAlumno] = useMutation(PersonaMutations.deleteAlumno, { variables: { id } });
+  const [deleteAlumno] = useMutation(PersonaMutations.deleteAlumno, {
+    variables: { id },
+  });
 
   const onClickEliminar = async () => {
     await deleteAlumno();
     history.push('/personas/alumnos');
   };
 
-  const alumno = data?.alumno;
-
   return (
     <PrivateLayout loading={loading}>
-      <main className="container-fluid">
-        <BreadCrumbTitle title="Alumno" items={items} />
+      <main className="container-fluid mb-5">
+        <BreadCrumbTitle
+          title="Alumno"
+          items={[
+            { title: 'Alumno', href: '/personas/alumnos' },
+            {
+              title: data?.alumno?.persona?.str,
+              href: `/personas/alumnos/update/?id=${id}`,
+            },
+          ]}
+        />
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
-
-            <ul className="w-100">
-              <ItemDetailPersona persona={alumno?.persona} />
-            </ul>
-
-            <h4 className="text-underline">Información Familiar</h4>
-            <ul className="w-100">
-              <ItemDetailPersona persona={alumno?.padre} label="Padre: " />
-              <ItemDetailPersona persona={alumno?.madre} label="Madre: " />
-              <ItemDetailPersona
-                persona={alumno?.representante}
-                label="Representante: "
-              />
-              <li>
-                <strong>Relación con el Representante: </strong>
-                {alumno?.relacionRepresentante}
-              </li>
-            </ul>
+          <div className="col-lg-10">
+            <h3 className="text-underline">Información:</h3>
+            <DynamicDetailTable
+              source={data?.alumno}
+              diccionario={[
+                {
+                  label: 'Información personal',
+                  body: ({ persona }) => (
+                    <Hreft
+                      href={`/personas/detail?id=${persona?.id}`}
+                      children={persona?.str}
+                    />
+                  ),
+                },
+                {
+                  label: 'Historia Clinica',
+                  path: 'historiaClinica',
+                },
+                {
+                  label: 'Trastornos asociados',
+                  path: 'trastornosAsociados',
+                },
+                {
+                  label: 'Bono',
+                  path: 'bono',
+                },
+                {
+                  label: 'Tipo de Bono',
+                  path: 'tipoBono',
+                },
+                {
+                  label: 'Afiliacion al IESS',
+                  path: 'afiliacionIess',
+                },
+                {
+                  label: 'Quintil pobreza',
+                  path: 'quintilPobreza',
+                },
+                {
+                  label: 'Información del Padre',
+                  body: (value) => (
+                    <DynamicDetailTable
+                      source={value?.padre}
+                      diccionario={[
+                        {
+                          label: 'Identificacíon',
+                          path: 'identificacion',
+                        },
+                        {
+                          label: 'Nombres',
+                          body: (value) => {
+                            return (
+                              <p>
+                                {concatIfExist([
+                                  value?.primerApellido,
+                                  value?.segundoApellido,
+                                  value?.primerNombre,
+                                  value?.segundoNombre,
+                                ])}
+                              </p>
+                            );
+                          },
+                        },
+                        {
+                          label: 'Ocupación',
+                          path: 'ocupacion',
+                        },
+                        {
+                          label: 'Dirección',
+                          path: 'direccion',
+                        },
+                      ]}
+                    />
+                  ),
+                },
+                {
+                  label: 'Información de la Madre',
+                  body: (value) => (
+                    <DynamicDetailTable
+                      source={value?.madre}
+                      diccionario={[
+                        {
+                          label: 'Identificacíon',
+                          path: 'identificacion',
+                        },
+                        {
+                          label: 'Nombres',
+                          body: (value) => {
+                            return (
+                              <p>
+                                {concatIfExist([
+                                  value?.primerApellido,
+                                  value?.segundoApellido,
+                                  value?.primerNombre,
+                                  value?.segundoNombre,
+                                ])}
+                              </p>
+                            );
+                          },
+                        },
+                        {
+                          label: 'Ocupación',
+                          path: 'ocupacion',
+                        },
+                        {
+                          label: 'Dirección',
+                          path: 'direccion',
+                        },
+                      ]}
+                    />
+                  ),
+                },
+              ]}
+            />
           </div>
         </div>
 
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mb-5">
           <div className="col-md-4 my-1 order-md-1">
             <Button variant="outline-danger" block onClick={onClickEliminar}>
               Eliminar
@@ -66,14 +172,6 @@ const DetailAlumnoContainer = ({ items, id }) => {
   );
 };
 
-DetailAlumnoContainer.getInitialProps = async ({ query }) => {
-  return {
-    items: [
-      { title: 'Alumno', href: '/personas/alumnos' },
-      { title: query.id, href: `/personas/alumnos/update/?id=${query.id}` },
-    ],
-    id: query.id,
-  };
-};
+DetailAlumnoContainer.getInitialProps = async ({ query }) => query;
 
 export default DetailAlumnoContainer;

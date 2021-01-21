@@ -31,3 +31,10 @@
     width: 100%;
   }
 }
+
+.p-datatable-emptymessage {
+  & > * {
+    text-align: center !important;
+    font-size: 25px !important;
+  }
+}

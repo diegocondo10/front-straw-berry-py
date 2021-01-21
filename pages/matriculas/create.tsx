@@ -3,23 +3,32 @@ import MatriculaFormContainer from '@components/pages/matriculas/form';
 import { createMatricula } from '@graphql/Matriculas/mutations.gql';
 import { getParametrosFormMatriculaCreate } from '@graphql/Matriculas/queries.gql';
 import useCustomRouter from '@hooks/useCustomRouter';
+import useCustomToast from '@hooks/useCustomToast';
 import PrivateLayout from '@layouts/privateLayout';
 import classnames from 'classnames';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const CreateMatriculaContainer: React.FC = () => {
   const methods = useForm({ mode: 'onChange' });
+  const router = useCustomRouter();
+  const { addWarningToast } = useCustomToast();
+  const onCompleted = useCallback(({ alumnosSinMatricula }) => {
+    if (alumnosSinMatricula.length === 0) {
+      addWarningToast(
+        'Todos los alumnos registrados, ya tienen una matricula activa',
+      );
+      router.push('/matriculas');
+    }
+  }, []);
 
-  const { loading, data } = useQuery(getParametrosFormMatriculaCreate);
+  const { loading, data } = useQuery<any>(getParametrosFormMatriculaCreate, {
+    onCompleted,
+  });
 
   const [create, { loading: loadingCreate }] = useMutation(createMatricula);
 
-  const router = useCustomRouter();
-
   const onSubmit = async (input) => {
-    console.log(input);
-
     const res = await create({ variables: { input } });
     console.log(res);
     //router.push('/matriculas');
@@ -50,7 +59,7 @@ const CreateMatriculaContainer: React.FC = () => {
           onSubmit={onSubmit}
           //loading={loadingCreate}
           aulas={data?.aulas}
-          alumnos={data?.alumnos}
+          alumnos={data?.alumnosSinMatricula}
         />
       </FormProvider>
     </PrivateLayout>

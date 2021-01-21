@@ -1,24 +1,24 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useQuery, useMutation } from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
+import {BtnRegresar} from '@components/Buttons';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import { Button } from 'react-bootstrap';
-import { Discapacidad } from '@services/personas.service';
-import PersonaQueries from '@graphql/Matriculas/queries.gql';
-import PersonaMutations from '@graphql/Matriculas/mutations.gql';
+import {useRouter} from 'next/router';
+import React from 'react';
+import {Button} from 'react-bootstrap';
 
-const DiscapacidadDetailContainer = ({ breadCrumb, query: { id } }) => {
+const DiscapacidadDetailContainer = ({breadCrumb, query: {id}}) => {
     const router = useRouter();
 
-    const { data, loading } = useQuery(PersonaQueries.getByIdDiscapacidad, {
-        variables: { id },
+    const {data, loading} = useQuery(PersonaQueries.getDiscapacidadById, {
+        variables: {id},
         onError: (error) => router.push('/personas/discapacidades'),
     });
 
     const [deleteDiscapacidad] = useMutation(PersonaMutations.deleteDiscapacidad, {
-        variables: { id },
+        variables: {id},
         onError: () => router.push('/personas/discapacidades'),
     });
 
@@ -29,45 +29,46 @@ const DiscapacidadDetailContainer = ({ breadCrumb, query: { id } }) => {
     };
 
     return (
-        <PrivateLayout loading={loading} loadingText="Eliminando...">
+        <PrivateLayout loading={loading}>
             <main className="container full_h">
-                <BreadCrumbTitle title="Discapacidades" items={breadCrumb} />
+                <BreadCrumbTitle
+                    title="Discapacidades"
+                    items={[
+                        {
+                            title: 'Discapacidades',
+                            href: '/personas/discapacidades',
+                        },
+                        {
+                            title: data?.discapacidad?.nombre,
+                            href: `/personas/discapacidades/update?id=${id}`,
+                        },
+                    ]}
+                />
                 {data && (
                     <div className="row justify-content-center">
                         <div className="col-md-10 col-lg-8">
-                            <div className="card">
-                                <div className="card-body py-5">
-                                    <ul>
-                                        <li>
-                                            <strong>ID:</strong> {data.discapacidad.id}
-                                        </li>
-                                        <li>
-                                            <strong>Nombre:</strong> {data.discapacidad.nombre}
-                                        </li>
-                                        <li>
-                                            <strong>Descripción:</strong> {data.discapacidad.descripcion}
-                                        </li>
-                                    </ul>
-                                </div>
+                            <DynamicDetailTable
+                                source={data?.discapacidad}
+                                diccionario={[
+                                    {label: 'ID', path: 'id'},
+                                    {label: 'Nombre', path: 'nombre'},
+                                    {label: 'Descripción', path: 'descripcion'},
+                                ]}
+                            />
+                        </div>
 
-                                <div className="card-footer">
-                                    <div className="row justify-content-center">
-                                        <div className="col-md-5 my-1 order-md-1">
-                                            <Button
-                                                variant="outline-danger"
-                                                block
-                                                onClick={onClickEliminar}
-                                            >
-                                                Eliminar
-                                            </Button>
-                                        </div>
-                                        <div className="col-md-5 my-1">
-                                            <BtnRegresar
-                                                variant="outline-info"
-                                                href="/personas/discapacidades"
-                                            />
-                                        </div>
-                                    </div>
+                        <div className="col-md-10 col-lg-8">
+                            <div className="row justify-content-center">
+                                <div className="col-md-5 my-1 order-md-1">
+                                    <Button variant="outline-danger" block onClick={onClickEliminar}>
+                                        Eliminar
+                                    </Button>
+                                </div>
+                                <div className="col-md-5 my-1">
+                                    <BtnRegresar
+                                        variant="outline-info"
+                                        href="/personas/discapacidades"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -78,20 +79,6 @@ const DiscapacidadDetailContainer = ({ breadCrumb, query: { id } }) => {
     );
 };
 
-DiscapacidadDetailContainer.getInitialProps = ({ query }) => {
-    return {
-        breadCrumb: [
-            {
-                title: 'Discapacidades',
-                href: '/personas/discapacidades',
-            },
-            {
-                title: query.id,
-                href: `/personas/discapacidades/discapacidad?id=${query.id}`,
-            },
-        ],
-        query,
-    };
-};
+DiscapacidadDetailContainer.getInitialProps = ({query}) => query;
 
 export default DiscapacidadDetailContainer;

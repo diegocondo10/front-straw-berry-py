@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
 import DocenteFormContainer from '@components/pages/personas/personal/form';
+import { updatePersonal } from '@graphql/Personas/mutations.gql';
+import { getPersonalByIdFormUpdate } from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { getPersonalByIdFormUpdate } from '@graphql/Personas/queries.gql';
-import { updatePersonal } from '@graphql/Personas/mutations.gql';
 
 const UpdatePersonalContainer = ({ id }) => {
   const methods = useForm({
@@ -19,16 +19,12 @@ const UpdatePersonalContainer = ({ id }) => {
     },
   });
 
-  console.log(data);
-
   const [update] = useMutation(updatePersonal);
 
   const router = useRouter();
 
   const onSubmit = async (input) => {
-    console.log(input);
     await update({ variables: { id, input } });
-
     router.push('/personas/personal');
   };
 
