@@ -10,6 +10,7 @@ const ItemDetailTable = ({
   mask,
   defaultValuePath,
   body,
+  listen,
 }) => {
   const [value, setValue] = useState(defaultValue);
 
@@ -33,18 +34,18 @@ const ItemDetailTable = ({
     } else {
       setValue(sourceValue);
     }
-  }, [defaultValue, mask, path, source]);
+  }, [defaultValue, mask, path, source, listen]);
 
   return (
     <tr>
-      <td style={{ width: '40%', padding: '0.5rem 0.5rem' }}>
+      <th style={{ width: '40%', padding: '0.5rem 0.5rem' }}>
         <h5 className="font-weight-bold" style={{ margin: '0 0 0 0' }}>
           {label}
         </h5>
-      </td>
-      <td style={{ width: '60%', padding: '0.5rem 0.5rem' }}>
+      </th>
+      <th style={{ width: '60%', padding: '0.5rem 0.5rem' }}>
         {!body && <p style={{ margin: '0 0 0 0' }}>{value}</p>} {body && value}
-      </td>
+      </th>
     </tr>
   );
 };

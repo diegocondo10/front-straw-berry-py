@@ -25,7 +25,7 @@ const DiscapacidadesContainer = ({ breadCrumbItems }) => {
     </div>
   );
   return (
-    <PrivateLayout title="IPCA | Discapacidades" loading={loading}>
+    <PrivateLayout title="Discapacidades" loading={loading}>
       {data && (
         <main className="container-fluid">
           <BreadCrumbTitle title="Discapacidades" items={breadCrumbItems} />

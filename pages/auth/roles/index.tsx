@@ -27,7 +27,7 @@ const RolesContainer = ({ items }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Roles de Usuario" loading={loading}>
+    <PrivateLayout title="Roles de Usuario" loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Roles de Usuario" items={items} />
 

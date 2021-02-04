@@ -86,7 +86,6 @@ const AlumnoFormContainer = ({
               <h4 className="text-underline col-12">Información del Padre</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Identificación:"
                   name="padre.identificacion"
                   keyfilter="alphanum"
@@ -97,7 +96,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Nombre:"
                   name="padre.primerNombre"
                   keyfilter="alpha"
@@ -108,7 +106,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
                   name="padre.segundoNombre"
                   keyfilter="alpha"
@@ -116,7 +113,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Apellido:"
                   name="padre.primerApellido"
                   keyfilter="alpha"
@@ -127,7 +123,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
                   name="padre.segundoApellido"
                   keyfilter="alpha"
@@ -135,7 +130,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Ocupación:"
                   name="padre.ocupacion"
                   keyfilter="alpha"
@@ -146,7 +140,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Dirección:"
                   name="padre.direccion"
                   keyfilter="alpha"
@@ -157,7 +150,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Telefóno:"
                   name="padre.telefono"
                   keyfilter="num"
@@ -165,7 +157,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Celular:"
                   name="padre.celular"
                   keyfilter="num"
@@ -175,7 +166,6 @@ const AlumnoFormContainer = ({
               <h4 className="text-underline">Información de la Madre</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Identificación:"
                   name="madre.identificacion"
                   keyfilter="alphanum"
@@ -186,7 +176,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Nombre:"
                   name="madre.primerNombre"
                   keyfilter="alpha"
@@ -197,7 +186,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
                   name="madre.segundoNombre"
                   keyfilter="alpha"
@@ -205,7 +193,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Apellido:"
                   name="madre.primerApellido"
                   keyfilter="alpha"
@@ -216,7 +203,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
                   name="madre.segundoApellido"
                   keyfilter="alpha"
@@ -224,7 +210,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Ocupación:"
                   name="madre.ocupacion"
                   keyfilter="alpha"
@@ -235,7 +220,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Dirección:"
                   name="madre.direccion"
                   keyfilter="alpha"
@@ -246,7 +230,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Telefóno:"
                   name="madre.telefono"
                   keyfilter="num"
@@ -254,7 +237,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Celular:"
                   name="madre.celular"
                   keyfilter="num"
@@ -264,7 +246,6 @@ const AlumnoFormContainer = ({
               <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Identificación:"
                   name="contactoEmergencia.identificacion"
                   keyfilter="alphanum"
@@ -275,7 +256,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Nombre:"
                   name="contactoEmergencia.primerNombre"
                   keyfilter="alpha"
@@ -286,7 +266,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Nombre:"
                   name="contactoEmergencia.segundoNombre"
                   keyfilter="alpha"
@@ -294,7 +273,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Primer Apellido:"
                   name="contactoEmergencia.primerApellido"
                   keyfilter="alpha"
@@ -305,7 +283,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Segundo Apellido:"
                   name="contactoEmergencia.segundoApellido"
                   keyfilter="alpha"
@@ -313,7 +290,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Telefóno:"
                   name="contactoEmergencia.telefono"
                   keyfilter="num"
@@ -321,7 +297,6 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Celular:"
                   name="contactoEmergencia.celular"
                   keyfilter="num"
@@ -332,7 +307,6 @@ const AlumnoFormContainer = ({
             <div className="form-row">
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Historia Clinica"
                   name="historiaClinica"
                   // keyfilter="alpha"
@@ -340,24 +314,17 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-12">
                 <CustomTextArea
-                  className="p-inputtext-sm"
                   label="Trastornos asociados"
                   name="trastornosAsociados"
                 />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
-                  className="p-inputtext-sm"
-                  label="Bono"
-                  name="bono"
-                  keyfilter="alpha"
-                />
+                <CustomTextInput label="Bono" name="bono" keyfilter="alpha" />
               </div>
 
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Tipo de Bono"
                   name="tipoBono"
                   keyfilter="alpha"
@@ -366,7 +333,6 @@ const AlumnoFormContainer = ({
 
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Afiliacion al IESS"
                   name="afiliacionIess"
                   keyfilter="alpha"
@@ -375,7 +341,6 @@ const AlumnoFormContainer = ({
 
               <div className="col-md-6">
                 <CustomTextInput
-                  className="p-inputtext-sm"
                   label="Quintil pobreza"
                   name="quintilPobreza"
                   keyfilter="alpha"

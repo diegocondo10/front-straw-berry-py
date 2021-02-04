@@ -1,0 +1,91 @@
+/*# sourceMappingURL=index.css.map*/
+#container-circles {
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+}
+#outer-circle {
+  left: -37px;
+  height: 75px !important;
+  width: 75px !important;
+  background-color: hsla(0, 0%, 100%, 0.4);
+  z-index: 1;
+  position: absolute;
+  border-radius: 50%;
+}
+#inner-circle {
+  position: absolute;
+  border-radius: 50%;
+  left: 50%;
+  top: 38px;
+  height: 44px;
+  width: 44px;
+  background: #fff;
+  margin: -22px 0 0 -22px;
+  z-index: 2;
+}
+#inner-circle.is-clicked {
+  height: 38px;
+  width: 38px;
+  margin: -19px 0 0 -19px;
+}
+#white-flash.normal {
+  position: absolute;
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 1;
+  -webkit-transition: opacity 0.9s ease-out;
+  -o-transition: opacity 0.9s ease-out;
+  transition: opacity 0.9s ease-out;
+}
+#white-flash.do-transition {
+  opacity: 0;
+  background: #fff;
+}
+#display-error {
+  color: #000;
+  background-color: #fff;
+}
+.react-html5-camera-photo {
+  position: relative;
+  text-align: center;
+  > img {
+    width: 100% !important;
+  }
+  > video {
+    width: 100% !important;
+  }
+  > .display-error {
+    width: 100% !important;
+    margin: 0 auto;
+  }
+}
+.react-html5-camera-photo-fullscreen {
+  > img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  > video {
+    width: 100% !important;
+    height: auto !important;
+    -o-object-fit: fill;
+    object-fit: fill;
+  }
+  > .display-error {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+@media (max-width: 768px) {
+  .react-html5-camera-photo {
+    > .display-error {
+      width: 100% !important;
+    }
+    > img {
+      width: 100% !important;
+    }
+    > video {
+      width: 100% !important;
+    }
+  }
+}

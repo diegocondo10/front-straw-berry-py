@@ -6,11 +6,15 @@ import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Dialog } from 'primereact/dialog';
+import useCustomToast from '@hooks/useCustomToast';
 
 const PersonasContainer = ({ breadCrumbItems }) => {
   const { data, loading } = useQuery(PersonaQueries.getPersonasTable);
-  console.log(data);
+
+  const { addWarningToast } = useCustomToast();
+
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
@@ -30,9 +34,27 @@ const PersonasContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Personas" loading={loading}>
+    <PrivateLayout title="Personas" loading={loading}>
+      <Dialog
+        header="Header"
+        visible={false}
+        style={{ width: '50vw' }}
+        // footer={renderFooter('displayBasic')}
+        onHide={() => {}}
+        closeOnEscape
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
+      </Dialog>
+      <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
       <main className="container-fluid">
-        <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
         <div className="row justify-content-center">
           <div className="col-12 datatable-doc-demo">
             <DataTable

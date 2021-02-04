@@ -2,85 +2,66 @@ import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons/BtnRegresar';
 import HrefButton from '@components/Buttons/HrefButton';
 import DetailItem from '@components/DetailItem';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import PrivateLayout from '@layouts/privateLayout';
-import { Usuario } from '@services/auth.service';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useUsuario } from 'contexts/UserProvider';
+import React from 'react';
 import { Table } from 'react-bootstrap';
 
-const PerfilContainer = ({ items, id }) => {
-  const history = useRouter();
-  const [usuario, setUsuario] = useState<any>({});
+const PerfilContainer = ({ items }) => {
+  const { usuario } = useUsuario();
 
-  useEffect(() => {
-    console.log(Usuario.getDataUsuarioLoggedIn());
-    setUsuario(Usuario.getDataUsuarioLoggedIn());
-  }, []);
-
-  const loading = false;
-  const data: any = {};
-
-  console.log(usuario);
   return (
-    <PrivateLayout loading={loading} title="IPCA | Perfil">
+    <PrivateLayout loading={false} title="Perfil">
       <main className="container-fluid mb-5">
         <BreadCrumbTitle title="Mi Perfil" items={items} />
 
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
+          <div className="col-md-8">
             <h4 className="text-underline">Información de la Cuenta</h4>
-            <ul className="w-100">
-              <DetailItem label="Usuario:" value={usuario?.username} />
-            </ul>
-            <ul className="w-100">
-              <div className="col-md-3 mt-1 my-1">
-                <HrefButton
-                  className="btn-block"
-                  label="Cambiar Contraseña"
-                  href="/perfil/changePassword"
-                />
-              </div>
-            </ul>
 
-            <h4 className="text-underline">Información Personal</h4>
-            <ul className="w-100">
-              <DetailItem
-                label="Primer Nombre:"
-                value={usuario?.persona?.primerNombre}
-              />
-              <DetailItem
-                label="Segundo Nombre:"
-                value={usuario?.persona?.segundoNombre}
-              />
-              <DetailItem
-                label="Primer Apellido:"
-                value={usuario?.persona?.primerApellido}
-              />
-              <DetailItem
-                label="Segundo Apellido:"
-                value={usuario?.persona?.segundoApellido}
-              />
-              <DetailItem label="Género:" value={usuario?.persona?.genero} />
-              <DetailItem label="Sexo:" value={usuario?.persona?.sexo} />
-              <DetailItem
-                label="Calle Principal:"
-                value={usuario?.persona?.callePrincipal}
-              />
-              <DetailItem
-                label="Calle Secundaria:"
-                value={usuario?.persona?.calleSecundaria}
-              />
-            </ul>
+            <DynamicDetailTable
+              source={usuario}
+              diccionario={[
+                {
+                  label: 'Usuario',
+                  path: 'username',
+                },
+                {
+                  label: 'Opciones',
+                  body: () => (
+                    <React.Fragment>
+                      <HrefButton
+                        className="btn-block"
+                        label="Cambiar Contraseña"
+                        href="/perfil/changePassword"
+                      />
+                    </React.Fragment>
+                  ),
+                },
 
-            <h4 className="text-underline">Contacto</h4>
-            <ul className="w-100">
-              <DetailItem label="Teléfono:" value={usuario?.persona?.telefono} />
-              <DetailItem label="Celular:" value={usuario?.persona?.celular} />
-              <DetailItem
-                label="Correo Electrónico:"
-                value={usuario?.persona?.correo}
-              />
-            </ul>
+                {
+                  label: 'Información personal',
+                  listen: [usuario],
+                  body: (value) => (
+                    <DynamicDetailTable
+                      source={value?.persona}
+                      diccionario={[
+                        { label: 'Nombres completos', path: 'str' },
+                        { label: 'Genero', path: 'genero' },
+                        {
+                          label: 'Direccion domiciliaria',
+                          path: 'direccionDomiciliaria',
+                        },
+                        { label: 'Telefono', path: 'telefono' },
+                        { label: 'Celular', path: 'celularUno' },
+                        { label: 'Correo', path: 'correo' },
+                      ]}
+                    />
+                  ),
+                },
+              ]}
+            />
 
             <h4 className="text-underline">Discapacidad</h4>
             <ul className="w-100">

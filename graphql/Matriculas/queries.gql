@@ -238,6 +238,30 @@ query getByIdPeriodo($id: ID!) {
     personaStr
   }
 }
+query getPeriodoLectivoByIdDetail($id: ID!) {
+  periodoLectivo(id: $id) {
+    id
+    nombre
+    fechaInicio
+    fechaFin
+    fechaFinClases
+    estado
+    observaciones
+    totalMatriculas: numeroMatriculas
+    matriculasCreadas: numeroMatriculas(estados: [CREADA])
+    matriculasFinalizadas: numeroMatriculas(estados: [FINALIZADA])
+    matriculasAnuladas: numeroMatriculas(estados: [ANULADA])
+    habilitarCierre
+    coordinador {
+      id
+      personaStr
+    }
+    subCoordinador {
+      id
+      personaStr
+    }
+  }
+}
 
 query getPeriodosTable {
   periodosLectivos {

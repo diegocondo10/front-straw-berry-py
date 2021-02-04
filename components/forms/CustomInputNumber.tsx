@@ -22,7 +22,7 @@ const CustomInputNumber = (props?: CustomInputNumberProps) => {
             value={Number(value)}
             className={classnames({
               [className]: true,
-              'w-100 p-inputtext-sm': true,
+              'w-100': true,
               'p-invalid': !!errors[name],
             })}
             onChange={({ value }) => {

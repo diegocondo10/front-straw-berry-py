@@ -1,0 +1,72 @@
+@import '~primeflex/primeflex.css';
+@import '~primeicons/primeicons.css';
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
+@import '~primereact/resources/primereact.min.css';
+@import '~primereact/resources/themes/mdc-light-indigo/theme.css';
+@import '~bootswatch/dist/flatly/bootstrap.min.css';
+@import '~normalize.css/normalize.css';
+@import './navbar.scss';
+@import './camera.scss';
+@import './vars.scss';
+@import './_loading.scss';
+@import './scrollbar.scss';
+@import './primereact/index.scss';
+
+.cpointer {
+  cursor: pointer;
+}
+
+.th__opciones {
+  width: 100px;
+}
+
+.full_height {
+  height: 100vh !important;
+  overflow: hidden !important;
+  overflow-y: hidden !important;
+}
+
+label {
+  font-weight: 600 !important;
+}
+
+.container-grid {
+  display: grid;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+button.nav__menu__user__item {
+  outline: none !important;
+  border-radius: 0;
+  border: 1px solid #e7e7e783;
+  background-color: white;
+  height: 3rem;
+  text-align: left;
+  padding-left: 2rem;
+  &:active {
+    color: white;
+    background-color: #3f51b5;
+  }
+  &:hover {
+    border-left: 5px solid #3f51b5;
+    background-color: #3f51b52f !important;
+  }
+}
+
+.p-overlaypanel .p-overlaypanel-content {
+  padding: 1.5rem 0rem 1.5rem 0rem !important;
+  border: 1px solid #dfdfdf;
+}
+
+.p-menubar {
+  .p-menuitem-link {
+    min-width: 100px;
+
+    &:hover {
+      border-left: 5px solid #3f51b5;
+    }
+  }
+}

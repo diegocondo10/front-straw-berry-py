@@ -27,7 +27,7 @@ const PermisosContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Permisos" loading={loading}>
+    <PrivateLayout title="Permisos" loading={loading}>
       <main className="container-fluid">
         <BreadCrumbTitle title="Permisos" items={breadCrumbItems} />
 

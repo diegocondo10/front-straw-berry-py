@@ -80,17 +80,18 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
             id={name}
             className={classNames({
               [className]: true,
-              'w-100  p-inputtext-sm': true,
+              'w-100': true,
               'p-invalid': invalid,
             })}
             inputClassName="w-100"
             value={setValue(value)}
             onChange={(e) => onChange(e.value)}
             dateFormat="dd/mm/yy"
+            placeholder="DD/MM/yyyy"
             monthNavigator
             yearNavigator
             yearRange="1930:2030"
-            readOnlyInput
+            // readOnlyInput
             {...rest}
           />
         )}

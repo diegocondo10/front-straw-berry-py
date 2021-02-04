@@ -22,7 +22,7 @@ const CreateRolContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout title="IPCA | Roles de Usuario" loading={loading}>
+    <PrivateLayout title="Roles de Usuario" loading={loading}>
       <FormProvider {...methods}>
         <RolFormContainer
           items={items}

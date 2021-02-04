@@ -1,0 +1,50 @@
+.p-datatable-header {
+  background-color: #e7e7e7 !important;
+  border-top: 1px solid #bebebe !important;
+  border-right: 1px solid #bebebe !important;
+  border-left: 1px solid #bebebe !important;
+}
+
+.p-datatable-thead > tr > th {
+  text-align: center !important;
+  background-color: #e7e7e7 !important;
+  border: 1px solid #bebebe !important;
+
+  &.p-highlight {
+    border: 1px solid #0a2068;
+    background-color: #0a2068 !important;
+    & > * {
+      color: white !important;
+    }
+  }
+  span.p-column-title {
+    font-size: 17px !important;
+  }
+}
+
+.p-filter-column {
+  & > .p-column-filter {
+    width: 100%;
+    font-weight: bold !important;
+  }
+}
+
+.p-datatable-emptymessage {
+  & > * {
+    text-align: center !important;
+    font-size: 25px !important;
+  }
+}
+
+.p-datatable-wrapper {
+  border-left: 1px solid #bebebe !important;
+  border-right: 1px solid #bebebe !important;
+}
+
+.p-paginator {
+  background-color: #e7e7e7 !important;
+  border: 1px solid #bebebe !important;
+  & > button {
+    color: #0a2068 !important;
+  }
+}

@@ -62,6 +62,7 @@ query getPersonaByIdForm($id: ID!) {
     tieneDiscapacidad
     carnetConadis
     porcentajeDiscapacidad
+    foto
     discapacidadesDisponibles {
       id
       nombre

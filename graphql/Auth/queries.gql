@@ -110,8 +110,6 @@ query getUsuarios {
       id
       str
     }
-    numeroGrupos
-    numeroPermisos
   }
 }
 
@@ -161,5 +159,25 @@ query getUsuarioById($id: ID!) {
   personas {
     id
     str
+  }
+}
+
+query me {
+  usuario: me {
+    id
+    username
+    permisos {
+      id
+      nombre
+    }
+    persona {
+      id
+      str
+      correo
+      celularUno
+      telefono
+      genero
+      foto
+    }
   }
 }

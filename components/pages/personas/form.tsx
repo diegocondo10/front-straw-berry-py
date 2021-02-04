@@ -5,8 +5,12 @@ import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomInputNumber from '@components/forms/CustomInputNumber';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
+import PreviewPicture from '@components/PreviewPicture';
+import TakePicture from '@components/TakePicture';
+import UploadFile from '@components/UploadFile';
+import { Button } from 'primereact/button';
 import React from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 const PARAMETROS = {
   tiposIdentificacion: ['CEDULA', 'PASAPORTE', 'OTRO'],
@@ -63,17 +67,58 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
     await onSubmit(mappedData, input);
   };
 
+  const onSaveImage = (setter: CallableFunction) => ({ fullPath }): void =>
+    setter(fullPath);
+
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
 
       <div className="row justify-content-center">
-        <div className="col-md-10 col-lg-8 jumbotron rounded">
+        <div className="col-md-10 col-lg-8 rounded">
           <form onSubmit={handleSubmit(onLocalSubmit)}>
             <div className="form-row">
               <div className="col-12">
                 <h4 className="text-underline">Información Personal</h4>
               </div>
+
+              <div className="col-12">
+                <div className="form-group">
+                  <label htmlFor="">Foto:</label>
+                  <span className="d-flex flex-row justify-content-around w-100">
+                    <Controller
+                      control={control}
+                      name="foto"
+                      defaultValue={null}
+                      render={({ value, onChange }) => (
+                        <React.Fragment>
+                          <UploadFile
+                            onCompleteUpload={onSaveImage(onChange)}
+                            table="habitaciones"
+                          />
+                          <TakePicture
+                            onSaveImage={onSaveImage(onChange)}
+                            table="habitaciones"
+                          />
+                          {value && (
+                            <React.Fragment>
+                              <PreviewPicture img={value} />
+                              <Button
+                                className="p-button-danger"
+                                label="Borrar imagen"
+                                icon="pi pi-times"
+                                type="button"
+                                onClick={() => onChange(null)}
+                              />
+                            </React.Fragment>
+                          )}
+                        </React.Fragment>
+                      )}
+                    />
+                  </span>
+                </div>
+              </div>
+
               <div className="col-md-6">
                 <CustomDropDown
                   label="Tipo de Identificacion:"

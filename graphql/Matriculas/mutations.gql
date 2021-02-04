@@ -97,3 +97,16 @@ mutation deletePeriodo($id: ID!) {
     deletedId
   }
 }
+
+mutation cerrarPeriodoLectivoById($id: ID!) {
+  response: cerrarPeriodoLectivo(id: $id) {
+    ok
+    periodo {
+      id
+    }
+    error {
+      codigo
+      mensaje
+    }
+  }
+}

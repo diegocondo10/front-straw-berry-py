@@ -1,24 +1,37 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 
-const BreadCrumb = (
-  props: BreadCrumbProps = {
-    basePath: '/',
-    baseTitle: 'Dashboard',
-    items: [],
-  },
-) => {
-  const { basePath, baseTitle, items } = props;
+export type ItemBreadCrumb = {
+  title: string;
+  href?: string;
+  active?: boolean;
+};
 
-  return (
-    <div className="text-center text-md-right">
+export type BreadCrumbProps = {
+  basePath: string;
+  baseTitle: string;
+  items: ItemBreadCrumb[];
+};
+
+const BreadCrumb: React.FC<BreadCrumbProps> = ({
+  basePath = '/',
+  baseTitle = 'Dashboard',
+  items = [],
+}) => {
+  const basePathComponent = useMemo(
+    () => (
       <li className="d-inline breadcrumb-item">
         <Link href={basePath}>
           <a className="font-weight-bold">{baseTitle}</a>
         </Link>
       </li>
+    ),
+    [basePath, baseTitle],
+  );
 
-      {items.map((item, index) => {
+  const itemsComponent = useMemo(
+    () =>
+      items.map((item, index) => {
         if (item.active) {
           return (
             <li key={index} className="d-inline breadcrumb-item active">
@@ -36,21 +49,17 @@ const BreadCrumb = (
             </li>
           );
         }
-      })}
-    </div>
+      }),
+    [items],
+  );
+
+  return (
+    <nav aria-label="breadcrumb" className="text-center text-md-right">
+      <ol className="breadcrumb">
+        {basePathComponent} {itemsComponent}
+      </ol>
+    </nav>
   );
 };
 
 export default BreadCrumb;
-
-export type ItemBreadCrumb = {
-  title: string;
-  href?: string;
-  active?: boolean;
-};
-
-export type BreadCrumbProps = {
-  basePath: string;
-  baseTitle: string;
-  items: ItemBreadCrumb[];
-};

@@ -38,7 +38,7 @@ const ChangePasswordContainer = ({ items, id }) => {
   };
 
   return (
-    <PrivateLayout loading={loading} title="IPCA | Cambio de Contraseña">
+    <PrivateLayout loading={loading} title="Cambio de Contraseña">
       <main className="container-fluid mb-5">
         <BreadCrumbTitle title="Cambio de Contraseña" items={items} />
         <div className="row justify-content-center">

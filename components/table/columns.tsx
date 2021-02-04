@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Column } from 'primereact/column';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { FaInfoCircle } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 
@@ -16,9 +16,11 @@ export const IndexColumn = () => {
   );
 };
 
-export const OptionesColumn = ({
+export const OptionesColumn: React.FC<{ style: CSSProperties } & any> = ({
+  children,
   editPath = (rowData: any): string => '',
   detailPath = (rowData: any): string => '',
+  style = {},
   header = 'Opciones',
 } = {}) => {
   const bodyColumn = (rowData: any) => (
@@ -38,10 +40,18 @@ export const OptionesColumn = ({
           </a>
         </Link>
       )}
+      {children}
     </div>
   );
 
-  return <Column header={header} className="th__opciones" body={bodyColumn} />;
+  return (
+    <Column
+      header={header}
+      style={style}
+      className="th__opciones"
+      body={bodyColumn}
+    />
+  );
 };
 
 export const BooleanColumn = ({ header, style, ifTrue, ifFalse, ...props }) => {

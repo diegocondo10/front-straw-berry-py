@@ -1,7 +1,8 @@
 import PrivateLayout from '@layouts/privateLayout';
+import { NextPage } from 'next';
 import React from 'react';
 
-const Home = () => {
+const Home: NextPage<any> = () => {
   return (
     <PrivateLayout title="Inicio">
       <main>

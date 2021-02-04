@@ -1,28 +1,15 @@
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import '@assets/css/dataTable.scss';
-import '@assets/css/navbar.scss';
-import '@assets/css/root-styles.scss';
-import '@assets/css/vars.scss';
 // import 'popper.js';
 import '@popperjs/core/dist/umd/popper.min.js';
 import { Usuario } from '@services/auth.service';
-import '@styles/_loading.scss';
-import 'bootswatch/dist/flatly/bootstrap.min.css';
+import '@styles/root-styles.scss';
+import { createUploadLink } from 'apollo-upload-client';
+import UsuarioProvider from 'contexts/UserProvider';
 import 'jquery/dist/jquery.min.js';
 import moment from 'moment';
 import 'moment/locale/es';
-import 'normalize.css/normalize.css';
-import 'primeflex/primeflex.css';
-import 'primeicons/primeicons.css';
 import { addLocale, locale } from 'primereact/api';
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/mdc-light-indigo/theme.css';
 import { useEffect } from 'react';
 import { ToastProvider } from 'react-toast-notifications';
 
@@ -75,7 +62,7 @@ const setLocale = () => {
   moment.locale('es');
 };
 
-const link = createHttpLink({
+const link = createUploadLink({
   uri: 'http://localhost:8000/graphql',
   // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
@@ -96,7 +83,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(link),
-
+  // ssrMode: typeof window === 'undefined',
   cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {
@@ -105,6 +92,7 @@ const client = new ApolloClient({
     },
     query: {
       fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
     },
   },
 });
@@ -114,11 +102,13 @@ const MyApp = ({ Component, pageProps }) => {
     setLocale();
   }, []);
   return (
-    <ToastProvider autoDismiss autoDismissTimeout={15000} placement="top-right">
-      <ApolloProvider client={client}>
-        <Component {...pageProps} />
-      </ApolloProvider>
-    </ToastProvider>
+    <ApolloProvider client={client}>
+      <UsuarioProvider>
+        <ToastProvider autoDismiss autoDismissTimeout={15000} placement="top-right">
+          <Component {...pageProps} />
+        </ToastProvider>
+      </UsuarioProvider>
+    </ApolloProvider>
   );
 };
 

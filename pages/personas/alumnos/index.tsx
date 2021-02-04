@@ -28,7 +28,7 @@ const AlumnosContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Alumnos" loading={loading}>
+    <PrivateLayout title="Alumnos" loading={loading}>
       <main className="container-fluid">
         <TitleBreadCrumb title="Alumnos" items={breadCrumbItems} />
         <div className="row justify-content-center">

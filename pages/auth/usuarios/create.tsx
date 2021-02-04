@@ -29,7 +29,7 @@ const CreateUsuarioContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout title="IPCA | Usuarios" loading={loading}>
+    <PrivateLayout title="Usuarios" loading={loading}>
       <FormProvider {...methods}>
         <UsuarioFormContainer
           title={title}

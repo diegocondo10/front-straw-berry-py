@@ -3,11 +3,12 @@ import { BtnRegresar } from '@components/Buttons';
 import CustomDropDown from '@components/forms/CustomDropDown';
 import CustomPickList from '@components/forms/CustomPickList';
 import CustomTextInput from '@components/forms/CustomTextInput';
+import { setValueId } from '@utils/funciones';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
-const UsuarioFormContainer = ({
+const UsuarioFormContainer: React.FC<any> = ({
   title,
   items,
   permisosDisponibles = [],
@@ -20,7 +21,6 @@ const UsuarioFormContainer = ({
   return (
     <main className="container-fluid">
       <TitleBreadCrumb title={title} items={items} />
-
       <div className="row justify-content-center">
         <div className="col-md-8 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -36,9 +36,9 @@ const UsuarioFormContainer = ({
               placeholder="Seleccione una persona"
               optionLabel="str"
               //optionValue="id"
-              dataKey="str"
               showClear
               options={personasDisponibles}
+              rules={{ setValueAs: setValueId }}
               filter
             />
 
@@ -67,12 +67,8 @@ const UsuarioFormContainer = ({
               source={permisosDisponibles}
               itemTemplate={(permiso) => permiso.nombre}
               rules={{
-                validate: (value) => {
-                  if (value.length === 0) {
-                    return 'Debe seleccionar al menos un permiso';
-                  }
-                  return true;
-                },
+                validate: (value) =>
+                  value.length === 0 ? 'Debe seleccionar al menos un permiso' : true,
               }}
             />
 

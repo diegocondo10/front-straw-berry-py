@@ -1,40 +1,48 @@
 import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import Auth from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import Link from 'next/link';
+import { NextPage } from 'next';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { GoPlus } from 'react-icons/go';
-import Auth from '@graphql/Auth/queries.gql';
 
-const UsuariosContainer = ({ items }) => {
+const UsuariosContainer: NextPage<any> = () => {
   const { data, loading } = useQuery(Auth.getUsuarios);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/auth/usuarios/create">
-            <a className="btn btn-info btn-sm">
-              Agregar <GoPlus />
-            </a>
-          </Link>
+          <HrefButton
+            href="/auth/usuarios/create"
+            label="Agregar"
+            icon="pi pi-plus"
+          />
         </div>
       </div>
     </div>
   );
 
   return (
-    <PrivateLayout title="IPCA | Usuarios" loading={loading}>
+    <PrivateLayout title="Usuarios" loading={loading}>
       <main className="container-fluid">
-        <BreadCrumbTitle title="Usuarios" items={items} />
+        <BreadCrumbTitle
+          title="Usuarios"
+          items={[
+            {
+              title: 'Usuarios',
+              active: true,
+            },
+          ]}
+        />
 
         <div className="row justify-content-center">
-          <div className="col-md-11 datatable-doc-demo">
+          <div className="col-12">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-gridlines p-datatable-sm shadow-lg"
               value={data?.usuarios}
               rowHover
               paginator
@@ -44,6 +52,7 @@ const UsuariosContainer = ({ items }) => {
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
               emptyMessage="No se han encontrado resultados"
+              autoLayout
             >
               {IndexColumn()}
               <Column
@@ -60,20 +69,6 @@ const UsuariosContainer = ({ items }) => {
                 filter
                 reorderable
               />
-              <Column
-                header="# de grupos"
-                field="numeroGrupos"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="# de permisos"
-                field="numeroPermisos"
-                sortable
-                filter
-                reorderable
-              />
               {OptionesColumn({
                 editPath: ({ id }) => `/auth/usuarios/update?id=${id}`,
                 detailPath: ({ id }) => `/auth/usuarios/detail?id=${id}`,
@@ -81,21 +76,9 @@ const UsuariosContainer = ({ items }) => {
             </DataTable>
           </div>
         </div>
-
       </main>
     </PrivateLayout>
   );
-};
-
-UsuariosContainer.getInitialProps = (props) => {
-  return {
-    items: [
-      {
-        title: 'Usuarios',
-        active: true,
-      },
-    ],
-  };
 };
 
 export default UsuariosContainer;

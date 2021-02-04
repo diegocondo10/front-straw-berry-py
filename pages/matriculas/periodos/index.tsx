@@ -6,7 +6,7 @@ import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 const PeriodosLectivosContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getPeriodosTable);
@@ -92,10 +92,13 @@ const PeriodosLectivosContainer = () => {
                 reorderable
                 style={{ width: '150px' }}
               />
+
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
               })}
+
+              
             </DataTable>
           </div>
         </div>

@@ -2,23 +2,34 @@ import { useMutation, useQuery } from '@apollo/client';
 import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import AuthQueries from '@graphql/Auth/queries.gql';
 import AuthMutations from '@graphql/Auth/mutations.gql';
+import { NextPage } from 'next';
 
-const UpdateUsuarioContainer = ({ id, title, items }) => {
+const UpdateUsuarioContainer = ({ id }) => {
   const methods = useForm({ mode: 'onChange' });
   const router = useRouter();
-
+  const [value, setValue] = useState(null);
   const { data, loading } = useQuery(AuthQueries.getUsuarioById, {
     variables: { id },
     onCompleted: ({ usuario }) => {
-      methods.reset(usuario);
+      console.log(usuario);
+      setValue(usuario);
+      methods.reset({ ...usuario });
     },
   });
 
   const [update] = useMutation(AuthMutations.updateUsuario);
+
+  useEffect(() => {
+    methods.reset(data?.usuario);
+    console.log(data);
+    if (value === null) {
+      setValue(data);
+    }
+  }, [data, loading, value]);
 
   const onSubmit = async (input) => {
     if (input.persona) {
@@ -31,11 +42,20 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   };
 
   return (
-    <PrivateLayout title="IPCA | Editar Usuario" loading={loading}>
+    <PrivateLayout title="Editar Usuario" loading={loading}>
       <FormProvider {...methods}>
         <UsuarioFormContainer
-          title={title}
-          items={items}
+          title={'Editar'}
+          items={[
+            {
+              title: 'Usuarios',
+              href: '/auth/usuarios',
+            },
+            {
+              title: data?.usuario?.username,
+              active: true,
+            },
+          ]}
           onSubmit={onSubmit}
           permisosDisponibles={data?.usuario?.permisosDisponibles || []}
           rolesDisponibles={data?.usuario?.gruposDisponibles}
@@ -46,21 +66,6 @@ const UpdateUsuarioContainer = ({ id, title, items }) => {
   );
 };
 
-UpdateUsuarioContainer.getInitialProps = ({ query }) => {
-  return {
-    title: 'Editar Usuario',
-    id: query.id,
-    items: [
-      {
-        title: 'Usuarios',
-        href: '/auth/usuarios',
-      },
-      {
-        title: query.id,
-        active: true,
-      },
-    ],
-  };
-};
+UpdateUsuarioContainer.getInitialProps = ({ query }) => query;
 
 export default UpdateUsuarioContainer;

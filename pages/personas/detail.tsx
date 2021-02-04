@@ -77,7 +77,7 @@ const DetailPersonaContainer = ({ id }) => {
 
   return (
     <PrivateLayout loading={loading}>
-      <main className="container-fluid">
+      <main className="container-fluid mb-3">
         <BreadCrumbTitle
           title="Persona"
           items={[

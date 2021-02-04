@@ -28,7 +28,7 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
             }}
             placeholder={placeholder || 'Seleccione'}
             className={classnames({
-              'w-100 p-inputtext-sm': true,
+              'w-100': true,
               'p-invalid': invalid,
               [className]: true,
             })}

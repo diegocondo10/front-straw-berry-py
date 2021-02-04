@@ -26,7 +26,7 @@ const PersonalContainer = () => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Personal" loading={loading}>
+    <PrivateLayout title="Personal" loading={loading}>
       <TitleBreadCrumb
         title="Personal"
         items={[

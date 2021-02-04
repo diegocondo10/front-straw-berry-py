@@ -27,7 +27,7 @@ const AplicacionesContainer = ({ breadCrumbItems }) => {
   );
 
   return (
-    <PrivateLayout title="IPCA | Aplicaciones" loading={loading}>
+    <PrivateLayout title="Aplicaciones" loading={loading}>
       {data && (
         <main className="container-fluid">
           <BreadCrumbTitle title="Aplicaciones" items={breadCrumbItems} />

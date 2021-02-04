@@ -2,13 +2,11 @@ import { useQuery } from '@apollo/client';
 import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import auth from '@services/auth/auth.graphql';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React from 'react';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import React, { CSSProperties } from 'react';
 
 const MatriculasContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getMatriculasTable, {
@@ -102,6 +100,17 @@ const MatriculasContainer = () => {
                 style={{ width: '200px' }}
               />
 
+              <Column
+                header="Diagnostico final"
+                style={{ width: '145px' } as CSSProperties}
+                body={(rowData) => (
+                  <HrefButton
+                    label="Ingresar"
+                    className="w-100"
+                    href={`/matriculas/diagnostico-final?id${rowData.id}`}
+                  />
+                )}
+              />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/detail?id=${id}`,

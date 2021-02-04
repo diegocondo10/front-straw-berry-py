@@ -20,3 +20,5 @@ export const getId = (object, param = 'id') => {
 export const concatIfExist = (values: any[]) => {
   return values.filter((value) => value && value !== '').join(' ');
 };
+
+export const setValueId = (value: any) => (value ? getId(value) : value);

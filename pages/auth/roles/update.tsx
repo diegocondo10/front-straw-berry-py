@@ -27,7 +27,7 @@ const UpdateRolContainer = ({ items, title, id }) => {
   };
 
   return (
-    <PrivateLayout title="IPCA | Roles de Usuario" loading={loading}>
+    <PrivateLayout title="Roles de Usuario" loading={loading}>
       <FormProvider {...methods}>
         <RolFormContainer
           items={items}
