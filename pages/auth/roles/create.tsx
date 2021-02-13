@@ -22,8 +22,8 @@ const CreateRolContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout title="Roles de Usuario" loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Roles de Usuario" loading={loading}>
         <RolFormContainer
           items={items}
           title={title}
@@ -31,8 +31,8 @@ const CreateRolContainer = ({ items, title }) => {
           permisosDisponibles={data?.permisos}
           onSubmit={onSubmit}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

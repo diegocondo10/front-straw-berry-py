@@ -32,8 +32,8 @@ const UpdatePersonaContainer = ({ title, id }) => {
   };
 
   return (
-    <PrivateLayout loading={loading} title={title}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout loading={loading} title={title}>
         <PersonaFormContainer
           title={title}
           items={[
@@ -46,8 +46,8 @@ const UpdatePersonaContainer = ({ title, id }) => {
           onSubmit={onSubmit}
           discapacidades={data?.persona?.discapacidadesDisponibles}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

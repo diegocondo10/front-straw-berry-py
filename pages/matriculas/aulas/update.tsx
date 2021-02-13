@@ -27,8 +27,8 @@ const UpdateAulaContainer = ({ id }) => {
   };
 
   return (
-    <PrivateLayout title="Editar Aula" loading={loading || loadingUpdate}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Editar Aula" loading={loading || loadingUpdate}>
         <AulasFormContainer
           docentes={data?.personalByFunciones}
           title="Editar Aula"
@@ -47,8 +47,8 @@ const UpdateAulaContainer = ({ id }) => {
           periodos={data?.periodosLectivos}
           defaultData={data?.aula}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

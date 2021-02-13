@@ -33,16 +33,16 @@ const UpdateAppContainer = ({ title, items, id }) => {
   };
 
   return (
-    <PrivateLayout title={title} loading={loadingQuery}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title={title} loading={loadingQuery}>
         <AplicacionFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
           loadBtn={loadBtn}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

@@ -27,11 +27,11 @@ const CreateDiscapacidadContainer = ({ title, items }) => {
     router.push('/personas/discapacidades');
   };
   return (
-    <PrivateLayout title={title} loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title={title} loading={loading}>
         <DiscapacidadFormContainer title={title} items={items} onSubmit={onSubmit} />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

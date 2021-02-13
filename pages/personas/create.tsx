@@ -1,14 +1,17 @@
 import { useMutation, useQuery } from '@apollo/client';
 import PersonaFormContainer from '@components/pages/personas/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
+import { getParamsFormPersonas } from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import faker from 'faker';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { getParamsFormPersonas } from '@graphql/Personas/queries.gql';
 
-const CreatePersonaContainer = ({ items, title }) => {
+const CreatePersonaContainer: NextPage<{
+  items: any[];
+  title: string;
+}> = ({ items, title }) => {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -49,30 +52,25 @@ const CreatePersonaContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout title="Crear Persona">
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Crear Persona">
         <PersonaFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
           discapacidades={data?.discapacidades}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 
-CreatePersonaContainer.getInitialProps = () => {
-  let title = 'Agregar Persona';
-  const items = [
+CreatePersonaContainer.getInitialProps = () => ({
+  items: [
     { title: 'Personas', href: '/personas' },
     { title: 'Agregar Persona', active: true },
-  ];
-
-  return {
-    items,
-    title,
-  };
-};
+  ],
+  title: 'Agregar Persona',
+});
 
 export default CreatePersonaContainer;

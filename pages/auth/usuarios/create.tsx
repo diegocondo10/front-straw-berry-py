@@ -1,12 +1,11 @@
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
+import AuthMutations from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import { Usuario } from '@services/auth.service';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import AuthQueries from '@graphql/Auth/queries.gql';
-import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreateUsuarioContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });
@@ -17,7 +16,6 @@ const CreateUsuarioContainer = ({ items, title }) => {
   const [create] = useMutation(AuthMutations.createUsuario);
 
   const onSubmit = async (input) => {
-
     if (input.persona) {
       input.persona = input?.persona?.id;
     }
@@ -29,8 +27,8 @@ const CreateUsuarioContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout title="Usuarios" loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Usuarios" loading={loading}>
         <UsuarioFormContainer
           title={title}
           items={items}
@@ -39,8 +37,8 @@ const CreateUsuarioContainer = ({ items, title }) => {
           personasDisponibles={data?.personas}
           onSubmit={onSubmit}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

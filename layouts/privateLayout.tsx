@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import Loading from '@components/Loading';
 import PrivateNavbar from '@components/navbar/privateNavbar';
 import { me } from '@graphql/Auth/queries.gql';
@@ -8,7 +9,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ScrollTop } from 'primereact/scrolltop';
 import React, { useContext, useRef } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import { TitleBreadCrumbProps } from 'components/BreadCrumbs/titleBreadCrumb';
 
 export type PrivateLayoutProps = {
   children: any;
@@ -16,10 +17,18 @@ export type PrivateLayoutProps = {
   loading?: boolean;
   loadingText?: string;
   headerChildren?: any;
+  breadCrumb?: TitleBreadCrumbProps;
 };
 
 const PrivateLayout: React.FC<PrivateLayoutProps> = (props) => {
-  const { children, title = '', loading, loadingText, headerChildren } = props;
+  const {
+    children,
+    title = '',
+    loading,
+    loadingText,
+    headerChildren,
+    breadCrumb,
+  } = props;
   // const { loading: loadingUsuario, usuario } = useUsuario();
   const ref = useRef(null);
   const { setUsuario } = useContext(UsuarioContext);
@@ -55,6 +64,7 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = (props) => {
           <Loading loading={loading} text={loadingText}>
             {/* <PerfectScrollbar> */}
             <div className="scroll__container" style={{ overflowY: 'auto' }}>
+              {breadCrumb && <TitleBreadCrumb {...breadCrumb} />}
               {!loading && children}
               <ScrollTop
                 target="parent"

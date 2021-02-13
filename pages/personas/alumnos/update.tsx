@@ -29,8 +29,8 @@ const UpdateAlumnoContainer = ({ id }) => {
   };
 
   return (
-    <PrivateLayout loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout loading={loading}>
         <AlumnoFormContainer
           title="Editar Alumno"
           items={[
@@ -41,8 +41,8 @@ const UpdateAlumnoContainer = ({ id }) => {
           personas={data?.personas}
           action="upt"
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

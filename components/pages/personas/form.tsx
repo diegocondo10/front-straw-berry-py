@@ -116,6 +116,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                       )}
                     />
                   </span>
+                
                 </div>
               </div>
 

@@ -6,10 +6,14 @@ import PrivateLayout from '@layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const UpdatePeriodoContainer: NextPage<any> = ({ id }) => {
+  const methods = useForm({ mode: 'onChange' });
+
   const { loading, data } = useQuery(MatriculaQueries.getByIdPeriodo, {
     variables: { id },
+    onCompleted: ({ periodoLectivo }) => methods.reset(periodoLectivo),
   });
 
   const [create, { loading: loadingGuardar }] = useMutation(
@@ -24,19 +28,21 @@ const UpdatePeriodoContainer: NextPage<any> = ({ id }) => {
   };
 
   return (
-    <PrivateLayout title="Editar Periodo Lectivo" loading={loading}>
-      <PeriodoLectivoFormContainer
-        title="Editar Periodo"
-        onSubmit={onSubmit}
-        loading={loadingGuardar}
-        items={[
-          { title: 'Periodos Lectivos', href: '/matriculas/periodos' },
-          { title: data?.periodoLectivo?.nombre, active: true },
-        ]}
-        defaultData={data?.periodoLectivo}
-        personal={data?.personalAll}
-      />
-    </PrivateLayout>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Editar Periodo Lectivo" loading={loading}>
+        <PeriodoLectivoFormContainer
+          title="Editar Periodo"
+          onSubmit={onSubmit}
+          loading={loadingGuardar}
+          items={[
+            { title: 'Periodos Lectivos', href: '/matriculas/periodos' },
+            { title: data?.periodoLectivo?.nombre, active: true },
+          ]}
+          defaultData={data?.periodoLectivo}
+          personal={data?.personalAll}
+        />
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

@@ -35,15 +35,15 @@ const CreateMatriculaContainer: React.FC = () => {
   };
 
   return (
-    <PrivateLayout
-      title="Crear Matricula"
-      loadingText={classnames({
-        'Cargando...': loading,
-        'Guardando...': loadingCreate,
-      })}
-      loading={loading || loadingCreate}
-    >
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout
+        title="Crear Matricula"
+        loadingText={classnames({
+          'Cargando...': loading,
+          'Guardando...': loadingCreate,
+        })}
+        loading={loading || loadingCreate}
+      >
         <MatriculaFormContainer
           title="Crear Matricula"
           items={[
@@ -61,8 +61,8 @@ const CreateMatriculaContainer: React.FC = () => {
           aulas={data?.aulas}
           alumnos={data?.alumnosSinMatricula}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

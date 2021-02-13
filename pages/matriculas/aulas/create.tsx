@@ -36,8 +36,8 @@ const CreateAulaContainer = () => {
   };
 
   return (
-    <PrivateLayout title="Crear Aula" loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Crear Aula" loading={loading}>
         <AulasFormContainer
           title="Crear Aula"
           items={items}
@@ -46,8 +46,8 @@ const CreateAulaContainer = () => {
           periodos={data?.periodosLectivos}
           docentes={data?.personalByFunciones}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

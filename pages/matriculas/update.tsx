@@ -35,8 +35,8 @@ const UpdateMatriculaContainer = ({ id }) => {
   const matricula = data?.matricula;
 
   return (
-    <PrivateLayout title="Editar Matrícula" loading={loading || loadingUpdate}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Editar Matrícula" loading={loading || loadingUpdate}>
         <MatriculaFormContainer
           items={[
             {
@@ -55,8 +55,8 @@ const UpdateMatriculaContainer = ({ id }) => {
           alumnos={alumnos}
           title="Editar Matrícula"
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

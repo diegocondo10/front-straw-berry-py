@@ -34,8 +34,8 @@ const UpdateDiscapacidadContainer = ({ id }) => {
   };
 
   return (
-    <PrivateLayout title="Editar Discapacidad" loading={loadingQuery}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Editar Discapacidad" loading={loadingQuery}>
         <DiscapacidadFormContainer
           title="Editar Discapacidad"
           items={[
@@ -47,8 +47,8 @@ const UpdateDiscapacidadContainer = ({ id }) => {
           ]}
           onSubmit={onSubmit}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

@@ -23,16 +23,16 @@ const CreateAlumnoContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout loading={loading}>
         <AlumnoFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
           personas={data?.personas}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

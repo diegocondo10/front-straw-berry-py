@@ -42,8 +42,8 @@ const UpdateUsuarioContainer = ({ id }) => {
   };
 
   return (
-    <PrivateLayout title="Editar Usuario" loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Editar Usuario" loading={loading}>
         <UsuarioFormContainer
           title={'Editar'}
           items={[
@@ -61,8 +61,8 @@ const UpdateUsuarioContainer = ({ id }) => {
           rolesDisponibles={data?.usuario?.gruposDisponibles}
           personasDisponibles={data?.personas}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

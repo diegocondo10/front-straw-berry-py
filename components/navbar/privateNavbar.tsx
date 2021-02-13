@@ -78,6 +78,10 @@ const PrivateNavbar = () => {
     },
 
     {
+      label: 'Notas',
+      command: commandPush('/notas'),
+    },
+    {
       label: 'Administracion',
       items: [
         {

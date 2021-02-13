@@ -28,16 +28,16 @@ const CreateAppContainer = ({ title, items }) => {
   };
 
   return (
-    <PrivateLayout title={title} loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title={title} loading={loading}>
         <AplicacionFormContainer
           title={title}
           items={items}
           onSubmit={onSubmit}
           loadBtn={loadBtn}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

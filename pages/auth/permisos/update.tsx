@@ -28,22 +28,21 @@ const UpdatePermisoContainer = ({ title, items, id }) => {
   };
 
   return (
-    <PrivateLayout title={title} loading={loading}>
-      {data && (
-        <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title={title} loading={loading}>
+        {data && (
           <PermisoFormContainer
-            loading={loading}
             title={title}
             items={items}
             onSubmit={onSubmit}
-            aplicaciones={data.aplicaciones.map((e) => ({
-              label: e.nombre,
-              value: e.id,
-            }))}
+            // aplicaciones={data.aplicaciones.map((e) => ({
+            //   label: e.nombre,
+            //   value: e.id,
+            // }))}
           />
-        </FormProvider>
-      )}
-    </PrivateLayout>
+        )}
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

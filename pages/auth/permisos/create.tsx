@@ -18,11 +18,11 @@ const CreatePermisoContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout>
         <PermisoFormContainer title={title} items={items} onSubmit={onSubmit} />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 
