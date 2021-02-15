@@ -11,9 +11,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 const CreateMatriculaContainer: React.FC = () => {
   const methods = useForm({ mode: 'onChange' });
+
   const router = useCustomRouter();
+
   const { addWarningToast } = useCustomToast();
-  const onCompleted = useCallback(({ alumnosSinMatricula }) => {
+
+  const onCompleted = useCallback(({ alumnosSinMatricula, aulas }) => {
+    if (aulas?.length === 0) {
+      addWarningToast('No se hay aulas disponibles');
+      router.push('/matriculas');
+    }
+
     if (alumnosSinMatricula.length === 0) {
       addWarningToast(
         'Todos los alumnos registrados, ya tienen una matricula activa',
@@ -31,7 +39,7 @@ const CreateMatriculaContainer: React.FC = () => {
   const onSubmit = async (input) => {
     const res = await create({ variables: { input } });
     console.log(res);
-    //router.push('/matriculas');
+    router.push('/matriculas');
   };
 
   return (

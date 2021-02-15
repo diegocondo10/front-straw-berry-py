@@ -271,7 +271,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <CustomTextInput
                   label="Dirección Domiciliaria:"
                   name="direccionDomiciliaria"
-                  keyfilter="alpha"
+                  // keyfilter="alpha"
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>

@@ -38,7 +38,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
       <TitleBreadCrumb title="Personas" items={breadCrumbItems} />
       <main className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-12 datatable-doc-demo">
+          <div className="col-12">
             <DataTable
               className="p-datatable-gridlines p-datatable-sm shadow-lg"
               value={data?.personas}
@@ -53,6 +53,8 @@ const PersonasContainer = ({ breadCrumbItems }) => {
               reorderableColumns
               resizableColumns
               removableSort
+              stateStorage="local"
+              stateKey="dt-personas"
             >
               {IndexColumn()}
               <Column header="Identificación" field="str" sortable filter frozen />

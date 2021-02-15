@@ -3,6 +3,7 @@ import AulasFormContainer from '@components/pages/matriculas/aulas/form';
 import { updateAula } from '@graphql/Matriculas/mutations.gql';
 import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
 import useCustomRouter from '@hooks/useCustomRouter';
+import useCustomToast from '@hooks/useCustomToast';
 import PrivateLayout from '@layouts/privateLayout';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -10,9 +11,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 const UpdateAulaContainer = ({ id }) => {
   const methods = useForm({ mode: 'onChange' });
 
+  const { addWarningToast } = useCustomToast();
+
   const { loading, data } = useQuery(getAulaByIdForm, {
     variables: { id },
-    onCompleted: ({ aula }) => methods.reset(aula),
+    onCompleted: ({ aula }) => {
+      // if (periodosLectivos?.length === 0) {
+      //   addWarningToast('No hay periodos lectivos abiertos.');
+      //   return router.push('/matriculas/aulas');
+      // }
+      methods.reset(aula);
+    },
   });
 
   const router = useCustomRouter();

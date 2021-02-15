@@ -7,25 +7,35 @@ import CustomTextInput from '@components/forms/CustomTextInput';
 import { DATE_FORMAT, toMoment } from '@utils/date';
 import { getId } from '@utils/funciones';
 import moment from 'moment';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
 
-const PeriodoLectivoFormContainer: React.FC<any> = ({
+const PeriodoLectivoFormContainer = ({
   onSubmit,
   items,
   title,
   personal = [],
   loading,
+  defaultData = null,
 }) => {
   const methods = useFormContext();
   const { handleSubmit, setError, clearErrors } = methods;
+
+  const isDisabled = useMemo(() => defaultData?.estado === 'CERRADO', [defaultData]);
+  console.log('DATA: ', personal);
   return (
     <main className="container-fluid">
       <TitleBreadCrumb title={title} items={items} />
 
       <div className="row justify-content-center mt-5">
-        <div className="col-md-10 col-lg-9 jumbotron rounded">
+        <div className="col-md-10 col-lg-9 jumbotron">
+          {isDisabled && (
+            <h4 className="text-center text-danger mb-4">
+              No se puede editar un periodo lectivo cerrado
+            </h4>
+          )}
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Row>
               <div className="col-12">
@@ -35,12 +45,14 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isDisabled}
                 />
               </div>
               <div className="col-md-6">
                 <CustomDatePicker
                   label="Fecha de Inicio:"
                   name="fechaInicio"
+                  disabled={isDisabled}
                   minDate={moment().subtract(5, 'years').toDate()}
                   maxDate={moment().add(1, 'years').toDate()}
                   rules={{
@@ -74,6 +86,7 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                 <CustomDatePicker
                   label="Fecha de Fin:"
                   name="fechaFin"
+                  disabled={isDisabled}
                   minDate={moment().subtract(5, 'years').toDate()}
                   maxDate={moment().add(2, 'years').toDate()}
                   rules={{
@@ -116,6 +129,7 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                 <CustomDatePicker
                   label="Fecha fin de clases:"
                   name="fechaFinClases"
+                  disabled={isDisabled}
                   minDate={moment().subtract(5, 'years').toDate()}
                   maxDate={moment().add(2, 'years').toDate()}
                   rules={{
@@ -139,7 +153,8 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                   name="coordinador"
                   optionLabel="personaStr"
                   filter
-                  dataKey="id"
+                  // dataKey="id"
+                  disabled={isDisabled}
                   options={personal}
                   rules={{
                     setValueAs: (value) => (value ? getId(value) : value),
@@ -153,7 +168,8 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                   name="subCoordinador"
                   optionLabel="personaStr"
                   filter
-                  dataKey="id"
+                  // dataKey="id"
+                  disabled={isDisabled}
                   options={personal}
                   rules={{
                     setValueAs: (value) => (value ? getId(value) : value),
@@ -162,11 +178,19 @@ const PeriodoLectivoFormContainer: React.FC<any> = ({
                 />
               </div>
               <div className="col-md-12">
-                <CustomTextArea name="observaciones" label="Observaciones" />
+                <CustomTextArea
+                  disabled={isDisabled}
+                  name="observaciones"
+                  label="Observaciones"
+                />
               </div>
             </Form.Row>
 
-            <FooterButtonsForm hrefBack="/matriculas/periodos" loading={loading} />
+            <FooterButtonsForm
+              hrefBack="/matriculas/periodos"
+              loading={loading}
+              disabledSubmit={isDisabled}
+            />
           </form>
         </div>
       </div>

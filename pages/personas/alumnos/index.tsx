@@ -32,10 +32,10 @@ const AlumnosContainer = ({ breadCrumbItems }) => {
       <main className="container-fluid">
         <TitleBreadCrumb title="Alumnos" items={breadCrumbItems} />
         <div className="row justify-content-center">
-          <div className="col datatable-doc-demo">
+          <div className="col-12 ">
             <DataTable
               value={data?.alumnos}
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-sm p-datatable-gridlines shadow-lg"
               rowHover
               paginator
               header={header}

@@ -4,9 +4,11 @@ import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React, { CSSProperties } from 'react';
+import { SplitButton } from 'primereact/splitbutton';
 
 const PeriodosLectivosContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getPeriodosTable);
@@ -92,13 +94,10 @@ const PeriodosLectivosContainer = () => {
                 reorderable
                 style={{ width: '150px' }}
               />
-
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
               })}
-
-              
             </DataTable>
           </div>
         </div>

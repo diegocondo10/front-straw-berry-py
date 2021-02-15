@@ -6,7 +6,7 @@ import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 const MatriculasContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getMatriculasTable, {
@@ -42,6 +42,7 @@ const MatriculasContainer = () => {
               paginator
               header={header}
               autoLayout
+              resizableColumns
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
               emptyMessage="No se han encontrado resultados"
@@ -100,17 +101,6 @@ const MatriculasContainer = () => {
                 style={{ width: '200px' }}
               />
 
-              <Column
-                header="Diagnostico final"
-                style={{ width: '145px' } as CSSProperties}
-                body={(rowData) => (
-                  <HrefButton
-                    label="Ingresar"
-                    className="w-100"
-                    href={`/matriculas/diagnostico-final?id${rowData.id}`}
-                  />
-                )}
-              />
               {OptionesColumn({
                 editPath: ({ id }) => `/matriculas/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/detail?id=${id}`,

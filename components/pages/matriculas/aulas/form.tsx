@@ -6,10 +6,11 @@ import CustomMultiSelect from '@components/forms/CustomMultiSelect';
 import CustomTextArea from '@components/forms/CustomTextArea';
 import CustomTextInput from '@components/forms/CustomTextInput';
 import { getId } from '@utils/funciones';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 const AulasFormContainer = ({
+  defaultData,
   title,
   loading,
   items,
@@ -17,6 +18,7 @@ const AulasFormContainer = ({
   periodos = [],
   docentes = [],
 }: {
+  data: any;
   title: string;
   items: any[];
   periodos: any[];
@@ -26,6 +28,10 @@ const AulasFormContainer = ({
   defaultData?: any;
 }) => {
   const methods = useFormContext();
+
+  const isDisabled = useMemo(() => defaultData?.infoPeriodo?.estado === 'CERRADO', [
+    defaultData,
+  ]);
 
   const localOnSubmit = async (input) => {
     input.periodo = getId(input.periodo);
@@ -39,6 +45,12 @@ const AulasFormContainer = ({
 
       <div className="row justify-content-center">
         <div className="col-md-8 col-lg-7 jumbotron">
+          {isDisabled && (
+            <h4 className="text-center text-danger mb-4">
+              No se puede editar una aula de un periodo cerrado
+            </h4>
+          )}
+
           <form onSubmit={methods.handleSubmit(localOnSubmit)}>
             <CustomDropDown
               label="Seleccione el periodo lectivo:"
@@ -49,6 +61,7 @@ const AulasFormContainer = ({
               rules={{
                 required: 'Este campo es obligatorio',
               }}
+              disabled={isDisabled}
             />
 
             <CustomMultiSelect
@@ -67,6 +80,7 @@ const AulasFormContainer = ({
                   return true;
                 },
               }}
+              disabled={isDisabled}
             />
 
             <CustomTextInput
@@ -75,6 +89,7 @@ const AulasFormContainer = ({
               rules={{
                 required: 'Este campo es obligatorio',
               }}
+              disabled={isDisabled}
             />
 
             <div className="form-row">
@@ -96,6 +111,7 @@ const AulasFormContainer = ({
                       message: 'El grado maximo es de 15',
                     },
                   }}
+                  disabled={isDisabled}
                 />
               </div>
 
@@ -117,13 +133,22 @@ const AulasFormContainer = ({
                       message: 'La capacidad máxima es de 50 alumnos',
                     },
                   }}
+                  disabled={isDisabled}
                 />
               </div>
             </div>
 
-            <CustomTextArea label="Observaciones" name="observaciones" />
+            <CustomTextArea
+              label="Observaciones"
+              name="observaciones"
+              disabled={isDisabled}
+            />
 
-            <FooterButtonsForm hrefBack="/matriculas/aulas" loading={loading} />
+            <FooterButtonsForm
+              hrefBack="/matriculas/aulas"
+              loading={loading}
+              disabledSubmit={isDisabled}
+            />
           </form>
         </div>
       </div>

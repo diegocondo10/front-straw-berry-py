@@ -1,16 +1,26 @@
 import { useMutation, useQuery } from '@apollo/client';
 import AulasFormContainer from '@components/pages/matriculas/aulas/form';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import { getParametrosFormAula } from '@graphql/Matriculas/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { getParametrosFormAula } from '@graphql/Matriculas/queries.gql';
-import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const CreateAulaContainer = () => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { loading, data } = useQuery(getParametrosFormAula);
+  const { addWarningToast } = useCustomToast();
+
+  const { loading, data } = useQuery(getParametrosFormAula, {
+    onCompleted: ({ periodosLectivos }) => {
+      if (periodosLectivos?.length === 0) {
+        addWarningToast('No hay periodos lectivos abiertos.');
+        return router.push('/matriculas/aulas');
+      }
+    },
+  });
 
   const [create, { loading: loadingCreate }] = useMutation(
     MatriculaMutations.createAula,
@@ -31,7 +41,6 @@ const CreateAulaContainer = () => {
 
   const onSubmit = async (input) => {
     await create({ variables: { input } });
-
     router.push('/matriculas/aulas');
   };
 

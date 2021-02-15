@@ -1,13 +1,11 @@
-import Link from 'next/link';
-import { Column } from 'primereact/column';
+import HrefButton from '@components/Buttons/HrefButton';
+import { Column, ColumnProps } from 'primereact/column';
 import React, { CSSProperties } from 'react';
-import { FaInfoCircle } from 'react-icons/fa';
-import { FiEdit } from 'react-icons/fi';
 
 export const IndexColumn = () => {
   return (
     <Column
-      style={{ width: '70px' }}
+      style={{ width: '80px' }}
       header="#"
       headerClassName="text-left text-sm-center"
       body={(rowData, { rowIndex }) => rowIndex + 1}
@@ -16,29 +14,35 @@ export const IndexColumn = () => {
   );
 };
 
-export const OptionesColumn: React.FC<{ style: CSSProperties } & any> = ({
+export const OptionesColumn: React.FC<
+  {
+    style: CSSProperties;
+    columnProps: ColumnProps;
+  } & any
+> = ({
   children,
   editPath = (rowData: any): string => '',
   detailPath = (rowData: any): string => '',
   style = {},
   header = 'Opciones',
+  columnProps = {},
 } = {}) => {
-  const bodyColumn = (rowData: any) => (
+  const body = (rowData: any) => (
     <div className="d-inline-flex justify-content-around w-100">
       {editPath && (
-        <Link href={editPath(rowData)}>
-          <a className="btn btn-sm btn-primary">
-            <FiEdit />
-          </a>
-        </Link>
+        <HrefButton
+          href={editPath(rowData)}
+          icon="pi pi-pencil"
+          className="p-button-sm"
+        />
       )}
 
       {detailPath && (
-        <Link href={detailPath(rowData)}>
-          <a className="btn btn-sm btn-warning">
-            <FaInfoCircle />
-          </a>
-        </Link>
+        <HrefButton
+          href={detailPath(rowData)}
+          icon="pi pi-info-circle"
+          className="p-button-warning p-button-sm"
+        />
       )}
       {children}
     </div>
@@ -49,7 +53,8 @@ export const OptionesColumn: React.FC<{ style: CSSProperties } & any> = ({
       header={header}
       style={style}
       className="th__opciones"
-      body={bodyColumn}
+      body={body}
+      {...columnProps}
     />
   );
 };

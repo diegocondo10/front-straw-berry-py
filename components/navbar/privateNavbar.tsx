@@ -19,7 +19,7 @@ const PrivateNavbar = () => {
     setUsuario(null);
   };
 
-  const commandPush = (path) => () => push(path);
+  const commandPush = (path: string) => () => push(path);
 
   const items = [
     {
@@ -59,10 +59,6 @@ const PrivateNavbar = () => {
       label: 'Matriculas',
       items: [
         {
-          label: 'Matrículas',
-          command: commandPush('/matriculas'),
-        },
-        {
           label: 'Periodos Lectivos',
           command: commandPush('/matriculas/periodos'),
         },
@@ -71,8 +67,8 @@ const PrivateNavbar = () => {
           command: commandPush('/matriculas/aulas'),
         },
         {
-          label: 'Materias',
-          command: commandPush('/matriculas/materias'),
+          label: 'Matrículas',
+          command: commandPush('/matriculas'),
         },
       ],
     },
@@ -82,7 +78,7 @@ const PrivateNavbar = () => {
       command: commandPush('/notas'),
     },
     {
-      label: 'Administracion',
+      label: 'Administración',
       items: [
         {
           label: 'Permisos',
@@ -104,18 +100,20 @@ const PrivateNavbar = () => {
     () => (
       <React.Fragment>
         <img
-          className="img-fluid p-avatar p-avatar-circle p-avatar-icon cpointer"
+          className="img-fluid cpointer"
           src={usuario?.persona?.foto}
           alt=""
           onClick={(e) => op?.current.toggle(e)}
+          style={{ maxHeight: '35px' }}
         />
 
-        <OverlayPanel className="nav__user__op" ref={op} style={{ width: '300px' }}>
+        <OverlayPanel ref={op} style={{ width: '300px' }}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-12 text-center">
                 <img
-                  className="img-fluid p-avatar p-avatar-circle p-avatar-xl"
+                  className="img-fluid"
+                  style={{ maxHeight: '100px' }}
                   src={usuario?.persona?.foto}
                   alt=""
                 />
@@ -125,14 +123,11 @@ const PrivateNavbar = () => {
               </div>
             </div>
           </div>
-          <ListGroup>
-            <button
-              className="nav__menu__user__item"
-              onClick={commandPush('/perfil')}
-            >
+          <ListGroup className="nav__user__menu">
+            <button onClick={commandPush('/perfil')}>
               <i className="pi pi-user" /> Mi Perfil
             </button>
-            <button className="nav__menu__user__item" onClick={logOut}>
+            <button onClick={logOut}>
               <i className="pi pi-fw pi-power-off" /> Salir
             </button>
           </ListGroup>

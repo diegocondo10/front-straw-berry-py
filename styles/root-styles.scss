@@ -38,21 +38,23 @@ label {
   text-decoration: underline;
 }
 
-button.nav__menu__user__item {
-  outline: none !important;
-  border-radius: 0;
-  border: 1px solid #e7e7e783;
-  background-color: white;
-  height: 3rem;
-  text-align: left;
-  padding-left: 2rem;
-  &:active {
-    color: white;
-    background-color: #3f51b5;
-  }
-  &:hover {
-    border-left: 5px solid #3f51b5;
-    background-color: #3f51b52f !important;
+.nav__user__menu {
+  & > button {
+    outline: none !important;
+    border-radius: 0;
+    border: 1px solid #e7e7e783;
+    background-color: white;
+    height: 3rem;
+    text-align: left;
+    padding-left: 2rem;
+    // &:active {
+    //   color: white;
+    //   background-color: #3f51b5;
+    // }
+    &:hover {
+      border-left: 5px solid #3f51b5;
+      background-color: #3f51b52f !important;
+    }
   }
 }
 
@@ -61,12 +63,3 @@ button.nav__menu__user__item {
   border: 1px solid #dfdfdf;
 }
 
-.p-menubar {
-  .p-menuitem-link {
-    min-width: 100px;
-
-    &:hover {
-      border-left: 5px solid #3f51b5;
-    }
-  }
-}

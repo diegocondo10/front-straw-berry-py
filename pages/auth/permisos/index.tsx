@@ -1,26 +1,26 @@
 import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
+import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import Auth from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import Link from 'next/link';
+import { NextPage } from 'next';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { GoPlus } from 'react-icons/go';
-import Auth from '@graphql/Auth/queries.gql';
 
-const PermisosContainer = ({ breadCrumbItems }) => {
+const PermisosContainer: NextPage<any> = ({ breadCrumbItems }) => {
   const { data, loading } = useQuery(Auth.getPermisos);
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/auth/permisos/create">
-            <a className="btn btn-info btn-sm">
-              Agregar <GoPlus />
-            </a>
-          </Link>
+          <HrefButton
+            href="/auth/permisos/create"
+            icon="pi pi-plus"
+            label="Agregar"
+          />
         </div>
       </div>
     </div>
@@ -32,9 +32,9 @@ const PermisosContainer = ({ breadCrumbItems }) => {
         <BreadCrumbTitle title="Permisos" items={breadCrumbItems} />
 
         <div className="row justify-content-center">
-          <div className="col-md-11 datatable-doc-demo">
+          <div className="col-md-11">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-sm p-datatable-gridlines shadow-lg"
               value={data?.permisos}
               rowHover
               paginator
@@ -43,20 +43,12 @@ const PermisosContainer = ({ breadCrumbItems }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-
             >
               {IndexColumn()}
               <Column header="Nombre" field="nombre" sortable filter reorderable />
               <Column
                 header="Descripción"
                 field="descripcion"
-                sortable
-                filter
-                reorderable
-              />
-              <Column
-                header="Aplicación"
-                field="aplicacion.nombre"
                 sortable
                 filter
                 reorderable
@@ -69,7 +61,6 @@ const PermisosContainer = ({ breadCrumbItems }) => {
           </div>
         </div>
       </main>
-
     </PrivateLayout>
   );
 };

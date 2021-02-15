@@ -27,8 +27,8 @@ const UpdateRolContainer = ({ items, title, id }) => {
   };
 
   return (
-    <PrivateLayout title="Roles de Usuario" loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout title="Roles de Usuario" loading={loading}>
         <RolFormContainer
           items={items}
           title={title}
@@ -36,8 +36,8 @@ const UpdateRolContainer = ({ items, title, id }) => {
           permisosDisponibles={data?.grupo?.permisosDisponibles}
           onSubmit={onSubmit}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 

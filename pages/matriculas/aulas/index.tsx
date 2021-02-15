@@ -9,7 +9,7 @@ import { DataTable } from 'primereact/datatable';
 import React from 'react';
 
 const AulasContainer = () => {
-  const { loading, data } = useQuery(MatriculaQueries.getAll);
+  const { loading, data } = useQuery(MatriculaQueries.getAulasTable);
 
   const header = (
     <div className="container-fluid my-2">
@@ -53,6 +53,7 @@ const AulasContainer = () => {
                 field="nombre"
                 sortable
                 filter
+                bodyClassName="text-center"
                 style={{ width: '300px' }}
               />
 
@@ -61,6 +62,7 @@ const AulasContainer = () => {
                 field="periodo.nombre"
                 sortable
                 filter
+                bodyClassName="text-center"
                 style={{ width: '300px' }}
               />
 
@@ -68,12 +70,12 @@ const AulasContainer = () => {
                 header="Docentes"
                 sortable
                 filter
-                bodyStyle={{ padding: '0.5rem 0 0 0' }}
+                // bodyStyle={{ padding: '0.5rem 0 0 0' }}
                 body={(rowData) => {
                   return (
-                    <ul>
+                    <ul style={{ listStyle: 'none' }}>
                       {rowData?.docentes?.map((docente, key) => (
-                        <li key={key} className="w-100">
+                        <li key={key} className="w-100 ml-n4">
                           {docente?.persona?.str}
                         </li>
                       ))}

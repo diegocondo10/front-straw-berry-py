@@ -21,8 +21,8 @@ const ItemDetailTable = ({
 
     const defaultValueFromPath = _.get(source, defaultValuePath, defaultValue);
 
-    if (paths && paths?.length > 0) {
-    }
+    // if (paths && paths?.length > 0) {
+    // }
     const sourceValue = _.get(
       source,
       path,

@@ -1,13 +1,12 @@
 import { useQuery } from '@apollo/client';
-import PrivateLayout from '@layouts/privateLayout';
-import React from 'react';
-import { GoPlus } from 'react-icons/go';
-import Link from 'next/link';
 import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import Auth from '@graphql/Auth/queries.gql';
+import PrivateLayout from '@layouts/privateLayout';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React from 'react';
 
 const RolesContainer = ({ items }) => {
   const { data, loading } = useQuery(Auth.getRoles);
@@ -16,11 +15,7 @@ const RolesContainer = ({ items }) => {
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <Link href="/auth/roles/create">
-            <a className="btn btn-info btn-sm">
-              Agregar <GoPlus />
-            </a>
-          </Link>
+          <HrefButton href="/auth/roles/create" icon="pi pi-plus" label="Agregar" />
         </div>
       </div>
     </div>
@@ -32,9 +27,9 @@ const RolesContainer = ({ items }) => {
         <BreadCrumbTitle title="Roles de Usuario" items={items} />
 
         <div className="row justify-content-center">
-          <div className="col-md-11 datatable-doc-demo">
+          <div className="col-md-11">
             <DataTable
-              className="p-datatable-customers shadow-lg"
+              className="p-datatable-sm p-datatable-gridlines shadow-lg"
               value={data?.grupos}
               rowHover
               paginator
@@ -43,7 +38,6 @@ const RolesContainer = ({ items }) => {
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}
               rowsPerPageOptions={[10, 25, 50]}
-
             >
               {IndexColumn()}
               <Column header="Nombre" field="nombre" sortable filter reorderable />

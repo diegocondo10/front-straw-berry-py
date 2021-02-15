@@ -11,7 +11,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 const CreatePeriodoLectivoContainer: NextPage<any> = () => {
   const methods = useForm({ mode: 'onChange' });
 
-  const { data } = useQuery(getParametrosFormPeriodos);
+  const { data, loading: loadingData } = useQuery(getParametrosFormPeriodos);
   const [create, { loading }] = useMutation(MatriculaMutations.createPeriodo);
 
   const router = useRouter();
@@ -23,7 +23,7 @@ const CreatePeriodoLectivoContainer: NextPage<any> = () => {
 
   return (
     <FormProvider {...methods}>
-      <PrivateLayout title="Nuevo Periodo Lectivo">
+      <PrivateLayout title="Nuevo Periodo Lectivo" loading={loadingData}>
         <PeriodoLectivoFormContainer
           title="Crear Periodo"
           onSubmit={onSubmit}

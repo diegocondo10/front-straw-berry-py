@@ -4,7 +4,7 @@ query getParametrosFormMatriculaCreate {
     id
     personaStr
   }
-  aulas {
+  aulas: aulasPeriodoAbierto {
     id
     nombre
   }
@@ -106,7 +106,7 @@ query getMatriculasTable {
   }
 }
 
-query getAll {
+query getAulasTable {
   aulas {
     id
     nombre
@@ -122,6 +122,7 @@ query getAll {
     periodo {
       id
       nombre
+      estado
     }
   }
 }
@@ -148,7 +149,7 @@ query getAulaByIdDetail($id: ID!) {
 }
 
 query getParametrosFormAula {
-  periodosLectivos {
+  periodosLectivos(estados: [ABIERTO]) {
     id
     nombre
   }
@@ -172,6 +173,11 @@ query getAulaByIdForm($id: ID!) {
     }
     grado
     capacidad
+    infoPeriodo: periodo {
+      id
+      nombre
+      estado
+    }
   }
 
   periodosLectivos {

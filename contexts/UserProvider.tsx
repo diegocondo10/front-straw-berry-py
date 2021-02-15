@@ -1,6 +1,3 @@
-import { useQuery } from '@apollo/client';
-import Loading from '@components/Loading';
-import { me } from '@graphql/Auth/queries.gql';
 import { createContext, useContext, useState } from 'react';
 
 export type UsuarioContextType = {
@@ -25,6 +22,5 @@ export default UsuarioProvider;
 
 export const useUsuario = () => {
   const data = useContext(UsuarioContext);
-
   return data;
 };

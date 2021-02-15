@@ -1,25 +1,34 @@
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from '@components/Buttons/BtnRegresar';
 import HrefButton from '@components/Buttons/HrefButton';
-import DetailItem from '@components/DetailItem';
 import DynamicDetailTable from '@components/Details/DynamicDetailTable';
+import { IndexColumn } from '@components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
 import { useUsuario } from 'contexts/UserProvider';
+import { NextPage } from 'next';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { Table } from 'react-bootstrap';
 
-const PerfilContainer = ({ items }) => {
+const PerfilContainer: NextPage<any> = ({ items }) => {
   const { usuario } = useUsuario();
-
   return (
-    <PrivateLayout loading={false} title="Perfil">
+    <PrivateLayout
+      loading={usuario === null}
+      title="Perfil"
+      breadCrumb={{
+        title: 'Mi perfil',
+        items: [
+          {
+            title: 'Mi perfil',
+            active: true,
+          },
+        ],
+      }}
+    >
       <main className="container-fluid mb-5">
-        <BreadCrumbTitle title="Mi Perfil" items={items} />
-
         <div className="row justify-content-center">
-          <div className="col-md-8">
+          <div className="col-md-10">
             <h4 className="text-underline">Información de la Cuenta</h4>
-
             <DynamicDetailTable
               source={usuario}
               diccionario={[
@@ -39,10 +48,8 @@ const PerfilContainer = ({ items }) => {
                     </React.Fragment>
                   ),
                 },
-
                 {
                   label: 'Información personal',
-                  listen: [usuario],
                   body: (value) => (
                     <DynamicDetailTable
                       source={value?.persona}
@@ -60,68 +67,26 @@ const PerfilContainer = ({ items }) => {
                     />
                   ),
                 },
+                {
+                  label: 'Permisos',
+                  body: ({ permisos }) => (
+                    <React.Fragment>
+                      <DataTable
+                        className="p-datatable-sm p-datatable-gridlines"
+                        autoLayout
+                        value={permisos}
+                        rows={5}
+                        paginator
+                      >
+                        {IndexColumn()}
+                        <Column header="Nombre" field="nombre" filter sortable />
+                      </DataTable>
+                    </React.Fragment>
+                  ),
+                },
               ]}
             />
 
-            <h4 className="text-underline">Discapacidad</h4>
-            <ul className="w-100">
-              <DetailItem
-                label="Discapacidad:"
-                value={usuario?.persona?.discapacidades?.discapacidad}
-              />
-              <DetailItem
-                label="Carnet CONADIS:"
-                value={usuario?.persona?.discapacidades?.conadis}
-              />
-            </ul>
-
-            <h4 className="text-underline">Permisos</h4>
-            <ul className="w-100">
-              {usuario?.permisos?.length > 0 && (
-                <React.Fragment>
-                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
-                    <thead className="thead-dark">
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {usuario?.permisos?.map((e) => (
-                        <tr className="bg-white" key={e.id}>
-                          <td>{e.nombre}</td>
-                          <td>{e.descripcion}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </React.Fragment>
-              )}
-            </ul>
-
-            <h4 className="text-underline">Grupos</h4>
-            <ul className="w-100">
-              {usuario?.grupos?.length > 0 && (
-                <React.Fragment>
-                  <Table className="w-75 mx-auto" hover striped bordered size="sm">
-                    <thead className="thead-dark">
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {usuario?.grupos?.map((e) => (
-                        <tr className="bg-white" key={e.id}>
-                          <td>{e.nombre}</td>
-                          <td>{e.descripcion}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </React.Fragment>
-              )}
-            </ul>
             <div className="col-12 row justify-content-center">
               <div className="col-md-4 my-1">
                 <BtnRegresar variant="outline-info" href="/" block />
