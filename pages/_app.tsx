@@ -83,7 +83,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(link),
-  // ssrMode: typeof window === 'undefined',
+  ssrMode: typeof window === 'undefined',
   cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {

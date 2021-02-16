@@ -1,0 +1,29 @@
+[
+  {
+    "titulo": "1. COMUNICACIÓN",
+    "orden": 1,
+    "items": [
+      {
+        "texto": "Comprende mensajes digital (verbal)  o analógico (no verbal)"
+      }
+    ]
+  },
+  {
+    "titulo": "2.HABILIDADES DE LA VIDA DIARIA",
+    "subHabilidades": [
+      {
+        "titulo": "AUTOCUIDADO",
+        "habilidades": [
+          {
+            "titulo": "Alimentación",
+            "items": [
+              {
+                "texto": "Puede masticar, deglutir alimentos "
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
