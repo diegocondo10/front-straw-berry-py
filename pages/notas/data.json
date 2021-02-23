@@ -4,12 +4,34 @@
     "orden": 1,
     "items": [
       {
-        "texto": "Comprende mensajes digital (verbal)  o analógico (no verbal)"
+        "texto": "Comprende mensajes digital (verbal) o analógico (no verbal)"
+      },
+      {
+        "texto":"Transmite recados y/o mensajes"
+      },
+      {
+        "texto":"Inicia y mantiene una comunicación en distintos entornos (familia, centro, comunidad, etc.)"
+      },
+      {
+        "texto":"Formula preguntas mientras mantiene un conversación"
+      },
+      {
+        "texto":"Responde interrogantes en relación a la conversación"
+      },
+      {
+        "texto":"Expresa acontecimientos, vivencias, historias, entre otros acorde al tiempo y espacio"
+      },
+      {
+        "texto":"Expresa sus necesidades en el entorno (familia, centro, en su comunidad, etc.)"
+      },
+      {
+        "texto":"Reconoce bromas o absurdos"
       }
     ]
   },
   {
-    "titulo": "2.HABILIDADES DE LA VIDA DIARIA",
+    "titulo": "2. HABILIDADES DE LA VIDA DIARIA",
+    "orden": 2,
     "subHabilidades": [
       {
         "titulo": "AUTOCUIDADO",
@@ -19,6 +41,67 @@
             "items": [
               {
                 "texto": "Puede masticar, deglutir alimentos "
+              },
+              {
+                "texto": "Utiliza los cubiertos para alimentarse"
+              },
+              {
+                "texto": "Bebe con vaso/taza"
+              },
+              {
+                "texto":"Pone y retira la mesa"
+              },
+              {
+                "texto":"Presenta hábitos alimenticios"
+              },
+              {
+                "texto":"Saca - guarda alimentos de la despensa o del refrigerador"
+              },
+              {
+                "texto":"Prepara alimentos sencillos para sí mismo fríos/calientes"
+              },
+              {
+                "texto":"Sirve alimentos sólidos y líquidos"
+              }
+            ]
+          },
+          {
+            "titulo":"Vestimenta",
+            "items":[
+              {
+                "texto":"Se viste y desviste"
+              },
+              {
+                "texto":"Se Abotona / Acordona / Ata / Cierra / Abrocha"
+              },
+              {
+                "texto":"Reconoce revés y derecho"
+              },
+              {
+                "texto":"Distingue ropa limpia / sucia"
+              },
+              {
+                "texto":"Elige su ropa / Se viste según la ocasión/clima"
+              }
+            ]
+          },
+          {
+            "titulo":"Higiene",
+            "items":[
+              {
+                "texto":"Controla esfínteres / Avisa si ensució sus pañales (si los utiliza)"
+              },
+              {
+                "texto":"Utiliza correctamente el inodoro"
+              },
+              {
+                "texto":"Controla babeo"
+              },
+              {
+                "texto":"Realiza el aseo personal: Se baña. Se peina/ se maquilla / rasura / se corta las uñas"
+              },
+              {
+                "texto":"Conoce los cuidados específicos de distintas partes de su cuerpo (en el caso de mujeres higiene durante la menstruación)"
               }
             ]
           },
@@ -50,6 +133,495 @@
                 "texto": "Puede masticar, deglutir alimentos "
               }
             ]
+          }
+        ]
+      },
+      {
+        "titulo": "EN EL HOGAR",
+        "habilidades":[
+          {
+            "titulo":"Vestimenta",
+            "items":[
+              {
+                "texto":"Lava a mano / maneja lavadora"
+              },
+              {
+                "texto":"Tiende/recoge/plancha/guarda la ropa"
+              },
+              {
+                "texto":"Reconoce ropa de hombre y de mujer"
+              },
+              {
+                "texto":"Compra su ropa / escoge su ropa al comprar"
+              }
+            ]
+          },
+          {
+            "titulo":"Alimentación",
+            "items":[
+              {
+                "texto":"Maneja implementos de cocina"
+              },
+              {
+                "texto":"Usa distintos modos de cocción (frito, asado, al vapor, crudo)"
+              },
+              {
+                "texto":"Reconoce el buen estado de los alimentos"
+              },
+              {
+                "texto":"Presenta buenas prácticas alimenticias (manejo y conservación de alimentos, porciones alimenticias y nutricionales) "
+              },
+              {
+                "texto":"Compra los alimentos"
+              }
+            ]
+          },
+          {
+            "titulo":"Higiene",
+            "items":[
+              {
+                "texto":"Realiza/apoya en actividades de limpieza o aseo de la casa (barre, trapea, sacude, etc.)"
+              },
+              {
+                "texto":"Utiliza y limpia la cocina/refrigerador/ otros"
+              },
+              {
+                "texto":"Tiende la cama"
+              },
+              {
+                "texto":"Deposita la basura en los recipientes adecuados (dentro y fuera de su casa/centro/comunidad)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "titulo": "3. HABILIDADES SOCIALES",
+    "orden": 3,
+    "items": [
+      {
+        "texto": "Conoce su nombre y edad/ sabe nombre de sus familiares"
+      },
+      {
+        "texto":"Conoce y facilita la dirección de su casa/centro"
+      },
+      {
+        "texto":"Tiene normas básicas de cortesía (saludo, despedida, presenta a otras personas, agradece, etc.)"
+      },
+      {
+        "texto":"Expresa agrado o desagrado"
+      },
+      {
+        "texto":"Reconoce / expresa sentimientos"
+      },
+      {
+        "texto":"Inicia y mantiene relaciones de amistad con personas del entorno"
+      },
+      {
+        "texto":"Mantiene un comportamiento acorde al lugar y entorno"
+      },
+      {
+        "texto":"Ejecuta soluciones a uno o varios problemas / situaciones de estrés "
+      },
+      {
+        "texto":"Se defiende o busca ayuda en situaciones de peligro o agresión."
+      },
+      {
+        "texto":"Respeta a sus compañeros/familiares/autoridades"
+      },
+      {
+        "texto":"Pide y comparte objetos, comida, etc. con personas conocidas y/o familiares"
+      },
+      {
+        "texto":"Reconoce y repara un error-pide disculpas"
+      },
+      {
+        "texto":"Organiza/asiste a actividades sociales/ deportivas/ culturales"
+      },
+      {
+        "texto":"Pertenece y participa en grupos de su interés/edad."
+      },
+      {
+        "texto":"Emite un criterio sencillo sobre diferentes acciones/situaciones"
+      },
+      {
+        "texto":"Reconoce sus cualidades, habilidades y debilidades"
+      },
+      {
+        "texto":"Mantiene la distancia interpersonal con familiares, compañeros, autoridades."
+      },
+      {
+        "texto":"Establece relaciones basadas en la atracción física y emocional (relaciones de pareja)"
+      }
+    ]
+  },
+  {
+    "titulo": "4. HABILIDADES ACADEMICAS FUNCIONALES",
+    "orden": 4,
+    "items": [
+      {
+        "texto": "Reconoce colores, formas, tamaños, categorías"
+      },
+      {
+        "texto":"Asocia /clasifica por colores, formas y tamaños, categoría"
+      },
+      {
+        "texto":"Tiene nociones temporo/espaciales"
+      },
+      {
+        "texto":"Tiene nociones de lateralidad"
+      },
+      {
+        "texto":"Comprende frases/párrafos/ texto sencillos /complejos"
+      },
+      {
+        "texto":"Estructura frases/párrafos/ texto sencillos /complejos"
+      },
+      {
+        "texto":"Reconoce su nombre escrito"
+      },
+      {
+        "texto":"Escribe su nombre"
+      },
+      {
+        "texto":"Conoce y maneja (uso) el valor del dinero"
+      },
+      {
+        "texto":"Conoce el calendario, su agenda/ horario de actividades semanales/diarias/ fechas importantes"
+      },
+      {
+        "texto":"Maneja el computador/ celular/ calculadora"
+      }
+    ]
+  },
+  {
+    "titulo": "5. HABILIDADES DE AUTODETERMINACIÓN",
+    "orden": 5,
+    "items": [
+      {
+        "texto": "Comprende las responsabilidades asignadas en los diferentes entornos"
+      },
+      {
+        "texto":"Gradua el tiempo para realizar varias tareas"
+      },
+      {
+        "texto":"Planifica actividades cortas con los tiempos"
+      },
+      {
+        "texto":"Tiene iniciativa para tomar decisiones"
+      },
+      {
+        "texto":"Tiene seguridad en sí mismo, aceptación de sí"
+      },
+      {
+        "texto":"Se plantea metas y genera acciones para alcanzarlas"
+      },
+      {
+        "texto":"Cuida de su apariencia personal y presentación"
+      }
+    ]
+  },
+  {
+    "titulo": "6. HABILIDADES DE INTEGRACIÓN EN LA COMUNIDAD",
+    "orden": 6,
+    "items": [
+      {
+        "texto": "Reconoce lugares referenciales para desplazarse fuera del hogar (calles, vecindario)"
+      },
+      {
+        "texto":"Reconoce los medios de transporte que le permite desplazarse al menos a 3 lugares frecuentes"
+      },
+      {
+        "texto":"Identifica y respeta señales de tránsito"
+      },
+      {
+        "texto":"Identifica los trayectos alternativos a los habituales"
+      },
+      {
+        "texto":"Identifica los recursos y servicios de su comunidad: Centro de salud, tienda, pago de servicios, etc"
+      },
+      {
+        "texto":"Reconoce los teléfonos de emergencia (911, bomberos, policia nacional etc)"
+      },
+      {
+        "texto":"Sabe como pedir auxilio cuando lo necesita"
+      },
+      {
+        "texto":"Identifica que medios se utiliza para solicitar turnos médicos (internet, telefonica, etc)"
+      },
+      {
+        "texto":"Reconoce símbolos informativos sociales como signos de alarma, señales, letreros, reconoce señalética, etc."
+      },
+      {
+        "texto":"Realiza compras mediante un listado (mercados, tiendas, centros comerciales, etc)"
+      }
+    ]
+  },
+  {
+    "titulo": "7. HABILIDADES DE SALUD Y SEGURIDAD",
+    "orden": 7,
+    "items": [
+      {
+        "texto": "Expresa sensaciones de malestar físico/emocional"
+      },
+      {
+        "texto":"Identifica las fechas para los chequeos médicos"
+      },
+      {
+        "texto":"Identifica y cumple con los horarios de su medicación"
+      },
+      {
+        "texto":"Reconoce las  propuestas inconvenientes y dice NO"
+      },
+      {
+        "texto":"Identifica que cuidados requiere su cuerpo cuando tiene algún malestar  (mestruación/ resfrío etc)"
+      },
+      {
+        "texto":"Conoce sus derechos y responsabilidades de su sexualidad"
+      }
+    ]
+  },
+  {
+    "titulo": "8. HABILIDADES DE OCIO Y TIEMPO LIBRE",
+    "orden": 8,
+    "items": [
+      {
+        "texto": "Realiza deportes / actividades físicas"
+      },
+      {
+        "texto":"Participa en juegos (tradicionales, de mesa, otros)"
+      },
+      {
+        "texto":"Realiza actividades manuales a través de diferentes técnicas y con diferentes materiales, como enhebrar, rasgar, ensartar, etc."
+      },
+      {
+        "texto":"Asiste a actividades de ocio de su comunidad"
+      },
+      {
+        "texto":"Identifica y reconoce los servicios de ocio de su comunidad"
+      },
+      {
+        "texto":"Tiene iniciativa para: llamar a sus amigos, hablar con su novia, salir con sus amigos, organiza programas."
+      },
+      {
+        "texto":"Realiza actividades prefereidas en el hogar "
+      },
+      {
+        "texto":"Realiza actividades prefereridas en el exterior (comunidad)"
+      }
+    ]
+  },
+  {
+    "titulo": "9. HABILIDADES PRE-LABORALES",
+    "orden": 9,
+    "items": [
+      {
+        "texto": "Sigue/ ejecuta instrucciones simples"
+      },
+      {
+        "texto":"Sigue / ejecuta instrucciones  complejas"
+      },
+      {
+        "texto":"Entiende y ejecuta ordenes"
+      },
+      {
+        "texto":"Reconoce y respeta reglas /turnos"
+      },
+      {
+        "texto":"Inicia, mantiene y termina la actividad"
+      },
+      {
+        "texto":"Permanece en el grupo de trabajo asignado"
+      },
+      {
+        "texto":"Cuida materiales y elementos"
+      },
+      {
+        "texto":"Mantiene en  orden  su espacio y los materiales"
+      },
+      {
+        "texto":"Recuerda/respeta secuencias"
+      },
+      {
+        "texto":"Acepta recomendaciones de sus superiores"
+      },
+      {
+        "texto":"Tolerancia a la fatiga"
+      },
+      {
+        "texto":"Mantiene una realción adecuada con la autoridad"
+      },
+      {
+        "texto":"Mantiene una realción adecuada con sus compañeros"
+      },
+      {
+        "texto":"Usa con destreza los apoyos y/o ayudas tecnicas para desempeñar su ocupación."
+      },
+      {
+        "texto":"Mantiene el autocontrol de sus emociones."
+      },
+      {
+        "texto":"Respeta horarios"
+      },
+      {
+        "texto":"Reconoce/previene riesgos en el uso de materiales y elementos de su labor diaria"
+      }
+    ]
+  },
+  {
+    "titulo": "10. HABILIDADES ACADEMICAS FUNCIONALES",
+    "orden": 10,
+    "items": [
+      {
+        "texto": ""
+      }
+    ]
+  },
+  {
+    "titulo": "11. HABILIDADES ARTÍSTICAS",
+    "orden": 11,
+    "subHabilidades": [
+      {
+        "titulo":"Dibujo y Pintura",
+        "items":[
+          {
+            "texto":"Reconoce los materiales para dibujar y pintar"
+          },
+          {
+            "texto":"Utiliza materiales y herramientas para dibujar y pintar"
+          },
+          {
+            "texto":"Realiza bocetos usando un modelo"
+          },
+          {
+            "texto":"Grafica los elementos de la naturaleza: agua, aire, fuego, tierra, animales, plantas, personas con o sin modelo"
+          },
+          {
+            "texto":"Dibuja y pinta libremente siguiendo las consignas dadas"
+          },
+          {
+            "texto":"Dibuja y pinta sentimientos y emociones: felicidad, ira, tranquilidad, miedo, amor, entre otros."
+          },
+          {
+            "texto":"Grafica formas humanas"
+          },
+          {
+            "texto":"Reconoce partes anatómicas en sus dibujos"
+          },
+          {
+            "texto":"Al pintar reconoce los colores primarios: amarillo, azul y rojo"
+          }
+        ]
+      },
+      {
+        "titulo":"Escultura",
+        "items":[
+          {
+            "texto":"Reconoce materiales maleables (plastilina, barro, harina, arcilla)"
+          },
+          {
+            "texto":"identifica el uso de los materiales maleables"
+          },
+          {
+            "texto":"Modela figuras en masa, arcilla o plastilina con o sin modelo"
+          },
+          {
+            "texto":"Realiza actividades manuales libremente siguiendo las consignas dadas "
+          },
+          {
+            "texto":"Modea  formas de la naturaleza, formas humanas"
+          },
+          {
+            "texto":"Reconoce y valora el resultado de la obra"
+          }
+        ]
+      },
+      {
+        "titulo":"Teatro",
+        "items":[
+          {
+            "texto":"Imita  movimientos coporales, facilales basicos  con una intencionalidad  mediante juegos guiados"
+          },
+          {
+            "texto":"Reconoce las emociones básicas a traves de los movimientos corporales y/o faciles (miedo, tristeza, alegria etc)"
+          },
+          {
+            "texto":"Identifica su entorno y establece vínculos  con los demás participantes"
+          },
+          {
+            "texto":"Realiza pequeñas improvisaciones teatrales basadas en una historia real o imaginaria con o sin modelos"
+          },
+          {
+            "texto":"Crea y pone en escena de una historia real o imaginaria que tenga inicio, desarrollo y desenlace"
+          },
+          {
+            "texto":"Imagina y propone ideas de vestuario, maquillaje"
+          },
+          {
+            "texto":"Crea el personaje (vesrtio, maquillaje , texto, desplazamientos)"
+          },
+          {
+            "texto":"Reconoce y valora la interpretación realizada."
+          }
+        ]
+      },
+      {
+        "titulo":"Danza",
+        "items":[
+          {
+            "texto":"Baila diferentes ritmos de musica (salsa, rock, pop, cumbia etc) "
+          },
+          {
+            "texto":"Reconoce su ritmo favorito"
+          },
+          {
+            "texto":"Conoce antecedentes básicos de los diferentes ritmos"
+          },
+          {
+            "texto":"Baila junto a una o más personas."
+          },
+          {
+            "texto":"Baila acorde al género musical propuesto."
+          },
+          {
+            "texto":"Aprende coreografías."
+          },
+          {
+            "texto":"Baila imitando a otra persona."
+          },
+          {
+            "texto":"Se mueve libremente en espacios amplios respetando las consignas dadas"
+          },
+          {
+            "texto":"Reconoce y valora la experiencia del baile realizado."
+          }
+        ]
+      },
+      {
+        "titulo":"Música",
+        "items":[
+          {
+            "texto":"identifica diferentes ritmos de musica (salsa, rock, pop, cumbia etc) "
+          },
+          {
+            "texto":"Escoge una canción conocida y la interpreta"
+          },
+          {
+            "texto":"Identifica qué emociones le producen determinados géneros musicales."
+          },
+          {
+            "texto":"Experimenta con instrumentos de cuerda, viento, percusión"
+          },
+          {
+            "texto":"Reconoce las familias de los diferentes instrumentos"
+          },
+          {
+            "texto":"Conoce antecedentes historicos básicos de los diferentes ritmos de musica  (salsa, rock, pop, cumbia etc) "
+          },
+          {
+            "texto":"Reconoce sonidos graves, suaves, agudos"
           }
         ]
       }
