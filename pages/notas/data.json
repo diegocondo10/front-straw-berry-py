@@ -21,6 +21,35 @@
                 "texto": "Puede masticar, deglutir alimentos "
               }
             ]
+          },
+          {
+            "titulo": "Alimentación",
+            "items": [
+              {
+                "texto": "Puede masticar, deglutir alimentos "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "titulo": "AUTOCUIDADO",
+        "habilidades": [
+          {
+            "titulo": "Alimentación",
+            "items": [
+              {
+                "texto": "Puede masticar, deglutir alimentos "
+              }
+            ]
+          },
+          {
+            "titulo": "Alimentación",
+            "items": [
+              {
+                "texto": "Puede masticar, deglutir alimentos "
+              }
+            ]
           }
         ]
       }

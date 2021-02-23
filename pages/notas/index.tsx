@@ -1,14 +1,15 @@
-/*global test*/
-
-import { IndexColumn } from '@components/table/columns';
+import { useQuery } from '@apollo/client';
+import NotasContainer from '@components/pages/notas';
+import { getInitialDataNotasPage } from '@graphql/Notas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
+import { NextPage } from 'next';
 import React from 'react';
 
-const NotasPageContainer = () => {
+const NotasPageContainer: NextPage = () => {
+  const { loading, data } = useQuery(getInitialDataNotasPage);
   return (
     <PrivateLayout
+      loading={loading}
       title="Notas"
       breadCrumb={{
         title: 'Notas',
@@ -20,16 +21,7 @@ const NotasPageContainer = () => {
         ],
       }}
     >
-      <main className="container-fluid">
-        <div className="row justify-content-center">
-          <div className="col-12">
-            <DataTable>
-              {IndexColumn()}
-              <Column header="Alumno" field="alumno.personaStr" />
-            </DataTable>
-          </div>
-        </div>
-      </main>
+      <NotasContainer data={data} />
     </PrivateLayout>
   );
 };

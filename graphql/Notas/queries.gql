@@ -1,0 +1,35 @@
+query getInitialDataNotasPage {
+  periodos: periodosLectivos {
+    id
+    nombre
+    estado
+    aulas: aulaSet {
+      id
+      nombre
+      alumnos: alumnoaulaSet {
+        id
+        alumno {
+          personaStr
+        }
+      }
+    }
+  }
+  componentes {
+    id
+    nombre
+  }
+}
+
+query getNotasAlumno($idAlumno: ID!) {
+  notas: notasAlumno(idAlumo: $idAlumno) {
+    id
+    componente {
+      id
+      nombre
+    }
+    titulo
+    resultado
+    observaciones
+    createdAt
+  }
+}

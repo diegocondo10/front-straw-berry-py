@@ -1,0 +1,15 @@
+mutation createNota($input: CreateNotaAlumnoInput!) {
+  response: createNota(input: $input) {
+    nota: notaAlumno {
+      id
+      componente {
+        id
+        nombre
+      }
+      titulo
+      resultado
+      observaciones
+      createdAt
+    }
+  }
+}

@@ -1,14 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import { GoPlus } from 'react-icons/go';
-import PrivateLayout from '@layouts/privateLayout';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import { DataTable } from 'primereact/datatable';
-import { IndexColumn, OptionesColumn } from '@components/table/columns';
-import { Column } from 'primereact/column';
 import { useQuery } from '@apollo/client';
-import { getAlumnosTable } from '@graphql/Personas/queries.gql';
+import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
+import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import { getAlumnosTable } from '@graphql/Personas/queries.gql';
+import PrivateLayout from '@layouts/privateLayout';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React from 'react';
 
 const AlumnosContainer = ({ breadCrumbItems }) => {
   const { loading, data } = useQuery(getAlumnosTable);

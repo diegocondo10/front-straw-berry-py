@@ -1,4 +1,5 @@
 import HrefButton from '@components/Buttons/HrefButton';
+import { Button } from 'primereact/button';
 import { Column, ColumnProps } from 'primereact/column';
 import React, { CSSProperties } from 'react';
 
@@ -21,8 +22,10 @@ export const OptionesColumn: React.FC<
   } & any
 > = ({
   children,
-  editPath = (rowData: any): string => '',
-  detailPath = (rowData: any): string => '',
+  editPath,
+  detailPath,
+  editButton,
+  detailButton,
   style = {},
   header = 'Opciones',
   columnProps = {},
@@ -44,6 +47,25 @@ export const OptionesColumn: React.FC<
           className="p-button-warning p-button-sm"
         />
       )}
+
+      {editButton && (
+        <Button
+          icon="pi pi-pencil"
+          className="p-button-sm"
+          onClick={() => editButton?.onClick?.(rowData)}
+          disabled={editButton?.isDisabled?.(rowData) || false}
+        />
+      )}
+      {detailButton && (
+        <Button
+          icon="pi pi-info-circle"
+          className="p-button-warning p-button-sm"
+          {...detailButton}
+          onClick={() => detailButton?.onClick?.(rowData)}
+          disabled={detailButton?.isDisabled?.(rowData) || false}
+        />
+      )}
+
       {children}
     </div>
   );
