@@ -31,5 +31,9 @@ query getNotasAlumno($idAlumno: ID!) {
     resultado
     observaciones
     createdAt
+    evidencias {
+      id
+      url
+    }
   }
 }

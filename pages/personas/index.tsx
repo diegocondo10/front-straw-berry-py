@@ -3,12 +3,12 @@ import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import PersonaQueries from '@graphql/Personas/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
 import PrivateLayout from '@layouts/privateLayout';
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React, { useEffect } from 'react';
-import { Dialog } from 'primereact/dialog';
-import useCustomToast from '@hooks/useCustomToast';
+import React from 'react';
 
 const PersonasContainer = ({ breadCrumbItems }) => {
   const { data, loading } = useQuery(PersonaQueries.getPersonasTable);
@@ -23,11 +23,7 @@ const PersonasContainer = ({ breadCrumbItems }) => {
         </div>
 
         <div className="col text-right">
-          <HrefButton
-            href="/personas/detail"
-            label="Reportes"
-            icon="pi pi-paperclip"
-          />
+          <Button label="Reportes" icon="pi pi-paperclip" />
         </div>
       </div>
     </div>

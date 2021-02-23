@@ -13,3 +13,12 @@ mutation createNota($input: CreateNotaAlumnoInput!) {
     }
   }
 }
+
+mutation updateNota($id: ID!, $input: UpdateNotaAlumnoInput!) {
+  response: updateNota(id: $id, input: $input) {
+    nota: notaAlumno {
+      id
+      createdAt
+    }
+  }
+}

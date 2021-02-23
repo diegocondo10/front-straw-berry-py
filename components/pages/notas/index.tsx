@@ -1,7 +1,9 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { OptionesColumn } from '@components/table/columns';
-import { createNota } from '@graphql/Notas/mutations.gql';
+import { DateTimeColumn, OptionesColumn } from '@components/table/columns';
+import { createNota, updateNota } from '@graphql/Notas/mutations.gql';
 import { getNotasAlumno } from '@graphql/Notas/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
+import useReportes from '@hooks/useReportes';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -14,10 +16,20 @@ const NotasContainer = ({ data }) => {
 
   const [isVisible, setVisible] = useState<boolean>(false);
 
+  const { addInfoToast, addSuccessToast } = useCustomToast();
+
+  const { getReporte } = useReportes();
+
   const [create, { loading: loadingCreate }] = useMutation(createNota);
+  const [update, { loading: loadingUpdate }] = useMutation(updateNota);
 
   const [getNotas, { loading: loadingNotas }] = useLazyQuery(getNotasAlumno, {
     onCompleted: ({ notas }) => {
+      if (notas.length === 0) {
+        addInfoToast(
+          'No se han encontrado registros de notas con la información seleccionada',
+        );
+      }
       setData(notas);
     },
   });
@@ -32,73 +44,96 @@ const NotasContainer = ({ data }) => {
     setVisible(!isVisible);
     setTimeout(() => {
       setSelectedItem(null);
-    }, 500);
+    }, 100);
+  };
+
+  const HeaderDropDown = ({
+    id,
+    label,
+    options,
+    value,
+    onChange,
+    optionLabel = 'nombre',
+  }) => {
+    return (
+      <div className="form-group">
+        <label htmlFor={id}>{label}</label>
+        <Dropdown
+          inputId={id}
+          className="w-100 p-inputtext-sm"
+          optionLabel={optionLabel}
+          placeholder="Seleccione"
+          options={options}
+          value={value}
+          filter
+          onChange={onChange}
+        />
+      </div>
+    );
   };
 
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col-lg-4 text-left">
-          <div className="form-group">
-            <label htmlFor="">Periodos Lectivos</label>
-            <Dropdown
-              className="w-100 p-inputtext-sm"
-              optionLabel="nombre"
-              placeholder="Seleccione"
-              options={data?.periodos}
-              value={selectedPeriodo}
-              filter
-              onChange={({ value }) => {
-                console.log(value);
-                setSelectedPeriodo(value);
-                setSelectedAula(null);
-                setSelectedAlumno(null);
-                setData([]);
-              }}
-            />
-          </div>
+          <HeaderDropDown
+            id="periodo_dropDown"
+            options={data?.periodos}
+            value={selectedPeriodo}
+            label="Periodos Lectivos"
+            onChange={({ value }) => {
+              console.log(value);
+              setSelectedPeriodo(value);
+              setSelectedAula(null);
+              setSelectedAlumno(null);
+              setData([]);
+            }}
+          />
         </div>
         <div className="col-lg-4 text-left">
-          <div className="form-group">
-            <label htmlFor="">Aulas</label>
-            <Dropdown
-              className="w-100 p-inputtext-sm"
-              optionLabel="nombre"
-              placeholder="Seleccione"
-              filter
-              options={selectedPeriodo?.aulas}
-              value={selectedAula}
-              onChange={({ value }) => {
-                setSelectedAula(value);
-                setSelectedAlumno(null);
-                setData([]);
-              }}
-            />
-          </div>
+          <HeaderDropDown
+            id="aulas_dropDown"
+            label="Aulas"
+            options={selectedPeriodo?.aulas}
+            value={selectedAula}
+            onChange={({ value }) => {
+              setSelectedAula(value);
+              setSelectedAlumno(null);
+              setData([]);
+            }}
+          />
         </div>
         <div className="col-lg-4 text-left">
-          <div className="form-group">
-            <label htmlFor="">Alumnos</label>
-            <Dropdown
-              className="w-100 p-inputtext-sm"
-              value={selectedAlumno}
-              options={selectedAula?.alumnos}
-              optionLabel="alumno.personaStr"
-              placeholder="Seleccione"
-              filter
-              onChange={async ({ value }) => {
-                setSelectedAlumno(value);
-                getNotas({ variables: { idAlumno: value.id } });
-              }}
-            />
-          </div>
+          <HeaderDropDown
+            id="alumnos_dropDown"
+            label="Alumnos"
+            value={selectedAlumno}
+            options={selectedAula?.alumnos}
+            optionLabel="alumno.personaStr"
+            onChange={async ({ value }) => {
+              setSelectedAlumno(value);
+              getNotas({ variables: { idAlumno: value.id } });
+            }}
+          />
         </div>
       </div>
       <div className="row">
-        <div className="col-12">
+        <div className="col">
           <Button
             label="Registrar"
             onClick={toggle}
+            disabled={
+              selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'
+            }
+          />
+        </div>
+        <div className="col">
+          <Button
+            label="Descargar reporte"
+            icon="pi pi-paperclip"
+            onClick={async () => {
+              await getReporte(`reporte-notas/${selectedAlumno.id}`);
+            }}
             disabled={
               selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'
             }
@@ -113,11 +148,30 @@ const NotasContainer = ({ data }) => {
     setVisible(true);
   };
 
+  const onClickEliminar = async (rowData) => {
+    const nota = {
+      ...rowData,
+      authEstado: 'D',
+      alumnoAula: selectedAlumno.id,
+      componente: rowData.componente.id,
+      createdAt: undefined,
+      id: undefined,
+    };
+
+    await update({ variables: { id: rowData.id, input: nota } });
+    addInfoToast(`Se ha eliminado el registro "${rowData.titulo}"`);
+    getNotas({ variables: { idAlumno: selectedAlumno.id } });
+  };
+
   const onSubmit = (accion: 'add' | 'upt') => async (formData) => {
+    toggle();
+    formData.alumnoAula = selectedAlumno.id;
     if (accion === 'add') {
-      formData.alumnoAula = selectedAlumno.id;
       await create({ variables: { input: formData } });
+      addSuccessToast('Se ha agregado el registro exitosamente');
     } else {
+      await update({ variables: { id: selectedItem.id, input: formData } });
+      addSuccessToast('Se ha editado el registro exitosamente');
     }
     getNotas({ variables: { idAlumno: selectedAlumno.id } });
   };
@@ -136,19 +190,40 @@ const NotasContainer = ({ data }) => {
             sortField="componente.nombre"
             sortOrder={1}
             autoLayout
-            loading={loadingCreate || loadingNotas}
-            emptyMessage="Por favor seleccione un periodo -> aula -> alumno"
+            loading={loadingCreate || loadingNotas || loadingUpdate}
+            emptyMessage="Por favor seleccione un Periodo Lectivo -> Aula -> Alumno"
           >
-            <Column header="COMPONENTES" field="componente.nombre" />
-            <Column header="ACTIVIDADES" field="titulo" />
-            <Column header="RESULTADO" field="resultado" />
-            <Column header="OBSERVACIONES" field="observaciones" />
-            <Column header="FECHA" field="createdAt" />
-
+            <Column
+              header="COMPONENTES"
+              field="componente.nombre"
+              style={{ width: '200px' }}
+            />
+            <Column header="ACTIVIDADES" field="titulo" style={{ width: '200px' }} />
+            <Column
+              header="RESULTADO"
+              field="resultado"
+              style={{ width: '200px' }}
+            />
+            <Column
+              header="OBSERVACIONES"
+              field="observaciones"
+              style={{ width: '200px' }}
+            />
+            {DateTimeColumn({
+              path: 'createdAt',
+              header: 'FECHA',
+              className: 'text-center',
+              style: { width: '150px' },
+            })}
             {OptionesColumn({
+              header: 'OPCIONES',
               editButton: {
                 onClick: onClickEditar,
-                isDisabled: (rowData) => selectedPeriodo.estado === 'CERRADO',
+                isDisabled: () => selectedPeriodo.estado === 'CERRADO',
+              },
+              deleteButton: {
+                onClick: onClickEliminar,
+                isDisabled: () => selectedPeriodo.estado === 'CERRADO',
               },
             })}
           </DataTable>
@@ -162,6 +237,7 @@ const NotasContainer = ({ data }) => {
         setSelectedItem={setSelectedItem}
         accion={selectedItem ? 'upt' : 'add'}
         onSubmit={onSubmit}
+        isLoading={loadingCreate || loadingUpdate}
         componentes={data?.componentes}
       />
     </main>

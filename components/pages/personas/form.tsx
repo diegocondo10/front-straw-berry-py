@@ -94,11 +94,11 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                         <React.Fragment>
                           <UploadFile
                             onCompleteUpload={onSaveImage(onChange)}
-                            table="habitaciones"
+                            table="personas"
                           />
                           <TakePicture
                             onSaveImage={onSaveImage(onChange)}
-                            table="habitaciones"
+                            table="personas"
                           />
                           {value && (
                             <React.Fragment>
@@ -116,7 +116,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                       )}
                     />
                   </span>
-                
                 </div>
               </div>
 

@@ -3,7 +3,9 @@ import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import { getPersonalTable } from '@graphql/Personas/queries.gql';
+import useReportes from '@hooks/useReportes';
 import PrivateLayout from '@layouts/privateLayout';
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
@@ -11,14 +13,25 @@ import React from 'react';
 const PersonalContainer = () => {
   const { loading, data } = useQuery(getPersonalTable);
 
+  const { getReporte } = useReportes();
+
   const header = (
     <div className="container-fluid my-2">
-      <div className="row">
+      <div className="row justify-content-between">
         <div className="col text-left">
           <HrefButton
             href="/personas/personal/create"
             icon="pi pi-plus"
             label="Agregar"
+          />
+        </div>
+        <div className="col text-right">
+          <Button
+            label="Reporte Nómina"
+            icon="pi pi-paperclip"
+            onClick={async () => {
+              await getReporte('reporte-nomina');
+            }}
           />
         </div>
       </div>
