@@ -57,6 +57,8 @@ const AlumnoFormContainer = ({
   // }, []);
 
   const mapOnSubmit = async (input) => {
+    input.contactoEmergencia = JSON.stringify(input.contactoEmergencia);
+    input.representante = JSON.stringify(input.representante);
     await onSubmit(input);
   };
 
@@ -248,7 +250,7 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Nombre del contacto de emergencia"
                   name="contactoEmergencia.nombres"
-                  keyfilter="alphanum"
+                  // keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -256,17 +258,16 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Contacto"
+                  label="Contacto (Telefono ó Celular)"
                   name="contactoEmergencia.contacto"
                   keyfilter="num"
                 />
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <CustomTextInput
                   label="Nombre del representante"
-                  name="representante.nombre"
-                  keyfilter="num"
+                  name="representante.nombres"
                 />
               </div>
             </Form.Row>

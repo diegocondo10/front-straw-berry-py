@@ -55,7 +55,7 @@ const AlumnosContainer = ({ breadCrumbItems }) => {
               <Column header="Madre" field="madre.str" sortable filter reorderable />
               <Column
                 header="Representante"
-                field="representante.str"
+                field="representante.nombres"
                 sortable
                 filter
                 reorderable

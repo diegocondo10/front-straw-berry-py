@@ -193,6 +193,13 @@ query getAlumnosTable {
   alumnos {
     id
     personaStr
+    padre {
+      str
+    }
+    madre {
+      str
+    }
+    representante
   }
 }
 
