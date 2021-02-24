@@ -10,12 +10,12 @@ const NotasPageContainer: NextPage = () => {
   return (
     <PrivateLayout
       loading={loading}
-      title="Notas"
+      title="Aporte Académico"
       breadCrumb={{
-        title: 'Notas',
+        title: 'Aporte Académico',
         items: [
           {
-            title: 'Notas',
+            title: 'Aporte Académico',
             active: true,
           },
         ],
