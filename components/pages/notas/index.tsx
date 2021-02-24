@@ -12,12 +12,13 @@ import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import { AiOutlineWarning } from 'react-icons/ai';
 import DialogFormActividad from './DialogFormActividad';
+import DialogImprimirReporte from './DialogImprimirReporte';
 
 const NotasContainer = ({ data }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const [isVisible, setVisible] = useState<boolean>(false);
-
+  const [showInfoReporte, setShowInfoReporte] = useState(false);
   const { addInfoToast, addSuccessToast } = useCustomToast();
 
   const { getReporte } = useReportes();
@@ -74,77 +75,6 @@ const NotasContainer = ({ data }) => {
     );
   };
 
-  const header = (
-    <div className="container-fluid my-2">
-      <div className="row">
-        <div className="col-lg-4 text-left">
-          <HeaderDropDown
-            id="periodo_dropDown"
-            options={data?.periodos}
-            value={selectedPeriodo}
-            label="Periodos Lectivos"
-            onChange={({ value }) => {
-              console.log(value);
-              setSelectedPeriodo(value);
-              setSelectedAula(null);
-              setSelectedAlumno(null);
-              setData([]);
-            }}
-          />
-        </div>
-        <div className="col-lg-4 text-left">
-          <HeaderDropDown
-            id="aulas_dropDown"
-            label="Aulas"
-            options={selectedPeriodo?.aulas}
-            value={selectedAula}
-            onChange={({ value }) => {
-              setSelectedAula(value);
-              setSelectedAlumno(null);
-              setData([]);
-            }}
-          />
-        </div>
-        <div className="col-lg-4 text-left">
-          <HeaderDropDown
-            id="alumnos_dropDown"
-            label="Alumnos"
-            value={selectedAlumno}
-            options={selectedAula?.alumnos}
-            optionLabel="alumno.personaStr"
-            onChange={async ({ value }) => {
-              setSelectedAlumno(value);
-              getNotas({ variables: { idAlumno: value.id } });
-            }}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <Button
-            label="Registrar"
-            onClick={toggle}
-            disabled={
-              selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'
-            }
-          />
-        </div>
-        <div className="col">
-          <Button
-            label="Descargar reporte"
-            icon="pi pi-paperclip"
-            onClick={async () => {
-              await getReporte(`reporte-notas/${selectedAlumno.id}`);
-            }}
-            disabled={
-              selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'
-            }
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   const onClickEditar = (rowData) => {
     setSelectedItem(rowData);
     setVisible(true);
@@ -160,7 +90,7 @@ const NotasContainer = ({ data }) => {
       id: undefined,
       evidencias: undefined,
     };
-    console.log(rowData);
+
     await update({ variables: { id: rowData.id, input: nota } });
     addInfoToast(`Se ha eliminado el registro "${rowData.titulo}"`);
     getNotas({ variables: { idAlumno: selectedAlumno.id } });
@@ -200,6 +130,71 @@ const NotasContainer = ({ data }) => {
     getNotas({ variables: { idAlumno: selectedAlumno.id } });
   };
 
+  const onClickImprimirReporte = () => {
+    setShowInfoReporte(true);
+  };
+  const header = (
+    <div className="container-fluid my-2">
+      <div className="row">
+        <div className="col-lg-4 text-left">
+          <HeaderDropDown
+            id="periodo_dropDown"
+            options={data?.periodos}
+            value={selectedPeriodo}
+            label="Periodos Lectivos"
+            onChange={({ value }) => {
+              setSelectedPeriodo(value);
+              setSelectedAula(null);
+              setSelectedAlumno(null);
+              setData([]);
+            }}
+          />
+        </div>
+        <div className="col-lg-4 text-left">
+          <HeaderDropDown
+            id="aulas_dropDown"
+            label="Aulas"
+            options={selectedPeriodo?.aulas}
+            value={selectedAula}
+            onChange={({ value }) => {
+              setSelectedAula(value);
+              setSelectedAlumno(null);
+              setData([]);
+            }}
+          />
+        </div>
+        <div className="col-lg-4 text-left">
+          <HeaderDropDown
+            id="alumnos_dropDown"
+            label="Alumnos"
+            value={selectedAlumno}
+            options={selectedAula?.alumnos}
+            optionLabel="alumno.personaStr"
+            onChange={async ({ value }) => {
+              setSelectedAlumno(value);
+              getNotas({ variables: { idAlumno: value.id } });
+            }}
+          />
+        </div>
+      </div>
+      <div className="d-inline-flex flex-wrap w-100 justify-content-center justify-content-md-between">
+        <Button
+          label="Registrar"
+          onClick={toggle}
+          className="my-1"
+          disabled={selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'}
+        />
+
+        <Button
+          label="Descargar reporte"
+          icon="pi pi-paperclip"
+          onClick={onClickImprimirReporte}
+          className="my-1"
+          disabled={selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'}
+        />
+      </div>
+    </div>
+  );
   return (
     <main className="container-fluid">
       <div className="row justify-content-center">
@@ -216,6 +211,17 @@ const NotasContainer = ({ data }) => {
             autoLayout
             loading={loadingCreate || loadingNotas || loadingUpdate}
             emptyMessage="Por favor seleccione un Periodo Lectivo -> Aula -> Alumno"
+            paginator
+            rowHover
+            currentPageReportTemplate="{totalRecords} registros totales"
+            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+            rows={10}
+            rowsPerPageOptions={[10, 25, 50]}
+            reorderableColumns
+            resizableColumns
+            removableSort
+            stateStorage="local"
+            stateKey="dt-actividades"
           >
             <Column
               header="COMPONENTES"
@@ -253,6 +259,13 @@ const NotasContainer = ({ data }) => {
           </DataTable>
         </div>
       </div>
+
+      <DialogImprimirReporte
+        docentes={selectedAula?.docentes}
+        setShow={setShowInfoReporte}
+        show={showInfoReporte}
+        selectedAlumno={selectedAlumno}
+      />
 
       <DialogFormActividad
         visible={isVisible}

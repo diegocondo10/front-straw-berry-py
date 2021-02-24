@@ -7,13 +7,11 @@ const useReportes = () => {
 
   const { addInfoToast, addErrorToast } = useCustomToast();
 
-  const getReporte = useCallback(async (reporte) => {
+  const getReporte = useCallback(async (reporte, body = {}) => {
     try {
-      const { data, status } = await privateAxios.post(
-        reporte,
-        {},
-        { responseType: 'blob' },
-      );
+      const { data, status } = await privateAxios.post(reporte, body, {
+        responseType: 'blob',
+      });
 
       if (status === 200) {
         const url = window.URL.createObjectURL(data);

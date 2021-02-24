@@ -3,6 +3,7 @@ import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import useReportes from '@hooks/useReportes';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -14,6 +15,8 @@ const MatriculasContainer = () => {
       console.log('ERROR', errors?.graphQLErrors[0]?.extensions);
     },
   });
+
+  const { getReporte } = useReportes();
 
   const header = (
     <div className="container-fluid my-2">
@@ -102,8 +105,20 @@ const MatriculasContainer = () => {
               />
 
               {OptionesColumn({
+                style: { width: '150px' },
                 editPath: ({ id }) => `/matriculas/update?id=${id}`,
                 detailPath: ({ id }) => `/matriculas/detail?id=${id}`,
+                customButtons: [
+                  {
+                    icon: 'pi pi-print',
+                    className: 'p-button-info',
+                    onClick: async (rowData) => {
+                      await getReporte('reporte-matricula', {
+                        idMatricula: rowData.id,
+                      });
+                    },
+                  },
+                ],
               })}
             </DataTable>
           </div>

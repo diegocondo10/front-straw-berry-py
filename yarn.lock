@@ -2720,6 +2720,11 @@ lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.19, lodash@~4.17.1
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
+lodash@^4.10:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
 lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
@@ -4549,6 +4554,13 @@ use-latest@^1.0.0:
   integrity sha512-d2TEuG6nSLKQLAfW3By8mKr8HurOlTkul0sOpxbClIv4SQ4iOd7BYr7VIzdbktUCnv7dua/60xzd8igMU6jmyw==
   dependencies:
     use-isomorphic-layout-effect "^1.0.0"
+
+use-media-set@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/use-media-set/-/use-media-set-1.2.0.tgz#45dca159702d92d17cfe7b1f41f150ecf4cb8994"
+  integrity sha512-5kcslo21Xflg4elSBbYxPUGnHCrGL9vuOFhlTu9Q2GO0Rbnm54RkNr/GXK1hDQSSjGY6PJkMeHXG1XvF06cTLA==
+  dependencies:
+    lodash "^4.10"
 
 use-media@^1.4.0:
   version "1.4.0"
