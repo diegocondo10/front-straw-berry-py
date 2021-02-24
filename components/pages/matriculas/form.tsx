@@ -85,6 +85,15 @@ const MatriculaFormContainer = ({
                   }}
                 />
               </div>
+              <div className="col-md-12">
+                <CustomTextArea
+                  label="Diagnostico clinico:"
+                  name="diagnosticoClinico"
+                  rules={{
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
               {/* <div className="col-md-12">
                 <CustomTextArea
                   label="Diagnóstico:"

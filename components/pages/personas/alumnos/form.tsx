@@ -246,8 +246,8 @@ const AlumnoFormContainer = ({
               <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
               <div className="col-md-12">
                 <CustomTextInput
-                  label="Identificación:"
-                  name="contactoEmergencia.identificacion"
+                  label="Nombre del contacto de emergencia"
+                  name="contactoEmergencia.nombres"
                   keyfilter="alphanum"
                   rules={{
                     required: 'Este campo es obligatorio',
@@ -256,49 +256,16 @@ const AlumnoFormContainer = ({
               </div>
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Primer Nombre:"
-                  name="contactoEmergencia.primerNombre"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Segundo Nombre:"
-                  name="contactoEmergencia.segundoNombre"
-                  keyfilter="alpha"
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Primer Apellido:"
-                  name="contactoEmergencia.primerApellido"
-                  keyfilter="alpha"
-                  rules={{
-                    required: 'Este campo es obligatorio',
-                  }}
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Segundo Apellido:"
-                  name="contactoEmergencia.segundoApellido"
-                  keyfilter="alpha"
-                />
-              </div>
-              <div className="col-md-6">
-                <CustomTextInput
-                  label="Telefóno:"
-                  name="contactoEmergencia.telefono"
+                  label="Contacto"
+                  name="contactoEmergencia.contacto"
                   keyfilter="num"
                 />
               </div>
+
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Celular:"
-                  name="contactoEmergencia.celular"
+                  label="Nombre del representante"
+                  name="representante.nombre"
                   keyfilter="num"
                 />
               </div>

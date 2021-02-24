@@ -63,6 +63,7 @@ query getPersonaByIdForm($id: ID!) {
     carnetConadis
     porcentajeDiscapacidad
     foto
+    sector
     discapacidadesDisponibles {
       id
       nombre
@@ -101,6 +102,7 @@ query getPersonaByIdDetail($id: ID!) {
     carnetConadis
     porcentajeDiscapacidad
     edad
+    sector
     discapacidades {
       id
       nombre
@@ -236,17 +238,8 @@ query getAlumnoByIdFormUpdate($id: ID!) {
       ocupacion
       direccion
     }
-    contactoEmergencia {
-      identificacion
-      primerNombre
-      segundoNombre
-      primerApellido
-      segundoApellido
-      celular
-      telefono
-      ocupacion
-      direccion
-    }
+    contactoEmergencia
+    representante
   }
   personas {
     id

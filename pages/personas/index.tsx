@@ -38,9 +38,9 @@ const PersonasContainer = ({ breadCrumbItems }) => {
             <DataTable
               className="p-datatable-gridlines p-datatable-sm shadow-lg"
               value={data?.personas}
-              rowHover
-              paginator
               header={header}
+              paginator
+              rowHover
               currentPageReportTemplate="{totalRecords} registros totales"
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               rows={10}

@@ -29,6 +29,7 @@ export const OptionesColumn: React.FC<
   editButton,
   detailButton,
   deleteButton,
+  customButtons,
   style = {},
   header = 'Opciones',
   columnProps = {},
@@ -82,6 +83,17 @@ export const OptionesColumn: React.FC<
           disabled={deleteButton?.isDisabled?.(rowData) || false}
         />
       )}
+
+      {customButtons &&
+        customButtons?.map((item, key) => (
+          <Button
+            key={`custom-button-${key}`}
+            {...item}
+            onClick={(evt) => {
+              item?.onClick?.(rowData, { evt });
+            }}
+          />
+        ))}
 
       {children && children(rowData)}
     </div>
