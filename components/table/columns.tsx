@@ -68,7 +68,7 @@ export const OptionesColumn: React.FC<
           className="p-button-warning p-button-sm"
           type="button"
           {...detailButton}
-          onClick={() => detailButton?.onClick?.(rowData)}
+          onClick={(evt) => detailButton?.onClick?.(rowData, { evt })}
           disabled={detailButton?.isDisabled?.(rowData) || false}
         />
       )}
@@ -78,7 +78,7 @@ export const OptionesColumn: React.FC<
           className="p-button-danger p-button-sm"
           type="button"
           {...deleteButton}
-          onClick={() => deleteButton?.onClick?.(rowData)}
+          onClick={(evt) => deleteButton?.onClick?.(rowData, { evt })}
           disabled={deleteButton?.isDisabled?.(rowData) || false}
         />
       )}

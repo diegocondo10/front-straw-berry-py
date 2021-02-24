@@ -6,9 +6,11 @@ import useCustomToast from '@hooks/useCustomToast';
 import useReportes from '@hooks/useReportes';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
+import { confirmPopup } from 'primereact/confirmpopup';
 import { DataTable } from 'primereact/datatable';
 import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
+import { AiOutlineWarning } from 'react-icons/ai';
 import DialogFormActividad from './DialogFormActividad';
 
 const NotasContainer = ({ data }) => {
@@ -148,7 +150,7 @@ const NotasContainer = ({ data }) => {
     setVisible(true);
   };
 
-  const onClickEliminar = async (rowData) => {
+  const onClickConfirmEliminar = async (rowData) => {
     const nota = {
       ...rowData,
       authEstado: 'D',
@@ -156,11 +158,33 @@ const NotasContainer = ({ data }) => {
       componente: rowData.componente.id,
       createdAt: undefined,
       id: undefined,
+      evidencias: undefined,
     };
-
+    console.log(rowData);
     await update({ variables: { id: rowData.id, input: nota } });
     addInfoToast(`Se ha eliminado el registro "${rowData.titulo}"`);
     getNotas({ variables: { idAlumno: selectedAlumno.id } });
+  };
+
+  const onClickEliminar = async (rowData, { evt }) => {
+    confirmPopup({
+      target: evt.currentTarget,
+      message: (
+        <div className="d-flex flex-row">
+          <div className="align-self-center mr-2 ml-n3">
+            <AiOutlineWarning color="#e74c3c" fontSize="30px" />
+          </div>
+          <p>Estas seguro de eliminar esta actividad?</p>
+        </div>
+      ),
+      //@ts-ignore
+      header: <h6>Confirmación</h6>,
+      acceptLabel: 'SI',
+      rejectLabel: 'NO',
+      accept: () => {
+        onClickConfirmEliminar(rowData);
+      },
+    });
   };
 
   const onSubmit = (accion: 'add' | 'upt') => async (formData) => {

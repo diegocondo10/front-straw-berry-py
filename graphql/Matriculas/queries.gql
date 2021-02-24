@@ -238,6 +238,10 @@ query getByIdPeriodo($id: ID!) {
       id
       personaStr
     }
+    director {
+      id
+      personaStr
+    }
   }
   personalAll {
     id
@@ -266,6 +270,10 @@ query getPeriodoLectivoByIdDetail($id: ID!) {
       id
       personaStr
     }
+    director {
+      id
+      personaStr
+    }
   }
 }
 
@@ -277,5 +285,14 @@ query getPeriodosTable {
     fechaFin
     fechaFinClases
     estado
+    coordinador {
+      personaStr
+    }
+    subCoordinador {
+      personaStr
+    }
+    director {
+      personaStr
+    }
   }
 }

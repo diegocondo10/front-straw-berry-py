@@ -160,6 +160,15 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                   ),
                 },
                 {
+                  label: 'Director/a',
+                  body: ({ director }) => (
+                    <Hreft
+                      href={`/personas/personal/detail?id=${director?.id}`}
+                      children={director?.personaStr}
+                    />
+                  ),
+                },
+                {
                   label: 'Información Matriculas',
                   body: (value) => {
                     return (

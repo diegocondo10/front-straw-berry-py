@@ -6,6 +6,11 @@ query getInitialDataNotasPage {
     aulas: aulaSet {
       id
       nombre
+      docentes {
+        id
+        personaStr
+        areaDeTrabajo
+      }
       alumnos: alumnoaulaSet {
         id
         alumno {

@@ -177,6 +177,21 @@ const PeriodoLectivoFormContainer = ({
                   }}
                 />
               </div>
+              <div className="col-12">
+                <CustomDropDown
+                  label="Director/a"
+                  name="director"
+                  optionLabel="personaStr"
+                  filter
+                  // dataKey="id"
+                  disabled={isDisabled}
+                  options={personal}
+                  rules={{
+                    setValueAs: (value) => (value ? getId(value) : value),
+                    required: 'Campo obligatorio',
+                  }}
+                />
+              </div>
               <div className="col-md-12">
                 <CustomTextArea
                   disabled={isDisabled}

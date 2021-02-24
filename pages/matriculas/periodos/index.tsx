@@ -4,11 +4,9 @@ import HrefButton from '@components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from '@components/table/columns';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import React, { CSSProperties } from 'react';
-import { SplitButton } from 'primereact/splitbutton';
+import React from 'react';
 
 const PeriodosLectivosContainer = () => {
   const { loading, data } = useQuery(MatriculaQueries.getPeriodosTable);
@@ -80,6 +78,33 @@ const PeriodosLectivosContainer = () => {
                 className="text-center"
                 header="Fecha de fin de clases"
                 field="fechaFinClases"
+                sortable
+                filter
+                reorderable
+                style={{ width: '220px' }}
+              />
+              <Column
+                className="text-center"
+                header="Coodinador/a"
+                field="coordinador.personaStr"
+                sortable
+                filter
+                reorderable
+                style={{ width: '220px' }}
+              />
+              <Column
+                className="text-center"
+                header="Sub coordinador/a"
+                field="subCoordinador.personaStr"
+                sortable
+                filter
+                reorderable
+                style={{ width: '220px' }}
+              />
+              <Column
+                className="text-center"
+                header="Director/a"
+                field="director.personaStr"
                 sortable
                 filter
                 reorderable
