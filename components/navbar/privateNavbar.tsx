@@ -74,7 +74,7 @@ const PrivateNavbar = () => {
     },
 
     {
-      label: 'Notas',
+      label: 'Aporte Académico',
       command: commandPush('/notas'),
     },
     {
