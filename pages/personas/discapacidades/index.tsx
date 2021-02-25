@@ -3,7 +3,7 @@ import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import { getDiscapacidadesTable } from '@graphql/Personas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';

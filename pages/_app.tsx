@@ -2,10 +2,9 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 // import 'popper.js';
 import '@popperjs/core/dist/umd/popper.min.js';
-import { Usuario } from '@services/auth.service';
 import '@styles/root-styles.scss';
 import { createUploadLink } from 'apollo-upload-client';
-import UsuarioProvider from 'contexts/UserProvider';
+import UsuarioProvider from 'src/contexts/UserProvider';
 import 'jquery/dist/jquery.min.js';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -69,7 +68,10 @@ const link = createUploadLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const usuario = Usuario.getStorageData();
+  // const usuario = Usuario.getStorageData();
+  const USU_STORAGE_KEY = 'u_d_t_a';
+  const data = localStorage.getItem(USU_STORAGE_KEY);
+  const usuario = JSON.parse(data);
   return {
     headers: {
       ...headers,

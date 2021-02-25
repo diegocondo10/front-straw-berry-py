@@ -1,5 +1,5 @@
 import HrefButton from 'src/components/Buttons/HrefButton';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from '@utils/date';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'src/utils/date';
 import _ from 'lodash';
 import moment from 'moment';
 import { Button } from 'primereact/button';

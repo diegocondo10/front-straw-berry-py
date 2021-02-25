@@ -2,9 +2,9 @@ import { useMutation, useQuery } from '@apollo/client';
 import AulasFormContainer from 'src/components/pages/matriculas/aulas/form';
 import { updateAula } from '@graphql/Matriculas/mutations.gql';
 import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
-import useCustomRouter from '@hooks/useCustomRouter';
-import useCustomToast from '@hooks/useCustomToast';
-import PrivateLayout from '@layouts/privateLayout';
+import useCustomRouter from 'src/hooks/useCustomRouter';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PrivateLayout from 'src/layouts/privateLayout';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 

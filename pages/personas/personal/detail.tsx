@@ -3,7 +3,7 @@ import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import PersonaQueries from '@graphql/Personas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import AlumnoFormContainer from 'src/components/pages/personas/alumnos/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import { getParametrosFormAlumnos } from '@graphql/Personas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

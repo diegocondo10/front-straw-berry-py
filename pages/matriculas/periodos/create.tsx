@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import PeriodoLectivoFormContainer from 'src/components/pages/matriculas/periodos/form';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import { getParametrosFormPeriodos } from '@graphql/Matriculas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';

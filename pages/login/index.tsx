@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
-import useCustomToast from '@hooks/useCustomToast';
-import PublicLayout from '@layouts/publicLayout';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PublicLayout from 'src/layouts/publicLayout';
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';

@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import DocenteFormContainer from 'src/components/pages/personas/personal/form';
 import { updatePersonal } from '@graphql/Personas/mutations.gql';
 import { getPersonalByIdFormUpdate } from '@graphql/Personas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

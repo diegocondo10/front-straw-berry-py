@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import AuthQueries from '@graphql/Auth/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import Link from 'next/link';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';

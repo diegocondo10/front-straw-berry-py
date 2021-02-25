@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
-import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
-import PersonalContainer from 'src/components/pages/personas/personal';
+import PersonalContainer from '@containers/Personal';
 import { getPersonalTable } from '@graphql/Personas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
 import React from 'react';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const PersonalPage = () => {
   const { loading, data } = useQuery(getPersonalTable);

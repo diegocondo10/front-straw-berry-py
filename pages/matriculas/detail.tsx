@@ -4,7 +4,7 @@ import { BtnRegresar } from 'src/components/Buttons/BtnRegresar';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';

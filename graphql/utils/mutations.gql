@@ -1,9 +1,0 @@
-mutation subirImagen($input: CreateImagenInput!) {
-  subirImagen(input: $input) {
-    imagen {
-      id
-      file
-      fullPath
-    }
-  }
-}

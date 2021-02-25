@@ -5,7 +5,7 @@ import PreviewPicture from 'src/components/PreviewPicture';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import TakePicture from 'src/components/TakePicture';
 import UploadFile from 'src/components/UploadFile';
-import { setValueId } from '@utils/funciones';
+import { setValueId } from 'src/utils/funciones';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';

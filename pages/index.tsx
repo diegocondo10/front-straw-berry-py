@@ -1,4 +1,4 @@
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import React from 'react';
 

@@ -3,7 +3,7 @@ import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
-import { getId } from '@utils/funciones';
+import { getId } from 'src/utils/funciones';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';

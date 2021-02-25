@@ -1,4 +1,4 @@
-import PublicLayout from '@layouts/publicLayout';
+import PublicLayout from 'src/layouts/publicLayout';
 import React, { useEffect, useMemo } from 'react';
 
 const TestPage = () => {

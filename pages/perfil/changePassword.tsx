@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import React, { useEffect, useState } from 'react';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import DetailItem from 'src/components/DetailItem';

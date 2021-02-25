@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import UsuarioFormContainer from 'src/components/pages/auth/usuarios/form';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 import AuthQueries from '@graphql/Auth/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

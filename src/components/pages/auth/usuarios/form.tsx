@@ -3,7 +3,7 @@ import { BtnRegresar } from 'src/components/Buttons';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomPickList from 'src/components/forms/CustomPickList';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
-import { setValueId } from '@utils/funciones';
+import { setValueId } from 'src/utils/funciones';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';

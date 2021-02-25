@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import NotasContainer from 'src/components/pages/notas';
 import { getInitialDataNotasPage } from '@graphql/Notas/queries.gql';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import React from 'react';
 

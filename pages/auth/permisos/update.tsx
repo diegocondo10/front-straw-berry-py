@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from '@apollo/client';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import PermisoFormContainer from 'src/components/pages/auth/permisos/form';

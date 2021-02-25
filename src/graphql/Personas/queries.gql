@@ -1,0 +1,295 @@
+query getDiscapacidadesTable {
+  discapacidades {
+    id
+    nombre
+    descripcion
+  }
+}
+
+query getParamsFormPersonas {
+  discapacidades {
+    id
+    nombre
+  }
+}
+
+query getDiscapacidadById($id: ID!) {
+  discapacidad(id: $id) {
+    id
+    nombre
+    descripcion
+  }
+}
+
+query getPersonasTable {
+  personas {
+    id
+    str
+    paisNacimiento
+    fechaNacimiento
+    genero
+    estadoCivil
+    telefono
+    correo
+    direccionDomiciliaria
+  }
+}
+
+query getPersonaByIdForm($id: ID!) {
+  persona(id: $id) {
+    id
+    str
+    tipoIdentificacion
+    identificacion
+    primerApellido
+    segundoApellido
+    primerNombre
+    segundoNombre
+    paisNacimiento
+    fechaNacimiento
+    genero
+    estadoCivil
+    etnia
+    tipoSangre
+    paisResidencia
+    provinciaResidencia
+    cantonResidencia
+    parroquiaResidencia
+    direccionDomiciliaria
+    telefono
+    celularUno
+    correo
+    tieneDiscapacidad
+    carnetConadis
+    porcentajeDiscapacidad
+    foto
+    sector
+    discapacidadesDisponibles {
+      id
+      nombre
+    }
+    discapacidades {
+      id
+      nombre
+    }
+  }
+}
+query getPersonaByIdDetail($id: ID!) {
+  persona(id: $id) {
+    id
+    str
+    tipoIdentificacion
+    identificacion
+    primerApellido
+    segundoApellido
+    primerNombre
+    segundoNombre
+    paisNacimiento
+    fechaNacimiento
+    genero
+    estadoCivil
+    etnia
+    tipoSangre
+    paisResidencia
+    provinciaResidencia
+    cantonResidencia
+    parroquiaResidencia
+    direccionDomiciliaria
+    telefono
+    celularUno
+    correo
+    tieneDiscapacidad
+    carnetConadis
+    porcentajeDiscapacidad
+    edad
+    sector
+    discapacidades {
+      id
+      nombre
+    }
+  }
+}
+
+query getPersonalTable {
+  personalAll {
+    id
+    titulo
+    tipoTitulo
+    areaDeTrabajo
+    funciones {
+      nombre
+    }
+    persona {
+      id
+      str
+      correo
+      telefono
+    }
+  }
+}
+
+query getParametrosFormPersonal {
+  funcionesPersonal {
+    id
+    nombre
+  }
+  personas {
+    id
+    str
+  }
+}
+
+query getPersonalByIdFormUpdate($id: ID!) {
+  personal(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    funciones {
+      id
+      nombre
+    }
+    titulo
+    tipoTitulo
+    areaDeTrabajo
+  }
+  personas {
+    id
+    str
+  }
+  funcionesPersonal {
+    id
+    nombre
+  }
+}
+
+query getPersonalByIdDetail($id: ID!) {
+  personal(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    funciones {
+      id
+      nombre
+    }
+    titulo
+    tipoTitulo
+    areaDeTrabajo
+  }
+  personas {
+    id
+    str
+  }
+  funcionesPersonal {
+    id
+    nombre
+  }
+}
+
+query getAlumnosTable {
+  alumnos {
+    id
+    personaStr
+    padre {
+      str
+    }
+    madre {
+      str
+    }
+    representante
+  }
+}
+
+query getParametrosFormAlumnos {
+  personas {
+    id
+    str
+  }
+}
+
+query getAlumnoByIdFormUpdate($id: ID!) {
+  alumno(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    historiaClinica
+    trastornosAsociados
+    bono
+    tipoBono
+    afiliacionIess
+    quintilPobreza
+    padre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    madre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    contactoEmergencia
+    representante
+  }
+  personas {
+    id
+    str
+  }
+}
+
+query getAlumnoByIdDetail($id: ID!) {
+  alumno(id: $id) {
+    id
+    persona {
+      id
+      str
+    }
+    padre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    madre {
+      identificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      celular
+      telefono
+      ocupacion
+      direccion
+    }
+    contactoEmergencia
+    representante
+    historiaClinica
+    trastornosAsociados
+    bono
+    tipoBono
+    afiliacionIess
+    quintilPobreza
+  }
+}

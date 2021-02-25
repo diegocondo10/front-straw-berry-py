@@ -5,7 +5,7 @@ import CustomInputNumber from 'src/components/forms/CustomInputNumber';
 import CustomMultiSelect from 'src/components/forms/CustomMultiSelect';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
-import { getId } from '@utils/funciones';
+import { getId } from 'src/utils/funciones';
 import React, { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 

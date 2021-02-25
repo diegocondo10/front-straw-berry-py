@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
-import PrivateLayout from '@layouts/privateLayout';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { toMoment } from 'utils/funciones';
+import { toMoment } from 'src/utils/funciones';
 import AuthQueries from '@graphql/Auth/queries.gql';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 

@@ -5,8 +5,8 @@ import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import useCustomToast from '@hooks/useCustomToast';
-import PrivateLayout from '@layouts/privateLayout';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method

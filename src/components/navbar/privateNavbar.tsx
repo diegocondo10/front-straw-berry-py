@@ -1,5 +1,5 @@
-import { Usuario } from '@services/auth.service';
-import { useUsuario } from 'contexts/UserProvider';
+// import { Usuario } from '@services/auth.service';
+import { useUsuario } from 'src/contexts/UserProvider';
 import { useRouter } from 'next/router';
 import { Menubar } from 'primereact/menubar';
 import { OverlayPanel } from 'primereact/overlaypanel';
@@ -15,7 +15,8 @@ const PrivateNavbar = () => {
 
   const logOut = () => {
     push('/login');
-    Usuario.loggout();
+    // Usuario.loggout();
+
     setUsuario(null);
   };
 

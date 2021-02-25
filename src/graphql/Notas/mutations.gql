@@ -1,0 +1,24 @@
+mutation createNota($input: CreateNotaAlumnoInput!) {
+  response: createNota(input: $input) {
+    nota: notaAlumno {
+      id
+      componente {
+        id
+        nombre
+      }
+      titulo
+      resultado
+      observaciones
+      createdAt
+    }
+  }
+}
+
+mutation updateNota($id: ID!, $input: UpdateNotaAlumnoInput!) {
+  response: updateNota(id: $id, input: $input) {
+    nota: notaAlumno {
+      id
+      createdAt
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
-import useCustomToast from '@hooks/useCustomToast';
-import PrivateLayout from '@layouts/privateLayout';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';

@@ -1,4 +1,4 @@
-import { DATE_FORMAT } from '@utils/date';
+import { DATE_FORMAT } from 'src/utils/date';
 import classNames from 'classnames';
 import moment from 'moment';
 import { Calendar, CalendarProps } from 'primereact/calendar';

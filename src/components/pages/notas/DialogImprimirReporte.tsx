@@ -1,7 +1,7 @@
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
-import useB4BreakPoints from '@hooks/useB4BreakPoints';
-import useReportes from '@hooks/useReportes';
+import useB4BreakPoints from 'src/hooks/useB4BreakPoints';
+import useReportes from 'src/hooks/useReportes';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import React, { useMemo } from 'react';
