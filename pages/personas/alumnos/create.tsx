@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
-import AlumnoFormContainer from 'src/components/pages/personas/alumnos/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import { getParametrosFormAlumnos } from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import AlumnoFormContainer from 'src/containers/Alumnos/form';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const CreateAlumnoContainer = ({ items, title }) => {
   const methods = useForm({ mode: 'onChange' });

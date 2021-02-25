@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
-import PersonalFormContainer from 'src/components/pages/personas/personal/form';
 import PersonasMutations from '@graphql/Personas/mutations.gql';
 import { getParametrosFormPersonal } from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PersonalFormContainer from 'src/containers/Personal/form';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const CreatePersonalContainer = ({ items, title }) => {
   const methods = useForm({

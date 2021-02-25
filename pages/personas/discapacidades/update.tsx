@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import DiscapacidadFormContainer from 'src/components/pages/personas/discapacidades/form';
+import DiscapacidadFormContainer from '@containers/Discapacidades/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import { getDiscapacidadById } from '@graphql/Personas/queries.gql';
 import PrivateLayout from 'src/layouts/privateLayout';

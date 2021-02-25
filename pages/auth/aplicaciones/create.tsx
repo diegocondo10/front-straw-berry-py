@@ -4,7 +4,7 @@ import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import AplicacionFormContainer from 'src/components/pages/auth/aplicaciones/form';
+import AplicacionFormContainer from '@containers/Auth/aplicaciones/form';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const CreateAppContainer = ({ title, items }) => {

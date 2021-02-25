@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import AulasFormContainer from 'src/components/pages/matriculas/aulas/form';
+import AulasFormContainer from '@containers/Aulas/form';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import { getParametrosFormAula } from '@graphql/Matriculas/queries.gql';
 import useCustomToast from 'src/hooks/useCustomToast';

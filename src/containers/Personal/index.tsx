@@ -5,7 +5,7 @@ import React from 'react';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import useReportes from 'src/hooks/useReportes';
-import useUsuario from '_redux/hooks/useUsuario';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 
 const PersonalContainer = ({ data }) => {
   const { getReporte } = useReportes();

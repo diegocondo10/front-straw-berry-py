@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import AlumnoFormContainer from 'src/components/pages/personas/alumnos/form';
+import AlumnoFormContainer from 'src/containers/Alumnos/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from 'src/layouts/privateLayout';

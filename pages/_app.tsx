@@ -12,7 +12,7 @@ import { addLocale, locale } from 'primereact/api';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
-import store from '_redux/store';
+import store from 'src/_redux/store';
 
 const setLocale = () => {
   addLocale('es', {

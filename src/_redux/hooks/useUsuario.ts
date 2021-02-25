@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setUsuarioAction } from '_redux/actions/usuarios.actions';
+import { setUsuarioAction } from 'src/_redux/actions/usuarios.actions';
 
 const useUsuario = () => {
   const state = useSelector((state: any) => state.UsuarioState);

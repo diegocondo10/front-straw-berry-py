@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ScrollTop } from 'primereact/scrolltop';
 import React, { useRef } from 'react';
-import useUsuario from '_redux/hooks/useUsuario';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 
 export type PrivateLayoutProps = {
   children: any;

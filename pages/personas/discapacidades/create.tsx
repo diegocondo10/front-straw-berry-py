@@ -4,7 +4,7 @@ import useCustomToast from 'src/hooks/useCustomToast';
 import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
-import DiscapacidadFormContainer from 'src/components/pages/personas/discapacidades/form';
+import DiscapacidadFormContainer from '@containers/Discapacidades/form';
 import { createDiscapacidad } from '@graphql/Personas/mutations.gql';
 
 const CreateDiscapacidadContainer = ({ title, items }) => {
