@@ -22,5 +22,12 @@ export default UsuarioProvider;
 
 export const useUsuario = () => {
   const data = useContext(UsuarioContext);
-  return data;
+
+  const verificarPermiso = (permiso) => {
+    console.log(data);
+  };
+  return {
+    ...data,
+    verificarPermiso,
+  };
 };

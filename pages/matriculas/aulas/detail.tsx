@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons/BtnRegresar';
-import DynamicDetailTable from '@components/Details/DynamicDetailTable';
-import Hreft from '@components/utils/Link';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons/BtnRegresar';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import Hreft from 'src/components/utils/Link';
 import { getAulaByIdDetail } from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { NextPage } from 'next';

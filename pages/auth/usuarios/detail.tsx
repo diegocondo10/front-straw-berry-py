@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
-import ItemDetailPersona from '@components/pages/personas/ItemDetailPersona';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import ItemDetailPersona from 'src/components/pages/personas/ItemDetailPersona';
 import PrivateLayout from '@layouts/privateLayout';
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';

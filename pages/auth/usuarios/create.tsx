@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import UsuarioFormContainer from '@components/pages/auth/usuarios/form';
+import UsuarioFormContainer from 'src/components/pages/auth/usuarios/form';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 import AuthQueries from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';

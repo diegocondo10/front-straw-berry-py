@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
-import DynamicDetailTable from '@components/Details/DynamicDetailTable';
-import Hreft from '@components/utils/Link';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import Hreft from 'src/components/utils/Link';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
@@ -151,6 +151,22 @@ const DetailAlumnoContainer = ({ items, id }) => {
                       ]}
                     />
                   ),
+                },
+                {
+                  label: 'Contacto de emergencia',
+                  body: ({ contactoEmergencia }) => (
+                    <DynamicDetailTable
+                      source={contactoEmergencia}
+                      diccionario={[
+                        { label: 'Nombres:', path: 'nombres' },
+                        { label: 'Contacto', path: 'contacto' },
+                      ]}
+                    />
+                  ),
+                },
+                {
+                  label: 'Representante',
+                  path: 'representante.nombres',
                 },
               ]}
             />

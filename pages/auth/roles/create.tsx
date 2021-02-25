@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import RolFormContainer from '@components/pages/auth/roles/form';
+import RolFormContainer from 'src/components/pages/auth/roles/form';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';
 import React from 'react';

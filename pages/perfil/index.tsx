@@ -1,7 +1,7 @@
-import { BtnRegresar } from '@components/Buttons/BtnRegresar';
-import HrefButton from '@components/Buttons/HrefButton';
-import DynamicDetailTable from '@components/Details/DynamicDetailTable';
-import { IndexColumn } from '@components/table/columns';
+import { BtnRegresar } from 'src/components/Buttons/BtnRegresar';
+import HrefButton from 'src/components/Buttons/HrefButton';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import { IndexColumn } from 'src/components/table/columns';
 import PrivateLayout from '@layouts/privateLayout';
 import { useUsuario } from 'contexts/UserProvider';
 import { NextPage } from 'next';

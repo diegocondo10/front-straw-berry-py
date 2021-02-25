@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import AuthQueries from '@graphql/Auth/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import Link from 'next/link';

@@ -11,7 +11,9 @@ import moment from 'moment';
 import 'moment/locale/es';
 import { addLocale, locale } from 'primereact/api';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
+import store from '_redux/store';
 
 const setLocale = () => {
   addLocale('es', {
@@ -64,15 +66,10 @@ const setLocale = () => {
 
 const link = createUploadLink({
   uri: 'http://localhost:9000/graphql',
-  // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-
   const usuario = Usuario.getStorageData();
-
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -82,6 +79,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
+  //@ts-ignore
   link: authLink.concat(link),
   ssrMode: typeof window === 'undefined',
   cache: new InMemoryCache({ addTypename: false }),
@@ -97,18 +95,34 @@ const client = new ApolloClient({
   },
 });
 
+function SafeHydrate({ children }) {
+  return (
+    <div suppressHydrationWarning>
+      {typeof window === 'undefined' ? null : children}
+    </div>
+  );
+}
+
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     setLocale();
   }, []);
   return (
-    <ApolloProvider client={client}>
-      <UsuarioProvider>
-        <ToastProvider autoDismiss autoDismissTimeout={15000} placement="top-right">
-          <Component {...pageProps} />
-        </ToastProvider>
-      </UsuarioProvider>
-    </ApolloProvider>
+    <SafeHydrate>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <UsuarioProvider>
+            <ToastProvider
+              autoDismiss
+              autoDismissTimeout={15000}
+              placement="top-right"
+            >
+              <Component {...pageProps} />
+            </ToastProvider>
+          </UsuarioProvider>
+        </Provider>
+      </ApolloProvider>
+    </SafeHydrate>
   );
 };
 

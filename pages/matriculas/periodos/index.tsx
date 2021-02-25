@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import HrefButton from '@components/Buttons/HrefButton';
-import { IndexColumn, OptionesColumn } from '@components/table/columns';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import HrefButton from 'src/components/Buttons/HrefButton';
+import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { Column } from 'primereact/column';

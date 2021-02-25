@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
 import PrivateLayout from '@layouts/privateLayout';
 import { Permiso } from '@services/auth.service';
 import { GET_PERMISO_BY_ID } from '@services/auth/auth.queries';

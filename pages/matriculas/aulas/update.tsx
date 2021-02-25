@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import AulasFormContainer from '@components/pages/matriculas/aulas/form';
+import AulasFormContainer from 'src/components/pages/matriculas/aulas/form';
 import { updateAula } from '@graphql/Matriculas/mutations.gql';
 import { getAulaByIdForm } from '@graphql/Matriculas/queries.gql';
 import useCustomRouter from '@hooks/useCustomRouter';

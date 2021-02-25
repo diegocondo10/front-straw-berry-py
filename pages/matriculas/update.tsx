@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
-import MatriculaFormContainer from '@components/pages/matriculas/form';
+import MatriculaFormContainer from 'src/components/pages/matriculas/form';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';

@@ -1,15 +1,15 @@
 import { useQuery } from '@apollo/client';
-import TitleBreadCrumb from '@components/BreadCrumbs/titleBreadCrumb';
-import Loading from '@components/Loading';
-import PrivateNavbar from '@components/navbar/privateNavbar';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import Loading from 'src/components/Loading';
+import PrivateNavbar from 'src/components/navbar/privateNavbar';
 import { me } from '@graphql/Auth/queries.gql';
 import useCustomToast from '@hooks/useCustomToast';
-import { TitleBreadCrumbProps } from 'components/BreadCrumbs/titleBreadCrumb';
-import { UsuarioContext } from 'contexts/UserProvider';
+import { TitleBreadCrumbProps } from 'src/components/BreadCrumbs/titleBreadCrumb';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ScrollTop } from 'primereact/scrolltop';
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
+import useUsuario from '_redux/hooks/useUsuario';
 
 export type PrivateLayoutProps = {
   children: any;
@@ -32,12 +32,14 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = (props) => {
   // const { loading: loadingUsuario, usuario } = useUsuario();
   const ref = useRef<any>(null);
   const containerRef = useRef(null);
-  const { setUsuario } = useContext(UsuarioContext);
+  // const { setUsuario } = useContext(UsuarioContext);
+  const { setUsuario } = useUsuario();
   const router = useRouter();
   const { addWarningToast } = useCustomToast();
 
   useQuery(me, {
-    pollInterval: 60000,
+    // pollInterval: 60000,
+    pollInterval: 2000,
     onCompleted: ({ usuario }) => {
       setUsuario(usuario);
       if (!usuario) {

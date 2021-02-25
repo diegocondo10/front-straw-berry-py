@@ -283,17 +283,8 @@ query getAlumnoByIdDetail($id: ID!) {
       ocupacion
       direccion
     }
-    contactoEmergencia {
-      identificacion
-      primerNombre
-      segundoNombre
-      primerApellido
-      segundoApellido
-      celular
-      telefono
-      ocupacion
-      direccion
-    }
+    contactoEmergencia
+    representante
     historiaClinica
     trastornosAsociados
     bono

@@ -138,6 +138,12 @@ query me {
       id
       nombre
     }
+    grupos {
+      permisos {
+        id
+        nombre
+      }
+    }
     persona {
       id
       str

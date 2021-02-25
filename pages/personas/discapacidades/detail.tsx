@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from '@components/Buttons';
-import DynamicDetailTable from '@components/Details/DynamicDetailTable';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from '@layouts/privateLayout';

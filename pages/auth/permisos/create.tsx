@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import PermisoFormContainer from '@components/pages/auth/permisos/form';
+import PermisoFormContainer from 'src/components/pages/auth/permisos/form';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 import PrivateLayout from '@layouts/privateLayout';
 import { useRouter } from 'next/router';

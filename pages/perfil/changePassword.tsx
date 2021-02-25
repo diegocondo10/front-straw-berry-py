@@ -1,13 +1,13 @@
 import { useMutation } from '@apollo/client';
 import PrivateLayout from '@layouts/privateLayout';
 import React, { useEffect, useState } from 'react';
-import BreadCrumbTitle from '@components/BreadCrumbs/titleBreadCrumb';
-import DetailItem from '@components/DetailItem';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import DetailItem from 'src/components/DetailItem';
 import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
 import { FormProvider, useForm } from 'react-hook-form';
-import CustomTextInput from '@components/forms/CustomTextInput';
-import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
+import CustomTextInput from 'src/components/forms/CustomTextInput';
+import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 
 const ChangePasswordContainer = ({ items, id }) => {
   const methods = useForm({ mode: 'onChange' });
