@@ -10,27 +10,30 @@ import useUsuario from 'src/_redux/hooks/useUsuario';
 const PersonalContainer = ({ data }) => {
   const { getReporte } = useReportes();
   // const { verificarPermiso } = usePermisos();
-  const { verificarPermiso } = useUsuario();
+  const { RenderIf } = useUsuario();
   const header = (
     <div className="container-fluid my-2">
       <div className="row justify-content-between">
-        <div className="col text-left">
-          <HrefButton
-            href="/personas/personal/create"
-            icon="pi pi-plus"
-            label="Agregar"
-          />
-        </div>
-        <div className="col text-right">
-          <Button
-            label="Reporte Nómina"
-            icon="pi pi-paperclip"
-            onClick={async () => {
-              console.log(verificarPermiso('AGREGAR - TAREA'));
-              // await getReporte('reporte-nomina');
-            }}
-          />
-        </div>
+        <RenderIf permiso="PERSONAL__AGREGAR">
+          <div className="col text-left">
+            <HrefButton
+              href="/personas/personal/create"
+              icon="pi pi-plus"
+              label="Agregar"
+            />
+          </div>
+        </RenderIf>
+        <RenderIf permiso="PERSONAL__IMPRIMIR_REPORTE_NOMINA">
+          <div className="col text-right">
+            <Button
+              label="Reporte Nómina"
+              icon="pi pi-paperclip"
+              onClick={async () => {
+                await getReporte('reporte-nomina');
+              }}
+            />
+          </div>
+        </RenderIf>
       </div>
     </div>
   );

@@ -38,8 +38,8 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = (props) => {
   const { addWarningToast } = useCustomToast();
 
   useQuery(me, {
-    // pollInterval: 60000,
-    pollInterval: 2000,
+    pollInterval: 60000,
+    // pollInterval: 2000,
     onCompleted: ({ usuario }) => {
       setUsuario(usuario);
       if (!usuario) {

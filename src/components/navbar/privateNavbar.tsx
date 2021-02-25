@@ -1,10 +1,11 @@
 // import { Usuario } from '@services/auth.service';
-import { useUsuario } from 'src/contexts/UserProvider';
 import { useRouter } from 'next/router';
 import { Menubar } from 'primereact/menubar';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import React, { useMemo, useRef } from 'react';
 import { ListGroup } from 'react-bootstrap';
+import useUsuario from 'src/_redux/hooks/useUsuario';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const PrivateNavbar = () => {
   const { push } = useRouter();
@@ -100,13 +101,24 @@ const PrivateNavbar = () => {
   const end = useMemo(
     () => (
       <React.Fragment>
-        <img
-          className="img-fluid cpointer"
-          src={usuario?.persona?.foto}
-          alt=""
-          onClick={(e) => op?.current.toggle(e)}
-          style={{ maxHeight: '35px' }}
-        />
+        {!usuario && (
+          <ProgressSpinner
+            style={{ height: '35px' }}
+            strokeWidth="3"
+            fill="#EEEEEE"
+            animationDuration=".5s"
+          />
+        )}
+
+        {usuario && (
+          <img
+            className="img-fluid cpointer"
+            src={usuario?.persona?.foto}
+            alt="TEST"
+            onClick={(e) => op?.current.toggle(e)}
+            style={{ maxHeight: '35px' }}
+          />
+        )}
 
         <OverlayPanel ref={op} style={{ width: '300px' }}>
           <div className="container-fluid">
