@@ -85,14 +85,14 @@ const client = new ApolloClient({
   //@ts-ignore
   link: authLink.concat(link),
   ssrMode: typeof window === 'undefined',
-  cache: new InMemoryCache({ addTypename: false }),
+  cache: new InMemoryCache({ addTypename: true }),
 
   defaultOptions: {
     watchQuery: {
       fetchPolicy: 'cache-and-network',
     },
     query: {
-      fetchPolicy: 'no-cache',
+      // fetchPolicy: 'no-cache',
       errorPolicy: 'all',
     },
   },
@@ -111,21 +111,21 @@ const MyApp = ({ Component, pageProps }) => {
     setLocale();
   }, []);
   return (
-    <SafeHydrate>
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <UsuarioProvider>
-            <ToastProvider
-              autoDismiss
-              autoDismissTimeout={15000}
-              placement="top-right"
-            >
-              <Component {...pageProps} />
-            </ToastProvider>
-          </UsuarioProvider>
-        </Provider>
-      </ApolloProvider>
-    </SafeHydrate>
+    // <SafeHydrate>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <UsuarioProvider>
+          <ToastProvider
+            autoDismiss
+            autoDismissTimeout={15000}
+            placement="top-right"
+          >
+            <Component {...pageProps} />
+          </ToastProvider>
+        </UsuarioProvider>
+      </Provider>
+    </ApolloProvider>
+    // </SafeHydrate>
   );
 };
 
