@@ -6,11 +6,12 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
-import ItemDetailPersona from 'src/components/pages/personas/ItemDetailPersona';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const UsuarioDetailContainer = ({ id, items }) => {
-  const { loading, data } = useQuery(AuthQueries.getUsuarioById, { variables: { id } });
+  const { loading, data } = useQuery(AuthQueries.getUsuarioById, {
+    variables: { id },
+  });
 
   const [deleteUsuario] = useMutation(AuthMutations.delete);
 
@@ -38,9 +39,9 @@ const UsuarioDetailContainer = ({ id, items }) => {
 
           <h4 className="text-underline">Información personal</h4>
 
-          <ul className="w-100">
+          {/* <ul className="w-100">
             <ItemDetailPersona persona={usuario?.persona} />
-          </ul>
+          </ul> */}
 
           <h4 className="text-underline w-100">Roles: </h4>
           <ul className="w-100 ml-5">
