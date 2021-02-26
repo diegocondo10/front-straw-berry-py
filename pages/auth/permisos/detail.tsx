@@ -1,14 +1,12 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import PrivateLayout from 'src/layouts/privateLayout';
-import { Permiso } from '@services/auth.service';
-import { GET_PERMISO_BY_ID } from '@services/auth/auth.queries';
+import AuthMutations from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import AuthQueries from '@graphql/Auth/queries.gql';
-import AuthMutations from '@graphql/Auth/mutations.gql';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const DetailPermisoContainer = ({ items, id }) => {
   const history = useRouter();

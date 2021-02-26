@@ -1,14 +1,13 @@
 import { useMutation, useQuery } from '@apollo/client';
+import AuthMutations from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
 import ItemDetailPersona from 'src/components/pages/personas/ItemDetailPersona';
 import PrivateLayout from 'src/layouts/privateLayout';
-import { Usuario } from '@services/auth.service';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import AuthQueries from '@graphql/Auth/queries.gql';
-import AuthMutations from '@graphql/Auth/mutations.gql';
 
 const UsuarioDetailContainer = ({ id, items }) => {
   const { loading, data } = useQuery(AuthQueries.getUsuarioById, { variables: { id } });

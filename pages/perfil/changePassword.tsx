@@ -1,13 +1,12 @@
-import { useMutation } from '@apollo/client';
-import PrivateLayout from 'src/layouts/privateLayout';
-import React, { useEffect, useState } from 'react';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import DetailItem from 'src/components/DetailItem';
-import { Usuario } from '@services/auth.service';
+// import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import CustomTextInput from 'src/components/forms/CustomTextInput';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
+import DetailItem from 'src/components/DetailItem';
+import CustomTextInput from 'src/components/forms/CustomTextInput';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const ChangePasswordContainer = ({ items, id }) => {
   const methods = useForm({ mode: 'onChange' });
@@ -15,8 +14,8 @@ const ChangePasswordContainer = ({ items, id }) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(Usuario.getDataUsuarioLoggedIn());
-    setUsuario(Usuario.getDataUsuarioLoggedIn());
+    // console.log(Usuario.getDataUsuarioLoggedIn());
+    // setUsuario(Usuario.getDataUsuarioLoggedIn());
   }, []);
 
   const loading = false;
