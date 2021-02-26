@@ -155,3 +155,28 @@ query me {
     }
   }
 }
+
+mutation login($username: String!, $password: String!) {
+  tokenAuth(username: $username, password: $password) {
+    success
+    token
+    refreshToken
+    user {
+      createdAt
+      id
+      username
+      permisos {
+        id
+        nombre
+      }
+      grupos {
+        id
+        nombre
+        permisos {
+          id
+          nombre
+        }
+      }
+    }
+  }
+}

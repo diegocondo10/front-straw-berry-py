@@ -1,25 +1,11 @@
 import { useMutation } from '@apollo/client';
-import useCustomToast from 'src/hooks/useCustomToast';
-import PublicLayout from 'src/layouts/publicLayout';
-import { Usuario } from '@services/auth.service';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-
-const Cotizacion = {
-  valoresPagar: {
-    total: 10,
-  },
-
-  producto: {
-    nombre: 'AIG',
-    categoria: {
-      nombre: 'Vehiculos',
-      id: 1,
-    },
-  },
-};
+import useCustomToast from 'src/hooks/useCustomToast';
+import PublicLayout from 'src/layouts/publicLayout';
+import Usuario from '@graphql/Auth/queries.gql';
 
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
@@ -27,13 +13,13 @@ const LoginContainer = () => {
   const { addWarningToast } = useCustomToast();
   const router = useRouter();
 
-  useEffect(() => {
-    const usuario = Usuario.getStorageData();
+  // useEffect(() => {
+  //   const usuario = Usuario.getStorageData();
 
-    if (usuario) {
-      router.push('/');
-    }
-  }, []);
+  //   if (usuario) {
+  //     router.push('/');
+  //   }
+  // }, []);
 
   const onSubmit = async (input) => {
     const { data } = await login({
@@ -46,7 +32,10 @@ const LoginContainer = () => {
       addWarningToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
       return;
     }
-    Usuario.storageData(rest);
+    const USU_STORAGE_KEY = 'u_d_t_a';
+    console.log(rest);
+    localStorage.setItem(USU_STORAGE_KEY, JSON.stringify(rest));
+    // Usuario.storageData(rest);
     router.push('/');
   };
 
