@@ -38,7 +38,7 @@ const MatriculaFormContainer = ({
       <BreadCrumbTitle title={title} items={items} />
 
       <div className="row justify-content-center">
-        <div className="col-md-6 jumbotron rounded">
+        <div className="col-md-10 col-lg-8 col-xl-6 jumbotron rounded">
           {isPeriodoCerrado && (
             <h5 className="text-danger text-center mb-4">
               No se puede editar una matrícula de un periodo lectivo cerrado.
@@ -135,7 +135,11 @@ const MatriculaFormContainer = ({
                 </div>
               )}
             </Form.Row>
-            <FooterButtonsForm loading={false} hrefBack="/matriculas" />
+            <FooterButtonsForm
+              loading={false}
+              hrefBack="/matriculas"
+              disabledSubmit={isPeriodoCerrado}
+            />
           </form>
         </div>
 

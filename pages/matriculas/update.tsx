@@ -27,7 +27,7 @@ const UpdateMatriculaContainer = ({ id }) => {
   };
 
   const matricula = data?.matricula;
-
+  console.log(data?.matricula?.infoAula);
   return (
     <FormProvider {...methods}>
       <PrivateLayout title="Editar Matrícula" loading={loading || loadingUpdate}>
@@ -48,7 +48,7 @@ const UpdateMatriculaContainer = ({ id }) => {
           aulas={data?.aulas || []}
           alumnos={[matricula?.alumno]}
           title="Editar Matrícula"
-          isPeriodoCerrado={data?.matricula?.infoAula?.estado === 'CERRADO'}
+          isPeriodoCerrado={data?.matricula?.infoAula?.periodo?.estado === 'CERRADO'}
         />
       </PrivateLayout>
     </FormProvider>
