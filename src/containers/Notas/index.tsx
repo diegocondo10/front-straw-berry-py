@@ -190,7 +190,7 @@ const NotasContainer = ({ data }) => {
           icon="pi pi-paperclip"
           onClick={onClickImprimirReporte}
           className="my-1"
-          disabled={selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'}
+          disabled={selectedAlumno === null}
         />
       </div>
     </div>

@@ -23,12 +23,17 @@ query getMatriculaByIdFormUpdate($id: ID!) {
       id
       nombre
     }
+    infoAula: aula {
+      periodo {
+        id
+        estado
+      }
+    }
     alumno {
       id
       personaStr
     }
   }
-
   aulas {
     id
     nombre

@@ -45,9 +45,10 @@ const UpdateMatriculaContainer = ({ id }) => {
           action="update"
           //loading={false}
           onSubmit={onSubmit}
-          aulas={data?.aulas}
+          aulas={data?.aulas || []}
           alumnos={[matricula?.alumno]}
           title="Editar Matrícula"
+          isPeriodoCerrado={data?.matricula?.infoAula?.estado === 'CERRADO'}
         />
       </PrivateLayout>
     </FormProvider>

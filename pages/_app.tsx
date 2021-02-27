@@ -63,8 +63,8 @@ const setLocale = () => {
 };
 
 const link = createUploadLink({
-  // uri: 'http://localhost:9000/graphql',
-  uri: 'https://straw-berry-py.herokuapp.com/graphql',
+  uri: 'http://localhost:9000/graphql',
+  // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -81,7 +81,7 @@ const client = new ApolloClient({
   //@ts-ignore
   link: authLink.concat(link),
   ssrMode: typeof window === 'undefined',
-  cache: new InMemoryCache({ addTypename: true }),
+  cache: new InMemoryCache({ addTypename: false }),
 
   defaultOptions: {
     watchQuery: {

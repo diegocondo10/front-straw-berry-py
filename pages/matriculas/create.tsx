@@ -22,12 +22,12 @@ const CreateMatriculaContainer: React.FC = () => {
       router.push('/matriculas');
     }
 
-    if (alumnosSinMatricula.length === 0) {
-      addWarningToast(
-        'Todos los alumnos registrados, ya tienen una matricula activa',
-      );
-      router.push('/matriculas');
-    }
+    // if (alumnosSinMatricula.length === 0) {
+    //   addWarningToast(
+    //     'Todos los alumnos registrados, ya tienen una matricula activa',
+    //   );
+    //   router.push('/matriculas');
+    // }
   }, []);
 
   const { loading, data } = useQuery<any>(getParametrosFormMatriculaCreate, {

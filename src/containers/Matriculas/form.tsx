@@ -1,12 +1,12 @@
+import React from 'react';
+import { Form } from 'react-bootstrap';
+import { useFormContext } from 'react-hook-form';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomInputNumber from 'src/components/forms/CustomInputNumber';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
 import { getId } from 'src/utils/funciones';
-import React from 'react';
-import { Form } from 'react-bootstrap';
-import { useFormContext } from 'react-hook-form';
 
 const MatriculaFormContainer = ({
   title,
@@ -15,6 +15,7 @@ const MatriculaFormContainer = ({
   aulas = [],
   alumnos = [],
   action = 'create',
+  isPeriodoCerrado = false,
 }: {
   title: string;
   items: any[];
@@ -22,6 +23,7 @@ const MatriculaFormContainer = ({
   alumnos: any[];
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
+  isPeriodoCerrado: boolean;
 }) => {
   const methods = useFormContext();
 
@@ -31,23 +33,17 @@ const MatriculaFormContainer = ({
 
   const { handleSubmit } = methods;
 
-  const DetailItemView = ({ className, label, value }) => {
-    return (
-      <div className={className}>
-        <h6>
-          <strong>{label}: </strong>
-          {value}
-        </h6>
-      </div>
-    );
-  };
-
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
 
       <div className="row justify-content-center">
         <div className="col-md-6 jumbotron rounded">
+          {isPeriodoCerrado && (
+            <h5 className="text-danger text-center mb-4">
+              No se puede editar una matrícula de un periodo lectivo cerrado.
+            </h5>
+          )}
           <form onSubmit={handleSubmit(localOnSubmit)}>
             <Form.Row>
               <div className="col-md-12">
@@ -61,6 +57,7 @@ const MatriculaFormContainer = ({
                     setValueAs: (value) => (value ? getId(value) : value),
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               <div className="col-md-12">
@@ -74,6 +71,7 @@ const MatriculaFormContainer = ({
                     setValueAs: (value) => (value ? getId(value) : value),
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               <div className="col-md-12">
@@ -83,6 +81,7 @@ const MatriculaFormContainer = ({
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               <div className="col-md-12">
@@ -92,6 +91,7 @@ const MatriculaFormContainer = ({
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               {/* <div className="col-md-12">
@@ -118,6 +118,7 @@ const MatriculaFormContainer = ({
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
 
@@ -129,6 +130,7 @@ const MatriculaFormContainer = ({
                     rules={{
                       required: 'Este campo es obligatorio',
                     }}
+                    disabled={isPeriodoCerrado}
                   />
                 </div>
               )}
