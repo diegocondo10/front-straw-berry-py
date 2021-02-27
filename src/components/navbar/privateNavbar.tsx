@@ -2,23 +2,22 @@
 import { useRouter } from 'next/router';
 import { Menubar } from 'primereact/menubar';
 import { OverlayPanel } from 'primereact/overlaypanel';
+import { ProgressSpinner } from 'primereact/progressspinner';
 import React, { useMemo, useRef } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import useUsuario from 'src/_redux/hooks/useUsuario';
-import { ProgressSpinner } from 'primereact/progressspinner';
 
 const PrivateNavbar = () => {
   const { push } = useRouter();
 
-  const { usuario, setUsuario } = useUsuario();
+  const { usuario, setState } = useUsuario();
 
   const op = useRef(null);
 
   const logOut = () => {
     push('/login');
-    // Usuario.loggout();
 
-    setUsuario(null);
+    setState(null);
   };
 
   const commandPush = (path: string) => () => push(path);
@@ -110,13 +109,19 @@ const PrivateNavbar = () => {
           />
         )}
 
-        {usuario && (
+        {usuario?.persona?.foto && (
           <img
             className="img-fluid cpointer"
             src={usuario?.persona?.foto}
-            alt="TEST"
             onClick={(e) => op?.current.toggle(e)}
             style={{ maxHeight: '35px' }}
+          />
+        )}
+
+        {usuario && !usuario?.persona?.foto && (
+          <i
+            className="pi pi-user cpointer"
+            onClick={(e) => op?.current.toggle(e)}
           />
         )}
 

@@ -160,11 +160,53 @@ mutation login($username: String!, $password: String!) {
   tokenAuth(username: $username, password: $password) {
     success
     token
+    errors
     refreshToken
-    user {
+    usuario: user {
       createdAt
       id
       username
+      persona {
+        id
+        createdAt
+        updatedAt
+        authEstado
+        identificacion
+        tipoIdentificacion
+        primerNombre
+        segundoNombre
+        primerApellido
+        segundoApellido
+        paisNacimiento
+        fechaNacimiento
+        genero
+        estadoCivil
+        tieneDiscapacidad
+        discapacidades {
+          id
+          nombre
+        }
+        carnetConadis
+        porcentajeDiscapacidad
+        etnia
+        tipoSangre
+        paisResidencia
+        provinciaResidencia
+        cantonResidencia
+        parroquiaResidencia
+        direccionDomiciliaria
+        sector
+        telefono
+        celularUno
+        celularDos
+        correo
+        foto
+        fullName
+        edad
+        str
+        nombres
+        apellidos
+      }
       permisos {
         id
         nombre

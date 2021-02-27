@@ -16,10 +16,6 @@ const CreateUsuarioContainer = ({ items, title }) => {
   const [create] = useMutation(AuthMutations.createUsuario);
 
   const onSubmit = async (input) => {
-    if (input.persona) {
-      input.persona = input?.persona?.id;
-    }
-
     input.permisos = input.permisos.map((e) => e.id);
     input.grupos = input.grupos.map((e) => e.id);
     await create({ variables: { input } });

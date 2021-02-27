@@ -32,9 +32,7 @@ const UpdateUsuarioContainer = ({ id }) => {
   }, [data, loading, value]);
 
   const onSubmit = async (input) => {
-    if (input.persona) {
-      input.persona = input?.persona?.id;
-    }
+
     input.permisos = input.permisos.map((e) => e.id);
     input.grupos = input.grupos.map((e) => e.id);
     await update({ variables: { id, input } });

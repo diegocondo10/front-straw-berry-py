@@ -4,7 +4,6 @@ import { setContext } from '@apollo/client/link/context';
 import '@popperjs/core/dist/umd/popper.min.js';
 import '@styles/root-styles.scss';
 import { createUploadLink } from 'apollo-upload-client';
-import UsuarioProvider from 'src/contexts/UserProvider';
 import 'jquery/dist/jquery.min.js';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -64,19 +63,16 @@ const setLocale = () => {
 };
 
 const link = createUploadLink({
-  // uri: 'http://localhost:9000/graphql',
-  uri: 'https://straw-berry-py.herokuapp.com/graphql',
+  uri: 'http://localhost:9000/graphql',
+  // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  // const usuario = Usuario.getStorageData();
-  const USU_STORAGE_KEY = 'u_d_t_a';
-  const data = localStorage.getItem(USU_STORAGE_KEY);
-  const usuario = JSON.parse(data);
+  const token = localStorage.getItem('SBPToken');
   return {
     headers: {
       ...headers,
-      authorization: usuario ? `JWT ${usuario.token}` : '',
+      authorization: token ? `JWT ${token}` : '',
     },
   };
 });
@@ -92,7 +88,7 @@ const client = new ApolloClient({
       fetchPolicy: 'cache-and-network',
     },
     query: {
-      // fetchPolicy: 'no-cache',
+      fetchPolicy: 'no-cache',
       errorPolicy: 'all',
     },
   },
@@ -111,10 +107,9 @@ const MyApp = ({ Component, pageProps }) => {
     setLocale();
   }, []);
   return (
-    // <SafeHydrate>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <UsuarioProvider>
+    <SafeHydrate>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
           <ToastProvider
             autoDismiss
             autoDismissTimeout={15000}
@@ -122,10 +117,9 @@ const MyApp = ({ Component, pageProps }) => {
           >
             <Component {...pageProps} />
           </ToastProvider>
-        </UsuarioProvider>
-      </Provider>
-    </ApolloProvider>
-    // </SafeHydrate>
+        </Provider>
+      </ApolloProvider>
+    </SafeHydrate>
   );
 };
 

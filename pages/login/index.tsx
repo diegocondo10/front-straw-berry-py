@@ -1,25 +1,22 @@
 import { useMutation } from '@apollo/client';
+import Usuario from '@graphql/Auth/queries.gql';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import useCustomToast from 'src/hooks/useCustomToast';
 import PublicLayout from 'src/layouts/publicLayout';
-import Usuario from '@graphql/Auth/queries.gql';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
   const [login] = useMutation(Usuario.login);
+
   const { addWarningToast } = useCustomToast();
+
+  const { setState } = useUsuario();
+
   const router = useRouter();
-
-  // useEffect(() => {
-  //   const usuario = Usuario.getStorageData();
-
-  //   if (usuario) {
-  //     router.push('/');
-  //   }
-  // }, []);
 
   const onSubmit = async (input) => {
     const { data } = await login({
@@ -27,15 +24,13 @@ const LoginContainer = () => {
         ...input,
       },
     });
+
     const { success, ...rest } = data.tokenAuth;
     if (!success) {
-      addWarningToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
-      return;
+      return addWarningToast('POR FAVOR VERIFIQUE SUS CREDENCIALES');
     }
-    const USU_STORAGE_KEY = 'u_d_t_a';
-    console.log(rest);
-    localStorage.setItem(USU_STORAGE_KEY, JSON.stringify(rest));
-    // Usuario.storageData(rest);
+    setState(rest);
+
     router.push('/');
   };
 
@@ -49,7 +44,7 @@ const LoginContainer = () => {
                 <Card.Title>Instituto de Parálisis Cerebral del Azuay </Card.Title>
               </Card.Header>
               <Card.Body className="text-center">
-                <Image className="bg-danger" src="/img/logo1.jpg" fluid />
+                <Image src="/img/logo1.jpg" fluid />
 
                 <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group controlId="validationCustomUsername">
@@ -57,7 +52,6 @@ const LoginContainer = () => {
                     <InputGroup>
                       <InputGroup.Prepend>
                         <InputGroup.Text id="inputGroupPrepend">
-                          {' '}
                           <i className="fas fa-user" />
                         </InputGroup.Text>
                       </InputGroup.Prepend>
