@@ -15,7 +15,6 @@ const MatriculaFormContainer = ({
   onSubmit,
   aulas = [],
   alumnos = [],
-  tipo_familia = [],
   action = 'create',
   isPeriodoCerrado = false,
 }: {
@@ -23,7 +22,6 @@ const MatriculaFormContainer = ({
   items: any[];
   aulas: any[];
   alumnos: any[];
-  tipo_familia: any[];
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
   isPeriodoCerrado: boolean;
@@ -32,14 +30,17 @@ const MatriculaFormContainer = ({
 
   const PARAMETROS_MATRICULA = {
     tipoFamilia: [
-      'Familia Nuclear',
-      'Familia Extensa',
-      'Familia Monoparental',
-      'Familia HomoParental',
-      'Familia de padres separados',
-      'Familia ensamblada, reconstruida o mixta',
-      'Familia de acogida',
-      'Familia sin hijos por elección',
+      'Ampliada',
+      'Casa de acogida',
+      'Extendida',
+      'Monoparental',
+      'Nuclear',
+      'Reconsituida',
+      'HomoParental',
+      'Padres separados',
+      // 'Familia ensamblada, reconstruida o mixta',
+      // 'Familia de acogida',
+      // 'Familia sin hijos por elección',
     ],
   };
 
@@ -93,7 +94,7 @@ const MatriculaFormContainer = ({
               <div className="col-md-12">
                 <CustomDropDown
                   label="Tipo Familia:"
-                  name="tipo_familia"
+                  name="tipoFamilia"
                   options={PARAMETROS_MATRICULA.tipoFamilia}
                   rules={{ required: 'Este campo es obligatorio' }}
                   disabled={isPeriodoCerrado}

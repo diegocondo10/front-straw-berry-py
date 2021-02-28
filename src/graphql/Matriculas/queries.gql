@@ -19,6 +19,9 @@ query getMatriculaByIdFormUpdate($id: ID!) {
     aporteVoluntario
     diagnosticoClinico
     diagnosticoFinal
+    amie
+    mies
+    tipoFamilia
     aula {
       id
       nombre
@@ -48,6 +51,9 @@ query getMatriculaByIdDetail($id: ID!) {
     numeroMatricula
     aporteVoluntario
     diagnosticoClinico
+    amie
+    mies
+    tipoFamilia
     aula {
       id
       nombre
