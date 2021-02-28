@@ -1,3 +1,4 @@
+import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useFormContext } from 'react-hook-form';
@@ -95,6 +96,7 @@ const MatriculaFormContainer = ({
                   name="tipo_familia"
                   options={PARAMETROS_MATRICULA.tipoFamilia}
                   rules={{ required: 'Este campo es obligatorio' }}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               <div className="col-md-12">
@@ -128,15 +130,17 @@ const MatriculaFormContainer = ({
               </div> */}
 
               <div className="col-md-6">
-                <CustomTextArea
+                <CustomTextInput
                   label="AMIE:"
                   name="amie"
+                  disabled={isPeriodoCerrado}
                 />
               </div>
               <div className="col-md-6">
-                <CustomTextArea
+                <CustomTextInput
                   label="MIES:"
                   name="mies"
+                  disabled={isPeriodoCerrado}
                 />
               </div>
 
