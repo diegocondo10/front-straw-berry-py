@@ -1,12 +1,11 @@
+import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomPickList from 'src/components/forms/CustomPickList';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
 import { setValueId } from 'src/utils/funciones';
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useFormContext } from 'react-hook-form';
 
 const UsuarioFormContainer: React.FC<any> = ({
   title,
@@ -22,7 +21,7 @@ const UsuarioFormContainer: React.FC<any> = ({
     <main className="container-fluid">
       <TitleBreadCrumb title={title} items={items} />
       <div className="row justify-content-center">
-        <div className="col-md-8 jumbotron rounded">
+        <div className="col-md-10 jumbotron rounded">
           <form onSubmit={handleSubmit(onSubmit)}>
             <CustomTextInput
               name="username"
@@ -65,23 +64,23 @@ const UsuarioFormContainer: React.FC<any> = ({
               sourceHeader="Permisos Disponibles"
               targetHeader="Permisos de este Rol"
               source={permisosDisponibles}
-              itemTemplate={(permiso) => permiso.nombre}
+              itemTemplate={(permiso) => (
+                <p
+                  style={{ width: '100px', wordWrap: 'normal', margin: '0 0 0 0' }}
+                  // className="text-wrap"
+                >
+                  {permiso.nombre}
+                </p>
+              )}
               rules={{
                 validate: (value) =>
-                  value.length === 0 ? 'Debe seleccionar al menos un permiso' : true,
+                  value?.length === 0
+                    ? 'Debe seleccionar al menos un permiso'
+                    : true,
               }}
             />
 
-            <Form.Row className=" justify-content-between">
-              <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/auth/usuarios" variant="outline-danger" />
-              </div>
-              <div className="col-md-5 mt-3 my-1">
-                <Button variant="outline-primary" block type="submit">
-                  Guardar
-                </Button>
-              </div>
-            </Form.Row>
+            <FooterButtonsForm hrefBack="/auth/usuario" />
           </form>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import useCustomRef from '@hooks/useCustomRef';
 import classnames from 'classnames';
 import { InputText, InputTextProps } from 'primereact/inputtext';
 import React from 'react';
@@ -9,6 +10,8 @@ const CustomTextInput = (props: CustomTextInputProps) => {
   const { label, name, rules, className, ...rest } = props;
   const { control } = useFormContext();
 
+  const { setRef, focusRef } = useCustomRef<any>(null);
+
   return (
     <FieldWrapper label={label} name={name}>
       <Controller
@@ -16,6 +19,7 @@ const CustomTextInput = (props: CustomTextInputProps) => {
         name={name}
         rules={rules}
         defaultValue=""
+        onFocus={focusRef}
         render={({ onChange, value }, { invalid }) => (
           // @ts-ignore
           <InputText
@@ -27,6 +31,7 @@ const CustomTextInput = (props: CustomTextInputProps) => {
               'p-invalid': invalid,
             })}
             {...rest}
+            ref={setRef}
           />
         )}
       />

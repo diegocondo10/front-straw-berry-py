@@ -1,3 +1,4 @@
+import useCustomRef from '@hooks/useCustomRef';
 import classnames from 'classnames';
 import { Dropdown, DropdownProps } from 'primereact/dropdown';
 import React from 'react';
@@ -17,7 +18,7 @@ const CustomDropDown = (props?: CustomSelectProps) => {
   } = props;
 
   const { control } = useFormContext();
-
+  const { focusRef, setRef } = useCustomRef<any>(null);
   return (
     <FieldWrapper label={label} name={name}>
       <Controller
@@ -25,6 +26,7 @@ const CustomDropDown = (props?: CustomSelectProps) => {
         name={name}
         rules={rules}
         defaultValue={null}
+        onFocus={focusRef}
         render={({ onChange, value }, { invalid }) => (
           // @ts-ignore
           <Dropdown
@@ -39,6 +41,7 @@ const CustomDropDown = (props?: CustomSelectProps) => {
               'p-invalid': invalid,
               [className]: true,
             })}
+            ref={setRef('focusInput')}
             {...rest}
           />
         )}

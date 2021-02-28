@@ -1,9 +1,10 @@
-import { DATE_FORMAT } from 'src/utils/date';
+import useCustomRef from '@hooks/useCustomRef';
 import classNames from 'classnames';
 import moment from 'moment';
 import { Calendar, CalendarProps } from 'primereact/calendar';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { DATE_FORMAT } from 'src/utils/date';
 import FieldWrapper from './FieldWrapper';
 import { BaseFormFieldProps } from './types';
 
@@ -55,6 +56,7 @@ const es = {
 const CustomDatePicker = (props?: CustomDatePickerProps) => {
   const { control } = useFormContext();
   const { label, name, rules, className, ...rest } = props;
+  const { focusRef, setRef } = useCustomRef<any>(null);
 
   const setValue = (value: string | Date) => {
     if (typeof value === 'string') {
@@ -75,6 +77,7 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
           ...rules,
         }}
         defaultValue={null}
+        onFocus={focusRef}
         render={({ onChange, value }, { invalid }) => (
           <Calendar
             id={name}
@@ -91,7 +94,7 @@ const CustomDatePicker = (props?: CustomDatePickerProps) => {
             monthNavigator
             yearNavigator
             yearRange="1930:2030"
-            // readOnlyInput
+            ref={setRef('inputElement')}
             {...rest}
           />
         )}

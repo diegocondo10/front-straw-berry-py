@@ -1,15 +1,16 @@
+import useCustomRef from '@hooks/useCustomRef';
+import classnames from 'classnames';
 import { InputTextarea, InputTextareaProps } from 'primereact/inputtextarea';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import FieldWrapper from './FieldWrapper';
 import { BaseFormFieldProps } from './types';
-import classnames from 'classnames';
 
 const CustomTextArea = (props?: CustomTextAreaProps) => {
   const { label, name, rules, className, ...rest } = props;
 
   const { control, errors } = useFormContext();
-
+  const { setRef, focusRef } = useCustomRef(null);
   return (
     <FieldWrapper label={label} name={name}>
       <Controller
@@ -17,6 +18,7 @@ const CustomTextArea = (props?: CustomTextAreaProps) => {
         name={name}
         rules={rules}
         defaultValue=""
+        onFocus={focusRef}
         render={({ onChange, value }) => (
           // @ts-ignore
           <InputTextarea
@@ -29,6 +31,7 @@ const CustomTextArea = (props?: CustomTextAreaProps) => {
             onChange={({ currentTarget }) => {
               onChange(currentTarget.value);
             }}
+            ref={setRef('element')}
             {...rest}
           />
         )}

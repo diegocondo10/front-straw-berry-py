@@ -1,3 +1,7 @@
+import moment from 'moment';
+import React, { useMemo } from 'react';
+import { Form } from 'react-bootstrap';
+import { useFormContext } from 'react-hook-form';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 import CustomDatePicker from 'src/components/forms/CustomDatePicker';
@@ -6,10 +10,6 @@ import CustomTextArea from 'src/components/forms/CustomTextArea';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
 import { DATE_FORMAT, toMoment } from 'src/utils/date';
 import { getId } from 'src/utils/funciones';
-import moment from 'moment';
-import React, { useMemo } from 'react';
-import { Form } from 'react-bootstrap';
-import { useFormContext } from 'react-hook-form';
 
 const PeriodoLectivoFormContainer = ({
   onSubmit,
@@ -23,7 +23,7 @@ const PeriodoLectivoFormContainer = ({
   const { handleSubmit, setError, clearErrors } = methods;
 
   const isDisabled = useMemo(() => defaultData?.estado === 'CERRADO', [defaultData]);
-  console.log('DATA: ', personal);
+
   return (
     <main className="container-fluid">
       <TitleBreadCrumb title={title} items={items} />

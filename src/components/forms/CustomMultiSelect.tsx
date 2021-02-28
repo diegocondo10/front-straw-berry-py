@@ -1,3 +1,4 @@
+import useCustomRef from '@hooks/useCustomRef';
 import classnames from 'classnames';
 import { MultiSelect, MultiSelectProps } from 'primereact/multiselect';
 import React from 'react';
@@ -11,6 +12,8 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
 
   const { control } = useFormContext();
 
+  const { focusRef, setRef } = useCustomRef(null);
+
   return (
     <FieldWrapper label={label} name={name}>
       <Controller
@@ -18,6 +21,7 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
         name={name}
         rules={rules}
         defaultValue={null}
+        onFocus={focusRef}
         render={({ onChange, value }, { invalid }) => (
           // @ts-ignore
           <MultiSelect
@@ -32,6 +36,7 @@ const CustomMultiSelect = (props?: CustomMultiSelectProps) => {
               'p-invalid': invalid,
               [className]: true,
             })}
+            ref={setRef('focusInput')}
             {...rest}
           />
         )}

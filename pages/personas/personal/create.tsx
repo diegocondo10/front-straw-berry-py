@@ -8,9 +8,7 @@ import PersonalFormContainer from 'src/containers/Personal/form';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const CreatePersonalContainer = ({ items, title }) => {
-  const methods = useForm({
-    mode: 'onChange',
-  });
+  const methods = useForm({ mode: 'onChange' });
 
   const { loading, data } = useQuery(getParametrosFormPersonal);
   const [create] = useMutation(PersonasMutations.createPersonal);
@@ -22,8 +20,8 @@ const CreatePersonalContainer = ({ items, title }) => {
   };
 
   return (
-    <PrivateLayout loading={loading}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <PrivateLayout loading={loading}>
         <PersonalFormContainer
           title={title}
           items={items}
@@ -31,8 +29,8 @@ const CreatePersonalContainer = ({ items, title }) => {
           personas={data?.personas}
           funcionesPersonal={data?.funcionesPersonal}
         />
-      </FormProvider>
-    </PrivateLayout>
+      </PrivateLayout>
+    </FormProvider>
   );
 };
 
