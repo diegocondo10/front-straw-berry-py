@@ -5,19 +5,29 @@ import React from 'react';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
+import _ from 'lodash';
+import useReportes from '@hooks/useReportes';
 
 const PersonasContainer = ({ data }) => {
-  const header = (
-    <div className="container-fluid my-2">
-      <div className="row">
-        <div className="col text-left">
-          <HrefButton href="/personas/create" label="Agregar" icon="pi pi-plus" />
-        </div>
+  const { getReporte } = useReportes();
 
-        <div className="col text-right">
-          <Button label="Reportes" icon="pi pi-paperclip" />
-        </div>
-      </div>
+  const header = (
+    <div className="d-flex flex-row justify-content-center justify-content-sm-between mt-1 mb-2 flex-wrap">
+      <HrefButton
+        href="/personas/create"
+        label="Agregar"
+        icon="pi pi-plus"
+        className="mt-1"
+      />
+
+      <Button
+        label="Descargar reporte general"
+        icon="pi pi-paperclip"
+        className="mt-1"
+        onClick={_.throttle(async (e) => {
+          await getReporte('reporte-general-total-alumnos');
+        }, 2000)}
+      />
     </div>
   );
   return (

@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import Usuario from '@graphql/Auth/queries.gql';
 import { useRouter } from 'next/router';
+import { Button } from 'primereact/button';
 import React from 'react';
 import { Card, Form, Image, InputGroup } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -36,23 +37,25 @@ const LoginContainer = () => {
 
   return (
     <PublicLayout>
-      <main className="container-fluid text-center mt-5">
-        <div className="row justify-content-center">
-          <div className="col-sm-8 col-md-6 ">
-            <Card>
-              <Card.Header>
-                <Card.Title>Instituto de Parálisis Cerebral del Azuay </Card.Title>
+      <main className="container-fluid text-center vh-100">
+        <div className="row justify-content-center h-100">
+          <div className="col-sm-10 col-lg-6  align-self-center">
+            <Card className="border border-primary">
+              <Card.Header className="bg-primary">
+                <h3 className="font-weight-bold text-white my-2">
+                  Instituto de Parálisis Cerebral del Azuay
+                </h3>
               </Card.Header>
               <Card.Body className="text-center">
-                <Image src="/img/logo1.jpg" fluid />
+                <Image src="/img/logo1.jfif" fluid />
 
-                <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group controlId="validationCustomUsername">
                     <Form.Label>Username:</Form.Label>
                     <InputGroup>
                       <InputGroup.Prepend>
                         <InputGroup.Text id="inputGroupPrepend">
-                          <i className="fas fa-user" />
+                          <i className="pi pi-user" />
                         </InputGroup.Text>
                       </InputGroup.Prepend>
                       <Form.Control
@@ -75,7 +78,7 @@ const LoginContainer = () => {
                     <InputGroup>
                       <InputGroup.Prepend>
                         <InputGroup.Text>
-                          <i className="fas fa-lock" />
+                          <i className="pi pi-lock" />
                         </InputGroup.Text>
                       </InputGroup.Prepend>
 
@@ -95,9 +98,11 @@ const LoginContainer = () => {
                     </InputGroup>
                   </Form.Group>
 
-                  <button className="btn btn-info" type="submit">
-                    Iniciar Sesión
-                  </button>
+                  <Button
+                    label="Iniciar Sesión"
+                    className="p-button-outlined p-button-info"
+                    type="submit"
+                  />
                 </form>
               </Card.Body>
             </Card>

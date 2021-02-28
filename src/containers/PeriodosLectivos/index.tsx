@@ -1,32 +1,59 @@
 import HrefButton from '@components/Buttons/HrefButton';
+import useReportes from '@hooks/useReportes';
+import _ from 'lodash';
+import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
+import { ContextMenu } from 'primereact/contextmenu';
 import { DataTable } from 'primereact/datatable';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 
 const PeriodosContainer = ({ data }) => {
+  const { getReporte } = useReportes();
+  const [selectedPeriodo, setSelectedPeriodo] = useState(null);
+
+  const cm = useRef(null);
+
   const header = (
-    <div className="container-fluid my-2">
-      <div className="row">
-        <div className="col text-left">
-          <HrefButton
-            label="Agregar"
-            icon="pi pi-plus"
-            href="/matriculas/periodos/create"
-          />
-        </div>
-      </div>
+    <div className="d-flex flex-row justify-content-center justify-content-sm-between mt-1 mb-2 flex-wrap">
+      <HrefButton
+        label="Agregar"
+        icon="pi pi-plus"
+        href="/matriculas/periodos/create"
+        className="mt-1"
+      />
     </div>
   );
 
+  const menuModel = [
+    {
+      label: 'Reportes',
+      icon: 'pi pi-print',
+      items: [
+        {
+          label: 'General',
+          icon: 'pi pi-paperclip',
+          command: _.throttle(async () => {
+            await getReporte('reporte-general-total-alumnos', {
+              id: selectedPeriodo.id,
+            });
+          }, 2000),
+        },
+      ],
+    },
+  ];
   return (
     <main className="container-fluid">
       <TitleBreadCrumb
         title="Periodos Lectivos"
         items={[{ title: 'Periodos Lectivos', active: true }]}
       />
-
+      <ContextMenu
+        model={menuModel}
+        ref={cm}
+        onHide={() => setSelectedPeriodo(null)}
+      />
       <div className="row justify-content-center">
         <div className="col-md-12 datatable-doc-demo">
           <DataTable
@@ -39,6 +66,9 @@ const PeriodosContainer = ({ data }) => {
             rows={10}
             rowsPerPageOptions={[10, 25, 50]}
             emptyMessage="No se han encontrado resultados"
+            contextMenuSelection={selectedPeriodo}
+            onContextMenuSelectionChange={(e) => setSelectedPeriodo(e.value)}
+            onContextMenu={(e) => cm.current.show(e.originalEvent)}
           >
             {IndexColumn()}
             <Column
