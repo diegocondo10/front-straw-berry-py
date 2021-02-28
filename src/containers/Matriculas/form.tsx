@@ -14,6 +14,7 @@ const MatriculaFormContainer = ({
   onSubmit,
   aulas = [],
   alumnos = [],
+  tipo_familia = [],
   action = 'create',
   isPeriodoCerrado = false,
 }: {
@@ -21,11 +22,25 @@ const MatriculaFormContainer = ({
   items: any[];
   aulas: any[];
   alumnos: any[];
+  tipo_familia: any[];
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
   isPeriodoCerrado: boolean;
 }) => {
   const methods = useFormContext();
+
+  const PARAMETROS_MATRICULA = {
+    tipoFamilia: [
+      'Familia Nuclear',
+      'Familia Extensa',
+      'Familia Monoparental',
+      'Familia HomoParental',
+      'Familia de padres separados',
+      'Familia ensamblada, reconstruida o mixta',
+      'Familia de acogida',
+      'Familia sin hijos por elección',
+    ],
+  };
 
   const localOnSubmit = async (input) => {
     await onSubmit(input);
@@ -75,6 +90,14 @@ const MatriculaFormContainer = ({
                 />
               </div>
               <div className="col-md-12">
+                <CustomDropDown
+                  label="Tipo Familia:"
+                  name="tipo_familia"
+                  options={PARAMETROS_MATRICULA.tipoFamilia}
+                  rules={{ required: 'Este campo es obligatorio' }}
+                />
+              </div>
+              <div className="col-md-12">
                 <CustomTextArea
                   label="Tratamiento:"
                   name="tratamiento"
@@ -86,7 +109,7 @@ const MatriculaFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextArea
-                  label="Diagnostico clinico:"
+                  label="Diagnóstico clínico:"
                   name="diagnosticoClinico"
                   rules={{
                     required: 'Este campo es obligatorio',
@@ -103,6 +126,19 @@ const MatriculaFormContainer = ({
                   }}
                 />
               </div> */}
+
+              <div className="col-md-6">
+                <CustomTextArea
+                  label="AMIE:"
+                  name="amie"
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextArea
+                  label="MIES:"
+                  name="mies"
+                />
+              </div>
 
               <div className="col-lg-6">
                 <CustomInputNumber
