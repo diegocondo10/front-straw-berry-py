@@ -27,6 +27,19 @@ const MatriculaFormContainer = ({
 }) => {
   const methods = useFormContext();
 
+  const PARAMETROS_MATRICULA = {
+    tipoFamilia: [
+      'Familia Nuclear',
+      'Familia Extensa',
+      'Familia Monoparental',
+      'Familia HomoParental',
+      'Familia de padres separados',
+      'Familia ensamblada, reconstruida o mixta',
+      'Familia de acogida',
+      'Familia sin hijos por elección',
+    ],
+  };
+
   const localOnSubmit = async (input) => {
     await onSubmit(input);
   };
@@ -80,15 +93,10 @@ const MatriculaFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomDropDown
-                  label="Seleccione Tipo Familia:"
+                  label="Tipo Familia:"
                   name="tipo_familia"
-                  optionLabel="tipo"
-                  filter
-                  options={tipo_familia}
-                  rules={{
-                    setValueAs: (value) => (value ? getId(value) : value),
-                    required: 'Este campo es obligatorio',
-                  }}
+                  options={PARAMETROS_MATRICULA.tipoFamilia}
+                  rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
               <div className="col-md-12">
