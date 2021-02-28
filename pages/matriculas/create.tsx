@@ -2,12 +2,12 @@ import { useMutation, useQuery } from '@apollo/client';
 import MatriculaFormContainer from '@containers/Matriculas/form';
 import { createMatricula } from '@graphql/Matriculas/mutations.gql';
 import { getParametrosFormMatriculaCreate } from '@graphql/Matriculas/queries.gql';
-import useCustomRouter from 'src/hooks/useCustomRouter';
-import useCustomToast from 'src/hooks/useCustomToast';
-import PrivateLayout from 'src/layouts/privateLayout';
 import classnames from 'classnames';
 import React, { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import useCustomRouter from 'src/hooks/useCustomRouter';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const CreateMatriculaContainer: React.FC = () => {
   const methods = useForm({ mode: 'onChange' });
@@ -18,7 +18,7 @@ const CreateMatriculaContainer: React.FC = () => {
 
   const onCompleted = useCallback(({ alumnosSinMatricula, aulas }) => {
     if (aulas?.length === 0) {
-      addWarningToast('No se hay aulas disponibles');
+      addWarningToast('No hay aulas registradas.');
       router.push('/matriculas');
     }
 

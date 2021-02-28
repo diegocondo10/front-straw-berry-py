@@ -1,22 +1,22 @@
 import { useMutation, useQuery } from '@apollo/client';
-import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
-import Hreft from 'src/components/utils/Link';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import useCustomToast from 'src/hooks/useCustomToast';
-import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
 import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import { AiOutlineWarning } from 'react-icons/ai';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import Hreft from 'src/components/utils/Link';
+import useCustomToast from 'src/hooks/useCustomToast';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const history = useRouter();
-  const { addWarningToast } = useCustomToast();
+  const { addInfoToast, addErrorToast } = useCustomToast();
   const { loading, data, refetch } = useQuery(
     MatriculaQueries.getPeriodoLectivoByIdDetail,
     {
@@ -24,8 +24,8 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
     },
   );
 
-  const [deletePeriodo] = useMutation(MatriculaMutations.deletePeriodo, {
-    variables: { id },
+  const [eliminarPeriodo] = useMutation(MatriculaMutations.updatePeriodo, {
+    variables: { id, input: { authEstado: 'E' } },
   });
 
   const [cerrarPeriodo, { loading: loadingCerrarPeriodo }] = useMutation(
@@ -38,8 +38,15 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {
-    await deletePeriodo();
-    history.push('/matriculas/periodos');
+    console.log(periodo);
+    if (periodo?.totalMatriculas !== 0) {
+      return addErrorToast(
+        'No se puede eliminar un periodo lectivo con matrículas activas',
+      );
+    }
+
+    await eliminarPeriodo();
+    // history.push('/matriculas/periodos');
   };
 
   const onConfirmCerrarPeriodo = () => {

@@ -168,9 +168,9 @@ const MatriculaFormContainer = ({
                   <CustomTextArea
                     label="Diagnóstico Final:"
                     name="diagnosticoFinal"
-                    rules={{
-                      required: 'Este campo es obligatorio',
-                    }}
+                    // rules={{
+                    //   required: 'Este campo es obligatorio',
+                    // }}
                     disabled={isPeriodoCerrado}
                   />
                 </div>
