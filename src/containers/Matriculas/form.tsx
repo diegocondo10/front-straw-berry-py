@@ -14,12 +14,14 @@ const MatriculaFormContainer = ({
   onSubmit,
   aulas = [],
   alumnos = [],
+  tipo_familia = [],
   action = 'create',
 }: {
   title: string;
   items: any[];
   aulas: any[];
   alumnos: any[];
+  tipo_familia: any[];
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
 }) => {
@@ -77,6 +79,19 @@ const MatriculaFormContainer = ({
                 />
               </div>
               <div className="col-md-12">
+                <CustomDropDown
+                  label="Seleccione Tipo Familia:"
+                  name="tipo_familia"
+                  optionLabel="tipo"
+                  filter
+                  options={tipo_familia}
+                  rules={{
+                    setValueAs: (value) => (value ? getId(value) : value),
+                    required: 'Este campo es obligatorio',
+                  }}
+                />
+              </div>
+              <div className="col-md-12">
                 <CustomTextArea
                   label="Tratamiento:"
                   name="tratamiento"
@@ -87,7 +102,7 @@ const MatriculaFormContainer = ({
               </div>
               <div className="col-md-12">
                 <CustomTextArea
-                  label="Diagnostico clinico:"
+                  label="Diagnóstico clínico:"
                   name="diagnosticoClinico"
                   rules={{
                     required: 'Este campo es obligatorio',
@@ -103,6 +118,19 @@ const MatriculaFormContainer = ({
                   }}
                 />
               </div> */}
+
+              <div className="col-md-6">
+                <CustomTextArea
+                  label="AMIE:"
+                  name="amie"
+                />
+              </div>
+              <div className="col-md-6">
+                <CustomTextArea
+                  label="MIES:"
+                  name="mies"
+                />
+              </div>
 
               <div className="col-lg-6">
                 <CustomInputNumber
