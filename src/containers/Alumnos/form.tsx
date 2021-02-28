@@ -270,6 +270,12 @@ const AlumnoFormContainer = ({
                   name="representante.nombres"
                 />
               </div>
+              <div className="col-md-12">
+                <CustomTextInput
+                  label="Parentesco del representante"
+                  name="representante.parentesco"
+                />
+              </div>
             </Form.Row>
 
             <div className="form-row">
@@ -311,7 +317,7 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Quintil pobreza"
                   name="quintilPobreza"
-                  keyfilter="alpha"
+                  // keyfilter="alpha"
                 />
               </div>
             </div>
