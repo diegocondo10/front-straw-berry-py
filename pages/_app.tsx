@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ToastProvider } from 'react-toast-notifications';
 import store from 'src/_redux/store';
+import { URL_BASE } from 'urls';
 
 const setLocale = () => {
   addLocale('es', {
@@ -63,7 +64,7 @@ const setLocale = () => {
 };
 
 const link = createUploadLink({
-  uri: 'http://localhost:9000/graphql',
+  uri: `${URL_BASE}graphql`,
   // uri: 'https://straw-berry-py.herokuapp.com/graphql',
 });
 
