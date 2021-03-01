@@ -6,6 +6,7 @@ import { useFormContext } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import CustomPickList from 'src/components/forms/CustomPickList';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
+import FooterButtonsForm from '@components/Buttons/FooterButtonsForm';
 
 const RolFormContainer = ({
   title,
@@ -57,14 +58,9 @@ const RolFormContainer = ({
               />
             </Form.Group>
 
-            <Form.Row className=" justify-content-between">
-              <div className="col-md-5 mt-3 my-1">
-                <BtnRegresar href="/auth/permisos" variant="outline-danger" />
-              </div>
-              <div className="col-md-5 mt-3 my-1">
-                <Button variant="outline-primary" block type="submit">
-                  Guardar
-                </Button>
+            <Form.Row className=" justify-content-center">
+              <div className="col-md-10 mt-3 my-1">
+                <FooterButtonsForm hrefBack="/auth/roles" />
               </div>
             </Form.Row>
           </form>

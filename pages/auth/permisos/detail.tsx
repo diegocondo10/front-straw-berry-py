@@ -1,61 +1,55 @@
-import { useMutation, useQuery } from '@apollo/client';
-import AuthMutations from '@graphql/Auth/mutations.gql';
+import { useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import AuthQueries from '@graphql/Auth/queries.gql';
-import { useRouter } from 'next/router';
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const DetailPermisoContainer = ({ items, id }) => {
-  const history = useRouter();
-
-  const { data, loading } = useQuery(AuthQueries.getPermisoById, { variables: { id } });
-
-  const [deletePermiso] = useMutation(AuthMutations.deletePermiso, { variables: { id } });
-
-  const onClickEliminar = async () => {
-    await deletePermiso();
-    history.push('/auth/permisos');
-  };
+  const { data, loading } = useQuery(AuthQueries.getPermisoById, {
+    variables: { id },
+  });
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout
+      loading={loading}
+      breadCrumb={{
+        title: 'Permiso',
+        items: [
+          { title: 'Permisos', href: '/auth/permisos' },
+          { title: id, active: true },
+        ],
+      }}
+      title="Permiso"
+    >
       <main className="container-fluid">
-        <BreadCrumbTitle title="Permiso" items={items} />
-
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
-            <ul>
-              <li>
-                <strong>Nombre:</strong>
-                {' ' + data?.permiso?.nombre}
-              </li>
-              <li>
-                <strong>Aplicacion:</strong>
-                {' ' + data?.permiso?.nombre}
-              </li>
-              <li>
-                <strong>Nombre:</strong>
-                {' ' + data?.permiso?.aplicacion?.nombre}
-              </li>
-              <li>
-                <strong>descripcion:</strong>
-                {' ' + data?.permiso?.descripcion}
-              </li>
-            </ul>
+          <div className="col-md-10">
+            <DynamicDetailTable
+              source={data?.permiso}
+              diccionario={[
+                {
+                  label: 'ID',
+                  path: 'id',
+                },
+                {
+                  label: 'Nombre',
+                  path: 'nombre',
+                },
+                {
+                  label: 'Descripción',
+                  path: 'descripcion',
+                },
+              ]}
+            />
           </div>
-        </div>
-
-        <div className="row justify-content-center">
-          <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
-          </div>
-          <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/auth/permisos" />
+          <div className="col-md-6 mt-5">
+            <HrefButton
+              variant="info"
+              block
+              href="/auth/permisos"
+              label="Regresar"
+            />
           </div>
         </div>
       </main>

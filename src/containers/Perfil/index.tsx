@@ -3,7 +3,6 @@ import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
-import { IndexColumn } from 'src/components/table/columns';
 
 const PerfilContainer = ({ data }) => {
   return (
@@ -60,7 +59,6 @@ const PerfilContainer = ({ data }) => {
                       rows={5}
                       paginator
                     >
-                      {IndexColumn()}
                       <Column header="Nombre" field="nombre" filter sortable />
                     </DataTable>
                   </React.Fragment>

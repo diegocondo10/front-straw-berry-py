@@ -1,7 +1,7 @@
 import CustomTextInput from '@components/forms/CustomTextInput';
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
@@ -17,6 +17,7 @@ const MatriculaFormContainer = ({
   alumnos = [],
   action = 'create',
   isPeriodoCerrado = false,
+  data,
 }: {
   title: string;
   items: any[];
@@ -25,6 +26,7 @@ const MatriculaFormContainer = ({
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
   isPeriodoCerrado: boolean;
+  data: any;
 }) => {
   const methods = useFormContext();
 
@@ -38,24 +40,30 @@ const MatriculaFormContainer = ({
       'Reconsituida',
       'HomoParental',
       'Padres separados',
-      // 'Familia ensamblada, reconstruida o mixta',
-      // 'Familia de acogida',
-      // 'Familia sin hijos por elección',
     ],
   };
 
+  const { handleSubmit, control } = methods;
+
+  const estadoMatricula = useWatch({
+    control,
+    name: 'estadoMatricula',
+    defaultValue: 'Creada',
+  });
+
   const localOnSubmit = async (input) => {
+    if (input.estadoMatricula !== 'A_1' || input.estadoMatricula !== 'Anulada') {
+      input.motivoAnulacion = '';
+    }
     await onSubmit(input);
   };
-
-  const { handleSubmit } = methods;
 
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
 
       <div className="row justify-content-center">
-        <div className="col-md-10 col-lg-8 col-xl-6 jumbotron rounded">
+        <div className="col-md-10 col-lg-8 jumbotron rounded">
           {isPeriodoCerrado && (
             <h5 className="text-danger text-center mb-4">
               No se puede editar una matrícula de un periodo lectivo cerrado.
@@ -163,14 +171,44 @@ const MatriculaFormContainer = ({
                 />
               </div>
 
+              <div className="col-lg-6">
+                <CustomDropDown
+                  name="estadoMatricula"
+                  label="Estado de la matricula"
+                  rules={{
+                    setValueAs: (value) => {
+                      switch (value) {
+                        case 'Creada':
+                          return 'A_0';
+
+                        case 'Anulada':
+                          return 'A_1';
+
+                        default:
+                          //Finalizada
+                          return 'A_2';
+                      }
+                    },
+                  }}
+                  options={['Creada', 'Anulada']}
+                />
+              </div>
+
+              {(estadoMatricula === 'A_1' || estadoMatricula === 'Anulada') && (
+                <div className="col-12">
+                  <CustomTextArea
+                    label="Motivo de la anulación"
+                    name="motivoAnulacion"
+                    rules={{ required: 'Este campo es obligatorio' }}
+                  />
+                </div>
+              )}
+
               {action !== 'create' && (
                 <div className="col-md-12">
                   <CustomTextArea
                     label="Diagnóstico Final:"
                     name="diagnosticoFinal"
-                    // rules={{
-                    //   required: 'Este campo es obligatorio',
-                    // }}
                     disabled={isPeriodoCerrado}
                   />
                 </div>
@@ -183,243 +221,6 @@ const MatriculaFormContainer = ({
             />
           </form>
         </div>
-
-        {/* <div className="col-md-6 jumbotron border border-blue rounded h-100 ">
-          <div className="p-grid">
-            <h4 className="text-underline">Datos personales:</h4>
-
-            <DetailItemView
-              className="p-md-12"
-              label="CÉDULA"
-              value={matricula?.cedula}
-            />
-
-            <DetailItemView
-              className="p-md-6"
-              label="APELLIDOS"
-              value={matricula?.apellidos}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="NOMBRES"
-              value={matricula?.nombres}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="LUGAR"
-              value={matricula?.lugar}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="FECHA DE NACIMIENTO"
-              value={matricula?.fechaNacimiento}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="EDAD"
-              value={matricula?.edad}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="DISCAPACIDAD"
-              value={matricula?.discapacidad}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CARNET CONADIS"
-              value={matricula?.carnet}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="DIRECCIÓN DOMICILIARIA"
-              value={matricula?.direccion}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="PROVINCIA"
-              value={matricula?.provincia}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CANTÓN"
-              value={matricula?.canton}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="PARROQUIA"
-              value={matricula?.parroquia}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="SECTOR"
-              value={matricula?.sector}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CORREO ELECTRÓNICO"
-              value={matricula?.correoElectronico}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="TELÉFONO"
-              value={matricula?.telefono}
-            />
-
-            <h4 className="text-underline">Datos Del Padre:</h4>
-            <DetailItemView
-              className="p-md-12"
-              label="CÉDULA"
-              value={matricula?.cedula}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="NOMBRES"
-              value={matricula?.nombres}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="APELLIDOS"
-              value={matricula?.apellidos}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="OCUPACIÓN"
-              value={matricula?.ocupacion}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="DIRECCIÓN"
-              value={matricula?.direccion}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="TELÉFONO"
-              value={matricula?.telefono}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CELULAR"
-              value={matricula?.celular}
-            />
-
-            <h4 className="text-underline">Datos De la Madre:</h4>
-            <DetailItemView
-              className="p-md-12"
-              label="CÉDULA"
-              value={matricula?.cedula}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="NOMBRES"
-              value={matricula?.nombres}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="APELLIDOS"
-              value={matricula?.apellidos}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="OCUPACIÓN"
-              value={matricula?.ocupacion}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="DIRECCIÓN"
-              value={matricula?.direccion}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="TELÉFONO"
-              value={matricula?.telefono}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CELULAR"
-              value={matricula?.celular}
-            />
-
-            <h4 className="text-underline">En caso de emergencia comunicar a:</h4>
-            <DetailItemView
-              className="p-md-12"
-              label="CÉDULA"
-              value={matricula?.cedula}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="NOMBRES"
-              value={matricula?.nombres}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="APELLIDOS"
-              value={matricula?.apellidos}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="TELÉFONO"
-              value={matricula?.telefono}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="CELULAR"
-              value={matricula?.celular}
-            />
-
-            <h4 className="text-underline">Datos Del Alumno:</h4>
-            <DetailItemView
-              className="p-md-12"
-              label="NIVEL AL QUE ASISTE"
-              value={matricula?.nivelAsiste}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="PROMOVIDO"
-              value={matricula?.promovido}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="TRATAMIENTO QUE RECIBE"
-              value={matricula?.tratamiento}
-            />
-            <DetailItemView
-              className="p-md-12"
-              label="DIAGNÓSTICO"
-              value={matricula?.diagnostico}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="MATRÍCULA"
-              value={matricula?.matricula}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="APORTE VOLUNTARIO"
-              value={matricula?.aporte}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="FECHA"
-              value={matricula?.fecha}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="NOMBRE DEL REPRESENTANTE"
-              value={matricula?.nombreRepresentante}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="FIRMA"
-              value={matricula?.firma}
-            />
-            <DetailItemView
-              className="p-md-6"
-              label="RELACIÓN"
-              value={matricula?.relacion}
-            />
-          </div>
-        </div>
-       */}
       </div>
     </main>
   );

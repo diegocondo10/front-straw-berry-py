@@ -1,18 +1,18 @@
 import { useMutation, useQuery } from '@apollo/client';
+import PersonaMutations from '@graphql/Personas/mutations.gql';
+import PersonaQueries from '@graphql/Personas/queries.gql';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
-import PersonaMutations from '@graphql/Personas/mutations.gql';
-import PersonaQueries from '@graphql/Personas/queries.gql';
 import PrivateLayout from 'src/layouts/privateLayout';
 import { concatIfExist } from 'src/utils/funciones';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Button } from 'react-bootstrap';
 
 const DetailAlumnoContainer = ({ items, id }) => {
-  const history = useRouter();
+  // const history = useRouter();
   const { data, loading } = useQuery(PersonaQueries.getAlumnoByIdDetail, {
     variables: { id },
   });
@@ -21,10 +21,10 @@ const DetailAlumnoContainer = ({ items, id }) => {
     variables: { id },
   });
 
-  const onClickEliminar = async () => {
-    await deleteAlumno();
-    history.push('/personas/alumnos');
-  };
+  // const onClickEliminar = async () => {
+  //   await deleteAlumno();
+  //   history.push('/personas/alumnos');
+  // };
 
   return (
     <PrivateLayout loading={loading}>
@@ -166,7 +166,22 @@ const DetailAlumnoContainer = ({ items, id }) => {
                 },
                 {
                   label: 'Representante',
-                  path: 'representante.nombres',
+                  body: ({ representante }) => (
+                    <DynamicDetailTable
+                      source={representante}
+                      diccionario={[
+                        {
+                          label: 'Nombre',
+                          path: 'representante.nombres',
+                        },
+                        {
+                          label: 'Parentesco',
+                          path: 'representante.parentesco',
+                          default: 'NO REGISTRA',
+                        },
+                      ]}
+                    />
+                  ),
                 },
               ]}
             />
@@ -174,12 +189,12 @@ const DetailAlumnoContainer = ({ items, id }) => {
         </div>
 
         <div className="row justify-content-center mb-5">
-          <div className="col-md-4 my-1 order-md-1">
+          {/* <div className="col-md-4 my-1 order-md-1">
             <Button variant="outline-danger" block onClick={onClickEliminar}>
               Eliminar
             </Button>
-          </div>
-          <div className="col-md-4 my-1">
+          </div> */}
+          <div className="col-md-8 my-1">
             <BtnRegresar variant="outline-info" href="/personas/alumnos" />
           </div>
         </div>

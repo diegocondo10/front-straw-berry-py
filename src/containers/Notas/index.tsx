@@ -1,9 +1,6 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { DateTimeColumn, OptionesColumn } from 'src/components/table/columns';
 import { createNota, updateNota } from '@graphql/Notas/mutations.gql';
 import { getNotasAlumno } from '@graphql/Notas/queries.gql';
-import useCustomToast from 'src/hooks/useCustomToast';
-import useReportes from 'src/hooks/useReportes';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { confirmPopup } from 'primereact/confirmpopup';
@@ -11,6 +8,8 @@ import { DataTable } from 'primereact/datatable';
 import { Dropdown } from 'primereact/dropdown';
 import React, { useState } from 'react';
 import { AiOutlineWarning } from 'react-icons/ai';
+import { DateTimeColumn, OptionesColumn } from 'src/components/table/columns';
+import useCustomToast from 'src/hooks/useCustomToast';
 import DialogFormActividad from './DialogFormActividad';
 import DialogImprimirReporte from './DialogImprimirReporte';
 
@@ -20,8 +19,6 @@ const NotasContainer = ({ data }) => {
   const [isVisible, setVisible] = useState<boolean>(false);
   const [showInfoReporte, setShowInfoReporte] = useState(false);
   const { addInfoToast, addSuccessToast } = useCustomToast();
-
-  const { getReporte } = useReportes();
 
   const [create, { loading: loadingCreate }] = useMutation(createNota);
   const [update, { loading: loadingUpdate }] = useMutation(updateNota);
@@ -118,8 +115,8 @@ const NotasContainer = ({ data }) => {
   };
 
   const onSubmit = (accion: 'add' | 'upt') => async (formData) => {
-    toggle();
     formData.alumnoAula = selectedAlumno.id;
+    toggle();
     if (accion === 'add') {
       await create({ variables: { input: formData } });
       addSuccessToast('Se ha agregado el registro exitosamente');
@@ -133,6 +130,7 @@ const NotasContainer = ({ data }) => {
   const onClickImprimirReporte = () => {
     setShowInfoReporte(true);
   };
+
   const header = (
     <div className="container-fluid my-2">
       <div className="row">
@@ -171,6 +169,9 @@ const NotasContainer = ({ data }) => {
             options={selectedAula?.alumnos}
             optionLabel="alumno.personaStr"
             onChange={async ({ value }) => {
+              if (value?.estadoMatricula === 'Anulada') {
+                addInfoToast('La matrícula de este alumno esta Anulada');
+              }
               setSelectedAlumno(value);
               getNotas({ variables: { idAlumno: value.id } });
             }}
@@ -182,7 +183,11 @@ const NotasContainer = ({ data }) => {
           label="Registrar"
           onClick={toggle}
           className="my-1"
-          disabled={selectedAlumno === null || selectedPeriodo.estado === 'CERRADO'}
+          disabled={
+            selectedAlumno === null ||
+            selectedPeriodo.estado === 'CERRADO' ||
+            selectedAlumno.estadoMatricula !== 'Creada'
+          }
         />
 
         <Button
@@ -195,6 +200,7 @@ const NotasContainer = ({ data }) => {
       </div>
     </div>
   );
+
   return (
     <main className="container-fluid">
       <div className="row justify-content-center">
@@ -249,11 +255,15 @@ const NotasContainer = ({ data }) => {
               header: 'OPCIONES',
               editButton: {
                 onClick: onClickEditar,
-                isDisabled: () => selectedPeriodo.estado === 'CERRADO',
+                isDisabled: () =>
+                  selectedPeriodo.estado === 'CERRADO' ||
+                  selectedAlumno.estadoMatricula !== 'Creada',
               },
               deleteButton: {
                 onClick: onClickEliminar,
-                isDisabled: () => selectedPeriodo.estado === 'CERRADO',
+                isDisabled: () =>
+                  selectedPeriodo.estado === 'CERRADO' ||
+                  selectedAlumno.estadoMatricula !== 'Creada',
               },
             })}
           </DataTable>

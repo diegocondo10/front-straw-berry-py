@@ -30,6 +30,7 @@ const PrivateNavbar = () => {
     },
     {
       label: 'Personas',
+      icon: 'pi pi-users',
       items: [
         {
           label: 'Personas',
@@ -58,6 +59,7 @@ const PrivateNavbar = () => {
 
     {
       label: 'Matriculas',
+      icon: 'pi pi-desktop',
       items: [
         {
           label: 'Periodos Lectivos',
@@ -69,6 +71,7 @@ const PrivateNavbar = () => {
         },
         {
           label: 'Matrículas',
+
           command: commandPush('/matriculas'),
         },
       ],
@@ -76,10 +79,12 @@ const PrivateNavbar = () => {
 
     {
       label: 'Aporte Académico',
+      icon: 'pi pi-pencil',
       command: commandPush('/notas'),
     },
     {
       label: 'Administración',
+      icon: 'pi pi-sitemap',
       items: [
         {
           label: 'Permisos',
@@ -114,7 +119,7 @@ const PrivateNavbar = () => {
             className="img-fluid cpointer"
             src={usuario?.persona?.foto}
             onClick={(e) => op?.current.toggle(e)}
-            style={{ maxHeight: '35px' }}
+            style={{ maxHeight: '35px', border: '1px solid white' }}
           />
         )}
 
@@ -130,7 +135,7 @@ const PrivateNavbar = () => {
             <div className="row">
               <div className="col-12 text-center">
                 <img
-                  className="img-fluid"
+                  className="img-fluid img-thumbnail"
                   style={{ maxHeight: '100px' }}
                   src={usuario?.persona?.foto}
                   alt=""

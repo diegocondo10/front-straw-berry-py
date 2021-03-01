@@ -22,6 +22,8 @@ query getMatriculaByIdFormUpdate($id: ID!) {
     amie
     mies
     tipoFamilia
+    estadoMatricula
+    motivoAnulacion
     aula {
       id
       nombre
@@ -54,6 +56,8 @@ query getMatriculaByIdDetail($id: ID!) {
     amie
     mies
     tipoFamilia
+    estadoMatricula
+    motivoAnulacion
     aula {
       id
       nombre
@@ -61,6 +65,7 @@ query getMatriculaByIdDetail($id: ID!) {
     }
     alumno {
       id
+      historiaClinica
       persona {
         id
         identificacion

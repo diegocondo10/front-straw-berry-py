@@ -11,7 +11,7 @@ import useUsuario from 'src/_redux/hooks/useUsuario';
 
 const LoginContainer = () => {
   const { register, errors, handleSubmit } = useForm({ mode: 'onChange' });
-  const [login] = useMutation(Usuario.login);
+  const [login, { loading }] = useMutation(Usuario.login);
 
   const { addWarningToast } = useCustomToast();
 
@@ -102,6 +102,7 @@ const LoginContainer = () => {
                     label="Iniciar Sesión"
                     className="p-button-outlined p-button-info"
                     type="submit"
+                    disabled={loading}
                   />
                 </form>
               </Card.Body>

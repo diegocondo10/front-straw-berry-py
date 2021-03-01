@@ -16,7 +16,7 @@ import PrivateLayout from 'src/layouts/privateLayout';
 
 const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const history = useRouter();
-  const { addInfoToast, addErrorToast } = useCustomToast();
+  const { addSuccessToast, addErrorToast } = useCustomToast();
   const { loading, data, refetch } = useQuery(
     MatriculaQueries.getPeriodoLectivoByIdDetail,
     {
@@ -38,15 +38,14 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {
-    console.log(periodo);
     if (periodo?.totalMatriculas !== 0) {
       return addErrorToast(
         'No se puede eliminar un periodo lectivo con matrículas activas',
       );
     }
-
     await eliminarPeriodo();
-    // history.push('/matriculas/periodos');
+    addSuccessToast('El periodo se ha eliminado correctamente');
+    history.push('/matriculas/periodos');
   };
 
   const onConfirmCerrarPeriodo = () => {
@@ -82,7 +81,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
           </p>
         </div>
       ),
-      header: 'Confirmación',
+      header: <h4>Confirmación</h4>,
       acceptLabel: 'SI',
       rejectLabel: 'NO',
       // icon: 'pi pi-exclamation-triangle color-danger',

@@ -1,3 +1,10 @@
+import { Button } from 'primereact/button';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Dialog } from 'primereact/dialog';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import { Controller, FormProvider, useForm } from 'react-hook-form';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
@@ -6,12 +13,6 @@ import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import TakePicture from 'src/components/TakePicture';
 import UploadFile from 'src/components/UploadFile';
 import { setValueId } from 'src/utils/funciones';
-import { Button } from 'primereact/button';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
 
 export type DialogFormActividadProps = {
   visible: boolean;
@@ -45,23 +46,38 @@ const DialogFormActividad: React.FC<DialogFormActividadProps> = ({
     } else {
       methods.reset({});
     }
-  }, [selectedItem, visible, accion, setSelectedItem, onSubmit]);
+  }, [selectedItem]);
+
+  const footer = () => (
+    <div className="d-inline-flex justify-content-center w-100">
+      <Button
+        label="Cerrar"
+        className="p-button-danger"
+        onClick={() => {
+          methods.reset();
+          setVisible(false);
+        }}
+        disabled={isLoading}
+        style={{ width: '150px' }}
+      />
+      <Button
+        label="Guardar"
+        disabled={isLoading}
+        onClick={methods.handleSubmit(onSubmit(accion))}
+        style={{ width: '150px' }}
+      />
+    </div>
+  );
 
   return (
-    <Modal
-      show={visible}
-      onHide={setVisible}
-      size="xl"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {accion === 'add' && 'Agregar Actividad'}
-          {accion === 'upt' && 'Editar Actividad'}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <React.Fragment>
+      <Dialog
+        header={accion === 'add' ? 'Agregar Actividad' : 'Editar Actividad'}
+        visible={visible}
+        style={{ width: '80vw', heigth: '40vh' }}
+        footer={footer}
+        onHide={() => setVisible?.(false)}
+      >
         <FormProvider {...methods}>
           <form>
             <CustomDropDown
@@ -160,26 +176,8 @@ const DialogFormActividad: React.FC<DialogFormActividadProps> = ({
             />
           </form>
         </FormProvider>
-      </Modal.Body>
-      <Modal.Footer className="d-inline-flex justify-content-around">
-        <Button
-          label="Cerrar"
-          className="p-button-danger"
-          onClick={() => {
-            methods.reset();
-            setVisible();
-          }}
-          disabled={isLoading}
-          style={{ width: '150px' }}
-        />
-        <Button
-          label="Guardar"
-          disabled={isLoading}
-          onClick={methods.handleSubmit(onSubmit(accion))}
-          style={{ width: '150px' }}
-        />
-      </Modal.Footer>
-    </Modal>
+      </Dialog>
+    </React.Fragment>
   );
 };
 
@@ -187,8 +185,11 @@ export default DialogFormActividad;
 
 const FormAnexoFotografico = ({ evidencias, setEvidencias }) => {
   const [show, setShow] = useState(false);
+
   const methods = useForm({ mode: 'onChange' });
+
   const onHide = () => setShow(!show);
+
   const onSaveImage = (setter: CallableFunction) => ({ fullPath }): void =>
     setter(fullPath);
 
@@ -223,6 +224,7 @@ const FormAnexoFotografico = ({ evidencias, setEvidencias }) => {
                     control={methods.control}
                     name="url"
                     defaultValue={null}
+                    rules={{ required: 'Este campo es obligatorio' }}
                     render={({ value, onChange }) => (
                       <React.Fragment>
                         <UploadFile
@@ -249,6 +251,10 @@ const FormAnexoFotografico = ({ evidencias, setEvidencias }) => {
                     )}
                   />
                 </span>
+
+                {methods.errors?.url?.message && (
+                  <p className="text-danger mt-2">{methods.errors.url.message}</p>
+                )}
               </div>
             </form>
           </FormProvider>

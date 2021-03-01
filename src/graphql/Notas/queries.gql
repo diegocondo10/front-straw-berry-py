@@ -16,6 +16,7 @@ query getInitialDataNotasPage {
         alumno {
           personaStr
         }
+        estadoMatricula
       }
     }
   }

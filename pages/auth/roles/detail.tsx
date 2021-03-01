@@ -1,19 +1,22 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import PrivateLayout from 'src/layouts/privateLayout';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Button, Table } from 'react-bootstrap';
-import AuthQueries from '@graphql/Auth/queries.gql';
+import HrefButton from '@components/Buttons/HrefButton';
+import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import AuthMutations from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
+import { useRouter } from 'next/router';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import React from 'react';
+import PrivateLayout from 'src/layouts/privateLayout';
 
-const DetailRolContainer = ({ items, id }) => {
+const DetailRolContainer = ({ id }) => {
   const history = useRouter();
 
   const { data, loading } = useQuery(AuthQueries.getByIdRol, { variables: { id } });
 
-  const [deletePermiso] = useMutation(AuthMutations.deletePermiso, { variables: { id } });
+  const [deletePermiso] = useMutation(AuthMutations.deletePermiso, {
+    variables: { id },
+  });
 
   const onClickEliminar = async () => {
     await deletePermiso();
@@ -21,52 +24,67 @@ const DetailRolContainer = ({ items, id }) => {
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout
+      loading={loading}
+      title="Grupo"
+      breadCrumb={{
+        title: 'Grupo',
+        items: [
+          {
+            title: 'Grupos',
+            href: '/auth/roles',
+          },
+          {
+            title: data?.grupo.nombre,
+            active: true,
+          },
+        ],
+      }}
+    >
       <main className="container-fluid">
-        <BreadCrumbTitle title="Rol de Usuario" items={items} />
-
         <div className="row justify-content-center">
-          <div className="col-md-8 breadcrumb">
-            <ul>
-              <li>
-                <strong>Nombre:</strong>
-                {' ' + data?.grupo?.nombre}
-              </li>
-              <li>
-                <strong>Descripcion:</strong>
-                {' ' + data?.grupo?.descripcion}
-              </li>
-              <li>
-                <strong>Permisos:</strong>
-              </li>
-            </ul>
-            <Table hover striped bordered size="sm">
-              <thead className="thead-dark">
-                <tr>
-                  <th>ID</th>
-                  <th>Nombre</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.grupo?.permisos?.map((e) => (
-                  <tr className="bg-white" key={e.id}>
-                    <td>{e.id}</td>
-                    <td>{e.nombre}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+          <div className="col-md-10">
+            <DynamicDetailTable
+              source={data?.grupo}
+              diccionario={[
+                {
+                  label: 'Nombre',
+                  path: 'nombre',
+                },
+                {
+                  label: 'Descripción',
+                  path: 'descripcion',
+                },
+                {
+                  label: 'Permisos',
+                  body: ({ permisos }) => (
+                    <React.Fragment>
+                      <DataTable
+                        value={permisos}
+                        className="p-datatable-sm p-datatable-gridlines"
+                        autoLayout
+                        rows={10}
+                        paginator
+                      >
+                        <Column
+                          header="Nombre"
+                          field="nombre"
+                          filter
+                          sortable
+                          filterHeaderClassName="p-inputtext-sm"
+                        />
+                      </DataTable>
+                    </React.Fragment>
+                  ),
+                },
+              ]}
+            />
           </div>
         </div>
 
         <div className="row justify-content-center">
-          <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
-          </div>
-          <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/auth/roles" />
+          <div className="col-md-7 my-1">
+            <HrefButton variant="info" href="/auth/roles" block label="Regresar" />
           </div>
         </div>
       </main>
@@ -74,14 +92,6 @@ const DetailRolContainer = ({ items, id }) => {
   );
 };
 
-DetailRolContainer.getInitialProps = async ({ query }) => {
-  return {
-    items: [
-      { title: 'Roles de Usuario', href: '/auth/roles' },
-      { title: query.id, href: `/auth/roles/update/?id=${query.id}` },
-    ],
-    id: query.id,
-  };
-};
+DetailRolContainer.getInitialProps = ({ query }) => query;
 
 export default DetailRolContainer;

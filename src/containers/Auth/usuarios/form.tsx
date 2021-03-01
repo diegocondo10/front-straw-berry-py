@@ -42,27 +42,19 @@ const UsuarioFormContainer: React.FC<any> = ({
             />
 
             <CustomPickList
-              label="Roles:"
+              label="Grupos:"
               name="grupos"
-              sourceHeader="Roles Disponibles"
-              targetHeader="Roles de este Usuario"
+              sourceHeader="Grupos Disponibles"
+              targetHeader="Grupos asignados"
               source={rolesDisponibles}
               itemTemplate={(rol) => rol.nombre}
-              rules={{
-                validate: (value) => {
-                  if (value.length === 0) {
-                    return 'Debe seleccionar al menos un rol para este usuario';
-                  }
-                  return true;
-                },
-              }}
             />
 
             <CustomPickList
               label="Permisos:"
               name="permisos"
               sourceHeader="Permisos Disponibles"
-              targetHeader="Permisos de este Rol"
+              targetHeader="Permisos asignados"
               source={permisosDisponibles}
               itemTemplate={(permiso) => (
                 <p
@@ -72,12 +64,6 @@ const UsuarioFormContainer: React.FC<any> = ({
                   {permiso.nombre}
                 </p>
               )}
-              rules={{
-                validate: (value) =>
-                  value?.length === 0
-                    ? 'Debe seleccionar al menos un permiso'
-                    : true,
-              }}
             />
 
             <FooterButtonsForm hrefBack="/auth/usuario" />

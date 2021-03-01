@@ -6,20 +6,6 @@ import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 
 const PermisosContainer = ({ data }) => {
-  const header = (
-    <div className="container-fluid my-2">
-      <div className="row">
-        <div className="col text-left">
-          <HrefButton
-            href="/auth/permisos/create"
-            icon="pi pi-plus"
-            label="Agregar"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <main className="container-fluid">
       <BreadCrumbTitle
@@ -39,7 +25,6 @@ const PermisosContainer = ({ data }) => {
             value={data?.permisos}
             rowHover
             paginator
-            header={header}
             currentPageReportTemplate="{totalRecords} registros totales"
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             rows={10}
@@ -55,7 +40,6 @@ const PermisosContainer = ({ data }) => {
               reorderable
             />
             {OptionesColumn({
-              editPath: ({ id }) => `/auth/permisos/update?id=${id}`,
               detailPath: ({ id }) => `/auth/permisos/detail?id=${id}`,
             })}
           </DataTable>

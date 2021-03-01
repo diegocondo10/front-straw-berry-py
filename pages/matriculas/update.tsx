@@ -2,17 +2,22 @@ import { useMutation, useQuery } from '@apollo/client';
 import MatriculaFormContainer from '@containers/Matriculas/form';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const UpdateMatriculaContainer = ({ id }) => {
   const methods = useForm({ mode: 'onChange' });
 
+  const [internalData, setInternalData] = useState(null);
+
   const { loading, data } = useQuery(MatriculaQueries.getMatriculaByIdFormUpdate, {
     variables: { id },
-    onCompleted: ({ matricula }) => methods.reset(matricula),
+    onCompleted: ({ matricula }) => {
+      setInternalData(matricula);
+      methods.reset(matricula);
+    },
   });
 
   const router = useRouter();
@@ -27,7 +32,7 @@ const UpdateMatriculaContainer = ({ id }) => {
   };
 
   const matricula = data?.matricula;
-  console.log(data?.matricula?.infoAula);
+
   return (
     <FormProvider {...methods}>
       <PrivateLayout title="Editar Matrícula" loading={loading || loadingUpdate}>
@@ -49,6 +54,7 @@ const UpdateMatriculaContainer = ({ id }) => {
           alumnos={[matricula?.alumno]}
           title="Editar Matrícula"
           isPeriodoCerrado={data?.matricula?.infoAula?.periodo?.estado === 'CERRADO'}
+          data={internalData}
         />
       </PrivateLayout>
     </FormProvider>

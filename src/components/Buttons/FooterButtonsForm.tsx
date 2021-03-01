@@ -16,7 +16,8 @@ const FooterButtonsForm = ({
         <HrefButton
           label="Regresar"
           href={hrefBack}
-          className="btn-block p-button-danger"
+          block
+          variant="info"
           type="button"
           disabled={disabledRegresar}
         />

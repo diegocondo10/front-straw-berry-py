@@ -1,3 +1,5 @@
+$primary: #2c3e50;
+
 @import '~primeflex/primeflex.css';
 @import '~primeicons/primeicons.css';
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
@@ -63,3 +65,18 @@ label {
   border: 1px solid #dfdfdf;
 }
 
+.text-undeline {
+  text-decoration: underline;
+}
+
+.base-carousel-control-icon {
+  background-color: #0b2969 !important;
+  height: 30px;
+  width: 30px;
+}
+.carousel-control-next-icon {
+  @extend .base-carousel-control-icon;
+}
+.carousel-control-prev-icon {
+  @extend .base-carousel-control-icon;
+}

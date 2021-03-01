@@ -1,23 +1,17 @@
 import { useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import { NextPage } from 'next';
+import React from 'react';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons/BtnRegresar';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
-import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import PrivateLayout from 'src/layouts/privateLayout';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Button } from 'react-bootstrap';
 
 const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
-  const history = useRouter();
   const { data, loading } = useQuery(MatriculaQueries.getMatriculaByIdDetail, {
     variables: { id },
   });
-  const onClickEliminar = async () => {
-    history.push('/matriculas');
-  };
 
   const padreMadreComponent = (source) => (
     <DynamicDetailTable
@@ -51,6 +45,11 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
     />
   );
 
+  const estadoMatricula = data?.matricula?.estadoMatricula === 'Anulada' && {
+    label: 'MOTIVO DE LA ANULACIÓN',
+    path: 'motivoAnulacion',
+  };
+
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid">
@@ -60,7 +59,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
             { title: 'Matrículas', href: '/matriculas' },
             {
               title: data?.matricula?.matricula,
-              href: `/matriculas/update/?id=${id}`,
+              active: true,
             },
           ]}
         />
@@ -70,6 +69,11 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
             <DynamicDetailTable
               source={data?.matricula}
               diccionario={[
+                {
+                  label: 'ESTADO DE LA MATRÍCULA',
+                  path: 'estadoMatricula',
+                },
+                estadoMatricula,
                 {
                   label: 'CEDULA',
                   body: (value) => (
@@ -93,6 +97,22 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                 {
                   label: 'CARNET DISCAPACIDAD',
                   path: 'alumno.persona.carnetConadis',
+                },
+                {
+                  label: 'TIPO DE FAMILIA',
+                  path: 'tipoFamilia',
+                },
+                {
+                  label: 'AMIE',
+                  path: 'amie',
+                },
+                {
+                  label: 'MIES',
+                  path: 'mies',
+                },
+                {
+                  labe: 'HISTORIA CLINICA',
+                  path: 'alumno.historiaClinica',
                 },
                 {
                   label: 'INFORMACIÓN DEL PADRE',
@@ -146,14 +166,12 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
         </div>
 
         <div className="row justify-content-center my-3">
-          <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/matriculas" />
-          </div>
-
-          <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
+          <div className="col-md-7">
+            <HrefButton
+              className="p-button-info btn-block"
+              href="/matriculas"
+              label="Regresar"
+            />
           </div>
         </div>
       </main>

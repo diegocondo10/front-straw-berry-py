@@ -82,7 +82,7 @@ const DetailPersonaContainer = ({ id }) => {
           title="Persona"
           items={[
             { title: 'Personas', href: '/personas' },
-            { title: data?.persona?.str, href: `/personas/update/?id=${id}` },
+            { title: data?.persona?.str, active: true },
           ]}
         />
 

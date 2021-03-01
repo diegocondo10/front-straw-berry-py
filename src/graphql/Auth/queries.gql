@@ -11,10 +11,6 @@ query getPermisoById($id: ID!) {
     id
     nombre
     descripcion
-    aplicacion {
-      id
-      nombre
-    }
   }
 }
 
@@ -23,7 +19,6 @@ query queryForUpdatePermiso($id: ID!) {
     id
     nombre
     descripcion
-    aplicacionId
   }
 }
 

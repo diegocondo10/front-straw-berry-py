@@ -1,16 +1,24 @@
 import { useQuery } from '@apollo/client';
-import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons/BtnRegresar';
-import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
-import Hreft from 'src/components/utils/Link';
+import HrefButton from '@components/Buttons/HrefButton';
 import { getAulaByIdDetail } from '@graphql/Matriculas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
+import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import Hreft from 'src/components/utils/Link';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const AulaDetailContainer: NextPage<any> = ({ id }) => {
   const { data, loading } = useQuery(getAulaByIdDetail, { variables: { id } });
+  const { addWarningToast } = useCustomToast();
+
+  const onClickEliminar = () => {
+    if (data?.aula?.alumnos?.length > 0) {
+      return addWarningToast('No se puede eliminar un aula con alumnos asignados');
+    }
+  };
+
   return (
     <PrivateLayout loading={loading}>
       <main className="container-fluid animated animate__fadeIn">
@@ -18,7 +26,7 @@ const AulaDetailContainer: NextPage<any> = ({ id }) => {
           title="Aula"
           items={[
             { title: 'Aula', href: '/aulas' },
-            { title: data?.aula?.nombre, href: `/matriculas/aulas/?id=${id}` },
+            { title: data?.aula?.nombre, active: true },
           ]}
         />
 
@@ -92,17 +100,21 @@ const AulaDetailContainer: NextPage<any> = ({ id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/matriculas/aulas" />
+            <HrefButton
+              variant="info"
+              block
+              href="/matriculas/aulas"
+              label="Regresar"
+            />
           </div>
 
           <div className="col-md-4 my-1 order-md-1">
-            <Button
-              variant="outline-danger"
+            <HrefButton
+              variant="danger"
               block
-              // onClick={onClickEliminar}
-            >
-              Eliminar
-            </Button>
+              onClick={onClickEliminar}
+              label="Eliminar"
+            />
           </div>
         </div>
       </main>

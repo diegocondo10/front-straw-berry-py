@@ -30,7 +30,7 @@ const DetailDocenteContainer = ({ id }) => {
             { title: 'Personal', href: '/personas/personal' },
             {
               title: data?.personal?.persona?.str,
-              href: `/personas/personal/update/?id=${id}`,
+              active: true,
             },
           ]}
         />
