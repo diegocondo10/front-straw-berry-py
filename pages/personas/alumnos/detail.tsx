@@ -18,15 +18,15 @@ const DetailAlumnoContainer = ({ id }) => {
     variables: { id },
   });
 
-  const [deleteAlumno, { loading: loadingDelete }] = useMutation<any>(
-    PersonaMutations.deleteAlumno,
-    { variables: { id } },
-  );
+  const [
+    deleteAlumno,
+    { loading: loadingDelete },
+  ] = useMutation(PersonaMutations.deleteAlumno, { variables: { id } });
 
   const onClickEliminar = async () => {
     if (data?.alumno?.canDelete) {
       await deleteAlumno();
-      return history.push('/alumnos');
+      return history.push('/personas/alumnos');
     }
     addWarningToast('No se puede eliminar una persona referenciada como "Alumno"');
   };
@@ -193,7 +193,7 @@ const DetailAlumnoContainer = ({ id }) => {
           </div>
         </div>
 
-        <div className="col-md-10 col-lg-8">
+        <div className="row justify-content-center">
           <div className="col-md-4 my-1">
             <HrefButton
               variant="info"
