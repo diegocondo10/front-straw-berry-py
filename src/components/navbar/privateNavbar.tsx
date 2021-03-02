@@ -135,7 +135,7 @@ const PrivateNavbar = () => {
 
         {usuario && !usuario?.persona?.foto && (
           <i
-            className="pi pi-user cpointer"
+            className="pi pi-user cpointer text-white"
             onClick={(e) => op?.current.toggle(e)}
           />
         )}

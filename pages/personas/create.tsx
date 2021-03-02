@@ -2,11 +2,12 @@ import { useMutation, useQuery } from '@apollo/client';
 import PersonaFormContainer from '@containers/Personas/form';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import { getParamsFormPersonas } from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
+import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const CreatePersonaContainer: NextPage<{
   items: any[];
@@ -40,20 +41,30 @@ const CreatePersonaContainer: NextPage<{
     },
   });
 
-  const [create] = useMutation(PersonaMutations.createPersona);
+  const { addWarningToast } = useCustomToast();
+
+  const [create, { loading: loadingCreate }] = useMutation(
+    PersonaMutations.createPersona,
+  );
 
   const router = useRouter();
 
   const { data, loading } = useQuery(getParamsFormPersonas);
 
   const onSubmit = async (input) => {
-    const res = await create({ variables: { input } });
-    router.push('/personas');
+    try {
+      const res = await create({ variables: { input } });
+      router.push('/personas');
+    } catch (error) {
+      addWarningToast(
+        'No puede agregar una persona con la misma identificación mas de una vez',
+      );
+    }
   };
 
   return (
     <FormProvider {...methods}>
-      <PrivateLayout title="Crear Persona">
+      <PrivateLayout title="Crear Persona" loading={loading || loadingCreate}>
         <PersonaFormContainer
           title={title}
           items={items}

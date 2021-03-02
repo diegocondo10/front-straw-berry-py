@@ -27,6 +27,7 @@ const DetailRolContainer = ({ id }) => {
   const onClickEliminar = async () => {
     if (data?.grupo?.canDelete) {
       await deletePermiso();
+
       return history.push('/auth/roles');
     }
 

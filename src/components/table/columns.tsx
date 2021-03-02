@@ -72,8 +72,8 @@ export const OptionesColumn: React.FC<
           className="p-button-sm"
           type="button"
           onClick={() => editButton?.onClick?.(rowData)}
-          disabled={detailButton?.isDisabled?.(rowData)}
-          permiso={detailButton?.permiso}
+          permiso={editButton?.permiso}
+          disabled={editButton?.isDisabled?.(rowData)}
         />
       )}
       {detailButton && (
@@ -83,8 +83,8 @@ export const OptionesColumn: React.FC<
           type="button"
           {...{ ...detailButton, isDisabled: undefined }}
           onClick={(evt) => detailButton?.onClick?.(rowData, { evt })}
-          disabled={detailButton?.isDisabled?.(rowData)}
           permiso={detailButton?.permiso}
+          disabled={detailButton?.isDisabled?.(rowData)}
         />
       )}
       {deleteButton && (

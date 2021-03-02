@@ -70,6 +70,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
   const onSaveImage = (setter: CallableFunction) => ({ fullPath }): void =>
     setter(fullPath);
 
+  console.log(discapacidades);
   return (
     <main className="container-fluid">
       <BreadCrumbTitle title={title} items={items} />
@@ -283,7 +284,6 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                   rules={{ required: 'Este campo es obligatorio' }}
                 />
               </div>
-
             </div>
 
             <div className="form-row">
@@ -339,7 +339,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
                 <React.Fragment>
                   <div className="col-md-6">
                     <CustomTextInput
-                      label="Carnet CONADIS:"
+                      label="Carnet de discapacidad:"
                       name="carnetConadis"
                       keyfilter="num"
                       rules={{

@@ -134,7 +134,6 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Ocupación:"
                   name="padre.ocupacion"
-                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -144,7 +143,6 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Dirección:"
                   name="padre.direccion"
-                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -214,7 +212,6 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Ocupación:"
                   name="madre.ocupacion"
-                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -224,7 +221,6 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Dirección:"
                   name="madre.direccion"
-                  keyfilter="alpha"
                   rules={{
                     required: 'Este campo es obligatorio',
                   }}
@@ -280,11 +276,7 @@ const AlumnoFormContainer = ({
 
             <div className="form-row">
               <div className="col-md-6">
-                <CustomTextInput
-                  label="Historia Clínica"
-                  name="historiaClinica"
-                // keyfilter="alpha"
-                />
+                <CustomTextInput label="Historia Clínica" name="historiaClinica" />
               </div>
               <div className="col-12">
                 <CustomTextArea
@@ -294,31 +286,19 @@ const AlumnoFormContainer = ({
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput label="Bono" name="bono" keyfilter="alpha" />
+                <CustomTextInput label="Bono" name="bono" />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
-                  label="Tipo de Bono"
-                  name="tipoBono"
-                  keyfilter="alpha"
-                />
+                <CustomTextInput label="Tipo de Bono" name="tipoBono" />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
-                  label="Afiliación al IESS"
-                  name="afiliacionIess"
-                  keyfilter="alpha"
-                />
+                <CustomTextInput label="Afiliación al IESS" name="afiliacionIess" />
               </div>
 
               <div className="col-md-6">
-                <CustomTextInput
-                  label="Quintil pobreza"
-                  name="quintilPobreza"
-                // keyfilter="alpha"
-                />
+                <CustomTextInput label="Quintil pobreza" name="quintilPobreza" />
               </div>
             </div>
 

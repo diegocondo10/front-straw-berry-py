@@ -1,13 +1,15 @@
-import { useQuery } from '@apollo/client';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import { useMutation, useQuery } from '@apollo/client';
+import PersonalMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
+import useCustomToast from '@hooks/useCustomToast';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const DetailDocenteContainer = ({ id }) => {
   const history = useRouter();
@@ -17,12 +19,25 @@ const DetailDocenteContainer = ({ id }) => {
     variables: { id },
   });
 
+  const { addWarningToast } = useCustomToast();
+  const [
+    deletePersonal,
+    { loading: loadingDelete },
+  ] = useMutation(PersonalMutations.deletePersonal, { variables: { id } });
+
   const onClickEliminar = async () => {
-    history.push('/personal');
+    if (data?.personal?.canDelete) {
+      await deletePersonal();
+      return history.push('/personas/personal');
+    }
+
+    addWarningToast(
+      'No se puede eliminar a este miembro del personal, debido a que esta siendo referenciado en otros lugares',
+    );
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDelete}>
       <main className="container-fluid">
         <BreadCrumbTitle
           title="Personal IPCA"

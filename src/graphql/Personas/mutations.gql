@@ -42,6 +42,13 @@ mutation updatePersonal($id: ID!, $input: UpdatePersonalInput!) {
   }
 }
 
+mutation deletePersonal($id: ID!) {
+  deletePersonal(id: $id) {
+    deletedId
+    found
+  }
+}
+
 mutation createAlumno($input: CreateAlumnoInput!) {
   createAlumno(input: $input) {
     alumno {

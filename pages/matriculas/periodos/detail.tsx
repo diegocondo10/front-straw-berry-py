@@ -67,6 +67,11 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   };
 
   const onClickCerrarPeriodo = (event) => {
+    if (periodo.totalMatriculas === 0) {
+      return addWarningToast(
+        'No se puede cerrar un periodo con un total de 0 matrículas creadas',
+      );
+    }
     confirmPopup({
       target: event.currentTarget,
       message: (
@@ -79,8 +84,9 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
             <br />
             Tenga en cuenta que al momento de cerrar el periodo lectivo
             <br />
-            todas las matrículas de este periódo, cambiaran su estado a{' '}
-            <strong>FINALIZADA</strong>
+            todas las matrículas de este periódo en estado <strong>CREADA</strong>,
+            <br />
+            cambiaran su estado a <strong>FINALIZADA</strong>
           </p>
         </div>
       ),
@@ -125,11 +131,11 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                           />
                           {value?.habilitarCierre && (
                             <HrefButton
-                              variant="danger"
+                              variant="primary"
                               permiso="PERIODO_LECTIVO__CERRAR_PERIODO"
                               style={{ width: '140px' }}
                               onClick={onClickCerrarPeriodo}
-                              label={'Cerrar periodo'}
+                              label="Cerrar periodo"
                             />
                           )}
                         </span>
@@ -183,11 +189,11 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                           },
                           {
                             label: 'Matrículas anuladas',
-                            path: 'matriculasFinalizadas',
+                            path: 'matriculasAnuladas',
                           },
                           {
                             label: 'Matrículas finalizadas',
-                            path: 'matriculasAnuladas',
+                            path: 'matriculasFinalizadas',
                           },
                           { label: 'Total matrículas', path: 'totalMatriculas' },
                         ]}

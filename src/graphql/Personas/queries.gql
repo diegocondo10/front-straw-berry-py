@@ -169,6 +169,7 @@ query getPersonalByIdFormUpdate($id: ID!) {
 query getPersonalByIdDetail($id: ID!) {
   personal(id: $id) {
     id
+    canDelete
     persona {
       id
       str
