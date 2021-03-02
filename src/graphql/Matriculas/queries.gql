@@ -153,6 +153,7 @@ query getAulaByIdDetail($id: ID!) {
     nombre
     capacidad
     grado
+    canDelete
     periodo {
       id
       nombre

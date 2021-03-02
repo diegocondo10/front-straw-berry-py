@@ -42,7 +42,7 @@ const UsuarioDetailContainer = ({ id }) => {
         items: [
           {
             title: 'Usuarios',
-            href: '/usuarios',
+            href: '/auth/usuarios',
           },
           {
             title: usuario?.username,

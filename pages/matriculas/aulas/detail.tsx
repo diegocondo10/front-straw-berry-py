@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from '@apollo/client';
 import HrefButton from '@components/Buttons/HrefButton';
-import { getAulaByIdDetail } from '@graphql/Matriculas/queries.gql';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
+import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import useCustomRouter from '@hooks/useCustomRouter';
 import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import React from 'react';
@@ -10,26 +12,37 @@ import Hreft from 'src/components/utils/Link';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const AulaDetailContainer: NextPage<any> = ({ id }) => {
-  const { data, loading } = useQuery(MatriculaQueries.getAulaByIdDetail, { variables: { id }, });
+  const { data, loading } = useQuery(MatriculaQueries.getAulaByIdDetail, {
+    variables: { id },
+  });
   const { addWarningToast } = useCustomToast();
 
-  const [deleteAlumno, { loading: loadingDelete }] = useMutation<any>(
-    MatriculaMutations.deleteAula, { variables: { id } },
+  const history = useCustomRouter();
+
+  const [deleteAula, { loading: loadingDelete }] = useMutation<any>(
+    MatriculaMutations.deleteAula,
+    { variables: { id } },
   );
 
-  const onClickEliminar = () => {
-    if (data?.aula?.alumnos?.length > 0) {
+  const onClickEliminar = async () => {
+    try {
+      if (data?.aula?.canDelete) {
+        await deleteAula();
+        return history.push('/matriculas/aulas');
+      }
       return addWarningToast('No se puede eliminar un aula con alumnos asignados');
+    } catch (error) {
+      addWarningToast('No se puede eliminar esta aula');
     }
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDelete}>
       <main className="container-fluid animated animate__fadeIn">
         <TitleBreadCrumb
           title="Aula"
           items={[
-            { title: 'Aula', href: '/aulas' },
+            { title: 'Aula', href: '/matriculas/aulas' },
             { title: data?.aula?.nombre, active: true },
           ]}
         />
