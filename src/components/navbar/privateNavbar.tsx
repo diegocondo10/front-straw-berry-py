@@ -58,7 +58,7 @@ const PrivateNavbar = () => {
       },
 
       {
-        label: 'Matriculas',
+        label: 'Matrículas',
         icon: 'pi pi-desktop',
         items: [
           {
