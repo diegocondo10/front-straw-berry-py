@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import HrefButton from '@components/Buttons/HrefButton';
 import { getAulaByIdDetail } from '@graphql/Matriculas/queries.gql';
 import useCustomToast from '@hooks/useCustomToast';
@@ -10,8 +10,12 @@ import Hreft from 'src/components/utils/Link';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const AulaDetailContainer: NextPage<any> = ({ id }) => {
-  const { data, loading } = useQuery(getAulaByIdDetail, { variables: { id } });
+  const { data, loading } = useQuery(MatriculaQueries.getAulaByIdDetail, { variables: { id }, });
   const { addWarningToast } = useCustomToast();
+
+  const [deleteAlumno, { loading: loadingDelete }] = useMutation<any>(
+    MatriculaMutations.deleteAula, { variables: { id } },
+  );
 
   const onClickEliminar = () => {
     if (data?.aula?.alumnos?.length > 0) {
@@ -114,6 +118,7 @@ const AulaDetailContainer: NextPage<any> = ({ id }) => {
               block
               onClick={onClickEliminar}
               label="Eliminar"
+              permiso="AULAS__ELIMINAR"
             />
           </div>
         </div>

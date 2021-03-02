@@ -75,6 +75,7 @@ const DiscapacidadDetailContainer: NextPage<any> = ({ breadCrumb, id }) => {
                     block
                     onClick={onClickEliminar}
                     label="Eliminar"
+                    permiso="DISCAPACIDADES__ELIMINAR"
                   />
                 </div>
                 <div className="col-md-5 my-1">

@@ -41,7 +41,7 @@ const DetailAlumnoContainer = ({ id }) => {
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDelete}>
       <main className="container-fluid mb-5">
         <BreadCrumbTitle
           title="Alumno"
