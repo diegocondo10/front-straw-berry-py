@@ -197,6 +197,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
               onClick={onClickEliminar}
               label="Eliminar"
               block
+              permiso="MATRICULAS__ELIMINAR"
             />
           </div>
         </div>

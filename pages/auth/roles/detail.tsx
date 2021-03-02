@@ -105,6 +105,7 @@ const DetailRolContainer = ({ id }) => {
               block
               label="Eliminar"
               onClick={onClickEliminar}
+              permiso="GRUPOS__ELIMINAR"
             />
           </div>
         </div>

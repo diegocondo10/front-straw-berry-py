@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import Hreft from '@components/utils/Link';
 import AuthMutations from '@graphql/Auth/mutations.gql';
@@ -8,8 +9,6 @@ import { useRouter } from 'next/router';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import { BtnRegresar } from 'src/components/Buttons';
 import PrivateLayout from 'src/layouts/privateLayout';
 
 const UsuarioDetailContainer = ({ id }) => {
@@ -128,12 +127,21 @@ const UsuarioDetailContainer = ({ id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
+            <HrefButton
+              variant="danger"
+              block
+              onClick={onClickEliminar}
+              permiso="GRUPOS__ELIMINAR"
+              label="Eliminar"
+            />
           </div>
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/auth/usuarios" />
+            <HrefButton
+              variant="info"
+              block
+              href="/auth/usuarios"
+              label="Regresar"
+            />
           </div>
         </div>
       </main>
