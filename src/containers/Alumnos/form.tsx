@@ -281,9 +281,9 @@ const AlumnoFormContainer = ({
             <div className="form-row">
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Historia Clinica"
+                  label="Historia Clínica"
                   name="historiaClinica"
-                  // keyfilter="alpha"
+                // keyfilter="alpha"
                 />
               </div>
               <div className="col-12">
@@ -307,7 +307,7 @@ const AlumnoFormContainer = ({
 
               <div className="col-md-6">
                 <CustomTextInput
-                  label="Afiliacion al IESS"
+                  label="Afiliación al IESS"
                   name="afiliacionIess"
                   keyfilter="alpha"
                 />
@@ -317,7 +317,7 @@ const AlumnoFormContainer = ({
                 <CustomTextInput
                   label="Quintil pobreza"
                   name="quintilPobreza"
-                  // keyfilter="alpha"
+                // keyfilter="alpha"
                 />
               </div>
             </div>

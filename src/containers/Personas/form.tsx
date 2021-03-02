@@ -121,7 +121,7 @@ const PersonaFormContainer = ({ title, items, onSubmit, discapacidades = [] }) =
 
               <div className="col-md-6">
                 <CustomDropDown
-                  label="Tipo de Identificacion:"
+                  label="Tipo de Identificación:"
                   name="tipoIdentificacion"
                   options={PARAMETROS.tiposIdentificacion}
                   rules={{ required: 'Este campo es obligatorio' }}

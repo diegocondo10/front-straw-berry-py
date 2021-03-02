@@ -52,7 +52,7 @@ const RolFormContainer = ({
             />
 
             <Form.Group>
-              <Form.Label>Descripcion:</Form.Label>
+              <Form.Label>Descripción:</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={4}

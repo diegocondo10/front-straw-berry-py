@@ -38,15 +38,15 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
           path: 'fullName',
         },
         {
-          label: 'OCUPACION',
+          label: 'OCUPACIÓN',
           path: 'ocupacion',
         },
         {
-          label: 'DIRECCION',
+          label: 'DIRECCIÓN',
           path: 'direccion',
         },
         {
-          label: 'TELEFONO',
+          label: 'TELÉFONO',
           path: 'telefono',
         },
         {
@@ -68,7 +68,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
       return router.push('/matriculas');
     }
     addWarningToast(
-      'No se puede eliminar una matricula, de un periodo lectivo CERRADO ó que contenga registro de Aportes Academicos',
+      'No se puede eliminar una matrícula, de un periodo lectivo CERRADO ó que contenga registro de Aportes Académicos',
     );
   };
 
@@ -133,7 +133,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                   path: 'mies',
                 },
                 {
-                  labe: 'HISTORIA CLINICA',
+                  labe: 'HISTORIA CLÍNICA',
                   path: 'alumno.historiaClinica',
                 },
                 {
@@ -145,7 +145,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                   body: ({ alumno }) => padreMadreComponent(alumno?.madre),
                 },
                 {
-                  label: 'CORREO ELECTRONICO',
+                  label: 'CORREO ELECTRÓNICO',
                   path: 'alumno.persona.correo',
                 },
                 {
@@ -153,7 +153,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                   path: 'alumno.persona.provinciaResidencia',
                 },
                 {
-                  label: 'CANTON',
+                  label: 'CANTÓN',
                   path: 'alumno.persona.cantonResidencia',
                 },
                 {
@@ -161,7 +161,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                   path: 'alumno.persona.parroquiaResidencia',
                 },
                 {
-                  label: 'TELEFONO',
+                  label: 'TELÉFONO',
                   path: 'alumno.persona.telefono',
                 },
 
@@ -175,7 +175,7 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
                 },
 
                 {
-                  label: 'MATRICULA',
+                  label: 'MATRÍCULA',
                   path: 'matricula',
                 },
                 {

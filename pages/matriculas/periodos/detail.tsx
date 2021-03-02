@@ -77,9 +77,9 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
           <p>
             Estas seguro de cerrar el periodo lectivo
             <br />
-            Tenga en cuenta que al momento de cerrar el periódo lectivo
+            Tenga en cuenta que al momento de cerrar el periodo lectivo
             <br />
-            todas las matriculas de este periódo, cambiaran su estado a{' '}
+            todas las matrículas de este periódo, cambiaran su estado a{' '}
             <strong>FINALIZADA</strong>
           </p>
         </div>
@@ -171,25 +171,25 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                   ),
                 },
                 {
-                  label: 'Información Matriculas',
+                  label: 'Información Matrículas',
                   body: (value) => {
                     return (
                       <DynamicDetailTable
                         source={value}
                         diccionario={[
                           {
-                            label: 'Matriculas creadas',
+                            label: 'Matrículas creadas',
                             path: 'matriculasCreadas',
                           },
                           {
-                            label: 'Matriculas anuladas',
+                            label: 'Matrículas anuladas',
                             path: 'matriculasFinalizadas',
                           },
                           {
-                            label: 'Matriculas finalizadas',
+                            label: 'Matrículas finalizadas',
                             path: 'matriculasAnuladas',
                           },
-                          { label: 'Total matriculas', path: 'totalMatriculas' },
+                          { label: 'Total matrículas', path: 'totalMatriculas' },
                         ]}
                       />
                     );

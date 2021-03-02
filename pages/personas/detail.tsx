@@ -29,7 +29,7 @@ const DetailPersonaContainer = ({ id }) => {
       { label: 'Segundo apellido', path: 'segundoApellido' },
       { label: 'Primer nombre', path: 'primerNombre' },
       { label: 'Segundo nombre', path: 'segundoNombre' },
-      { label: 'Genero', path: 'genero' },
+      { label: 'Género', path: 'genero' },
       { label: 'Tipo de sangre', path: 'tipoSangre' },
       { label: 'Fecha de nacimiento', path: 'fechaNacimiento' },
       { label: 'Edad', path: 'edad' },
@@ -38,7 +38,7 @@ const DetailPersonaContainer = ({ id }) => {
       { label: 'Teléfono', path: 'telefono' },
       { label: 'Celular', path: 'celularUno' },
       { label: 'Correo', path: 'correo' },
-      { label: 'Pais de nacimiento', path: 'paisNacimiento' },
+      { label: 'País de nacimiento', path: 'paisNacimiento' },
       { label: 'País residencia', path: 'paisResidencia' },
       { label: 'Provincia residencia', path: 'provinciaResidencia' },
       { label: 'Cantón residencia', path: 'cantonResidencia' },
@@ -52,7 +52,7 @@ const DetailPersonaContainer = ({ id }) => {
           path: 'tieneDiscapacidad',
         },
         {
-          label: 'Carnet del conadis',
+          label: 'Carnet del CONADIS',
           path: 'carnetConadis',
         },
         {

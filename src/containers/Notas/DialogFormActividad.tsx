@@ -93,7 +93,7 @@ const DialogFormActividad: React.FC<DialogFormActividadProps> = ({
             />
             <CustomTextInput
               name="titulo"
-              label="Titulo"
+              label="Título"
               rules={{
                 required: 'Obligatorio',
               }}
@@ -147,7 +147,7 @@ const DialogFormActividad: React.FC<DialogFormActividadProps> = ({
                           <Column
                             body={(rowData) => (
                               <a href={rowData?.url} target="_blank">
-                                Ver imagen
+                                Ver imágen
                               </a>
                             )}
                           />
@@ -201,7 +201,7 @@ const FormAnexoFotografico = ({ evidencias, setEvidencias }) => {
   };
   return (
     <React.Fragment>
-      <Button label="Agregar Anexo Fotografico" onClick={onHide} type="button" />
+      <Button label="Agregar Anexo Fotográfico" onClick={onHide} type="button" />
       <Modal
         show={show}
         onHide={onHide}
@@ -211,7 +211,7 @@ const FormAnexoFotografico = ({ evidencias, setEvidencias }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Agregar Anexo Fotografico
+            Agregar Anexo Fotográfico
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

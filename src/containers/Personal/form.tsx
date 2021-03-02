@@ -70,11 +70,11 @@ const DocenteFormContainer = ({
               </div>
 
               <div className="col-md-12">
-                <CustomTextInput label="Tipo de Titulo:" name="tipoTitulo" />
+                <CustomTextInput label="Tipo de Título:" name="tipoTitulo" />
               </div>
 
               <div className="col-md-12">
-                <CustomTextInput name="areaDeTrabajo" label="Area de trabajo:" />
+                <CustomTextInput name="areaDeTrabajo" label="Área de trabajo:" />
               </div>
             </Form.Row>
 

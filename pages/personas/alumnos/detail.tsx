@@ -60,7 +60,7 @@ const DetailAlumnoContainer = ({ id }) => {
                   ),
                 },
                 {
-                  label: 'Historia Clinica',
+                  label: 'Historia Clínica',
                   path: 'historiaClinica',
                 },
                 {
@@ -76,7 +76,7 @@ const DetailAlumnoContainer = ({ id }) => {
                   path: 'tipoBono',
                 },
                 {
-                  label: 'Afiliacion al IESS',
+                  label: 'Afiliación al IESS',
                   path: 'afiliacionIess',
                 },
                 {
@@ -127,7 +127,7 @@ const DetailAlumnoContainer = ({ id }) => {
                       source={value?.madre}
                       diccionario={[
                         {
-                          label: 'Identificacíon',
+                          label: 'Identificación',
                           path: 'identificacion',
                         },
                         {

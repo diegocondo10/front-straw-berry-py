@@ -45,7 +45,7 @@ const CreateMatriculaContainer: React.FC = () => {
   return (
     <FormProvider {...methods}>
       <PrivateLayout
-        title="Crear Matricula"
+        title="Crear Matrícula"
         loadingText={classnames({
           'Cargando...': loading,
           'Guardando...': loadingCreate,
@@ -53,14 +53,14 @@ const CreateMatriculaContainer: React.FC = () => {
         loading={loading || loadingCreate}
       >
         <MatriculaFormContainer
-          title="Crear Matricula"
+          title="Crear Matrícula"
           items={[
             {
-              title: 'Matriculas',
+              title: 'Matrículas',
               href: '/matriculas',
             },
             {
-              title: 'Crear Matricula',
+              title: 'Crear Matrícula',
               active: true,
             },
           ]}
