@@ -55,7 +55,7 @@ const PersonalContainer = ({ data }) => {
           >
             {IndexColumn()}
             <Column
-              header="Informacion"
+              header="Información"
               field="persona.str"
               sortable
               filter
@@ -84,7 +84,7 @@ const PersonalContainer = ({ data }) => {
               reorderable
             />
             <Column
-              header="Funcion"
+              header="Función"
               field="funciones"
               sortable
               filter

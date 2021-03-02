@@ -73,7 +73,7 @@ const PeriodoLectivoFormContainer = ({
                         const fechaFin = methods.getValues('fechaFin');
                         const finMoment = toMoment(fechaFin, DATE_FORMAT);
                         if (toMoment(value).isSameOrAfter(finMoment)) {
-                          return 'La fecha de inicio no puede ser despues de la fecha de fin';
+                          return 'La fecha de inicio no puede ser después de la fecha de fin';
                         }
                         clearErrors('fechaFin');
                         return true;
@@ -107,7 +107,7 @@ const PeriodoLectivoFormContainer = ({
                         const fechaInicio = methods.getValues('fechaInicio');
                         const inicioMoment = toMoment(fechaInicio);
                         if (toMoment(value).isSameOrBefore(inicioMoment)) {
-                          return 'La fecha de fin no puede ser antes de la fecha de fin';
+                          return 'La fecha de fin no puede ser antes de la fecha de inicio';
                         }
                         clearErrors('fechaInicio');
                         return true;

@@ -20,7 +20,7 @@ const DiscapacidadFormContainer = ({ onSubmit, items, title }) => {
               rules={{ required: 'Obligatorio' }}
             />
 
-            <CustomTextArea label="Descripcion: " name="descripcion" />
+            <CustomTextArea label="Descripción: " name="descripcion" />
 
             <FooterButtonsForm hrefBack="/personas/discapacidades" />
           </form>

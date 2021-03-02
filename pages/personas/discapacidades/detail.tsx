@@ -34,7 +34,7 @@ const DiscapacidadDetailContainer: NextPage<any> = ({ breadCrumb, id }) => {
       return router.push('/personas/discapacidades');
     }
     addWarningToast(
-      'No se puede eliminar, debito a que esta referenciado en alguna persona',
+      'No se puede eliminar, ya que esta referenciado en alguna persona',
     );
   };
 

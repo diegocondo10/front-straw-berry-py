@@ -176,7 +176,7 @@ const MatriculaFormContainer = ({
                   <div className="col-lg-6">
                     <CustomDropDown
                       name="estadoMatricula"
-                      label="Estado de la matricula"
+                      label="Estado de la matrícula"
                       rules={{
                         setValueAs: (value) => {
                           switch (value) {

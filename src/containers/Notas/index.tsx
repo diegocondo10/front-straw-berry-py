@@ -101,7 +101,7 @@ const NotasContainer = ({ data }) => {
           <div className="align-self-center mr-2 ml-n3">
             <AiOutlineWarning color="#e74c3c" fontSize="30px" />
           </div>
-          <p>Estas seguro de eliminar esta actividad?</p>
+          <p>¿Esta seguro de eliminar esta actividad?</p>
         </div>
       ),
       //@ts-ignore

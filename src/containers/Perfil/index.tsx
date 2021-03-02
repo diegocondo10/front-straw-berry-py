@@ -36,12 +36,12 @@ const PerfilContainer = ({ data }) => {
                     source={value?.persona}
                     diccionario={[
                       { label: 'Nombres completos', path: 'str' },
-                      { label: 'Genero', path: 'genero' },
+                      { label: 'Género', path: 'genero' },
                       {
-                        label: 'Direccion domiciliaria',
+                        label: 'Dirección domiciliaria',
                         path: 'direccionDomiciliaria',
                       },
-                      { label: 'Telefono', path: 'telefono' },
+                      { label: 'Teléfono', path: 'telefono' },
                       { label: 'Celular', path: 'celularUno' },
                       { label: 'Correo', path: 'correo' },
                     ]}

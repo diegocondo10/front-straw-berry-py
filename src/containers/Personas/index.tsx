@@ -53,7 +53,7 @@ const PersonasContainer = ({ data }) => {
               <Column header="Teléfono" field="telefono" sortable filter />
               <Column header="Correo" field="correo" sortable filter />
               <Column
-                header="Direccion"
+                header="Dirección"
                 field="direccionDomiciliaria"
                 sortable
                 filter
