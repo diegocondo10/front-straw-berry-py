@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
@@ -11,20 +13,32 @@ import Hreft from 'src/components/utils/Link';
 import PrivateLayout from 'src/layouts/privateLayout';
 import { concatIfExist } from 'src/utils/funciones';
 
-const DetailAlumnoContainer = ({ items, id }) => {
-  // const history = useRouter();
+const DetailAlumnoContainer = ({ id }) => {
+  const history = useRouter();
+  const { addWarningToast } = useCustomToast();
   const { data, loading } = useQuery(PersonaQueries.getAlumnoByIdDetail, {
     variables: { id },
   });
 
-  const [deleteAlumno] = useMutation(PersonaMutations.deleteAlumno, {
-    variables: { id },
-  });
+  const [deleteAlumno, { loading: loadingDelete }] = useMutation<any>(
+    PersonaMutations.deleteAlumno,
+    { variables: { id } },
+  );
 
   // const onClickEliminar = async () => {
   //   await deleteAlumno();
   //   history.push('/personas/alumnos');
   // };
+
+  const onClickEliminar = async () => {
+    if (data?.alumno?.canDelete) {
+      await deleteAlumno();
+      return history.push('/alumnos');
+    }
+    addWarningToast(
+      'No se puede eliminar una persona referenciada como "Alumno"',
+    );
+  };
 
   return (
     <PrivateLayout loading={loading}>
@@ -188,14 +202,18 @@ const DetailAlumnoContainer = ({ items, id }) => {
           </div>
         </div>
 
-        <div className="row justify-content-center mb-5">
-          {/* <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
-          </div> */}
-          <div className="col-md-8 my-1">
-            <BtnRegresar variant="outline-info" href="/personas/alumnos" />
+        <div className="col-md-10 col-lg-8">
+          <div className="col-md-4 my-1">
+            <HrefButton variant="info" href="/personas/alumnos" block label="Regresar" />
+          </div>
+          <div className="col-md-4 my-1 order-md-1">
+            <HrefButton
+              variant="danger"
+              block
+              onClick={onClickEliminar}
+              label="Eliminar"
+              permiso="ALUMNOS__ELIMINAR"
+            />
           </div>
         </div>
       </main>
