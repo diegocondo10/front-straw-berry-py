@@ -127,26 +127,61 @@ query getUsuarioById($id: ID!) {
 
 query me {
   usuario: me {
+    createdAt
     id
     username
+    persona {
+      id
+      createdAt
+      updatedAt
+      authEstado
+      identificacion
+      tipoIdentificacion
+      primerNombre
+      segundoNombre
+      primerApellido
+      segundoApellido
+      paisNacimiento
+      fechaNacimiento
+      genero
+      estadoCivil
+      tieneDiscapacidad
+      discapacidades {
+        id
+        nombre
+      }
+      carnetConadis
+      porcentajeDiscapacidad
+      etnia
+      tipoSangre
+      paisResidencia
+      provinciaResidencia
+      cantonResidencia
+      parroquiaResidencia
+      direccionDomiciliaria
+      sector
+      telefono
+      celularUno
+      celularDos
+      correo
+      foto
+      fullName
+      edad
+      str
+      nombres
+      apellidos
+    }
     permisos {
       id
       nombre
     }
     grupos {
+      id
+      nombre
       permisos {
         id
         nombre
       }
-    }
-    persona {
-      id
-      str
-      correo
-      celularUno
-      telefono
-      genero
-      foto
     }
   }
 }

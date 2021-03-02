@@ -1,23 +1,15 @@
 import classnames from 'classnames';
 import { useRouter } from 'next/router';
 import { Button, ButtonProps } from 'primereact/button';
-import React from 'react';
+import React, { useMemo } from 'react';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 
 type Props = {
   href?: string;
-  variant?:
-    | 'primary'
-    | 'secondary'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'help'
-    | ''
-    | ''
-    | ''
-    | '';
+  variant?: 'primary' | 'secondary' | 'danger' | 'warning' | 'info' | 'help';
   outlined?: boolean;
   block?: boolean;
+  permiso?: string;
 };
 const HrefButton = (props: HrefButtonProps) => {
   const {
@@ -27,11 +19,13 @@ const HrefButton = (props: HrefButtonProps) => {
     variant = 'primary',
     block,
     outlined,
+    permiso,
+    disabled,
     ...rest
   } = props;
 
   const router = useRouter();
-
+  const { hasPerm } = useUsuario();
   const onHref = (event) => {
     onClick && onClick(event);
     if (href) {
@@ -39,9 +33,14 @@ const HrefButton = (props: HrefButtonProps) => {
     }
   };
 
+  const disabledButton = useMemo(() => {
+    if (disabled) return true;
+    if (permiso) return !hasPerm(permiso);
+    return false;
+  }, [disabled, permiso]);
+
   return (
     <Button
-      {...rest}
       onClick={onHref}
       className={classnames({
         [className]: true,
@@ -49,6 +48,8 @@ const HrefButton = (props: HrefButtonProps) => {
         'p-button-outlined': outlined,
         'btn-block': block,
       })}
+      disabled={disabledButton}
+      {...rest}
     />
   );
 };

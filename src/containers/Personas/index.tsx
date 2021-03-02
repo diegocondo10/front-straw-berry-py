@@ -1,16 +1,11 @@
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
-import _ from 'lodash';
-import useReportes from '@hooks/useReportes';
 
 const PersonasContainer = ({ data }) => {
-  const { getReporte } = useReportes();
-
   const header = (
     <div className="d-flex flex-row justify-content-center justify-content-sm-between mt-1 mb-2 flex-wrap">
       <HrefButton
@@ -18,15 +13,7 @@ const PersonasContainer = ({ data }) => {
         label="Agregar"
         icon="pi pi-plus"
         className="mt-1"
-      />
-
-      <Button
-        label="Descargar reporte general"
-        icon="pi pi-paperclip"
-        className="mt-1"
-        onClick={_.throttle(async (e) => {
-          await getReporte('reporte-general-total-alumnos');
-        }, 2000)}
+        permiso="PERSONAS__AGREGAR"
       />
     </div>
   );
@@ -72,6 +59,8 @@ const PersonasContainer = ({ data }) => {
                 filter
               />
               {OptionesColumn({
+                permisoEdit: 'PERSONAS__EDITAR',
+                permisoDetail: 'PERSONAS__DETALLE',
                 editPath: ({ id }) => `/personas/update?id=${id}`,
                 detailPath: ({ id }) => `/personas/detail?id=${id}`,
               })}

@@ -14,6 +14,7 @@ const AulasContainer = ({ data }) => {
             label="Agregar"
             icon="pi pi-plus"
             href="/matriculas/aulas/create"
+            permiso="AULAS__AGREGAR"
           />
         </div>
       </div>
@@ -93,6 +94,8 @@ const AulasContainer = ({ data }) => {
             />
 
             {OptionesColumn({
+              permisoEdit: 'AULAS__EDITAR',
+              permisoDetail: 'AULAS__DETALLE',
               editPath: ({ id }) => `/matriculas/aulas/update?id=${id}`,
               detailPath: ({ id }) => `/matriculas/aulas/detail?id=${id}`,
             })}

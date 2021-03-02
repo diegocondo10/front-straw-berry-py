@@ -13,7 +13,12 @@ const MatriculasContainer = ({ data }) => {
     <div className="container-fluid my-2">
       <div className="row">
         <div className="col text-left">
-          <HrefButton label="Agregar" icon="pi pi-plus" href="/matriculas/create" />
+          <HrefButton
+            label="Agregar"
+            icon="pi pi-plus"
+            href="/matriculas/create"
+            permiso="MATRICULAS__AGREGAR"
+          />
         </div>
       </div>
     </div>
@@ -96,6 +101,8 @@ const MatriculasContainer = ({ data }) => {
 
             {OptionesColumn({
               style: { width: '150px' },
+              permisoEdit: 'MATRICULAS__EDITAR',
+              permisoDetail: 'MATRICULAS__DETALLE',
               editPath: ({ id }) => `/matriculas/update?id=${id}`,
               detailPath: ({ id }) => `/matriculas/detail?id=${id}`,
               customButtons: [
@@ -107,6 +114,7 @@ const MatriculasContainer = ({ data }) => {
                       idMatricula: rowData.id,
                     });
                   },
+                  permiso: 'MATRICULAS__IMPRIMIR_REPORTE_FICHA_INSCRIPCION',
                 },
               ],
             })}

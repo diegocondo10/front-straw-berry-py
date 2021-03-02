@@ -11,8 +11,8 @@ import {
 
 const useUsuario = () => {
   const state = useSelector((state: any) => state.UsuarioState);
-  const [verificarCuenta] = useMutation(Usuario.verificarCuenta);
-  const [verificarToken] = useMutation(Usuario.verificarToken);
+  // const [verificarCuenta] = useMutation(Usuario.verificarCuenta);
+  // const [verificarToken] = useMutation(Usuario.verificarToken);
   const dispatch = useDispatch();
 
   const setUsuario = (usuario) => {

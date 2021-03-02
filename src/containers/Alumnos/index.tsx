@@ -14,6 +14,7 @@ const AlumnosContainer = ({ data }) => {
             href="/personas/alumnos/create"
             label="Agregar"
             icon="pi pi-plus"
+            permiso="ALUMNOS__AGREGAR"
           />
         </div>
       </div>
@@ -63,6 +64,8 @@ const AlumnosContainer = ({ data }) => {
             />
 
             {OptionesColumn({
+              permisoEdit: 'ALUMNOS__EDITAR',
+              permisoDetail: 'ALUMNOS__DETALLE',
               editPath: ({ id }) => `/personas/alumnos/update?id=${id}`,
               detailPath: ({ id }) => `/personas/alumnos/detail?id=${id}`,
             })}

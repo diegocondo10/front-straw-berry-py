@@ -1,10 +1,10 @@
-import HrefButton from 'src/components/Buttons/HrefButton';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from 'src/utils/date';
 import _ from 'lodash';
 import moment from 'moment';
-import { Button } from 'primereact/button';
 import { Column, ColumnProps } from 'primereact/column';
 import React, { CSSProperties } from 'react';
+import HrefButton from 'src/components/Buttons/HrefButton';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'src/utils/date';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 export const IndexColumn = () => {
   return (
     <Column
@@ -30,10 +30,20 @@ export const OptionesColumn: React.FC<
   detailButton,
   deleteButton,
   customButtons,
+  permisoEdit,
+  permisoDetail,
   style = {},
   header = 'Opciones',
   columnProps = {},
 } = {}) => {
+  const { hasPerm } = useUsuario();
+
+  const disabledButton = (disabled, permiso) => {
+    if (disabled) return true;
+
+    return permiso && !hasPerm(permiso);
+  };
+
   const body = (rowData: any) => (
     <div className="d-inline-flex justify-content-around w-100">
       {editPath && (
@@ -42,6 +52,7 @@ export const OptionesColumn: React.FC<
           icon="pi pi-pencil"
           type="button"
           className="p-button-sm"
+          disabled={permisoEdit && !hasPerm(permisoEdit)}
         />
       )}
 
@@ -51,47 +62,52 @@ export const OptionesColumn: React.FC<
           icon="pi pi-info-circle"
           type="button"
           className="p-button-warning p-button-sm"
+          disabled={permisoDetail && !hasPerm(permisoDetail)}
         />
       )}
 
       {editButton && (
-        <Button
+        <HrefButton
           icon="pi pi-pencil"
           className="p-button-sm"
           type="button"
           onClick={() => editButton?.onClick?.(rowData)}
-          disabled={editButton?.isDisabled?.(rowData) || false}
+          disabled={detailButton?.isDisabled?.(rowData)}
+          permiso={detailButton?.permiso}
         />
       )}
       {detailButton && (
-        <Button
+        <HrefButton
           icon="pi pi-info-circle"
           className="p-button-warning p-button-sm"
           type="button"
-          {...detailButton}
+          {...{ ...detailButton, isDisabled: undefined }}
           onClick={(evt) => detailButton?.onClick?.(rowData, { evt })}
-          disabled={detailButton?.isDisabled?.(rowData) || false}
+          disabled={detailButton?.isDisabled?.(rowData)}
+          permiso={detailButton?.permiso}
         />
       )}
       {deleteButton && (
-        <Button
+        <HrefButton
           icon="pi pi-trash"
           className="p-button-danger p-button-sm"
           type="button"
-          {...deleteButton}
+          {...{ ...deleteButton, isDisabled: undefined }}
           onClick={(evt) => deleteButton?.onClick?.(rowData, { evt })}
-          disabled={deleteButton?.isDisabled?.(rowData) || false}
+          disabled={deleteButton?.isDisabled?.(rowData)}
+          permiso={deleteButton?.permiso}
         />
       )}
 
       {customButtons &&
         customButtons?.map((item, key) => (
-          <Button
+          <HrefButton
             key={`custom-button-${key}`}
-            {...item}
             onClick={(evt) => {
               item?.onClick?.(rowData, { evt });
             }}
+            {...item}
+            permiso={item?.permiso}
           />
         ))}
 

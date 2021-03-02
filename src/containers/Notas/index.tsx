@@ -1,7 +1,7 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import { createNota, updateNota } from '@graphql/Notas/mutations.gql';
 import { getNotasAlumno } from '@graphql/Notas/queries.gql';
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { confirmPopup } from 'primereact/confirmpopup';
 import { DataTable } from 'primereact/datatable';
@@ -179,23 +179,26 @@ const NotasContainer = ({ data }) => {
         </div>
       </div>
       <div className="d-inline-flex flex-wrap w-100 justify-content-center justify-content-md-between">
-        <Button
+        <HrefButton
           label="Registrar"
           onClick={toggle}
           className="my-1"
+          icon="pi pi-plus"
           disabled={
             selectedAlumno === null ||
             selectedPeriodo.estado === 'CERRADO' ||
             selectedAlumno.estadoMatricula !== 'Creada'
           }
+          permiso="APORTE_ACADEMICO__AGREGAR"
         />
 
-        <Button
+        <HrefButton
           label="Descargar reporte"
           icon="pi pi-paperclip"
           onClick={onClickImprimirReporte}
           className="my-1"
           disabled={selectedAlumno === null}
+          permiso="APORTE_ACADEMICO__IMPRIMIR_REPORTE_MATRIZ_INFORME"
         />
       </div>
     </div>
@@ -255,12 +258,14 @@ const NotasContainer = ({ data }) => {
               header: 'OPCIONES',
               editButton: {
                 onClick: onClickEditar,
+                permiso: 'APORTE_ACADEMICO__EDITAR',
                 isDisabled: () =>
                   selectedPeriodo.estado === 'CERRADO' ||
                   selectedAlumno.estadoMatricula !== 'Creada',
               },
               deleteButton: {
                 onClick: onClickEliminar,
+                permiso: 'APORTE_ACADEMICO__ELIMINAR',
                 isDisabled: () =>
                   selectedPeriodo.estado === 'CERRADO' ||
                   selectedAlumno.estadoMatricula !== 'Creada',

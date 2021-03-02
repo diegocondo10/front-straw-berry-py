@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import { AiOutlineWarning } from 'react-icons/ai';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { BtnRegresar } from 'src/components/Buttons';
@@ -16,7 +16,7 @@ import PrivateLayout from 'src/layouts/privateLayout';
 
 const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const history = useRouter();
-  const { addSuccessToast, addErrorToast } = useCustomToast();
+  const { addSuccessToast, addErrorToast, addWarningToast } = useCustomToast();
   const { loading, data, refetch } = useQuery(
     MatriculaQueries.getPeriodoLectivoByIdDetail,
     {
@@ -49,18 +49,20 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   };
 
   const onConfirmCerrarPeriodo = () => {
-    cerrarPeriodo({ variables: { id } })
-      .then(({ data: { response } }) => {
-        console.log(response);
-        if (response?.ok) {
-          refetch();
-        } else {
-          addWarningToast(response?.error?.mensaje);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!loadingCerrarPeriodo) {
+      cerrarPeriodo({ variables: { id } })
+        .then(({ data: { response } }) => {
+          console.log(response);
+          if (response?.ok) {
+            refetch();
+          } else {
+            addWarningToast(response?.error?.mensaje);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const onClickCerrarPeriodo = (event) => {
@@ -112,31 +114,24 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                   body: (value) => (
                     <div className="row">
                       <div className="col-12">
-                        <ButtonToolbar>
-                          <ButtonGroup>
-                            <Button
+                        <span className="p-button-set">
+                          <HrefButton
+                            variant="danger"
+                            permiso="PERIODO_LECTIVO__ELIMINAR"
+                            style={{ width: '140px' }}
+                            onClick={onClickEliminar}
+                            label="Eliminar"
+                          />
+                          {value?.habilitarCierre && (
+                            <HrefButton
                               variant="danger"
+                              permiso="PERIODO_LECTIVO__CERRAR_PERIODO"
                               style={{ width: '140px' }}
                               onClick={onClickEliminar}
-                            >
-                              Eliminar
-                            </Button>
-                            {value?.habilitarCierre && (
-                              <Button
-                                onClick={onClickCerrarPeriodo}
-                                disabled={loadingCerrarPeriodo}
-                              >
-                                {loadingCerrarPeriodo && (
-                                  <React.Fragment>
-                                    <i className="pi pi-spin pi-spinner mr-1" />
-                                    Cerrando periodo...
-                                  </React.Fragment>
-                                )}
-                                {!loadingCerrarPeriodo && 'Cerrar Periódo'}
-                              </Button>
-                            )}
-                          </ButtonGroup>
-                        </ButtonToolbar>
+                              label={'Cerrar periodo'}
+                            />
+                          )}
+                        </span>
                       </div>
                     </div>
                   ),

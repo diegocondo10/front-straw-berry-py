@@ -66,7 +66,7 @@ const UsuarioFormContainer: React.FC<any> = ({
               )}
             />
 
-            <FooterButtonsForm hrefBack="/auth/usuario" />
+            <FooterButtonsForm hrefBack="/auth/usuarios" />
           </form>
         </div>
       </div>

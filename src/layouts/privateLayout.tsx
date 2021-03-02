@@ -1,11 +1,16 @@
+import { useQuery } from '@apollo/client';
+import { me } from '@graphql/Auth/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { ScrollTop } from 'primereact/scrolltop';
 import React, { useRef } from 'react';
 import TitleBreadCrumb, {
-  TitleBreadCrumbProps
+  TitleBreadCrumbProps,
 } from 'src/components/BreadCrumbs/titleBreadCrumb';
 import Loading from 'src/components/Loading';
 import PrivateNavbar from 'src/components/navbar/privateNavbar';
+import useUsuario from 'src/_redux/hooks/useUsuario';
 
 export type PrivateLayoutProps = {
   children: any;
@@ -25,26 +30,26 @@ const PrivateLayout: React.FC<PrivateLayoutProps> = (props) => {
     headerChildren,
     breadCrumb,
   } = props;
-  // const { loading: loadingUsuario, usuario } = useUsuario();
+
   const ref = useRef<any>(null);
   const containerRef = useRef(null);
-  // const { setUsuario } = useContext(UsuarioContext);
-  // const { setUsuario } = useUsuario();
-  // const router = useRouter();
-  // const { addWarningToast } = useCustomToast();
 
-  // const { loading: loadingUsuario, data } = useQuery(me, {
-  //   pollInterval: 10 * 60000,
-  //   onCompleted: ({ usuario }) => {
-  //     if (!usuario) {
-  //       router.push('/login');
-  //       addWarningToast('Por favor iniciar sesion');
-  //     } else {
-  //       setUsuario(usuario);
-  //     }
-  //   },
-  //   ssr: false,
-  // });
+  const { setUsuario } = useUsuario();
+  const router = useRouter();
+  const { addWarningToast } = useCustomToast();
+
+  useQuery(me, {
+    pollInterval: 10 * 60000,
+    onCompleted: ({ usuario }) => {
+      if (!usuario) {
+        router.push('/login');
+        addWarningToast('Por favor iniciar sesion');
+      } else {
+        setUsuario(usuario);
+      }
+    },
+    ssr: false,
+  });
 
   return (
     <React.Fragment>

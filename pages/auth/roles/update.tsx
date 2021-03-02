@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
 import RolFormContainer from '@containers/Auth/roles/form';
-import PrivateLayout from 'src/layouts/privateLayout';
+import AuthMutations from '@graphql/Auth/mutations.gql';
+import AuthQueries from '@graphql/Auth/queries.gql';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import AuthQueries from '@graphql/Auth/queries.gql';
-import AuthMutations from '@graphql/Auth/mutations.gql';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const UpdateRolContainer = ({ items, title, id }) => {
   const methods = useForm({ mode: 'onChange' });
@@ -18,7 +18,9 @@ const UpdateRolContainer = ({ items, title, id }) => {
     },
   });
 
-  const [updateRol] = useMutation(AuthMutations.updateGrupo);
+  const [updateRol, { loading: loadingUpdate }] = useMutation(
+    AuthMutations.updateGrupo,
+  );
 
   const onSubmit = async (input) => {
     input.permisos = input.permisos.map((e) => e.id);
@@ -28,7 +30,7 @@ const UpdateRolContainer = ({ items, title, id }) => {
 
   return (
     <FormProvider {...methods}>
-      <PrivateLayout title="Roles de Usuario" loading={loading}>
+      <PrivateLayout title="Roles de Usuario" loading={loading || loadingUpdate}>
         <RolFormContainer
           items={items}
           title={title}

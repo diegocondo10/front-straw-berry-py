@@ -191,6 +191,7 @@ const MatriculaFormContainer = ({
                     },
                   }}
                   options={['Creada', 'Anulada']}
+                  disabled={isPeriodoCerrado}
                 />
               </div>
 
@@ -200,6 +201,7 @@ const MatriculaFormContainer = ({
                     label="Motivo de la anulación"
                     name="motivoAnulacion"
                     rules={{ required: 'Este campo es obligatorio' }}
+                    disabled={isPeriodoCerrado}
                   />
                 </div>
               )}

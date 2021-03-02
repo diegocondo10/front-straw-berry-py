@@ -1,39 +1,35 @@
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import React from 'react';
 import HrefButton from 'src/components/Buttons/HrefButton';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
 import useReportes from 'src/hooks/useReportes';
-import useUsuario from 'src/_redux/hooks/useUsuario';
 
 const PersonalContainer = ({ data }) => {
   const { getReporte } = useReportes();
-  // const { verificarPermiso } = usePermisos();
-  const { RenderIf } = useUsuario();
+
   const header = (
     <div className="container-fluid my-2">
       <div className="row justify-content-between">
-        <RenderIf permiso="PERSONAL__AGREGAR">
-          <div className="col text-left">
-            <HrefButton
-              href="/personas/personal/create"
-              icon="pi pi-plus"
-              label="Agregar"
-            />
-          </div>
-        </RenderIf>
-        <RenderIf permiso="PERSONAL__IMPRIMIR_REPORTE_NOMINA">
-          <div className="col text-right">
-            <Button
-              label="Reporte Nómina"
-              icon="pi pi-paperclip"
-              onClick={async () => {
-                await getReporte('reporte-nomina');
-              }}
-            />
-          </div>
-        </RenderIf>
+        <div className="col text-left">
+          <HrefButton
+            href="/personas/personal/create"
+            icon="pi pi-plus"
+            label="Agregar"
+            permiso="PERSONAL__AGREGAR"
+          />
+        </div>
+
+        <div className="col text-right">
+          <HrefButton
+            label="Reporte Nómina"
+            icon="pi pi-paperclip"
+            onClick={async () => {
+              await getReporte('reporte-nomina');
+            }}
+            permiso="PERSONAL__IMPRIMIR_REPORTE_NOMINA"
+          />
+        </div>
       </div>
     </div>
   );
@@ -105,6 +101,8 @@ const PersonalContainer = ({ data }) => {
               }}
             />
             {OptionesColumn({
+              permisoEdit: 'PERSONAL__EDITAR',
+              permisoDetail: 'PERSONAL__DETALLE',
               editPath: ({ id }) => `/personas/personal/update?id=${id}`,
               detailPath: ({ id }) => `/personas/personal/detail?id=${id}`,
             })}

@@ -1,14 +1,12 @@
 import HrefButton from '@components/Buttons/HrefButton';
 import useReportes from '@hooks/useReportes';
 import _ from 'lodash';
-import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { ContextMenu } from 'primereact/contextmenu';
 import { DataTable } from 'primereact/datatable';
 import React, { useRef, useState } from 'react';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import { IndexColumn, OptionesColumn } from 'src/components/table/columns';
-
 const PeriodosContainer = ({ data }) => {
   const { getReporte } = useReportes();
   const [selectedPeriodo, setSelectedPeriodo] = useState(null);
@@ -22,6 +20,7 @@ const PeriodosContainer = ({ data }) => {
         icon="pi pi-plus"
         href="/matriculas/periodos/create"
         className="mt-1"
+        permiso="PERIODO_LECTIVO__AGREGAR"
       />
     </div>
   );
@@ -144,6 +143,8 @@ const PeriodosContainer = ({ data }) => {
               style={{ width: '150px' }}
             />
             {OptionesColumn({
+              permisoEdit: 'PERIODO_LECTIVO__EDITAR',
+              permisoDetail: 'PERIODO_LECTIVO__DETALLE',
               editPath: ({ id }) => `/matriculas/periodos/update?id=${id}`,
               detailPath: ({ id }) => `/matriculas/periodos/detail?id=${id}`,
             })}

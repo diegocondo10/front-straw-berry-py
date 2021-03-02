@@ -10,7 +10,7 @@ import useUsuario from 'src/_redux/hooks/useUsuario';
 const PrivateNavbar = () => {
   const { push } = useRouter();
 
-  const { usuario, setState } = useUsuario();
+  const { usuario, setState, hasPerm } = useUsuario();
 
   const op = useRef(null);
 
@@ -22,85 +22,95 @@ const PrivateNavbar = () => {
 
   const commandPush = (path: string) => () => push(path);
 
-  const items = [
-    {
-      label: 'Inicio',
-      command: commandPush('/'),
-      icon: 'pi pi-home',
-    },
-    {
-      label: 'Personas',
-      icon: 'pi pi-users',
-      items: [
-        {
-          label: 'Personas',
-          command: commandPush('/personas'),
-          icon: 'pi pi-people',
-        },
-        {
-          label: 'Personal',
-          command: commandPush('/personas/personal'),
-        },
-        {
-          label: 'Alumnos',
-          command: commandPush('/personas/alumnos'),
-        },
+  const items = useMemo(
+    () => [
+      {
+        label: 'Inicio',
+        command: commandPush('/'),
+        icon: 'pi pi-home',
+      },
+      {
+        label: 'Personas',
+        icon: 'pi pi-users',
+        items: [
+          {
+            label: 'Personas',
+            command: commandPush('/personas'),
+            icon: 'pi pi-people',
+            disabled: !hasPerm('PERSONAS__LISTAR'),
+          },
+          {
+            label: 'Personal',
+            command: commandPush('/personas/personal'),
+            disabled: !hasPerm('PERSONAL__LISTAR'),
+          },
+          {
+            label: 'Alumnos',
+            command: commandPush('/personas/alumnos'),
+            disabled: !hasPerm('ALUMNOS__LISTAR'),
+          },
+          {
+            label: 'Discapacidades',
+            command: commandPush('/personas/discapacidades'),
+            disabled: !hasPerm('DISCAPACIDADES__LISTAR'),
+          },
+        ],
+      },
 
-        {
-          separator: true,
-        },
+      {
+        label: 'Matriculas',
+        icon: 'pi pi-desktop',
+        items: [
+          {
+            label: 'Periodos Lectivos',
+            command: commandPush('/matriculas/periodos'),
+            disabled: !hasPerm('PERIODO_LECTIVO__LISTAR'),
+          },
+          {
+            label: 'Aulas',
+            command: commandPush('/matriculas/aulas'),
+            disabled: !hasPerm('AULAS__LISTAR'),
+          },
+          {
+            label: 'Matrículas',
 
-        {
-          label: 'Discapacidades',
-          command: commandPush('/personas/discapacidades'),
-        },
-      ],
-    },
+            command: commandPush('/matriculas'),
+            disabled: !hasPerm('MATRICULAS__LISTAR'),
+          },
+        ],
+      },
 
-    {
-      label: 'Matriculas',
-      icon: 'pi pi-desktop',
-      items: [
-        {
-          label: 'Periodos Lectivos',
-          command: commandPush('/matriculas/periodos'),
-        },
-        {
-          label: 'Aulas',
-          command: commandPush('/matriculas/aulas'),
-        },
-        {
-          label: 'Matrículas',
-
-          command: commandPush('/matriculas'),
-        },
-      ],
-    },
-
-    {
-      label: 'Aporte Académico',
-      icon: 'pi pi-pencil',
-      command: commandPush('/notas'),
-    },
-    {
-      label: 'Administración',
-      icon: 'pi pi-sitemap',
-      items: [
-        {
-          label: 'Permisos',
-          command: commandPush('/auth/permisos'),
-        },
-        {
-          label: 'Grupos',
-          command: commandPush('/auth/roles'),
-        },
-        {
-          label: 'Usuarios',
-          command: commandPush('/auth/usuarios'),
-        },
-      ],
-    },
-  ];
+      {
+        label: 'Aporte Académico',
+        icon: 'pi pi-pencil',
+        command: commandPush('/notas'),
+        disabled: !hasPerm('APORTE_ACADEMICO__LISTAR'),
+      },
+      {
+        label: 'Administración',
+        icon: 'pi pi-sitemap',
+        // disabled: true,
+        items: [
+          {
+            label: 'Permisos',
+            command: commandPush('/auth/permisos'),
+            disabled: !hasPerm('PERMISOS__LISTAR'),
+          },
+          {
+            label: 'Grupos',
+            command: commandPush('/auth/roles'),
+            disabled: !hasPerm('GRUPOS__LISTAR'),
+          },
+          {
+            label: 'Usuarios',
+            command: commandPush('/auth/usuarios'),
+            disabled: !hasPerm('USUARIOS__LISTAR'),
+          },
+        ],
+      },
+    ],
+    [usuario],
+  );
 
   const end = useMemo(
     () => (
