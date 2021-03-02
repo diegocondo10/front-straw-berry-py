@@ -3,6 +3,7 @@ import HrefButton from '@components/Buttons/HrefButton';
 import DynamicDetailTable from '@components/Details/DynamicDetailTable';
 import AuthMutations from '@graphql/Auth/mutations.gql';
 import AuthQueries from '@graphql/Auth/queries.gql';
+import useCustomToast from '@hooks/useCustomToast';
 import { useRouter } from 'next/router';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -14,18 +15,29 @@ const DetailRolContainer = ({ id }) => {
 
   const { data, loading } = useQuery(AuthQueries.getByIdRol, { variables: { id } });
 
-  const [deletePermiso] = useMutation(AuthMutations.deletePermiso, {
-    variables: { id },
-  });
+  const { addWarningToast } = useCustomToast();
+
+  const [deletePermiso, { loading: loadingDelete }] = useMutation(
+    AuthMutations.deleteGrupo,
+    {
+      variables: { id },
+    },
+  );
 
   const onClickEliminar = async () => {
-    await deletePermiso();
-    history.push('/auth/roles');
+    if (data?.grupo?.canDelete) {
+      await deletePermiso();
+      return history.push('/auth/roles');
+    }
+
+    addWarningToast(
+      'No se puede elimiar un Grupo que este siendo usado por algun usuario',
+    );
   };
 
   return (
     <PrivateLayout
-      loading={loading}
+      loading={loading || loadingDelete}
       title="Grupo"
       breadCrumb={{
         title: 'Grupo',
@@ -83,8 +95,17 @@ const DetailRolContainer = ({ id }) => {
         </div>
 
         <div className="row justify-content-center">
-          <div className="col-md-7 my-1">
+          <div className="col-md-5 my-1">
             <HrefButton variant="info" href="/auth/roles" block label="Regresar" />
+          </div>
+          <div className="col-md-5 my-1">
+            <HrefButton
+              variant="danger"
+              href="/auth/roles"
+              block
+              label="Eliminar"
+              onClick={onClickEliminar}
+            />
           </div>
         </div>
       </main>

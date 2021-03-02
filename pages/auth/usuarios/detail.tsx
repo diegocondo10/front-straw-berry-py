@@ -25,13 +25,13 @@ const UsuarioDetailContainer = ({ id }) => {
   const usuario = data?.usuario;
 
   const onClickEliminar = async () => {
-    if (usuario?.persona) {
-      return addWarningToast(
-        'No se puede eliminar un usuario relacionado con una persona',
-      );
+    if (usuario?.canDelete) {
+      await deleteUsuario({ variables: { id } });
+      return router.replace('/auth/usuarios');
     }
-    await deleteUsuario({ variables: { id } });
-    router.replace('/auth/usuarios');
+    return addWarningToast(
+      'No se puede eliminar un usuario relacionado con una persona',
+    );
   };
 
   return (

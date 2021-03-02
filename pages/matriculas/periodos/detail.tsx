@@ -4,7 +4,7 @@ import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
+import { confirmPopup } from 'primereact/confirmpopup';
 import React from 'react';
 import { AiOutlineWarning } from 'react-icons/ai';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
@@ -23,9 +23,12 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
     },
   );
 
-  const [eliminarPeriodo] = useMutation(MatriculaMutations.updatePeriodo, {
-    variables: { id, input: { authEstado: 'E' } },
-  });
+  const [eliminarPeriodo, { loading: loadingEliminar }] = useMutation(
+    MatriculaMutations.updatePeriodo,
+    {
+      variables: { id, input: { authEstado: 'E' } },
+    },
+  );
 
   const [cerrarPeriodo, { loading: loadingCerrarPeriodo }] = useMutation(
     MatriculaMutations.cerrarPeriodoLectivoById,
@@ -43,7 +46,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
       return history.push('/matriculas/periodos');
     }
     return addErrorToast(
-      'No se puede eliminar un periodo lectivo con matrículas activas',
+      'No se puede eliminar un periodo lectivo con matrículas o aulas activas',
     );
   };
 
@@ -81,7 +84,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
           </p>
         </div>
       ),
-      header: <h4>Confirmación</h4>,
+      // header: <h4>Confirmación</h4>,
       acceptLabel: 'SI',
       rejectLabel: 'NO',
       // icon: 'pi pi-exclamation-triangle color-danger',
@@ -89,7 +92,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
     });
   };
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingEliminar}>
       <main className="container-fluid">
         <TitleBreadCrumb
           title="Periodo Lectivo"
@@ -202,6 +205,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
               variant="info"
               label="Regresar"
               href="/matriculas/periodos"
+              block
             />
           </div>
         </div>

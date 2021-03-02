@@ -17,7 +17,7 @@ mutation updateMatricula($input: UpdateAlumnoAulaInput!, $id: ID!) {
 }
 
 mutation deleteMatricula($id: ID!) {
-  deleteMatricula(id: $id) {
+  deleteMatricula: deleteAlumnoAula(id: $id) {
     found
     deletedId
   }

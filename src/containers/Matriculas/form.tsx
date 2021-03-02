@@ -171,49 +171,51 @@ const MatriculaFormContainer = ({
                 />
               </div>
 
-              <div className="col-lg-6">
-                <CustomDropDown
-                  name="estadoMatricula"
-                  label="Estado de la matricula"
-                  rules={{
-                    setValueAs: (value) => {
-                      switch (value) {
-                        case 'Creada':
-                          return 'A_0';
-
-                        case 'Anulada':
-                          return 'A_1';
-
-                        default:
-                          //Finalizada
-                          return 'A_2';
-                      }
-                    },
-                  }}
-                  options={['Creada', 'Anulada']}
-                  disabled={isPeriodoCerrado}
-                />
-              </div>
-
-              {(estadoMatricula === 'A_1' || estadoMatricula === 'Anulada') && (
-                <div className="col-12">
-                  <CustomTextArea
-                    label="Motivo de la anulación"
-                    name="motivoAnulacion"
-                    rules={{ required: 'Este campo es obligatorio' }}
-                    disabled={isPeriodoCerrado}
-                  />
-                </div>
-              )}
-
               {action !== 'create' && (
-                <div className="col-md-12">
-                  <CustomTextArea
-                    label="Diagnóstico Final:"
-                    name="diagnosticoFinal"
-                    disabled={isPeriodoCerrado}
-                  />
-                </div>
+                <React.Fragment>
+                  <div className="col-lg-6">
+                    <CustomDropDown
+                      name="estadoMatricula"
+                      label="Estado de la matricula"
+                      rules={{
+                        setValueAs: (value) => {
+                          switch (value) {
+                            case 'Creada':
+                              return 'A_0';
+
+                            case 'Anulada':
+                              return 'A_1';
+
+                            default:
+                              //Finalizada
+                              return 'A_2';
+                          }
+                        },
+                      }}
+                      options={['Creada', 'Anulada']}
+                      disabled={isPeriodoCerrado}
+                    />
+                  </div>
+
+                  {(estadoMatricula === 'A_1' || estadoMatricula === 'Anulada') && (
+                    <div className="col-12">
+                      <CustomTextArea
+                        label="Motivo de la anulación"
+                        name="motivoAnulacion"
+                        rules={{ required: 'Este campo es obligatorio' }}
+                        disabled={isPeriodoCerrado}
+                      />
+                    </div>
+                  )}
+
+                  <div className="col-md-12">
+                    <CustomTextArea
+                      label="Diagnóstico Final:"
+                      name="diagnosticoFinal"
+                      disabled={isPeriodoCerrado}
+                    />
+                  </div>
+                </React.Fragment>
               )}
             </Form.Row>
             <FooterButtonsForm

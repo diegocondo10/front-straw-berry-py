@@ -36,7 +36,11 @@ const RolFormContainer = ({
               sourceHeader="Permisos Disponibles"
               targetHeader="Permisos de este Rol"
               source={permisosDisponibles}
-              itemTemplate={(permiso) => permiso.nombre}
+              itemTemplate={(permiso) => (
+                <p style={{ width: '100px', wordWrap: 'normal', margin: '0 0 0 0' }}>
+                  {permiso.nombre}
+                </p>
+              )}
               rules={{
                 validate: (value) => {
                   if (value.length === 0) {

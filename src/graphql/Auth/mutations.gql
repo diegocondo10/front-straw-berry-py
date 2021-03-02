@@ -18,10 +18,10 @@ mutation updateApp($id: ID!, $input: UpdateAplicacionInput!) {
   }
 }
 
-mutation deleteApp($id: ID!) {
-  deleteAplicacion(id: $id) {
-    found
+mutation deleteGrupo($id: ID!) {
+  deleteGrupo(id: $id) {
     deletedId
+    found
   }
 }
 

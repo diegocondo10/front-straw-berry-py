@@ -48,6 +48,7 @@ query getMatriculaByIdFormUpdate($id: ID!) {
 query getMatriculaByIdDetail($id: ID!) {
   matricula(id: $id) {
     id
+    canDelete
     tratamiento
     matricula
     numeroMatricula
