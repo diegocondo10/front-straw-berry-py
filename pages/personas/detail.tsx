@@ -1,19 +1,26 @@
-import { useQuery } from '@apollo/client';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import { useMutation, useQuery } from '@apollo/client';
+import Persona from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
+import useCustomToast from '@hooks/useCustomToast';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { Button } from 'react-bootstrap';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const DetailPersonaContainer = ({ id }) => {
   const history = useRouter();
-
+  const { addWarningToast } = useCustomToast();
   const { data, loading } = useQuery(PersonaQueries.getPersonaByIdDetail, {
     variables: { id },
   });
+
+  const [
+    deletePersona,
+    { loading: loadingDelete },
+  ] = useMutation(Persona.deletePersona, { id });
 
   const diccionario = useMemo(() => {
     const diccionarioItems: any[] = [
@@ -72,11 +79,17 @@ const DetailPersonaContainer = ({ id }) => {
   }, [data]);
 
   const onClickEliminar = async () => {
-    history.push('/personas');
+    if (data?.persona?.canDelete) {
+      await deletePersona();
+      return history.push('/personas');
+    }
+    addWarningToast(
+      'No se puede eliminar una persona referenciada como "Personal" ó "Alumno"',
+    );
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDelete}>
       <main className="container-fluid mb-3">
         <BreadCrumbTitle
           title="Persona"

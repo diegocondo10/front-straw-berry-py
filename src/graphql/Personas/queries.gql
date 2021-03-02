@@ -18,6 +18,7 @@ query getDiscapacidadById($id: ID!) {
     id
     nombre
     descripcion
+    canDelete
   }
 }
 
@@ -77,6 +78,7 @@ query getPersonaByIdForm($id: ID!) {
 query getPersonaByIdDetail($id: ID!) {
   persona(id: $id) {
     id
+    canDelete
     str
     tipoIdentificacion
     identificacion

@@ -1,36 +1,46 @@
 import { useMutation, useQuery } from '@apollo/client';
-import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
-import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
+import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
+import { BtnRegresar } from 'src/components/Buttons';
+import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const DiscapacidadDetailContainer: NextPage<any> = ({ breadCrumb, id }) => {
   const router = useRouter();
+
+  const { addWarningToast } = useCustomToast();
 
   const { data, loading } = useQuery(PersonaQueries.getDiscapacidadById, {
     variables: { id },
     onError: (error) => router.push('/personas/discapacidades'),
   });
 
-  const [deleteDiscapacidad] = useMutation(PersonaMutations.deleteDiscapacidad, {
-    variables: { id },
-    onError: () => router.push('/personas/discapacidades'),
-  });
+  const [deleteDiscapacidad, { loading: loadingDelete }] = useMutation(
+    PersonaMutations.deleteDiscapacidad,
+    {
+      variables: { id },
+      onError: () => router.push('/personas/discapacidades'),
+    },
+  );
 
   const onClickEliminar = async () => {
-    await deleteDiscapacidad();
-
-    router.push('/personas/discapacidades');
+    if (data?.discapacidad?.canDelete) {
+      await deleteDiscapacidad();
+      return router.push('/personas/discapacidades');
+    }
+    addWarningToast(
+      'No se puede eliminar, debito a que esta referenciado en alguna persona',
+    );
   };
 
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDelete}>
       <main className="container full_h">
         <BreadCrumbTitle
           title="Discapacidades"
