@@ -8,7 +8,6 @@ import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup m
 import React from 'react';
 import { AiOutlineWarning } from 'react-icons/ai';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
 import useCustomToast from 'src/hooks/useCustomToast';
@@ -38,21 +37,20 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
   const periodo = data?.periodoLectivo;
 
   const onClickEliminar = async () => {
-    if (periodo?.totalMatriculas !== 0) {
-      return addErrorToast(
-        'No se puede eliminar un periodo lectivo con matrículas activas',
-      );
+    if (periodo?.totalMatriculas === 0 && periodo.canDelete) {
+      await eliminarPeriodo();
+      addSuccessToast('El periodo se ha eliminado correctamente');
+      return history.push('/matriculas/periodos');
     }
-    await eliminarPeriodo();
-    addSuccessToast('El periodo se ha eliminado correctamente');
-    history.push('/matriculas/periodos');
+    return addErrorToast(
+      'No se puede eliminar un periodo lectivo con matrículas activas',
+    );
   };
 
   const onConfirmCerrarPeriodo = () => {
     if (!loadingCerrarPeriodo) {
       cerrarPeriodo({ variables: { id } })
         .then(({ data: { response } }) => {
-          console.log(response);
           if (response?.ok) {
             refetch();
           } else {
@@ -127,7 +125,7 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
                               variant="danger"
                               permiso="PERIODO_LECTIVO__CERRAR_PERIODO"
                               style={{ width: '140px' }}
-                              onClick={onClickEliminar}
+                              onClick={onClickCerrarPeriodo}
                               label={'Cerrar periodo'}
                             />
                           )}
@@ -200,7 +198,11 @@ const PeriodoLectivoDetailContainer: NextPage<any> = ({ id }) => {
         </div>
         <div className="row justify-content-center my-3">
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/matriculas/periodos" />
+            <HrefButton
+              variant="info"
+              label="Regresar"
+              href="/matriculas/periodos"
+            />
           </div>
         </div>
       </main>

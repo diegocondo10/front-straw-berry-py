@@ -276,6 +276,7 @@ query getPeriodoLectivoByIdDetail($id: ID!) {
     fechaFinClases
     estado
     observaciones
+    canDelete
     totalMatriculas: numeroMatriculas
     matriculasCreadas: numeroMatriculas(estados: [CREADA])
     matriculasFinalizadas: numeroMatriculas(estados: [FINALIZADA])

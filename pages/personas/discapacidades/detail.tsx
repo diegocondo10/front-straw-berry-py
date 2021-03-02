@@ -1,13 +1,12 @@
 import { useMutation, useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import PersonaMutations from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import PrivateLayout from 'src/layouts/privateLayout';
 
@@ -71,13 +70,18 @@ const DiscapacidadDetailContainer: NextPage<any> = ({ breadCrumb, id }) => {
             <div className="col-md-10 col-lg-8">
               <div className="row justify-content-center">
                 <div className="col-md-5 my-1 order-md-1">
-                  <Button variant="outline-danger" block onClick={onClickEliminar}>
-                    Eliminar
-                  </Button>
+                  <HrefButton
+                    variant="danger"
+                    block
+                    onClick={onClickEliminar}
+                    label="Eliminar"
+                  />
                 </div>
                 <div className="col-md-5 my-1">
-                  <BtnRegresar
-                    variant="outline-info"
+                  <HrefButton
+                    variant="info"
+                    label="Regresar"
+                    block
                     href="/personas/discapacidades"
                   />
                 </div>
