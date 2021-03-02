@@ -1,6 +1,9 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import HrefButton from '@components/Buttons/HrefButton';
+import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
+import useCustomRouter from '@hooks/useCustomRouter';
+import useCustomToast from '@hooks/useCustomToast';
 import { NextPage } from 'next';
 import React from 'react';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
@@ -12,6 +15,15 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
   const { data, loading } = useQuery(MatriculaQueries.getMatriculaByIdDetail, {
     variables: { id },
   });
+
+  const { addWarningToast } = useCustomToast();
+  const router = useCustomRouter();
+  const [deleteMatricula, { loading: loadingDeleteMatricula }] = useMutation(
+    MatriculaMutations.deleteMatricula,
+    {
+      variables: { id },
+    },
+  );
 
   const padreMadreComponent = (source) => (
     <DynamicDetailTable
@@ -50,8 +62,18 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
     path: 'motivoAnulacion',
   };
 
+  const onClickEliminar = async () => {
+    if (data?.matricula?.canDelete) {
+      await deleteMatricula();
+      return router.push('/matriculas');
+    }
+    addWarningToast(
+      'No se puede eliminar una matricula, de un periodo lectivo CERRADO ó que contenga registro de Aportes Academicos',
+    );
+  };
+
   return (
-    <PrivateLayout loading={loading}>
+    <PrivateLayout loading={loading || loadingDeleteMatricula}>
       <main className="container-fluid">
         <BreadCrumbTitle
           title="Matrícula"
@@ -166,11 +188,16 @@ const DetailMatriculaContainer: NextPage<any> = ({ id }) => {
         </div>
 
         <div className="row justify-content-center my-3">
-          <div className="col-md-7">
+          <div className="col-md-5">
+            <HrefButton variant="info" href="/matriculas" label="Regresar" block />
+          </div>
+          <div className="col-md-5">
             <HrefButton
-              className="p-button-info btn-block"
-              href="/matriculas"
-              label="Regresar"
+              variant="danger"
+              onClick={onClickEliminar}
+              label="Eliminar"
+              block
+              permiso="MATRICULAS__ELIMINAR"
             />
           </div>
         </div>

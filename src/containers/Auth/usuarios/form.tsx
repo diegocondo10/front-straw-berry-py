@@ -57,10 +57,7 @@ const UsuarioFormContainer: React.FC<any> = ({
               targetHeader="Permisos asignados"
               source={permisosDisponibles}
               itemTemplate={(permiso) => (
-                <p
-                  style={{ width: '100px', wordWrap: 'normal', margin: '0 0 0 0' }}
-                  // className="text-wrap"
-                >
+                <p style={{ width: '100px', wordWrap: 'normal', margin: '0 0 0 0' }}>
                   {permiso.nombre}
                 </p>
               )}

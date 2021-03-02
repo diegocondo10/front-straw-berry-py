@@ -259,6 +259,7 @@ query getAlumnoByIdFormUpdate($id: ID!) {
 query getAlumnoByIdDetail($id: ID!) {
   alumno(id: $id) {
     id
+    canDelete
     persona {
       id
       str

@@ -5,9 +5,7 @@ import PersonaQueries from '@graphql/Personas/queries.gql';
 import useCustomToast from '@hooks/useCustomToast';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import Hreft from 'src/components/utils/Link';
 import PrivateLayout from 'src/layouts/privateLayout';
@@ -25,19 +23,12 @@ const DetailAlumnoContainer = ({ id }) => {
     { variables: { id } },
   );
 
-  // const onClickEliminar = async () => {
-  //   await deleteAlumno();
-  //   history.push('/personas/alumnos');
-  // };
-
   const onClickEliminar = async () => {
     if (data?.alumno?.canDelete) {
       await deleteAlumno();
       return history.push('/alumnos');
     }
-    addWarningToast(
-      'No se puede eliminar una persona referenciada como "Alumno"',
-    );
+    addWarningToast('No se puede eliminar una persona referenciada como "Alumno"');
   };
 
   return (
@@ -204,7 +195,12 @@ const DetailAlumnoContainer = ({ id }) => {
 
         <div className="col-md-10 col-lg-8">
           <div className="col-md-4 my-1">
-            <HrefButton variant="info" href="/personas/alumnos" block label="Regresar" />
+            <HrefButton
+              variant="info"
+              href="/personas/alumnos"
+              block
+              label="Regresar"
+            />
           </div>
           <div className="col-md-4 my-1 order-md-1">
             <HrefButton
