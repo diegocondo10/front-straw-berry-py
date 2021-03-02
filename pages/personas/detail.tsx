@@ -1,12 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client';
+import HrefButton from '@components/Buttons/HrefButton';
 import Persona from '@graphql/Personas/mutations.gql';
 import PersonaQueries from '@graphql/Personas/queries.gql';
 import useCustomToast from '@hooks/useCustomToast';
 import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
-import { Button } from 'react-bootstrap';
 import BreadCrumbTitle from 'src/components/BreadCrumbs/titleBreadCrumb';
-import { BtnRegresar } from 'src/components/Buttons';
 import DynamicDetailTable from 'src/components/Details/DynamicDetailTable';
 import PrivateLayout from 'src/layouts/privateLayout';
 
@@ -17,10 +16,10 @@ const DetailPersonaContainer = ({ id }) => {
     variables: { id },
   });
 
-  const [
-    deletePersona,
-    { loading: loadingDelete },
-  ] = useMutation(Persona.deletePersona, { id });
+  const [deletePersona, { loading: loadingDelete }] = useMutation<any>(
+    Persona.deletePersona,
+    { variables: { id } },
+  );
 
   const diccionario = useMemo(() => {
     const diccionarioItems: any[] = [
@@ -108,13 +107,17 @@ const DetailPersonaContainer = ({ id }) => {
 
         <div className="row justify-content-center">
           <div className="col-md-4 my-1">
-            <BtnRegresar variant="outline-info" href="/personas" />
+            <HrefButton variant="info" href="/personas" block label="Regresar" />
           </div>
 
           <div className="col-md-4 my-1 order-md-1">
-            <Button variant="outline-danger" block onClick={onClickEliminar}>
-              Eliminar
-            </Button>
+            <HrefButton
+              variant="danger"
+              block
+              onClick={onClickEliminar}
+              label="Eliminar"
+              permiso="PERSONAS__ELIMINAR"
+            />
           </div>
         </div>
       </main>
