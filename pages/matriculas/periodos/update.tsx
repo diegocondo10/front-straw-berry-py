@@ -2,11 +2,11 @@ import { useMutation, useQuery } from '@apollo/client';
 import PeriodoLectivoFormContainer from '@containers/PeriodosLectivos/form';
 import MatriculaMutations from '@graphql/Matriculas/mutations.gql';
 import MatriculaQueries from '@graphql/Matriculas/queries.gql';
-import PrivateLayout from 'src/layouts/privateLayout';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import PrivateLayout from 'src/layouts/privateLayout';
 
 const UpdatePeriodoContainer: NextPage<any> = ({ id }) => {
   const methods = useForm({ mode: 'onChange' });

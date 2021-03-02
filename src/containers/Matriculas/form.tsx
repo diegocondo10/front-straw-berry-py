@@ -17,7 +17,6 @@ const MatriculaFormContainer = ({
   alumnos = [],
   action = 'create',
   isPeriodoCerrado = false,
-  data,
 }: {
   title: string;
   items: any[];
@@ -25,8 +24,7 @@ const MatriculaFormContainer = ({
   alumnos: any[];
   onSubmit: CallableFunction;
   action?: 'create' | 'update';
-  isPeriodoCerrado: boolean;
-  data: any;
+  isPeriodoCerrado?: boolean;
 }) => {
   const methods = useFormContext();
 

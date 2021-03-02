@@ -1,3 +1,5 @@
+import React, { useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
 import TitleBreadCrumb from 'src/components/BreadCrumbs/titleBreadCrumb';
 import FooterButtonsForm from 'src/components/Buttons/FooterButtonsForm';
 import CustomDropDown from 'src/components/forms/CustomDropDown';
@@ -6,8 +8,6 @@ import CustomMultiSelect from 'src/components/forms/CustomMultiSelect';
 import CustomTextArea from 'src/components/forms/CustomTextArea';
 import CustomTextInput from 'src/components/forms/CustomTextInput';
 import { getId } from 'src/utils/funciones';
-import React, { useMemo } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 const AulasFormContainer = ({
   defaultData,
@@ -18,7 +18,6 @@ const AulasFormContainer = ({
   periodos = [],
   docentes = [],
 }: {
-  data: any;
   title: string;
   items: any[];
   periodos: any[];

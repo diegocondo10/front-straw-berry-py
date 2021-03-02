@@ -103,10 +103,11 @@ export const OptionesColumn: React.FC<
         customButtons?.map((item, key) => (
           <HrefButton
             key={`custom-button-${key}`}
+            {...item}
             onClick={(evt) => {
+              console.log(rowData);
               item?.onClick?.(rowData, { evt });
             }}
-            {...item}
             permiso={item?.permiso}
           />
         ))}
