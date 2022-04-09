@@ -28,7 +28,7 @@
     "graphql-tag": "^2.11.0",
     "jquery": "^3.5.1",
     "loader": "^2.1.1",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "next": "^10.0.7",
     "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
